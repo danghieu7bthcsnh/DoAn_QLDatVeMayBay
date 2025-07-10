@@ -1,0 +1,79 @@
+﻿@model QLDatVeMayBay.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Đăng ký tài khoản";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg rounded-4">
+                <div class="card-header bg-primary text-white text-center fs-4 rounded-top-4">
+                    ✈️ Đăng ký tài khoản khách hàng
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="DangKy" method="post" novalidate>
+                        <div class="mb-3">
+                            <label asp-for="TenDangNhap" class="form-label">Tên đăng nhập</label>
+                            <input asp-for="TenDangNhap" class="form-control" placeholder="vd: nguyenvana123" />
+                            <span asp-validation-for="TenDangNhap" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="MatKhau" class="form-label">Mật khẩu</label>
+                            <input asp-for="MatKhau" type="password" class="form-control" />
+                            <span asp-validation-for="MatKhau" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="XacNhanMatKhau" class="form-label">Xác nhận mật khẩu</label>
+                            <input asp-for="XacNhanMatKhau" type="password" class="form-control" />
+                            <span asp-validation-for="XacNhanMatKhau" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="HoTen" class="form-label">Họ tên</label>
+                            <input asp-for="HoTen" class="form-control" placeholder="vd: Nguyễn Văn A" />
+                            <span asp-validation-for="HoTen" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" class="form-control" placeholder="vd: email@example.com" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="SoDienThoai" class="form-label">Số điện thoại</label>
+                            <input asp-for="SoDienThoai" class="form-control" placeholder="vd: 0912345678" />
+                            <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="GioiTinh" class="form-label">Giới tính</label>
+                            <select asp-for="GioiTinh" class="form-select">
+                                <option value="">-- Chọn giới tính --</option>
+                                <option>Nam</option>
+                                <option>Nữ</option>
+                                <option>Khác</option>
+                            </select>
+                            <span asp-validation-for="GioiTinh" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                Đăng ký ✈
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    Đã có tài khoản? <a asp-action="DangNhap">Đăng nhập</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
