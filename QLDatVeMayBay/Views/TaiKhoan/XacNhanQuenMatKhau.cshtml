@@ -1,0 +1,17 @@
+﻿@model QLDatVeMayBay.ViewModels.XacNhanQuenMatKhauViewModel
+@{
+    ViewData["Title"] = "Xác nhận mã OTP";
+}
+
+<h2>Xác nhận mã OTP</h2>
+
+<form asp-action="XacNhanQuenMatKhau" method="post">
+    <input type="hidden" asp-for="Email" />
+
+    <div class="form-group">
+        <label>Mã xác nhận đã gửi về email</label>
+        <input asp-for="MaXacNhan" class="form-control" />
+        <span asp-validation-for="MaXacNhan" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Xác nhận</button>
+</form>

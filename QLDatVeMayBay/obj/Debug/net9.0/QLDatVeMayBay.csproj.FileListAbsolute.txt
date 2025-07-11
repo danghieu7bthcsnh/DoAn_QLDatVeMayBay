@@ -687,3 +687,6 @@ C:\Users\asus\Source\Repos\DoAn_QLDatVeMayBay\QLDatVeMayBay\obj\Debug\net9.0\ref
 C:\Users\asus\Source\Repos\DoAn_QLDatVeMayBay\QLDatVeMayBay\obj\Debug\net9.0\QLDatVeMayBay.pdb
 C:\Users\asus\Source\Repos\DoAn_QLDatVeMayBay\QLDatVeMayBay\obj\Debug\net9.0\QLDatVeMayBay.genruntimeconfig.cache
 C:\Users\asus\Source\Repos\DoAn_QLDatVeMayBay\QLDatVeMayBay\obj\Debug\net9.0\ref\QLDatVeMayBay.dll
+C:\Users\asus\Source\Repos\DoAn_QLDatVeMayBay\QLDatVeMayBay\bin\Debug\net9.0\config\applicationhost.config
+C:\Users\asus\Source\Repos\DoAn_QLDatVeMayBay\QLDatVeMayBay\bin\Debug\net9.0\v17\DocumentLayout.backup.json
+C:\Users\asus\Source\Repos\DoAn_QLDatVeMayBay\QLDatVeMayBay\bin\Debug\net9.0\v17\DocumentLayout.json

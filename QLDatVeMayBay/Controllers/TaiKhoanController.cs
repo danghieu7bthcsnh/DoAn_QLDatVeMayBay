@@ -236,6 +236,104 @@ namespace QLDatVeMayBay.Controllers
                 throw new InvalidOperationException("Gửi email thất bại: " + ex.Message, ex);
             }
         }
+        [HttpGet]
+        public IActionResult QuenMatKhau()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> QuenMatKhau(QuenMatKhauViewModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            var nguoiDung = await _context.NguoiDung.FirstOrDefaultAsync(n => n.Email == model.Email);
+            if (nguoiDung == null)
+            {
+                ModelState.AddModelError("Email", "Email này chưa được đăng ký.");
+                return View(model);
+            }
+
+            var ma = new Random().Next(100000, 999999).ToString();
+            var maXacNhan = new MaXacNhan
+            {
+                TenDangNhap = nguoiDung.TenDangNhap,
+                Ma = ma,
+                ThoiGianHetHan = DateTime.Now.AddMinutes(10)
+            };
+
+            _context.MaXacNhan.Add(maXacNhan);
+            await _context.SaveChangesAsync();
+
+            await SendEmailAsync(model.Email, "Xác nhận quên mật khẩu", $"Mã xác nhận của bạn là: {ma}");
+
+            TempData["Email"] = model.Email;
+            return RedirectToAction("XacNhanQuenMatKhau");
+        }
+
+        [HttpGet]
+        public IActionResult XacNhanQuenMatKhau()
+        {
+            var email = TempData["Email"]?.ToString();
+            if (string.IsNullOrEmpty(email)) return RedirectToAction("QuenMatKhau");
+
+            TempData.Keep("Email");
+            return View(new XacNhanQuenMatKhauViewModel { Email = email });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> XacNhanQuenMatKhau(XacNhanQuenMatKhauViewModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            var nguoiDung = await _context.NguoiDung.FirstOrDefaultAsync(n => n.Email == model.Email);
+            var ma = await _context.MaXacNhan.FirstOrDefaultAsync(m =>
+                m.TenDangNhap == nguoiDung.TenDangNhap &&
+                m.Ma == model.MaXacNhan &&
+                m.ThoiGianHetHan >= DateTime.Now);
+
+            if (ma == null)
+            {
+                ModelState.AddModelError("MaXacNhan", "Mã không chính xác hoặc đã hết hạn.");
+                return View(model);
+            }
+
+            TempData["Email"] = model.Email;
+            return RedirectToAction("DoiMatKhau");
+        }
+
+        [HttpGet]
+        public IActionResult DoiMatKhau()
+        {
+            var email = TempData["Email"]?.ToString();
+            if (string.IsNullOrEmpty(email)) return RedirectToAction("QuenMatKhau");
+
+            TempData.Keep("Email");
+            return View(new DoiMatKhauViewModel { Email = email });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DoiMatKhau(DoiMatKhauViewModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            var nguoiDung = await _context.NguoiDung.FirstOrDefaultAsync(n => n.Email == model.Email);
+            var taiKhoan = await _context.TaiKhoan.FirstOrDefaultAsync(t => t.TenDangNhap == nguoiDung.TenDangNhap);
+
+            if (taiKhoan == null) return RedirectToAction("QuenMatKhau");
+
+            taiKhoan.MatKhau = HashPassword(model.MatKhauMoi);
+            var maXacNhanList = _context.MaXacNhan.Where(m => m.TenDangNhap == taiKhoan.TenDangNhap);
+            _context.MaXacNhan.RemoveRange(maXacNhanList);
+
+            await _context.SaveChangesAsync();
+            TempData["ThongBao"] = "Đổi mật khẩu thành công. Hãy đăng nhập lại.";
+            return RedirectToAction("DangNhap");
+        }
+
 
         private string HashPassword(string password)
         {

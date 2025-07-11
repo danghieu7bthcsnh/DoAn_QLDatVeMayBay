@@ -17,53 +17,65 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = QLDatVeMayBay
 build_property.RootNamespace = QLDatVeMayBay
-build_property.ProjectDir = C:\Users\asus\source\repos\DoAn_QLDatVeMayBay\QLDatVeMayBay\
+build_property.ProjectDir = C:\Users\asus\Source\Repos\DoAn_QLDatVeMayBay\QLDatVeMayBay\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\asus\source\repos\DoAn_QLDatVeMayBay\QLDatVeMayBay
+build_property.MSBuildProjectDirectory = C:\Users\asus\Source\Repos\DoAn_QLDatVeMayBay\QLDatVeMayBay
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/asus/source/repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/Home/Index.cshtml]
+[C:/Users/asus/Source/Repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/asus/source/repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/Home/Privacy.cshtml]
+[C:/Users/asus/Source/Repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/asus/source/repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/Shared/Error.cshtml]
+[C:/Users/asus/Source/Repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/asus/source/repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/asus/Source/Repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/asus/source/repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/TaiKhoan/DangKy.cshtml]
+[C:/Users/asus/Source/Repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/TaiKhoan/DangKy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cRGFuZ0t5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/asus/source/repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/TaiKhoan/DangNhap.cshtml]
+[C:/Users/asus/Source/Repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/TaiKhoan/DangNhap.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cRGFuZ05oYXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/asus/source/repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/TaiKhoan/XacNhanEmail.cshtml]
+[C:/Users/asus/Source/Repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/TaiKhoan/DoiMatKhau.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cRG9pTWF0S2hhdS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/asus/Source/Repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/TaiKhoan/QuenMatKhau.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cUXVlbk1hdEtoYXUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/asus/Source/Repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/TaiKhoan/XacNhanEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cWGFjTmhhbkVtYWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/asus/source/repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/_ViewImports.cshtml]
+[C:/Users/asus/Source/Repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/TaiKhoan/XacNhanQuenMatKhau.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpS2hvYW5cWGFjTmhhblF1ZW5NYXRLaGF1LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/asus/Source/Repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/asus/source/repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/_ViewStart.cshtml]
+[C:/Users/asus/Source/Repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/asus/source/repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/Shared/_Layout.cshtml]
+[C:/Users/asus/Source/Repos/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-odghctqdbm
