@@ -1,0 +1,65 @@
+﻿@model QLDatVeMayBay.Models.TimKiemChuyenBay
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    ViewData["Title"] = "Tìm kiếm chuyến bay";
+}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+
+<div class="container p-4 mt-4 bg-light rounded shadow">
+    <h3 class="mb-4 text-primary fw-bold">Tìm kiếm chuyến bay</h3>
+
+    <form asp-action="KetQuaTimKiem" method="post">
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label>Loại vé</label><br />
+                <input type="radio" name="LoaiVe" checked /> Một chiều
+                <input type="radio" name="LoaiVe" class="ms-3" /> Khứ hồi
+            </div>
+
+            <div class="col-md-3">
+                <label>Hạng ghế</label>
+                <select class="form-select">
+                    <option>Phổ thông</option>
+                    <option>Thương gia</option>
+                    <option>Hạng nhất</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label>Hành khách</label>
+                <div class="d-flex">
+                    <input type="number" min="0" name="NguoiLon" placeholder="Người lớn" class="form-control me-2" />
+                    <input type="number" min="0" name="TreEm" placeholder="Trẻ em" class="form-control me-2" />
+                    <input type="number" min="0" name="EmBe" placeholder="Em bé" class="form-control" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label>Từ (Sân bay đi)</label>
+                @Html.DropDownListFor(m => m.SanBayDi, (SelectList)ViewBag.SanBayDi, "Chọn sân bay đi", new { @class = "form-select" })
+            </div>
+
+            <div class="col-md-4">
+                <label>Đến (Sân bay đến)</label>
+                @Html.DropDownListFor(m => m.SanBayDen, (SelectList)ViewBag.SanBayDen, "Chọn sân bay đến", new { @class = "form-select" })
+            </div>
+
+            <div class="col-md-2">
+                <label>Ngày đi</label>
+                @Html.TextBoxFor(m => m.NgayDi, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+            </div>
+
+            <div class="col-md-2">
+                <label>Ngày về</label>
+                <input type="date" class="form-control" disabled />
+            </div>
+        </div>
+
+        <div class="text-end">
+            <button type="submit" class="btn btn-primary px-4">Tìm kiếm chuyến bay</button>
+        </div>
+    </form>
+</div>

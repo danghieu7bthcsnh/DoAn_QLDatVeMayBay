@@ -5,6 +5,10 @@ namespace QLDatVeMayBay.Data
 {
     public class QLDatVeMayBayContext : DbContext
     {
+        public QLDatVeMayBayContext()
+        {
+        }
+
         public QLDatVeMayBayContext(DbContextOptions<QLDatVeMayBayContext> options) : base(options)
         {
         }

@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QLDatVeMayBay.Data;
@@ -7,29 +6,24 @@ using QLDatVeMayBay.Models;
 
 namespace QLDatVeMayBay.Controllers
 {
-    public class HomeController : Controller
+    public class ChuyenBayController : Controller
     {
         private readonly QLDatVeMayBayContext _context;
 
-        //  Constructor duy nhất, inject DbContext
-        public HomeController(QLDatVeMayBayContext context)
+        public ChuyenBayController(QLDatVeMayBayContext context)
         {
             _context = context;
         }
 
-        // Trang chủ - Hiển thị form tìm kiếm
-        public IActionResult Index()
+        public IActionResult TimKiem()
         {
-            // Load danh sách sân bay cho combobox
             ViewBag.SanBayDi = new SelectList(_context.SanBay.ToList(), "IDSanBay", "TenSanBay");
             ViewBag.SanBayDen = new SelectList(_context.SanBay.ToList(), "IDSanBay", "TenSanBay");
-
-            return View(new TimKiemChuyenBay());
+            return View();
         }
 
-        //  POST: Tìm kiếm chuyến bay
         [HttpPost]
-        public IActionResult TimKiem(TimKiemChuyenBay model)
+        public IActionResult KetQuaTimKiem(TimKiemChuyenBay model)
         {
             var danhSach = _context.ChuyenBay
                 .Include(cb => cb.MayBay)
@@ -41,14 +35,9 @@ namespace QLDatVeMayBay.Controllers
                     cb.GioCatCanh.Date == model.NgayDi.Date)
                 .ToList();
 
-            // Trả lại dữ liệu hiển thị
-            ViewBag.KetQua = danhSach;
-
-            // RẤT QUAN TRỌNG: Truyền lại dropdowns
-            ViewBag.SanBayDi = new SelectList(_context.SanBay.ToList(), "IDSanBay", "TenSanBay");
-            ViewBag.SanBayDen = new SelectList(_context.SanBay.ToList(), "IDSanBay", "TenSanBay");
-
-            return View("Index", model);
+            ViewBag.ThongTin = model;
+            return View(danhSach);
         }
     }
+
 }

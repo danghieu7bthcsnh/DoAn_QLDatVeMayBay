@@ -1,0 +1,35 @@
+﻿@model List<QLDatVeMayBay.Models.ChuyenBay>
+@{
+    var thongTin = (QLDatVeMayBay.Models.TimKiemChuyenBay)ViewBag.ThongTin;
+}
+
+<h3>Kết quả chuyến bay từ @thongTin.SanBayDi đến @thongTin.SanBayDen</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Hãng Hàng Không</th>
+            <th>Loại máy bay</th>
+            <th>Sân bay đi</th>
+            <th>Sân bay đến</th>
+            <th>Giờ cất cánh</th>
+            <th>Giờ hạ cánh</th>
+            <th>Giá vé</th>
+            <th>Tình trạng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cb in Model)
+        {
+            <tr>
+                <td>@cb.MayBay?.TenHangHK</td>
+                <td>@cb.MayBay?.LoaiMayBay?.LoaiMayBayId</td>
+                <td>@cb.SanBayDiInfo?.TenSanBay</td>
+                <td>@cb.SanBayDenInfo?.TenSanBay</td>
+                <td>@cb.GioCatCanh.ToString("HH:mm dd/MM/yyyy")</td>
+                <td>@cb.GioHaCanh.ToString("HH:mm dd/MM/yyyy")</td>
+                <td>@cb.GiaVe.ToString("N0") VND</td>
+                <td>@cb.TinhTrang</td>
+            </tr>
+        }
+    </tbody>
+</table>
