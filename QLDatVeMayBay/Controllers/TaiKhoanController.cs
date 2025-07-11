@@ -11,6 +11,8 @@ using System.Text;
 using MailKit.Net.Smtp;
 using MimeKit;
 using MailKit.Security;
+using System.Net.Mail;
+using System.Net;
 
 namespace QLDatVeMayBay.Controllers
 {
@@ -188,6 +190,8 @@ namespace QLDatVeMayBay.Controllers
                 new ClaimsPrincipal(claimsIdentity),
                 authProperties);
 
+
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -200,10 +204,9 @@ namespace QLDatVeMayBay.Controllers
             return RedirectToAction("DangNhap");
         }
 
-        // Gửi email xác nhận
-        private async Task SendEmailAsync(string email, string subject, string message)
+        private async Task SendEmailAsync(string emailNguoiNhan, string subject, string message)
         {
-            if (string.IsNullOrWhiteSpace(email))
+            if (string.IsNullOrWhiteSpace(emailNguoiNhan))
                 throw new ArgumentException("Email người nhận không hợp lệ.");
 
             var emailMessage = new MimeMessage();
@@ -216,12 +219,11 @@ namespace QLDatVeMayBay.Controllers
             var password = _configuration["EmailSettings:Password"];
 
             emailMessage.From.Add(new MailboxAddress(senderName, senderEmail));
-            emailMessage.To.Add(new MailboxAddress("", email));
+            emailMessage.To.Add(new MailboxAddress("", emailNguoiNhan)); // <-- email người dùng
             emailMessage.Subject = subject;
             emailMessage.Body = new TextPart("plain") { Text = message };
 
-            using var client = new SmtpClient();
-
+            using var client = new MailKit.Net.Smtp.SmtpClient();
             try
             {
                 await client.ConnectAsync(smtpServer, port, SecureSocketOptions.StartTls);
@@ -231,7 +233,6 @@ namespace QLDatVeMayBay.Controllers
             }
             catch (Exception ex)
             {
-                // Ghi log hoặc xử lý lỗi gửi email
                 throw new InvalidOperationException("Gửi email thất bại: " + ex.Message, ex);
             }
         }
