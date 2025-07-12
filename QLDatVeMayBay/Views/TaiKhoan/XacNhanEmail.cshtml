@@ -1,0 +1,51 @@
+﻿@model QLDatVeMayBay.ViewModels.XacNhanEmailViewModel
+@{
+    ViewData["Title"] = "Xác nhận Email";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg rounded-4">
+                <div class="card-header bg-info text-white text-center fs-4 rounded-top-4">
+                    📩 Xác nhận tài khoản qua Email
+                </div>
+                <div class="card-body p-4">
+                    @if (ViewBag.ThongBao != null)
+                    {
+                        <div class="alert alert-warning">
+                            @ViewBag.ThongBao
+                        </div>
+                    }
+
+                    <form asp-action="XacNhanEmail" method="post">
+                        <input type="hidden" asp-for="TenDangNhap" />
+
+                        <div class="mb-3">
+                            <label asp-for="MaXacNhan" class="form-label">Nhập mã xác nhận</label>
+                            <input asp-for="MaXacNhan" class="form-control" placeholder="Nhập mã gồm 6 chữ số" />
+                            <span asp-validation-for="MaXacNhan" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                ✅ Xác nhận
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="mt-3 text-center">
+                        <form asp-action="GuiLaiMaXacNhan" method="post">
+                            <input type="hidden" name="tenDangNhap" value="@Model.TenDangNhap" />
+                            <button type="submit" class="btn btn-link">Gửi lại mã xác nhận</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

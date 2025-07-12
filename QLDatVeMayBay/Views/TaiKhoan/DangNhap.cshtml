@@ -1,0 +1,58 @@
+﻿@model QLDatVeMayBay.ViewModels.DangNhapViewModel
+@{
+    ViewData["Title"] = "Đăng Nhập";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-lg rounded-4">
+                <div class="card-header bg-success text-white text-center fs-4 rounded-top-4">
+                    ✈️ Đăng Nhập Hệ Thống
+                </div>
+                <div class="card-body p-4">
+                    @if (ViewBag.ThongBao != null)
+                    {
+                        <div class="alert alert-danger">
+                            @ViewBag.ThongBao
+                        </div>
+                    }
+
+                    <form asp-action="DangNhap" method="post">
+                        <div class="mb-3">
+                            <label asp-for="TenDangNhapOrEmail" class="form-label">Tên đăng nhập hoặc Email</label>
+                            <input asp-for="TenDangNhapOrEmail" class="form-control" placeholder="Nhập tên đăng nhập hoặc email" />
+                            <span asp-validation-for="TenDangNhapOrEmail" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="MatKhau" class="form-label">Mật khẩu</label>
+                            <input asp-for="MatKhau" class="form-control" type="password" placeholder="Nhập mật khẩu" />
+                            <span asp-validation-for="MatKhau" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input asp-for="GhiNhoDangNhap" class="form-check-input" />
+                            <label asp-for="GhiNhoDangNhap" class="form-check-label">Ghi nhớ đăng nhập</label>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">🔐 Đăng Nhập</button>
+                        </div>
+                    </form>
+
+                    <div class="mt-3 text-center">
+                        <a asp-action="DangKy">👉 Chưa có tài khoản? Đăng ký</a>
+                    </div>
+                    <div class="mt-3 text-center">
+                        <a asp-action="QuenMatKhau">👉 Quên mật khẩu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
