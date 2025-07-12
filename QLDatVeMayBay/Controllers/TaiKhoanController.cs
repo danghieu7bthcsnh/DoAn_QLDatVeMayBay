@@ -190,9 +190,11 @@ namespace QLDatVeMayBay.Controllers
                 new ClaimsPrincipal(claimsIdentity),
                 authProperties);
 
+            HttpContext.Session.SetString("TenDangNhap", taiKhoan.TenDangNhap);
+            HttpContext.Session.SetString("VaiTro", taiKhoan.VaiTro);
 
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("CaNhan", "TaiKhoan");
         }
 
         // Đăng xuất
@@ -341,6 +343,21 @@ namespace QLDatVeMayBay.Controllers
             var bytes = Encoding.UTF8.GetBytes(password);
             var hash = sha256.ComputeHash(bytes);
             return Convert.ToBase64String(hash);
+        }
+        [HttpGet]
+        public async Task<IActionResult> CaNhan()
+        {
+            var tenDangNhap = HttpContext.Session.GetString("TenDangNhap");
+            if (string.IsNullOrEmpty(tenDangNhap))
+                return RedirectToAction("DangNhap", "TaiKhoan");
+
+            var nguoiDung = await _context.NguoiDung
+                .FirstOrDefaultAsync(n => n.TenDangNhap == tenDangNhap);
+
+            if (nguoiDung == null)
+                return RedirectToAction("DangNhap", "TaiKhoan");
+
+            return View(nguoiDung);
         }
     }
 }

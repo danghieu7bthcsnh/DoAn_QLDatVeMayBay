@@ -1,0 +1,97 @@
+﻿@model QLDatVeMayBay.Models.TimKiemChuyenBay
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    ViewData["Title"] = "Tìm kiếm chuyến bay";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container mt-5">
+    <div class="bg-light p-5 rounded shadow-sm">
+        <h3 class="fw-bold text-primary mb-4">Tìm kiếm chuyến bay</h3>
+
+        <form asp-action="KetQuaTimKiem" method="post">
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <label>Loại vé</label><br />
+                    <input type="radio" name="LoaiVe" checked /> Một chiều
+                    <input type="radio" name="LoaiVe" class="ms-3" /> Khứ hồi
+                </div>
+                <div class="col-md-3">
+                    <label>Hạng ghế</label>
+                    <select class="form-select">
+                        <option>Phổ thông</option>
+                        <option>Thương gia</option>
+                        <option>Hạng nhất</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>Hành khách</label>
+                    <div class="d-flex gap-2">
+                        <input type="number" name="NguoiLon" min="0" placeholder="Người lớn" class="form-control" />
+                        <input type="number" name="TreEm" min="0" placeholder="Trẻ em" class="form-control" />
+                        <input type="number" name="EmBe" min="0" placeholder="Em bé" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label>Từ (Sân bay đi)</label>
+                    @Html.DropDownListFor(m => m.SanBayDi, (SelectList)ViewBag.SanBayDi, "Chọn sân bay đi", new { @class = "form-select" })
+                </div>
+                <div class="col-md-4">
+                    <label>Đến (Sân bay đến)</label>
+                    @Html.DropDownListFor(m => m.SanBayDen, (SelectList)ViewBag.SanBayDen, "Chọn sân bay đến", new { @class = "form-select" })
+                </div>
+                <div class="col-md-2">
+                    <label>Ngày đi</label>
+                    @Html.TextBoxFor(m => m.NgayDi, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                </div>
+                <div class="col-md-2">
+                    <label>Ngày về</label>
+                    <input type="date" class="form-control" disabled />
+                </div>
+            </div>
+
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">Tìm kiếm chuyến bay</button>
+            </div>
+        </form>
+
+        @if (ViewBag.KetQua != null)
+        {
+            <div class="mt-5">
+                <h5 class="text-success">Kết quả chuyến bay:</h5>
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Mã chuyến</th>
+                            <th>Hãng</th>
+                            <th>Đi</th>
+                            <th>Đến</th>
+                            <th>Giờ cất cánh</th>
+                            <th>Giờ hạ cánh</th>
+                            <th>Giá vé</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var cb in ViewBag.KetQua)
+                        {
+                            <tr>
+                                <td>@cb.IDChuyenBay</td>
+                                <td>@cb.MayBay?.TenHangHK</td>
+                                <td>@cb.SanBayDiInfo?.TenSanBay</td>
+                                <td>@cb.SanBayDenInfo?.TenSanBay</td>
+                                <td>@cb.GioCatCanh.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@cb.GioHaCanh.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@cb.GiaVe.ToString("N0") đ</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Trang quản trị";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary">📊 Trang quản trị Admin</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card bg-info text-white mb-3">
+                <div class="card-body">
+                    <h5>👥 Người dùng</h5>
+                    <h3>@ViewBag.TongNguoiDung</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-success text-white mb-3">
+                <div class="card-body">
+                    <h5>✈️ Chuyến bay</h5>
+                    <h3>@ViewBag.TongChuyenBay</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-warning text-dark mb-3">
+                <div class="card-body">
+                    <h5>🎫 Vé máy bay</h5>
+                    <h3>@ViewBag.TongVe</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a href="/NguoiDung/Index" class="btn btn-outline-light btn-sm bg-dark">👥 Quản lý người dùng</a>
+        <a href="/ChuyenBay/Index" class="btn btn-outline-light btn-sm bg-dark">✈️ Quản lý chuyến bay</a>
+        <a href="/VeMayBay/Index" class="btn btn-outline-light btn-sm bg-dark">🎫 Quản lý vé máy bay</a>
+    </div>
+</div>

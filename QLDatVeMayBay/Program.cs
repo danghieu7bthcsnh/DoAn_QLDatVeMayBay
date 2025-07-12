@@ -4,47 +4,65 @@ using QLDatVeMayBay.Data;
 using QLDatVeMayBay.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// ✅ Cấu hình xác thực Cookie
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/TaiKhoan/DangNhap";    // Đường dẫn đến trang đăng nhập
-        options.LogoutPath = "/TaiKhoan/DangXuat";   // Trang đăng xuất
-        options.AccessDeniedPath = "/TaiKhoan/AccessDenied"; // Nếu cần
+        options.LoginPath = "/TaiKhoan/DangNhap";
+        options.LogoutPath = "/TaiKhoan/DangXuat";
+        options.AccessDeniedPath = "/TaiKhoan/AccessDenied";
     });
 
-// Đọc cấu hình ConnectionStrings từ appsettings.json
+// ✅ Cấu hình EF DbContext
 builder.Services.AddDbContext<QLDatVeMayBayContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("QLDatVeMayBayContext")));
 
-// Cấu hình dịch vụ gửi email (EmailSettings từ appsettings.json)
-builder.Services.Configure<EmailSettings>(
-    builder.Configuration.GetSection("EmailSettings"));
+// ✅ Cấu hình gửi email từ appsettings.json
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 
-// Thêm MVC (Controller + Razor View)
+// ✅ Cho phép dùng session
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Hết hạn sau 30 phút không hoạt động
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+// ✅ Cho phép inject HttpContextAccessor
+builder.Services.AddHttpContextAccessor();
+
+// ✅ Thêm MVC + Razor View
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Middleware xử lý lỗi (production)
+// ✅ Middleware lỗi
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();        // Chuyển sang HTTPS nếu cần
-app.UseStaticFiles();            // Cho phép dùng wwwroot, css, js
+app.UseHttpsRedirection();
+app.UseStaticFiles();
 
-app.UseRouting();                // Kích hoạt routing
+app.UseRouting();
+
+// ✅ Middleware xác thực và phân quyền
 app.UseAuthentication();
-app.UseAuthorization();          // (sau này dùng xác thực có thể cần UseAuthentication)
+app.UseAuthorization();
 
+// ✅ Bắt buộc: Middleware Session (sau UseRouting, trước MapRoutes)
+app.UseSession();
+
+// ✅ Định tuyến mặc định
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// Tự động tạo/migrate database nếu cần (tuỳ chọn)
+// ✅ Tự động migrate CSDL (nếu cần)
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;

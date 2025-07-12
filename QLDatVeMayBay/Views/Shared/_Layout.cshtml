@@ -1,39 +1,73 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var session = HttpContextAccessor.HttpContext.Session;
+    var tenDangNhap = session.GetString("TenDangNhap");
+    var vaiTro = session.GetString("VaiTro");
+    var isAdmin = vaiTro == "Admin";
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - QLDatVeMayBay</title>
-    <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/QLDatVeMayBay.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">QLDatVeMayBay</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand fw-bold text-primary" asp-controller="Home" asp-action="Index">✈ QLĐặtVé</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a asp-controller="TaiKhoan" asp-action="DangNhap" class="btn btn-outline-primary">Đăng nhập</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-controller="TaiKhoan" asp-action="DangKy" class="btn btn-outline-primary">Đăng ký</a>
-                        </li>
-                       
-                        
+                        @if (string.IsNullOrEmpty(tenDangNhap))
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-outline-primary me-2" asp-controller="TaiKhoan" asp-action="DangNhap">Đăng nhập</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-secondary" asp-controller="TaiKhoan" asp-action="DangKy">Đăng ký</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="DatVe" asp-action="TimChuyenBay">Đặt vé</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="TaiKhoan" asp-action="CaNhan">👤 Tài khoản</a>
+                            </li>
 
+                            @if (isAdmin)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-danger fw-bold" asp-controller="Admin" asp-action="Dashboard">🛠️ Quản trị</a>
+                                </li>
+                            }
+
+                            <li class="nav-item ms-auto">
+                                <span class="navbar-text me-2">Xin chào, <strong>@tenDangNhap</strong></span>
+                            </li>
+                            <li class="nav-item">
+                                <form asp-controller="TaiKhoan" asp-action="DangXuat" method="post">
+                                    <button type="submit" class="btn btn-outline-danger">Đăng xuất</button>
+                                </form>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -42,9 +76,10 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - QLDatVeMayBay - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2025 - QLDatVeMayBay - <a asp-controller="Home" asp-action="Privacy">Chính sách</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
