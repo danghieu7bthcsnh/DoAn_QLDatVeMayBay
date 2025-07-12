@@ -8,6 +8,10 @@ namespace QLDatVeMayBay.Models
         [Key]
         public int IDThanhToan { get; set; }
 
+        public int IDNguoiDung { get; set; }
+
+        [ForeignKey("IDNguoiDung")]
+        public NguoiDung ? NguoiDung { get; set; }
         public int IDVe { get; set; }
 
         [ForeignKey("IDVe")]

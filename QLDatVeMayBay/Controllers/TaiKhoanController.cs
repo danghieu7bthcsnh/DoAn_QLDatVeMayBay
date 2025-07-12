@@ -194,15 +194,80 @@ namespace QLDatVeMayBay.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+        [HttpGet]
+        public async Task<IActionResult> ChinhSuaHoSo()
+        {
+            var tenDangNhap = HttpContext.Session.GetString("TenDangNhap");
+            var user = await _context.NguoiDung.FirstOrDefaultAsync(x => x.TenDangNhap == tenDangNhap);
+            return View(user);
+        }
 
-        // Đăng xuất
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DangXuat()
+        public async Task<IActionResult> ChinhSuaHoSo(NguoiDung model)
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("DangNhap");
+            if (ModelState.IsValid)
+            {
+                _context.Update(model);
+                await _context.SaveChangesAsync();
+                ViewBag.Message = "Cập nhật thành công!";
+            }
+            return View(model);
         }
+
+        public async Task<IActionResult> TheCuaToi()
+        {
+            var tenDangNhap = HttpContext.Session.GetString("TenDangNhap");
+            var user = await _context.NguoiDung.FirstOrDefaultAsync(x => x.TenDangNhap == tenDangNhap);
+            if (user == null)
+            {
+                return RedirectToAction("DangNhap", "TaiKhoan");
+            }
+            var the = await _context.LienKetThe.Where(x => x.IDNguoiDung == user.IDNguoiDung).ToListAsync();
+            return View(the);
+        }
+
+        public async Task<IActionResult> DanhSachGiaoDich()
+        {
+            var tenDangNhap = HttpContext.Session.GetString("TenDangNhap");
+            var user = await _context.NguoiDung.FirstOrDefaultAsync(x => x.TenDangNhap == tenDangNhap);
+            var ds = await _context.ThanhToan
+                .Where(x => x.IDNguoiDung == user.IDNguoiDung)
+                .OrderByDescending(x => x.ThoiGianGiaoDich)
+                .ToListAsync();
+            return View(ds);
+        }
+
+        public async Task<IActionResult> HoanTien()
+        {
+            var tenDangNhap = HttpContext.Session.GetString("TenDangNhap");
+            var user = await _context.NguoiDung.FirstOrDefaultAsync(x => x.TenDangNhap == tenDangNhap);
+            var ds = await _context.YeuCauHoanTien.Where(x => x.IDNguoiDung == user.IDNguoiDung).ToListAsync();
+            return View(ds);
+        }
+
+        public async Task<IActionResult> ChuyenBayCuaToi()
+        {
+            var tenDangNhap = HttpContext.Session.GetString("TenDangNhap");
+            var user = await _context.NguoiDung.FirstOrDefaultAsync(x => x.TenDangNhap == tenDangNhap);
+            var ds = await _context.VeMayBay.Where(x => x.IDNguoiDung == user.IDNguoiDung).ToListAsync();
+            return View(ds);
+        }
+
+        public IActionResult DangXuat()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("DangNhap", "TaiKhoan");
+        }
+
+        // Đăng xuất
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DangXuat()
+        //{
+        //    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        //    return RedirectToAction("DangNhap");
+        //}
 
         private async Task SendEmailAsync(string emailNguoiNhan, string subject, string message)
         {
@@ -293,14 +358,20 @@ namespace QLDatVeMayBay.Controllers
                 m.TenDangNhap == nguoiDung.TenDangNhap &&
                 m.Ma == model.MaXacNhan &&
                 m.ThoiGianHetHan >= DateTime.Now);
-
-            if (ma == null)
+            if (nguoiDung == null)
             {
-                ModelState.AddModelError("MaXacNhan", "Mã không chính xác hoặc đã hết hạn.");
+                TempData["ThongBao"] = "Email không tồn tại.";
+                return View(model);
+            }
+            if (ma == null || ma.ThoiGianHetHan < DateTime.Now)
+            {
+                TempData["ThongBao"] = "Mã không chính xác hoặc đã hết hạn.";
+                TempData.Keep("Email");
                 return View(model);
             }
 
             TempData["Email"] = model.Email;
+            TempData.Keep("Email");
             return RedirectToAction("DoiMatKhau");
         }
 
@@ -314,6 +385,43 @@ namespace QLDatVeMayBay.Controllers
             return View(new DoiMatKhauViewModel { Email = email });
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GuiLaiMa(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+                return RedirectToAction("QuenMatKhau");
+
+            var nguoiDung = await _context.NguoiDung.FirstOrDefaultAsync(n => n.Email == email);
+            if (nguoiDung == null)
+            {
+                TempData["ThongBao"] = "Email không tồn tại.";
+                return RedirectToAction("QuenMatKhau");
+            }
+
+            var ma = new Random().Next(100000, 999999).ToString();
+            var maMoi = new MaXacNhan
+            {
+                TenDangNhap = nguoiDung.TenDangNhap,
+                Ma = ma,
+                ThoiGianHetHan = DateTime.Now.AddMinutes(2) // mã có hiệu lực 2 phút
+            };
+
+            // Xóa mã cũ trước khi thêm mã mới
+            var maCu = await _context.MaXacNhan
+                .Where(m => m.TenDangNhap == nguoiDung.TenDangNhap)
+                .ToListAsync();
+
+            _context.MaXacNhan.RemoveRange(maCu);
+            _context.MaXacNhan.Add(maMoi);
+            await _context.SaveChangesAsync();
+
+            await SendEmailAsync(email, "Mã xác nhận quên mật khẩu", $"Mã xác nhận của bạn là: {ma}");
+
+            TempData["Email"] = email;
+            TempData["ThongBao"] = "Đã gửi lại mã xác nhận.";
+            TempData.Keep("Email");
+            return RedirectToAction("XacNhanQuenMatKhau");
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DoiMatKhau(DoiMatKhauViewModel model)

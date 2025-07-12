@@ -1,0 +1,22 @@
+﻿<h2>Yêu cầu hoàn tiền</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã yêu cầu</th>
+            <th>Lý do</th>
+            <th>Trạng thái</th>
+            <th>Ngày tạo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ht in Model)
+        {
+            <tr>
+                <td>@ht.IDHoanTien</td>
+                <td>@ht.LyDo</td>
+                <td>@ht.TrangThai</td>
+                <td>@ht.NgayTao.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>

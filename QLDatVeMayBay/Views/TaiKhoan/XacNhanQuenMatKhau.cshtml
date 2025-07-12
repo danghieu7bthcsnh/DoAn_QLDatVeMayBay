@@ -5,13 +5,37 @@
 
 <h2>Xác nhận mã OTP</h2>
 
+@* <form asp-action="XacNhanQuenMatKhau" method="post"> *@
+@*     <input type="hidden" asp-for="Email" /> *@
+
+@*     <div class="form-group"> *@
+@*         <label>Mã xác nhận đã gửi về email</label> *@
+@*         <input asp-for="MaXacNhan" class="form-control" /> *@
+@*         <span asp-validation-for="MaXacNhan" class="text-danger"></span> *@
+@*     </div> *@
+@*     <button type="submit" class="btn btn-success">Xác nhận</button> *@
+@* </form> *@
+
+@if (TempData["ThongBao"] != null)
+{
+    <div class="alert alert-warning">@TempData["ThongBao"]</div>
+}
+
 <form asp-action="XacNhanQuenMatKhau" method="post">
-    <input type="hidden" asp-for="Email" />
+    <input asp-for="Email" type="hidden" />
 
     <div class="form-group">
-        <label>Mã xác nhận đã gửi về email</label>
+        <label asp-for="MaXacNhan" class="control-label"></label>
         <input asp-for="MaXacNhan" class="form-control" />
         <span asp-validation-for="MaXacNhan" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-success">Xác nhận</button>
+
+    <button type="submit" class="btn btn-success mt-2">Xác nhận</button>
+    <a asp-action="GuiLaiMa" asp-route-email="@Model.Email" class="btn btn-secondary mt-2 ml-2">Gửi lại mã</a>
 </form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

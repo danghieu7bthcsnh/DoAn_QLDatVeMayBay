@@ -1,0 +1,27 @@
+﻿<h2>Chuyến bay đã đặt</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã vé</th>
+            <th>Chuyến bay</th>
+            <th>Ngày bay</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ve in Model)
+        {
+            <tr>
+                <td>@ve.IDVe</td>
+                <td>@ve.ChuyenBay.IDChuyenBay</td>
+                <td>@ve.ChuyenBay.NgayBay.ToShortDateString()</td>
+                <td>@ve.TrangThai</td>
+                <td>
+                    <a asp-action="ChiTietVe" asp-route-id="@ve.MaVe" class="btn btn-info">Xem vé</a>
+                    <a asp-action="HuyVe" asp-route-id="@ve.MaVe" class="btn btn-danger">Hủy vé</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

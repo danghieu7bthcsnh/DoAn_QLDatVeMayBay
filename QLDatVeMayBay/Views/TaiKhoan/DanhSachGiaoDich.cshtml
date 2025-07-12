@@ -1,0 +1,22 @@
+﻿<h2>Giao dịch đã thanh toán</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã giao dịch</th>
+            <th>Thời gian</th>
+            <th>Số tiền</th>
+            <th>Trạng thái</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var gd in Model)
+        {
+            <tr>
+                <td>@gd.MaGiaoDich</td>
+                <td>@gd.ThoiGian</td>
+                <td>@gd.SoTien.ToString("N0")</td>
+                <td>@gd.TrangThai</td>
+            </tr>
+        }
+    </tbody>
+</table>

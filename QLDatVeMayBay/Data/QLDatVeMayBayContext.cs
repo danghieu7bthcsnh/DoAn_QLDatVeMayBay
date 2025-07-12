@@ -23,6 +23,8 @@ namespace QLDatVeMayBay.Data
         public DbSet<VeMayBay> VeMayBay { get; set; }
         public DbSet<ThanhToan> ThanhToan { get; set; }
         public DbSet<MaXacNhan> MaXacNhan { get; set; }
+        public DbSet<LienKetThe> LienKetThe { get; set; }
+        public DbSet<YeuCauHoanTien> YeuCauHoanTien { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -104,7 +106,19 @@ namespace QLDatVeMayBay.Data
             modelBuilder.Entity<ThanhToan>()
                 .Property(tt => tt.SoTien)
                 .HasColumnType("decimal(18,2)");
+            base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<YeuCauHoanTien>()
+                .HasOne(y => y.VeMayBay)
+                .WithMany(v => v.YeuCauHoanTiens)
+                .HasForeignKey(y => y.IDVe)
+                .OnDelete(DeleteBehavior.Restrict); // <- Sửa tại đây
+
+            modelBuilder.Entity<YeuCauHoanTien>()
+                .HasOne(y => y.NguoiDung)
+                .WithMany()
+                .HasForeignKey(y => y.IDNguoiDung)
+                .OnDelete(DeleteBehavior.Restrict);
             base.OnModelCreating(modelBuilder);
         }
     }

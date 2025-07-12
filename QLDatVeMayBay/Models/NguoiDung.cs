@@ -16,6 +16,7 @@ namespace QLDatVeMayBay.Models
         [StringLength(100)]
         public string HoTen { get; set; } = string.Empty;
 
+        public DateTime NgaySinh { get; set; }
         [Required]
         [EmailAddress]
         [StringLength(100)]
@@ -27,7 +28,7 @@ namespace QLDatVeMayBay.Models
 
         [StringLength(10)]
         public string? GioiTinh { get; set; }
-
+        public string QueQuan { get; set; }
         public TaiKhoan? TaiKhoan { get; set; } // Navigation
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QLDatVeMayBay.Data;
 
@@ -11,9 +12,11 @@ using QLDatVeMayBay.Data;
 namespace QLDatVeMayBay.Migrations
 {
     [DbContext(typeof(QLDatVeMayBayContext))]
-    partial class QLDatVeMayBayContextModelSnapshot : ModelSnapshot
+    [Migration("20250712092652_taikhoan")]
+    partial class taikhoan
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -497,13 +500,13 @@ namespace QLDatVeMayBay.Migrations
                     b.HasOne("QLDatVeMayBay.Models.NguoiDung", "NguoiDung")
                         .WithMany()
                         .HasForeignKey("IDNguoiDung")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("QLDatVeMayBay.Models.VeMayBay", "VeMayBay")
-                        .WithMany("YeuCauHoanTiens")
+                        .WithMany()
                         .HasForeignKey("IDVe")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("NguoiDung");
@@ -514,11 +517,6 @@ namespace QLDatVeMayBay.Migrations
             modelBuilder.Entity("QLDatVeMayBay.Models.TaiKhoan", b =>
                 {
                     b.Navigation("NguoiDung");
-                });
-
-            modelBuilder.Entity("QLDatVeMayBay.Models.VeMayBay", b =>
-                {
-                    b.Navigation("YeuCauHoanTiens");
                 });
 #pragma warning restore 612, 618
         }

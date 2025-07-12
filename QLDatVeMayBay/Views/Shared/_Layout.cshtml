@@ -26,11 +26,26 @@
                         <li class="nav-item">
                             <a asp-controller="TaiKhoan" asp-action="DangKy" class="btn btn-outline-primary">Đăng ký</a>
                         </li>
-                       
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown">
+                                Tài khoản
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+                                <li><a class="dropdown-item" asp-action="ChinhSuaHoSo" asp-controller="TaiKhoan">Chỉnh sửa hồ sơ</a></li>
+                                <li><a class="dropdown-item" asp-action="TheCuaToi" asp-controller="TaiKhoan">Thẻ của tôi</a></li>
+                                <li><a class="dropdown-item" asp-action="GiaoDich" asp-controller="TaiKhoan">Danh sách giao dịch</a></li>
+                                <li><a class="dropdown-item" asp-action="HoanTien" asp-controller="TaiKhoan">Hoàn tiền</a></li>
+                                <li><a class="dropdown-item" asp-action="ChuyenBayCuaToi" asp-controller="TaiKhoan">Chuyến bay của tôi</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-action="DangXuat" asp-controller="TaiKhoan">Đăng xuất</a></li>
+                            </ul>
+                        </li>
+
                         
 
                     </ul>
                 </div>
+
             </div>
         </nav>
     </header>

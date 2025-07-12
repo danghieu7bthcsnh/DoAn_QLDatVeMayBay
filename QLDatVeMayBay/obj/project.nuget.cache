@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lO1+R4OUzS4=",
+  "dgSpecHash": "VIjS7GTSyoE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\asus\\Source\\Repos\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\QLDatVeMayBay.csproj",
+  "projectFilePath": "C:\\Users\\asus\\source\\repos\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\QLDatVeMayBay.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\asus\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

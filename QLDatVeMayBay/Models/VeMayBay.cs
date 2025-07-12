@@ -22,5 +22,7 @@ namespace QLDatVeMayBay.Models
 
         [StringLength(50)]
         public string? TrangThaiVe { get; set; }
+        public ICollection<YeuCauHoanTien>? YeuCauHoanTiens { get; set; }
+
     }
 }

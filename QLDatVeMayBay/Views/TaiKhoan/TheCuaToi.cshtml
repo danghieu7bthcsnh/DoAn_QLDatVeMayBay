@@ -1,0 +1,20 @@
+﻿<h2>Thẻ ngân hàng / Ví điện tử liên kết</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Loại thẻ</th>
+            <th>Số thẻ</th>
+            <th>Ngân hàng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.LoaiThe</td>
+                <td>@item.SoThe</td>
+                <td>@item.NganHang</td>
+            </tr>
+        }
+    </tbody>
+</table>
