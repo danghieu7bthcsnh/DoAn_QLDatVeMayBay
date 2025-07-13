@@ -1,0 +1,66 @@
+﻿@model QLDatVeMayBay.Models.NguoiDung
+
+@{
+    ViewData["Title"] = "Chỉnh sửa người dùng";
+    var taiKhoan = Model.TaiKhoan;
+}
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2 class="mt-4">🛠 Chỉnh sửa thông tin người dùng</h2>
+
+<form asp-action="Edit" method="post" class="card shadow-sm p-4 mt-3">
+    <input type="hidden" asp-for="IDNguoiDung" />
+    <input type="hidden" asp-for="TenDangNhap" />
+
+    <div class="mb-3">
+        <label asp-for="HoTen" class="form-label">Họ tên</label>
+        <input asp-for="HoTen" class="form-control" />
+        <span asp-validation-for="HoTen" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Email</label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SoDienThoai" class="form-label">Số điện thoại</label>
+        <input asp-for="SoDienThoai" class="form-control" />
+        <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="GioiTinh" class="form-label">Giới tính</label>
+        <select asp-for="GioiTinh" class="form-select">
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+            <option value="Khác">Khác</option>
+        </select>
+        <span asp-validation-for="GioiTinh" class="text-danger"></span>
+    </div>
+
+    @* Nếu bạn muốn cho Admin chỉnh sửa vai trò người dùng *@
+    @if (User.IsInRole("Admin") && taiKhoan != null)
+    {
+        <div class="mb-3">
+            <label class="form-label">Vai trò</label>
+            <select name="VaiTro" class="form-select">
+                <option value="KhachHang" selected="@(taiKhoan.VaiTro == "KhachHang")">Khách hàng</option>
+                <option value="Admin" selected="@(taiKhoan.VaiTro == "Admin")">Admin</option>
+            </select>
+        </div>
+    }
+
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">💾 Lưu thay đổi</button>
+        <a asp-action="Index" class="btn btn-secondary">⬅ Quay lại</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

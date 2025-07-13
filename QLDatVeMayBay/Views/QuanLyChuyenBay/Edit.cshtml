@@ -1,0 +1,60 @@
+﻿@model QLDatVeMayBay.Models.ChuyenBay
+
+@{
+    ViewData["Title"] = "Chỉnh sửa chuyến bay";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mt-3">✏️ Chỉnh sửa chuyến bay</h2>
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <div>⚠️ @error.ErrorMessage</div>
+        }
+    </div>
+}
+<form asp-action="Edit" method="post" class="row g-3">
+    <input type="hidden" asp-for="IDChuyenBay" />
+
+    <div class="col-md-4">
+        <label class="form-label">Máy bay</label>
+        <select asp-for="IDMayBay" class="form-select" asp-items="ViewBag.MayBayList"></select>
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">Sân bay đi</label>
+        <select asp-for="SanBayDi" class="form-select" asp-items="ViewBag.SanBayList"></select>
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">Sân bay đến</label>
+        <select asp-for="SanBayDen" class="form-select" asp-items="ViewBag.SanBayList"></select>
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">Giờ cất cánh</label>
+        <input asp-for="GioCatCanh" type="datetime-local" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">Giờ hạ cánh</label>
+        <input asp-for="GioHaCanh" type="datetime-local" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">Giá vé</label>
+        <input asp-for="GiaVe" class="form-control" />
+    </div>
+    <select asp-for="TinhTrang" class="form-select">
+        <option value="Đang bay">🟢 Đang bay</option>
+        <option value="Hoãn">🟡 Hoãn</option>
+        <option value="Hủy">🔴 Hủy</option>
+    </select>
+
+    <div class="col-12 mt-3">
+        <button type="submit" class="btn btn-primary">💾 Lưu thay đổi</button>
+        <a asp-action="Index" class="btn btn-secondary">⬅️ Quay lại</a>
+    </div>
+</form>

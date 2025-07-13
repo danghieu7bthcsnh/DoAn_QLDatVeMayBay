@@ -1,0 +1,36 @@
+﻿<!-- ChiTiet.cshtml -->
+@model QLDatVeMayBay.Models.ChuyenBay
+@{
+    ViewData["Title"] = "Chi tiết chuyến bay";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mt-3">🔍 Chi tiết chuyến bay</h2>
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-3">Máy bay:</dt>
+    <dd class="col-sm-9">@Model.MayBay?.TenHangHK</dd>
+
+    <dt class="col-sm-3">Sân bay đi:</dt>
+    <dd class="col-sm-9">@Model.SanBayDiInfo?.TenSanBay</dd>
+
+    <dt class="col-sm-3">Sân bay đến:</dt>
+    <dd class="col-sm-9">@Model.SanBayDenInfo?.TenSanBay</dd>
+
+    <dt class="col-sm-3">Giờ cất cánh:</dt>
+    <dd class="col-sm-9">@Model.GioCatCanh.ToString("dd/MM/yyyy HH:mm")</dd>
+
+    <dt class="col-sm-3">Giờ hạ cánh:</dt>
+    <dd class="col-sm-9">@Model.GioHaCanh.ToString("dd/MM/yyyy HH:mm")</dd>
+
+    <dt class="col-sm-3">Giá vé:</dt>
+    <dd class="col-sm-9">@Model.GiaVe.ToString("N0")</dd>
+
+    <dt class="col-sm-3">Tình trạng:</dt>
+    <dd class="col-sm-9">@Model.TinhTrang</dd>
+</dl>
+
+<a asp-action="Index" class="btn btn-secondary">↩️ Quay lại</a>
+<a asp-action="Edit" asp-route-id="@Model.IDChuyenBay" class="btn btn-warning">✏️ Sửa</a>
+<a asp-action="Delete" asp-route-id="@Model.IDChuyenBay" class="btn btn-danger">🗑 Xóa</a>

@@ -1,0 +1,29 @@
+﻿@model QLDatVeMayBay.Models.NguoiDung
+
+@{
+    ViewData["Title"] = "Xác nhận xoá người dùng";
+    var taiKhoan = Model.TaiKhoan;
+}
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2 class="text-danger mt-4">⚠ Xác nhận xoá người dùng</h2>
+
+<div class="alert alert-warning mt-3">
+    <p>Bạn sắp <strong>xóa vĩnh viễn</strong> người dùng:</p>
+    <ul>
+        <li><strong>Tên đăng nhập:</strong> @Model.TenDangNhap</li>
+        <li><strong>Họ tên:</strong> @Model.HoTen</li>
+        <li><strong>Email:</strong> @Model.Email</li>
+        <li><strong>Số điện thoại:</strong> @Model.SoDienThoai</li>
+        <li><strong>Giới tính:</strong> @Model.GioiTinh</li>
+        <li><strong>Trạng thái tài khoản:</strong> @taiKhoan?.TrangThaiTK ?? "Không xác định"</li>
+    </ul>
+</div>
+
+<form asp-action="Xoa" method="post">
+    <input type="hidden" name="tenDangNhap" value="@Model.TenDangNhap" />
+
+    <button type="submit" class="btn btn-danger">🗑 Đồng ý xoá</button>
+    <a asp-action="Index" class="btn btn-secondary">⬅ Huỷ</a>
+</form>

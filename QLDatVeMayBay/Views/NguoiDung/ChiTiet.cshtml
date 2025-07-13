@@ -1,0 +1,43 @@
+﻿@model QLDatVeMayBay.Models.NguoiDung
+
+@{
+    ViewData["Title"] = "Chi tiết người dùng";
+    var taiKhoan = Model.TaiKhoan;
+}
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2 class="mt-4">🔍 Thông tin chi tiết người dùng</h2>
+
+<div class="card shadow-sm mt-3">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">👤 Tên đăng nhập:</dt>
+            <dd class="col-sm-9">@Model.TenDangNhap</dd>
+
+            <dt class="col-sm-3">📝 Họ tên:</dt>
+            <dd class="col-sm-9">@Model.HoTen</dd>
+
+            <dt class="col-sm-3">📧 Email:</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+
+            <dt class="col-sm-3">📞 Số điện thoại:</dt>
+            <dd class="col-sm-9">@Model.SoDienThoai</dd>
+
+            <dt class="col-sm-3">🚻 Giới tính:</dt>
+            <dd class="col-sm-9">@Model.GioiTinh</dd>
+
+            <dt class="col-sm-3">🔑 Vai trò:</dt>
+            <dd class="col-sm-9">@taiKhoan?.VaiTro ?? "Chưa xác định"</dd>
+
+            <dt class="col-sm-3">📌 Trạng thái tài khoản:</dt>
+            <dd class="col-sm-9">
+                <span class="badge @(taiKhoan?.TrangThaiTK == "HoatDong" ? "bg-success" : "bg-danger")">
+                    @taiKhoan?.TrangThaiTK ?? "Không xác định"
+                </span>
+            </dd>
+        </dl>
+
+        <a href="/NguoiDung/Index" class="btn btn-secondary mt-3">⬅ Quay lại danh sách</a>
+    </div>
+</div>

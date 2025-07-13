@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QLDatVeMayBay.Data;
 
@@ -12,7 +13,7 @@ namespace QLDatVeMayBay.Controllers
         {
             _context = context;
         }
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Dashboard()
         {
             var tenDangNhap = HttpContext.Session.GetString("TenDangNhap");
@@ -29,5 +30,6 @@ namespace QLDatVeMayBay.Controllers
 
             return View();
         }
+        
     }
 }

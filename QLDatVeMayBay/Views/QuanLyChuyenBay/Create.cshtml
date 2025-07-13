@@ -1,0 +1,57 @@
+﻿@model QLDatVeMayBay.Models.ChuyenBay
+@{
+    ViewData["Title"] = "Thêm/Sửa chuyến bay";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mt-3">@(Model.IDChuyenBay == 0 ? "➕ Thêm chuyến bay" : "✏️ Cập nhật chuyến bay")</h2>
+
+<form asp-action="@(Model.IDChuyenBay == 0 ? "Create" : "Edit")" method="post">
+    @if (Model.IDChuyenBay != 0)
+    {
+        <input type="hidden" asp-for="IDChuyenBay" />
+    }
+
+    <div class="mb-3">
+        <label class="form-label">Máy bay</label>
+        <select asp-for="IDMayBay" class="form-select" asp-items="ViewBag.MayBayList"></select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Sân bay đi</label>
+        <select asp-for="SanBayDi" class="form-select" asp-items="ViewBag.SanBayList"></select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Sân bay đến</label>
+        <select asp-for="SanBayDen" class="form-select" asp-items="ViewBag.SanBayList"></select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Giờ cất cánh</label>
+        <input asp-for="GioCatCanh" type="datetime-local" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Giờ hạ cánh</label>
+        <input asp-for="GioHaCanh" type="datetime-local" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Giá vé</label>
+        <input asp-for="GiaVe" type="number" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Tình trạng</label>
+        <select asp-for="TinhTrang" class="form-select">
+            <option value="">-- Chọn tình trạng --</option>
+            <option value="Đang bay">Đang bay</option>
+            <option value="Hoãn">Hoãn</option>
+            <option value="Hủy">Hủy</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">💾 Lưu</button>
+    <a asp-action="Index" class="btn btn-secondary">↩️ Quay lại</a>
+</form>

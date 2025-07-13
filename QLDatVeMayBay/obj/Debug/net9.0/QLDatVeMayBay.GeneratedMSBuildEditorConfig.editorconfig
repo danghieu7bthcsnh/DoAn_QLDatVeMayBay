@@ -48,8 +48,48 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/user/OneDrive/Tài liệu/GitHub/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/NguoiDung/ChiTiet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmd1b2lEdW5nXENoaVRpZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/OneDrive/Tài liệu/GitHub/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/NguoiDung/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmd1b2lEdW5nXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/OneDrive/Tài liệu/GitHub/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/NguoiDung/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmd1b2lEdW5nXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/OneDrive/Tài liệu/GitHub/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/NguoiDung/XacNhanXoa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmd1b2lEdW5nXFhhY05oYW5Yb2EuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/OneDrive/Tài liệu/GitHub/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/QuanLyChuyenBay/ChiTiet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVhbkx5Q2h1eWVuQmF5XENoaVRpZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/OneDrive/Tài liệu/GitHub/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/QuanLyChuyenBay/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVhbkx5Q2h1eWVuQmF5XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/OneDrive/Tài liệu/GitHub/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/QuanLyChuyenBay/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVhbkx5Q2h1eWVuQmF5XERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/OneDrive/Tài liệu/GitHub/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/QuanLyChuyenBay/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVhbkx5Q2h1eWVuQmF5XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/OneDrive/Tài liệu/GitHub/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/QuanLyChuyenBay/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVhbkx5Q2h1eWVuQmF5XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/user/OneDrive/Tài liệu/GitHub/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/OneDrive/Tài liệu/GitHub/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/Shared/_AdminLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/user/OneDrive/Tài liệu/GitHub/DoAn_QLDatVeMayBay/QLDatVeMayBay/Views/Shared/_ValidationScriptsPartial.cshtml]
