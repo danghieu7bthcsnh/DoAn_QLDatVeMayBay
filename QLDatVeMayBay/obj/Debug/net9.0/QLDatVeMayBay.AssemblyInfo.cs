@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QLDatVeMayBay")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4b8aaff4ba6e1a30689f4b73bd8f2c412891485d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2cff92f8442f4fd9b52589f8e5d36cc48c948c75")]
 [assembly: System.Reflection.AssemblyProductAttribute("QLDatVeMayBay")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QLDatVeMayBay")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
