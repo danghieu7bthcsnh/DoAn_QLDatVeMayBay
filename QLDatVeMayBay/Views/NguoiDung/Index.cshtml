@@ -1,136 +1,136 @@
-﻿@model List<QLDatVeMayBay.Models.NguoiDung>
+﻿@* @model List<QLDatVeMayBay.Models.NguoiDung> *@
 
-@{
-    var tuKhoa = ViewBag.TuKhoa as string ?? "";
-    var page = (int)ViewBag.Page;
-    var totalPages = (int)ViewBag.TotalPages;
+@* @{ *@
+@*     var tuKhoa = ViewBag.TuKhoa as string ?? ""; *@
+@*     var page = (int)ViewBag.Page; *@
+@*     var totalPages = (int)ViewBag.TotalPages; *@
 
-    var trangThai = ViewBag.TrangThai as string ?? "";
-    var vaiTro = ViewBag.VaiTro as string ?? "";
+@*     var trangThai = ViewBag.TrangThai as string ?? ""; *@
+@*     var vaiTro = ViewBag.VaiTro as string ?? ""; *@
 
-    var isSelectedHoatDong = trangThai == "HoatDong" ? "selected" : "";
-    var isSelectedBiKhoa = trangThai == "BiKhoa" ? "selected" : "";
+@*     var isSelectedHoatDong = trangThai == "HoatDong" ? "selected" : ""; *@
+@*     var isSelectedBiKhoa = trangThai == "BiKhoa" ? "selected" : ""; *@
 
-    var isSelectedAdmin = vaiTro == "Admin" ? "selected" : "";
-    var isSelectedKhachHang = vaiTro == "KhachHang" ? "selected" : "";
-}
+@*     var isSelectedAdmin = vaiTro == "Admin" ? "selected" : ""; *@
+@*     var isSelectedKhachHang = vaiTro == "KhachHang" ? "selected" : ""; *@
+@* } *@
 
-@{
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-}
+@* @{ *@
+@*     Layout = "~/Views/Shared/_AdminLayout.cshtml"; *@
+@* } *@
 
-<h2 class="mt-3">👥 Quản lý người dùng</h2>
+@* <h2 class="mt-3">👥 Quản lý người dùng</h2> *@
 
-<form method="get" class="row g-3 mb-3">
-    <!-- Ô nhập từ khóa -->
-    <div class="col-md-3">
-        <input type="text" name="tuKhoa" class="form-control"
-               placeholder="Tìm theo tên, email, SĐT" value="@tuKhoa" />
-    </div>
+@* <form method="get" class="row g-3 mb-3"> *@
+@*     <!-- Ô nhập từ khóa --> *@
+@*     <div class="col-md-3"> *@
+@*         <input type="text" name="tuKhoa" class="form-control" *@
+@*                placeholder="Tìm theo tên, email, SĐT" value="@tuKhoa" /> *@
+@*     </div> *@
+@* <!-- Chọn Trạng thái --> *@
+@* <div class="col-md-3"> *@
+@*     <select name="trangThai" class="form-select"> *@
+@*         <option value="">-- Tất cả trạng thái --</option> *@
+@*         <option value="HoatDong" @Html.Raw(trangThai == "HoatDong" ? "selected" : "")>🟢 Hoạt động</option> *@
+@*         <option value="BiKhoa" @Html.Raw(trangThai == "BiKhoa" ? "selected" : "")>🔴 Bị khóa</option> *@
+@*     </select> *@
+@* </div> *@
 
-    <!-- Chọn Trạng thái -->
-    <div class="col-md-3">
-        <select name="trangThai" class="form-select">
-            <option value="">-- Tất cả trạng thái --</option>
-            <option value="HoatDong" @isSelectedHoatDong>🟢 Hoạt động</option>
-            <option value="BiKhoa" @isSelectedBiKhoa>🔴 Bị khóa</option>
-        </select>
-    </div>
+@* <!-- Chọn Vai trò --> *@
+@* <div class="col-md-3"> *@
+@*     <select name="vaiTro" class="form-select"> *@
+@*         <option value="">-- Tất cả vai trò --</option> *@
+@*         <option value="Admin" @Html.Raw(vaiTro == "Admin" ? "selected" : "")>🛡️ Admin</option> *@
+@*         <option value="KhachHang" @Html.Raw(vaiTro == "KhachHang" ? "selected" : "")>👤 Khách hàng</option> *@
+@*     </select> *@
+@* </div> *@
 
-    <!-- Chọn Vai trò -->
-    <div class="col-md-3">
-        <select name="vaiTro" class="form-select">
-            <option value="">-- Tất cả vai trò --</option>
-            <option value="Admin" @isSelectedAdmin>🛡️ Admin</option>
-            <option value="KhachHang" @isSelectedKhachHang>👤 Khách hàng</option>
-        </select>
-    </div>
 
-    <!-- Các nút chức năng -->
-    <div class="col-md-auto">
-        <button type="submit" class="btn btn-primary">🔍 Tìm kiếm</button>
-        <a href="/NguoiDung/Index" class="btn btn-secondary">🔄 Làm mới</a>
-        <a href="/NguoiDung/XuatExcel?tuKhoa=@tuKhoa&trangThai=@trangThai&vaiTro=@vaiTro"
-           class="btn btn-success">
-            📄 Xuất Excel
-        </a>
-    </div>
-</form>
+@*     <!-- Các nút chức năng --> *@
+@*     <div class="col-md-auto"> *@
+@*         <button type="submit" class="btn btn-primary">🔍 Tìm kiếm</button> *@
+@*         <a href="/NguoiDung/Index" class="btn btn-secondary">🔄 Làm mới</a> *@
+@*         <a href="/NguoiDung/XuatExcel?tuKhoa=@tuKhoa&trangThai=@trangThai&vaiTro=@vaiTro" *@
+@*            class="btn btn-success"> *@
+@*             📄 Xuất Excel *@
+@*         </a> *@
+@*     </div> *@
+@* </form> *@
 
-<table class="table table-bordered table-hover">
-    <thead class="table-light">
-        <tr>
-            <th>Tài khoản</th>
-            <th>Họ tên</th>
-            <th>Email</th>
-            <th>SĐT</th>
-            <th>Giới tính</th>
-            <th>Trạng thái</th>
-            <th class="text-center">Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (!Model.Any())
-        {
-            <tr><td colspan="7" class="text-center">Không có người dùng nào.</td></tr>
-        }
-        else
-        {
-            foreach (var n in Model)
-            {
-                var trangThaiNguoiDung = n.TaiKhoan?.TrangThaiTK ?? "Không xác định";
-                <tr>
-                    <td>@n.TenDangNhap</td>
-                    <td>@n.HoTen</td>
-                    <td>@n.Email</td>
-                    <td>@n.SoDienThoai</td>
-                    <td>@n.GioiTinh</td>
-                    <td>
-                        <span class="badge @(trangThaiNguoiDung == "HoatDong" ? "bg-success" : "bg-danger")">
-                            @(trangThaiNguoiDung == "HoatDong" ? "Hoạt động" : "Bị khóa")
-                        </span>
-                    </td>
-                    <td class="text-center">
-                        <a href="/NguoiDung/ChiTiet?tenDangNhap=@n.TenDangNhap" class="btn btn-sm btn-info">🔎 Xem</a>
+@* <table class="table table-bordered table-hover"> *@
+@*     <thead class="table-light"> *@
+@*         <tr> *@
+@*             <th>Tài khoản</th> *@
+@*             <th>Họ tên</th> *@
+@*             <th>Email</th> *@
+@*             <th>SĐT</th> *@
+@*             <th>Giới tính</th> *@
+@*             <th>Trạng thái</th> *@
+@*             <th class="text-center">Hành động</th> *@
+@*         </tr> *@
+@*     </thead> *@
+@*     <tbody> *@
+@*         @if (!Model.Any()) *@
+@*         { *@
+@*             <tr><td colspan="7" class="text-center">Không có người dùng nào.</td></tr> *@
+@*         } *@
+@*         else *@
+@*         { *@
+@*             foreach (var n in Model) *@
+@*             { *@
+@*                 var trangThaiNguoiDung = n.TaiKhoan?.TrangThaiTK ?? "Không xác định"; *@
+@*                 <tr> *@
+@*                     <td>@n.TenDangNhap</td> *@
+@*                     <td>@n.HoTen</td> *@
+@*                     <td>@n.Email</td> *@
+@*                     <td>@n.SoDienThoai</td> *@
+@*                     <td>@n.GioiTinh</td> *@
+@*                     <td> *@
+@*                         <span class="badge @(trangThaiNguoiDung == "HoatDong" ? "bg-success" : "bg-danger")"> *@
+@*                             @(trangThaiNguoiDung == "HoatDong" ? "Hoạt động" : "Bị khóa") *@
+@*                         </span> *@
+@*                     </td> *@
+@*                     <td class="text-center"> *@
+@*                         <a href="/NguoiDung/ChiTiet?tenDangNhap=@n.TenDangNhap" class="btn btn-sm btn-info">🔎 Xem</a> *@
 
-                        <form asp-action="DoiTrangThai" method="post" class="d-inline">
-                            <input type="hidden" name="tenDangNhap" value="@n.TenDangNhap" />
-                            <button type="submit" class="btn btn-sm btn-warning">🔁 Đổi trạng thái</button>
-                        </form>
+@*                         <form asp-action="DoiTrangThai" method="post" class="d-inline"> *@
+@*                             <input type="hidden" name="tenDangNhap" value="@n.TenDangNhap" /> *@
+@*                             <button type="submit" class="btn btn-sm btn-warning">🔁 Đổi trạng thái</button> *@
+@*                         </form> *@
 
-                        <a href="/NguoiDung/XacNhanXoa?tenDangNhap=@n.TenDangNhap" class="btn btn-sm btn-danger">🗑 Xoá</a>
-                    </td>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
+@*                         <a href="/NguoiDung/XacNhanXoa?tenDangNhap=@n.TenDangNhap" class="btn btn-sm btn-danger">🗑 Xoá</a> *@
+@*                     </td> *@
+@*                 </tr> *@
+@*             } *@
+@*         } *@
+@*     </tbody> *@
+@* </table> *@
 
-@if (totalPages > 1)
-{
-    <nav aria-label="Phân trang người dùng">
-        <ul class="pagination justify-content-center">
-            <li class="page-item @(page <= 1 ? "disabled" : "")">
-                <a class="page-link"
-                   href="?tuKhoa=@tuKhoa&trangThai=@trangThai&vaiTro=@vaiTro&page=@(page - 1)">
-                    ←
-                </a>
-            </li>
-            @for (int i = 1; i <= totalPages; i++)
-            {
-                <li class="page-item @(i == page ? "active" : "")">
-                    <a class="page-link"
-                       href="?tuKhoa=@tuKhoa&trangThai=@trangThai&vaiTro=@vaiTro&page=@i">
-                        @i
-                    </a>
-                </li>
-            }
-            <li class="page-item @(page >= totalPages ? "disabled" : "")">
-                <a class="page-link"
-                   href="?tuKhoa=@tuKhoa&trangThai=@trangThai&vaiTro=@vaiTro&page=@(page + 1)">
-                    →
-                </a>
-            </li>
-        </ul>
-    </nav>
-}
+@* @if (totalPages > 1) *@
+@* { *@
+@*     <nav aria-label="Phân trang người dùng"> *@
+@*         <ul class="pagination justify-content-center"> *@
+@*             <li class="page-item @(page <= 1 ? "disabled" : "")"> *@
+@*                 <a class="page-link" *@
+@*                    href="?tuKhoa=@tuKhoa&trangThai=@trangThai&vaiTro=@vaiTro&page=@(page - 1)"> *@
+@*                     ← *@
+@*                 </a> *@
+@*             </li> *@
+@*             @for (int i = 1; i <= totalPages; i++) *@
+@*             { *@
+@*                 <li class="page-item @(i == page ? "active" : "")"> *@
+@*                     <a class="page-link" *@
+@*                        href="?tuKhoa=@tuKhoa&trangThai=@trangThai&vaiTro=@vaiTro&page=@i"> *@
+@*                         @i *@
+@*                     </a> *@
+@*                 </li> *@
+@*             } *@
+@*             <li class="page-item @(page >= totalPages ? "disabled" : "")"> *@
+@*                 <a class="page-link" *@
+@*                    href="?tuKhoa=@tuKhoa&trangThai=@trangThai&vaiTro=@vaiTro&page=@(page + 1)"> *@
+@*                     → *@
+@*                 </a> *@
+@*             </li> *@
+@*         </ul> *@
+@*     </nav> *@
+@* } *@
