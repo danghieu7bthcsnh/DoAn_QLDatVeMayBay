@@ -1,40 +1,57 @@
 ﻿@{
     ViewData["Title"] = "Trang quản trị";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; // Hoặc _AdminLayout nếu có layout riêng cho admin
 }
 
 <div class="container mt-4">
-    <h2 class="text-primary">📊 Trang quản trị Admin</h2>
-    <hr />
-    <div class="row">
+    <h2 class="text-primary mb-4">📊 Bảng điều khiển quản trị viên</h2>
+
+    <div class="row g-4">
         <div class="col-md-4">
-            <div class="card bg-info text-white mb-3">
-                <div class="card-body">
-                    <h5>👥 Người dùng</h5>
-                    <h3>@ViewBag.TongNguoiDung</h3>
+            <div class="card border-0 shadow-sm bg-info text-white">
+                <div class="card-body text-center">
+                    <h5 class="card-title">👥 Tổng người dùng</h5>
+                    <h3 class="display-6 fw-bold">@ViewBag.TongNguoiDung</h3>
                 </div>
             </div>
         </div>
+
         <div class="col-md-4">
-            <div class="card bg-success text-white mb-3">
-                <div class="card-body">
-                    <h5>✈️ Chuyến bay</h5>
-                    <h3>@ViewBag.TongChuyenBay</h3>
+            <div class="card border-0 shadow-sm bg-success text-white">
+                <div class="card-body text-center">
+                    <h5 class="card-title">✈️ Tổng chuyến bay</h5>
+                    <h3 class="display-6 fw-bold">@ViewBag.TongChuyenBay</h3>
                 </div>
             </div>
         </div>
+
         <div class="col-md-4">
-            <div class="card bg-warning text-dark mb-3">
-                <div class="card-body">
-                    <h5>🎫 Vé máy bay</h5>
-                    <h3>@ViewBag.TongVe</h3>
+            <div class="card border-0 shadow-sm bg-warning text-dark">
+                <div class="card-body text-center">
+                    <h5 class="card-title">🎫 Tổng vé máy bay</h5>
+                    <h3 class="display-6 fw-bold">@ViewBag.TongVe</h3>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="mt-3">
-        <a href="/NguoiDung/Index" class="btn btn-outline-light btn-sm bg-dark">👥 Quản lý người dùng</a>
-        <a href="/ChuyenBay/Index" class="btn btn-outline-light btn-sm bg-dark">✈️ Quản lý chuyến bay</a>
-        <a href="/VeMayBay/Index" class="btn btn-outline-light btn-sm bg-dark">🎫 Quản lý vé máy bay</a>
+    <hr class="my-4" />
+
+    <div class="d-flex flex-wrap gap-3">
+        <a href="/NguoiDung/Index" class="btn btn-outline-primary btn-lg">
+            👤 Quản lý người dùng
+        </a>
+        <a href="/QuanLyChuyenBay/Index" class="btn btn-outline-success btn-lg">
+            ✈️ Quản lý chuyến bay
+        </a>
+        <a href="/VeMayBay/Index" class="btn btn-outline-warning btn-lg text-dark">
+            🎫 Quản lý vé máy bay
+        </a>
+        <a href="/Admin/GuiThongBao" class="btn btn-outline-danger btn-lg">
+            📧 Gửi thông báo
+        </a>
+        <a href="/Admin/ThongKe" class="btn btn-outline-secondary btn-lg">
+            📈 Thống kê hệ thống
+        </a>
     </div>
 </div>

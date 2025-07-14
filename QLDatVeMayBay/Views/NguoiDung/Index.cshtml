@@ -1,60 +1,46 @@
 ﻿@model List<QLDatVeMayBay.Models.NguoiDung>
 @{
+    ViewData["Title"] = "Quản lý người dùng";
     var tuKhoa = ViewBag.TuKhoa as string ?? "";
     var page = (int)ViewBag.Page;
     var totalPages = (int)ViewBag.TotalPages;
-
-    var trangThai = ViewBag.TrangThai as string ?? "";
-    var vaiTro = ViewBag.VaiTro as string ?? "";
-
-    var selectedTrangThaiHoatDong = trangThai == "HoatDong" ? "selected" : "";
-    var selectedTrangThaiBiKhoa = trangThai == "BiKhoa" ? "selected" : "";
-
-    var selectedVaiTroAdmin = vaiTro == "Admin" ? "selected" : "";
-    var selectedVaiTroKhachHang = vaiTro == "KhachHang" ? "selected" : "";
 }
+
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 <h2 class="mt-3">👥 Quản lý người dùng</h2>
 
 <form method="get" class="row g-3 mb-3">
     <!-- Ô nhập từ khóa -->
     <div class="col-md-3">
         <input type="text" name="tuKhoa" class="form-control"
-               placeholder="Tìm theo tên, email, SĐT" value="@ViewBag.TuKhoa" />
+               placeholder="Tìm theo tên, email, SĐT" value="@tuKhoa" />
     </div>
 
     <!-- Chọn Trạng thái -->
-<div class="col-md-3">
-    <select name="trangThai" class="form-select">
-        <option value="">-- Tất cả trạng thái --</option>
-        <option value="HoatDong" @selectedTrangThaiHoatDong>🟢 Hoạt động</option>
-        <option value="BiKhoa" @selectedTrangThaiBiKhoa>🔴 Bị khóa</option>
-    </select>
-</div>
+    <div class="col-md-3">
+        <select name="trangThai" class="form-select" asp-items="ViewBag.TrangThaiList">
+            <option value="">-- Tất cả trạng thái --</option>
+        </select>
+    </div>
 
-    <<!-- Chọn Vai trò -->
-<div class="col-md-3">
-    <select name="vaiTro" class="form-select">
-        <option value="">-- Tất cả vai trò --</option>
-        <option value="Admin" @selectedVaiTroAdmin>🛡️ Admin</option>
-        <option value="KhachHang" @selectedVaiTroKhachHang>👤 Khách hàng</option>
-    </select>
-</div>
+    <!-- Chọn Vai trò -->
+    <div class="col-md-3">
+        <select name="vaiTro" class="form-select" asp-items="ViewBag.VaiTroList">
+            <option value="">-- Tất cả vai trò --</option>
+        </select>
+    </div>
 
     <!-- Các nút chức năng -->
     <div class="col-md-auto">
         <button type="submit" class="btn btn-primary">🔍 Tìm kiếm</button>
         <a href="/NguoiDung/Index" class="btn btn-secondary">🔄 Làm mới</a>
         <a href="/NguoiDung/XuatExcel?tuKhoa=@ViewBag.TuKhoa&trangThai=@ViewBag.TrangThai&vaiTro=@ViewBag.VaiTro"
-           class="btn btn-success">
-            📄 Xuất Excel
-        </a>
+           class="btn btn-success">📄 Xuất Excel</a>
     </div>
 </form>
-
-
 
 <table class="table table-bordered table-hover">
     <thead class="table-light">
@@ -98,7 +84,6 @@
                         </form>
 
                         <a href="/NguoiDung/XacNhanXoa?tenDangNhap=@n.TenDangNhap" class="btn btn-sm btn-danger">🗑 Xoá</a>
-
                     </td>
                 </tr>
             }
@@ -110,34 +95,27 @@
 {
     <nav aria-label="Phân trang người dùng">
         <ul class="pagination justify-content-center">
-
-            <!-- Nút trang trước -->
             <li class="page-item @(page <= 1 ? "disabled" : "")">
                 <a class="page-link"
-                   href="?tuKhoa=@ViewBag.TuKhoa&trangThai=@ViewBag.TrangThai&vaiTro=@ViewBag.VaiTro&page=@(page - 1)">
+                   href="?tuKhoa=@tuKhoa&trangThai=@ViewBag.TrangThai&vaiTro=@ViewBag.VaiTro&page=@(page - 1)">
                     ←
                 </a>
             </li>
 
-            <!-- Các số trang -->
             @for (int i = 1; i <= totalPages; i++)
             {
                 <li class="page-item @(i == page ? "active" : "")">
                     <a class="page-link"
-                       href="?tuKhoa=@ViewBag.TuKhoa&trangThai=@ViewBag.TrangThai&vaiTro=@ViewBag.VaiTro&page=@i">
-                        @i
-                    </a>
+                       href="?tuKhoa=@tuKhoa&trangThai=@ViewBag.TrangThai&vaiTro=@ViewBag.VaiTro&page=@i">@i</a>
                 </li>
             }
 
-            <!-- Nút trang sau -->
             <li class="page-item @(page >= totalPages ? "disabled" : "")">
                 <a class="page-link"
-                   href="?tuKhoa=@ViewBag.TuKhoa&trangThai=@ViewBag.TrangThai&vaiTro=@ViewBag.VaiTro&page=@(page + 1)">
+                   href="?tuKhoa=@tuKhoa&trangThai=@ViewBag.TrangThai&vaiTro=@ViewBag.VaiTro&page=@(page + 1)">
                     →
                 </a>
             </li>
         </ul>
     </nav>
 }
-

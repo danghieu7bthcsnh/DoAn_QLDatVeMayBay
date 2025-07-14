@@ -1,14 +1,15 @@
 ﻿// Controllers/NguoiDungController.cs
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using QLDatVeMayBay.Data;
-using QLDatVeMayBay.Models;
-using System.Text;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
-using System.IO;
+using QLDatVeMayBay.Data;
+using QLDatVeMayBay.Models;
 using System.Drawing;
+using System.IO;
+using System.Text;
 namespace QLDatVeMayBay.Controllers
 {
     [Authorize(Roles = "Admin")]
@@ -45,18 +46,34 @@ namespace QLDatVeMayBay.Controllers
                 query = query.Where(n => n.TaiKhoan.VaiTro == vaiTro);
             }
 
+            int pageSize = 10;
             int totalItems = await query.CountAsync();
             var nguoiDungs = await query
                 .OrderByDescending(n => n.TenDangNhap)
-                .Skip((page - 1) * PageSize)
-                .Take(PageSize)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
 
+            // Gán giá trị đang lọc
             ViewBag.TuKhoa = tuKhoa;
             ViewBag.TrangThai = trangThai;
             ViewBag.VaiTro = vaiTro;
             ViewBag.Page = page;
-            ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / PageSize);
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            // ✅ Danh sách trạng thái (dùng asp-items)
+            ViewBag.TrangThaiList = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "🟢 Hoạt động", Value = "HoatDong", Selected = trangThai == "HoatDong" },
+        new SelectListItem { Text = "🔴 Bị khóa", Value = "BiKhoa", Selected = trangThai == "BiKhoa" }
+    };
+
+            // ✅ Danh sách vai trò
+            ViewBag.VaiTroList = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "🛡️ Admin", Value = "Admin", Selected = vaiTro == "Admin" },
+        new SelectListItem { Text = "👤 Khách hàng", Value = "KhachHang", Selected = vaiTro == "KhachHang" }
+    };
 
             return View(nguoiDungs);
         }

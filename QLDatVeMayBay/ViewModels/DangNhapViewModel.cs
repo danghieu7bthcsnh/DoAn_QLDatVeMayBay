@@ -15,5 +15,8 @@ namespace QLDatVeMayBay.ViewModels
 
         [Display(Name = "Ghi nhớ đăng nhập")]
         public bool GhiNhoDangNhap { get; set; }
+
+        [Display(Name = "Vai trò")]
+        public string VaiTro { get; set; } // Thêm dòng này nếu muốn chọn vai trò lúc đăng nhập
     }
 }

@@ -28,46 +28,51 @@ namespace QLDatVeMayBay.Controllers
                 .Include(c => c.SanBayDenInfo)
                 .AsQueryable();
 
+            // 🔎 Lọc
             if (!string.IsNullOrEmpty(tinhTrang))
-            {
                 query = query.Where(cb => cb.TinhTrang == tinhTrang);
-            }
 
             if (sanBayDi.HasValue)
-            {
                 query = query.Where(cb => cb.SanBayDi == sanBayDi.Value);
-            }
 
             if (sanBayDen.HasValue)
-            {
                 query = query.Where(cb => cb.SanBayDen == sanBayDen.Value);
-            }
 
             if (idMayBay.HasValue)
-            {
                 query = query.Where(cb => cb.IDMayBay == idMayBay.Value);
-            }
 
+            // 📄 Phân trang
+            int pageSize = 10;
             int totalItems = await query.CountAsync();
             var chuyenBayList = await query
                 .OrderByDescending(cb => cb.GioCatCanh)
-                .Skip((page - 1) * 10)
-                .Take(10)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
 
-            // Dữ liệu dropdown
-            ViewBag.TinhTrang = tinhTrang;
-            ViewBag.SanBayDi = sanBayDi;
-            ViewBag.SanBayDen = sanBayDen;
-            ViewBag.IDMayBay = idMayBay;
-            ViewBag.Page = page;
-            ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / 10);
+            // 🔽 Danh sách Dropdowns
+            var danhSachSanBay = await _context.SanBay.ToListAsync();
+            var danhSachMayBay = await _context.MayBay.ToListAsync();
 
-            ViewBag.DanhSachSanBay = await _context.SanBay.ToListAsync();
-            ViewBag.DanhSachMayBay = await _context.MayBay.ToListAsync();
+            ViewBag.SanBayDiList = new SelectList(danhSachSanBay, "IDSanBay", "TenSanBay", sanBayDi);
+            ViewBag.SanBayDenList = new SelectList(danhSachSanBay, "IDSanBay", "TenSanBay", sanBayDen);
+            ViewBag.MayBayList = new SelectList(danhSachMayBay, "IDMayBay", "TenHangHK", idMayBay);
+
+            // ✅ Dropdown tình trạng (Text có icon)
+            ViewBag.TinhTrangList = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "🟢 Đang bay", Value = "Đang bay", Selected = tinhTrang == "Đang bay" },
+        new SelectListItem { Text = "🟡 Hoãn", Value = "Hoãn", Selected = tinhTrang == "Hoãn" },
+        new SelectListItem { Text = "🔴 Hủy", Value = "Hủy", Selected = tinhTrang == "Hủy" }
+    };
+
+            // 📦 Thông tin phân trang và lọc
+            ViewBag.Page = page;
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
 
             return View(chuyenBayList);
         }
+
 
 
         // GET: /QuanLyChuyenBay/Create

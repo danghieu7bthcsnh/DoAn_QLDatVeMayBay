@@ -30,6 +30,15 @@
                             <input asp-for="MatKhau" class="form-control" type="password" placeholder="Nhập mật khẩu" />
                             <span asp-validation-for="MatKhau" class="text-danger"></span>
                         </div>
+                        <div class="mb-3">
+                            <label asp-for="VaiTro" class="form-label">Vai trò</label>
+                            <select asp-for="VaiTro" class="form-select">
+                                <option value="">-- Chọn vai trò --</option>
+                                <option value="Admin">🛡️ Admin</option>
+                                <option value="KhachHang">👤 Khách hàng</option>
+                            </select>
+                            <span asp-validation-for="VaiTro" class="text-danger"></span>
+                        </div>
 
                         <div class="mb-3 form-check">
                             <input asp-for="GhiNhoDangNhap" class="form-check-input" />

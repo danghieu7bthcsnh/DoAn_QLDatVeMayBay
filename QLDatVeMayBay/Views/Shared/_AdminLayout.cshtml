@@ -1,28 +1,61 @@
 ﻿@{
-    Layout = "_Layout"; // hoặc bạn có thể dùng layout riêng biệt khác nếu muốn
-
+    Layout = null; // Tránh lồng layout
+    var tenDangNhap = Context.Session.GetString("TenDangNhap");
+    var vaiTro = Context.Session.GetString("VaiTro");
 }
 
-<div class="container">
-    <h2 class="mt-3">🎛️ Quản trị hệ thống</h2>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - Trang quản trị</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container py-3">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-success">🎛️ Quản trị hệ thống</h2>
+            @if (!string.IsNullOrEmpty(tenDangNhap))
+            {
+                <div>
+                    👋 Xin chào: <strong>@tenDangNhap</strong> (@vaiTro) |
+                    <a href="/TaiKhoan/CaNhan" class="text-decoration-none">🔐 Tài khoản</a> |
+                    <a href="/TaiKhoan/DangXuat" class="text-danger text-decoration-none">🚪 Đăng xuất</a>
+                </div>
+            }
+        </div>
 
-    <ul class="nav nav-tabs mb-4">
-        <li class="nav-item">
-            <a class="nav-link" href="/NguoiDung/Index">👤 Người dùng</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/QuanLyChuyenBay/Index">✈️ Chuyến bay</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/VeMayBay/Index">🎫 Vé đã đặt</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/Admin/ThongKe">📊 Thống kê</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/Admin/GuiThongBao">📧 Gửi thông báo</a>
-        </li>
-    </ul>
+        <!-- Menu điều hướng -->
+        <ul class="nav nav-tabs mb-4">
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "NguoiDung" ? "active" : "")" href="/NguoiDung/Index">👤 Người dùng</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "QuanLyChuyenBay" ? "active" : "")" href="/QuanLyChuyenBay/Index">✈️ Chuyến bay</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "VeMayBay" ? "active" : "")" href="/VeMayBay/Index">🎫 Vé đã đặt</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "ThongKe" ? "active" : "")" href="/Admin/ThongKe">📊 Thống kê</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "GuiThongBao" ? "active" : "")" href="/Admin/GuiThongBao">📧 Gửi thông báo</a>
+            </li>
+        </ul>
 
-    @RenderBody()
-</div>
+        @RenderBody()
+
+        <footer class="text-center mt-5 border-top pt-3 text-muted small">
+            &copy; @DateTime.Now.Year - Quản trị hệ thống đặt vé máy bay
+        </footer>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
