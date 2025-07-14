@@ -14,49 +14,33 @@
 <a asp-action="Create" class="btn btn-success mb-3">➕ Thêm chuyến bay</a>
 
 <form method="get" class="row g-3 mb-3">
+    <!-- ✅ Lọc theo tình trạng bằng SelectList -->
     <div class="col-md-2">
-        <select name="tinhTrang" class="form-select">
+        <select name="tinhTrang" class="form-select"
+                asp-items="@(new SelectList((IEnumerable<SelectListItem>)ViewBag.TinhTrangList, "Value", "Text", ViewBag.TinhTrang))">
             <option value="">-- Tình trạng --</option>
-            <option value="Đang bay" @(ViewBag.TinhTrang == "Đang bay" ? "selected" : "")>🟢 Đang bay</option>
-            <option value="Hoãn" @(ViewBag.TinhTrang == "Hoãn" ? "selected" : "")>🟡 Hoãn</option>
-            <option value="Hủy" @(ViewBag.TinhTrang == "Hủy" ? "selected" : "")>🔴 Hủy</option>
         </select>
     </div>
 
-    <div class="col-md-2">
-        <select name="sanBayDi" class="form-select">
-            <option value="">-- Sân bay đi --</option>
-            @foreach (var sb in ViewBag.DanhSachSanBay)
-            {
-                <option value="@sb.IDSanBay" @(ViewBag.SanBayDi?.ToString() == sb.IDSanBay.ToString() ? "selected" : "")>
-                    @sb.TenSanBay
-                </option>
-            }
-        </select>
-    </div>
+    <!-- Tình trạng -->
+    <select name="tinhTrang" class="form-select" asp-items="ViewBag.TinhTrangList">
+        <option value="">-- Tình trạng --</option>
+    </select>
 
-    <div class="col-md-2">
-        <select name="sanBayDen" class="form-select">
-            <option value="">-- Sân bay đến --</option>
-            @foreach (var sb in ViewBag.DanhSachSanBay)
-            {
-                <option value="@sb.IDSanBay" @(ViewBag.SanBayDen?.ToString() == sb.IDSanBay.ToString() ? "selected" : "")>
-                    @sb.TenSanBay
-                </option>
-            }
-        </select>
-    </div>
+    <!-- Sân bay đi -->
+    <select name="sanBayDi" class="form-select" asp-items="ViewBag.SanBayDiList">
+        <option value="">-- Sân bay đi --</option>
+    </select>
 
-    <div class="col-md-2">
-        <select name="idMayBay" class="form-select">
-            <option value="">-- Hãng máy bay --</option>
-            @foreach (var mb in ViewBag.DanhSachMayBay)
-            {
-                <option value="@mb.IDMayBay" @(ViewBag.IDMayBay?.ToString() == mb.IDMayBay.ToString() ? "selected" : "")>
-                    @mb.TenHangHK
-                </option>
-            }
-        </select>
+    <!-- Sân bay đến -->
+    <select name="sanBayDen" class="form-select" asp-items="ViewBag.SanBayDenList">
+        <option value="">-- Sân bay đến --</option>
+    </select>
+
+    <!-- Máy bay -->
+    <select name="idMayBay" class="form-select" asp-items="ViewBag.MayBayList">
+        <option value="">-- Hãng máy bay --</option>
+    </select>
     </div>
 
     <div class="col-md-auto">
