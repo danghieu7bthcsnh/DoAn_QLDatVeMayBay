@@ -34,7 +34,6 @@ namespace QLDatVeMayBay.Controllers
             return View();
         }
 
-        // POST: DangKy
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DangKy(RegisterViewModel model)
@@ -42,12 +41,18 @@ namespace QLDatVeMayBay.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            // Kiểm tra trùng tên đăng nhập và email
+            // Kiểm tra trùng tên đăng nhập, email, số điện thoại, CCCD
             if (await _context.TaiKhoan.AnyAsync(t => t.TenDangNhap == model.TenDangNhap))
                 ModelState.AddModelError("TenDangNhap", "Tên đăng nhập đã tồn tại.");
 
             if (await _context.NguoiDung.AnyAsync(n => n.Email == model.Email))
                 ModelState.AddModelError("Email", "Email đã được sử dụng.");
+
+            if (!string.IsNullOrEmpty(model.SoDienThoai) && await _context.NguoiDung.AnyAsync(n => n.SoDienThoai == model.SoDienThoai))
+                ModelState.AddModelError("SoDienThoai", "Số điện thoại đã được sử dụng.");
+
+            if (!string.IsNullOrEmpty(model.CCCD) && await _context.NguoiDung.AnyAsync(n => n.CCCD == model.CCCD))
+                ModelState.AddModelError("CCCD", "CCCD đã được sử dụng.");
 
             if (!ModelState.IsValid)
                 return View(model);
@@ -70,12 +75,13 @@ namespace QLDatVeMayBay.Controllers
                 HoTen = model.HoTen,
                 Email = model.Email,
                 SoDienThoai = model.SoDienThoai,
-                GioiTinh = model.GioiTinh
+                GioiTinh = model.GioiTinh,
+                CCCD = model.CCCD,
+                QuocTich = model.QuocTich
             };
 
-            // Thêm vào DB
-            _context.Add(taiKhoan);
-            _context.Add(nguoiDung);
+            _context.TaiKhoan.Add(taiKhoan);
+            _context.NguoiDung.Add(nguoiDung);
             await _context.SaveChangesAsync();
 
             // Tạo mã xác nhận
@@ -89,11 +95,37 @@ namespace QLDatVeMayBay.Controllers
             _context.MaXacNhan.Add(maXacNhan);
             await _context.SaveChangesAsync();
 
-            // Gửi email
-            await SendEmailAsync(model.Email, "Xác nhận đăng ký", $"Mã xác nhận của bạn là: {ma}");
+            // Gửi Email HTML
+            // Gửi Email HTML
+            string noiDungEmail = $@"
+<div style='font-family:Segoe UI, sans-serif; background-color:#ffffff; padding:30px; border:1px solid #e0e0e0; border-radius:10px; max-width:600px; margin:auto;'>
+    <div style='text-align:center; margin-bottom:20px;'>
+        <h2 style='color:#0d6efd; margin-bottom:5px;'>Xác nhận đăng ký tài khoản</h2>
+        <p style='font-size:14px; color:#6c757d;'>QLĐặtVé Máy Bay</p>
+    </div>
+
+    <p>Xin chào <strong>{model.HoTen}</strong>,</p>
+
+    <p style='font-size:15px; color:#333;'>Bạn hoặc ai đó đã sử dụng email này để đăng ký tài khoản trên hệ thống <strong>QLĐặtVé Máy Bay</strong>.</p>
+
+    <p style='margin-top:20px; font-weight:500;'>Mã xác nhận của bạn:</p>
+    <div style='font-size:32px; font-weight:bold; letter-spacing:6px; color:#198754; margin:20px 0; text-align:center;'>{ma}</div>
+
+    <p style='color:#555;'>⚠️ <strong>Lưu ý:</strong> Không chia sẻ mã xác nhận với bất kỳ ai. Mã sẽ hết hạn sau <strong>15 phút</strong> kể từ khi được gửi.</p>
+
+    <p style='margin-top:30px; font-size:14px; color:#888;'>Nếu bạn không thực hiện đăng ký, vui lòng bỏ qua email này.</p>
+
+    <hr style='margin:30px 0;' />
+
+    <p style='text-align:center; font-size:12px; color:#999;'>© {DateTime.Now.Year} QLĐặtVé Máy Bay. Mọi quyền được bảo lưu.</p>
+</div>";
+
+            await SendEmailAsync(model.Email, "Xác nhận đăng ký", noiDungEmail);
 
             TempData["TenDangNhap"] = model.TenDangNhap;
-            TempData.Keep("TenDangNhap"); // giữ TempData qua redirect
+            TempData["ThongBaoEmail"] = $"Mã xác nhận đã được gửi đến <strong>{model.Email}</strong>. Vui lòng kiểm tra hộp thư.";
+            TempData.Keep();
+
             return RedirectToAction("XacNhanEmail");
         }
 
@@ -193,8 +225,11 @@ namespace QLDatVeMayBay.Controllers
             HttpContext.Session.SetString("TenDangNhap", taiKhoan.TenDangNhap);
             HttpContext.Session.SetString("VaiTro", taiKhoan.VaiTro);
 
+            if (taiKhoan.VaiTro == "Admin")
+                return RedirectToAction("Dashboard", "Admin");
+            else
+                return RedirectToAction("TimKiem", "ChuyenBay");
 
-            return RedirectToAction("CaNhan", "TaiKhoan");
         }
 
         // Đăng xuất
@@ -206,13 +241,12 @@ namespace QLDatVeMayBay.Controllers
             return RedirectToAction("DangNhap");
         }
 
-        private async Task SendEmailAsync(string emailNguoiNhan, string subject, string message)
+        private async Task SendEmailAsync(string emailNguoiNhan, string subject, string htmlContent)
         {
             if (string.IsNullOrWhiteSpace(emailNguoiNhan))
                 throw new ArgumentException("Email người nhận không hợp lệ.");
 
-            var emailMessage = new MimeMessage();
-
+            // Lấy thông tin cấu hình từ appsettings.json
             var senderName = _configuration["EmailSettings:SenderName"];
             var senderEmail = _configuration["EmailSettings:SenderEmail"];
             var smtpServer = _configuration["EmailSettings:SmtpServer"];
@@ -220,17 +254,26 @@ namespace QLDatVeMayBay.Controllers
             var username = _configuration["EmailSettings:Username"];
             var password = _configuration["EmailSettings:Password"];
 
-            emailMessage.From.Add(new MailboxAddress(senderName, senderEmail));
-            emailMessage.To.Add(new MailboxAddress("", emailNguoiNhan)); // <-- email người dùng
-            emailMessage.Subject = subject;
-            emailMessage.Body = new TextPart("plain") { Text = message };
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress(senderName, senderEmail));
+            message.To.Add(new MailboxAddress("", emailNguoiNhan));
+            message.Subject = subject;
+
+            // Gửi cả HTML và plain text để tương thích đa nền tảng
+            var bodyBuilder = new BodyBuilder
+            {
+                HtmlBody = htmlContent,
+                TextBody = "Trình duyệt email của bạn không hỗ trợ HTML. Vui lòng sử dụng trình duyệt hiện đại."
+            };
+
+            message.Body = bodyBuilder.ToMessageBody();
 
             using var client = new MailKit.Net.Smtp.SmtpClient();
             try
             {
                 await client.ConnectAsync(smtpServer, port, SecureSocketOptions.StartTls);
                 await client.AuthenticateAsync(username, password);
-                await client.SendAsync(emailMessage);
+                await client.SendAsync(message);
                 await client.DisconnectAsync(true);
             }
             catch (Exception ex)
@@ -238,6 +281,7 @@ namespace QLDatVeMayBay.Controllers
                 throw new InvalidOperationException("Gửi email thất bại: " + ex.Message, ex);
             }
         }
+
         [HttpGet]
         public IActionResult QuenMatKhau()
         {

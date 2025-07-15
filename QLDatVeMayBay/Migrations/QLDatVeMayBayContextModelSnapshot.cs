@@ -165,6 +165,10 @@ namespace QLDatVeMayBay.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDNguoiDung"));
 
+                    b.Property<string>("CCCD")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -178,6 +182,10 @@ namespace QLDatVeMayBay.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("QuocTich")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("SoDienThoai")
                         .HasMaxLength(20)
@@ -229,6 +237,9 @@ namespace QLDatVeMayBay.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("NgayTao")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("TrangThaiTK")
                         .IsRequired()
@@ -304,6 +315,8 @@ namespace QLDatVeMayBay.Migrations
                     b.HasKey("IDVe");
 
                     b.HasIndex("IDChuyenBay");
+
+                    b.HasIndex("IDGhe");
 
                     b.HasIndex("IDNguoiDung");
 
@@ -389,15 +402,28 @@ namespace QLDatVeMayBay.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("QLDatVeMayBay.Models.NguoiDung", "NguoiDung")
+                    b.HasOne("QLDatVeMayBay.Models.GheNgoi", "Ghe")
                         .WithMany()
+                        .HasForeignKey("IDGhe")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("QLDatVeMayBay.Models.NguoiDung", "NguoiDung")
+                        .WithMany("VeMayBays")
                         .HasForeignKey("IDNguoiDung")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ChuyenBay");
 
+                    b.Navigation("Ghe");
+
                     b.Navigation("NguoiDung");
+                });
+
+            modelBuilder.Entity("QLDatVeMayBay.Models.NguoiDung", b =>
+                {
+                    b.Navigation("VeMayBays");
                 });
 
             modelBuilder.Entity("QLDatVeMayBay.Models.TaiKhoan", b =>

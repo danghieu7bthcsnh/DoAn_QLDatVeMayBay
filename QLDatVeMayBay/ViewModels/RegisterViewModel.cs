@@ -17,7 +17,8 @@ namespace QLDatVeMayBay.ViewModels
         [Required(ErrorMessage = "Mật khẩu không được để trống")]
         [StringLength(100, MinimumLength = 8, ErrorMessage = "Mật khẩu phải có ít nhất 8 ký tự")]
         [DataType(DataType.Password)]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$", ErrorMessage = "Mật khẩu phải chứa ít nhất một chữ hoa, một chữ thường, một số và một ký tự đặc biệt")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$",
+            ErrorMessage = "Mật khẩu phải chứa ít nhất một chữ hoa, một chữ thường, một số và một ký tự đặc biệt")]
         public string MatKhau { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Xác nhận mật khẩu không được để trống")]
@@ -34,6 +35,13 @@ namespace QLDatVeMayBay.ViewModels
         public string? SoDienThoai { get; set; }
 
         [StringLength(10)]
-        public string? GioiTinh { get; set; } // "Nam", "Nữ", v.v.
+        public string? GioiTinh { get; set; } // "Nam", "Nữ", "Khác"
+
+        [StringLength(20)]
+        [RegularExpression(@"^\d{9,12}$", ErrorMessage = "CCCD phải là số và từ 9 đến 12 chữ số")]
+        public string? CCCD { get; set; }
+
+        [StringLength(50, ErrorMessage = "Quốc tịch tối đa 50 ký tự")]
+        public string? QuocTich { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QLDatVeMayBay.Models
@@ -8,8 +9,13 @@ namespace QLDatVeMayBay.Models
         [Key]
         public int IDVe { get; set; }
 
+        [Required]
         public int IDNguoiDung { get; set; }
+
+        [Required]
         public int IDChuyenBay { get; set; }
+
+        [Required]
         public int IDGhe { get; set; }
 
         [ForeignKey("IDNguoiDung")]
@@ -19,11 +25,11 @@ namespace QLDatVeMayBay.Models
         public ChuyenBay? ChuyenBay { get; set; }
 
         [ForeignKey("IDGhe")]
-        public GheNgoi? Ghe { get; set; } // ⬅️ thêm dòng này
+        public GheNgoi? Ghe { get; set; }
 
-        public DateTime ThoiGianDat { get; set; }
+        public DateTime ThoiGianDat { get; set; } = DateTime.Now;
 
         [StringLength(50)]
-        public string? TrangThaiVe { get; set; }
+        public string? TrangThaiVe { get; set; } = "Chưa thanh toán";
     }
 }

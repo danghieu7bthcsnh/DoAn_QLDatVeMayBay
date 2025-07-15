@@ -11,37 +11,94 @@
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewData["Title"] - QLĐặtVé Máy Bay</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <style>
         body {
             background-color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
         }
+
+        .navbar {
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
         .navbar-brand {
-            font-weight: bold;
-            color: #007bff !important;
+            font-weight: 600;
+            color: #1a73e8 !important;
+            font-size: 1.4rem;
+            letter-spacing: -0.5px;
         }
+
         .navbar-nav .nav-link {
+            color: #3c4043;
             font-weight: 500;
+            font-size: 1rem;
+            margin: 0 0.75rem;
+            transition: color 0.2s ease-in-out;
         }
-        .btn-outline-danger:hover {
-            background-color: #dc3545;
-            color: #fff;
+
+            .navbar-nav .nav-link:hover {
+                color: #1a73e8;
+                text-decoration: none;
+            }
+
+        .btn-outline-primary, .btn-outline-secondary, .btn-outline-danger {
+            padding: 6px 14px;
+            font-size: 0.95rem;
+            border-radius: 4px;
         }
+
+            .btn-outline-primary:hover {
+                background-color: #1a73e8;
+                color: #fff;
+            }
+
+            .btn-outline-secondary:hover {
+                background-color: #6c757d;
+                color: #fff;
+            }
+
+            .btn-outline-danger:hover {
+                background-color: #dc3545;
+                color: #fff;
+            }
+
+        .greeting {
+            font-size: 0.9rem;
+            color: #5f6368;
+            margin-right: 1rem;
+        }
+
         footer {
-            background-color: #f1f1f1;
-            padding: 10px 0;
+            background-color: #f1f3f4;
+            padding: 1rem 0;
+            margin-top: 60px;
+            font-size: 0.9rem;
         }
+
+            footer a {
+                color: #1a73e8;
+                text-decoration: none;
+            }
+
+                footer a:hover {
+                    text-decoration: underline;
+                }
     </style>
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-controller="Home" asp-action="Index">✈ QLĐặtVé</a>
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">QLĐặtVé</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -51,15 +108,15 @@
                         @if (!string.IsNullOrEmpty(tenDangNhap))
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="DatVe" asp-action="TimChuyenBay">🎫 Đặt vé</a>
+                                <a class="nav-link" asp-controller="DatVe" asp-action="TimChuyenBay">Đặt vé</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="TaiKhoan" asp-action="CaNhan">👤 Tài khoản</a>
+                                <a class="nav-link" asp-controller="TaiKhoan" asp-action="CaNhan">Tài khoản</a>
                             </li>
                             @if (isAdmin)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-danger fw-bold" asp-controller="Admin" asp-action="Dashboard">🛠️ Quản trị</a>
+                                    <a class="nav-link text-danger fw-bold" asp-controller="Admin" asp-action="Dashboard">Quản trị</a>
                                 </li>
                             }
                         }
@@ -68,22 +125,22 @@
                     <ul class="navbar-nav ms-auto">
                         @if (!string.IsNullOrEmpty(tenDangNhap))
                         {
-                            <li class="nav-item d-flex align-items-center me-2">
-                                <span class="text-muted small">👋 Xin chào, <strong>@tenDangNhap</strong></span>
+                            <li class="nav-item d-flex align-items-center">
+                                <span class="greeting">Xin chào, <strong>@tenDangNhap</strong></span>
                             </li>
                             <li class="nav-item">
                                 <form asp-controller="TaiKhoan" asp-action="DangXuat" method="post" class="d-inline">
-                                    <button type="submit" class="btn btn-outline-danger">🚪 Đăng xuất</button>
+                                    <button type="submit" class="btn btn-outline-danger">Đăng xuất</button>
                                 </form>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="btn btn-outline-primary me-2" asp-controller="TaiKhoan" asp-action="DangNhap">🔐 Đăng nhập</a>
+                                <a class="btn btn-outline-primary me-2" asp-controller="TaiKhoan" asp-action="DangNhap">Đăng nhập</a>
                             </li>
                             <li class="nav-item">
-                                <a class="btn btn-outline-secondary" asp-controller="TaiKhoan" asp-action="DangKy">📝 Đăng ký</a>
+                                <a class="btn btn-outline-secondary" asp-controller="TaiKhoan" asp-action="DangKy">Đăng ký</a>
                             </li>
                         }
                     </ul>
@@ -92,16 +149,17 @@
         </nav>
     </header>
 
+
     <div class="container mt-4">
         <main role="main" class="pb-5">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top mt-auto text-center text-muted">
+    <footer class="footer border-top text-center text-muted">
         <div class="container">
             &copy; @DateTime.Now.Year - Hệ thống QLĐặtVé Máy Bay ✈ |
-            <a asp-controller="Home" asp-action="Privacy">Chính sách & điều khoản</a>
+            <a asp-controller="Home" asp-action="Privacy">Chính sách & Điều khoản</a>
         </div>
     </footer>
 

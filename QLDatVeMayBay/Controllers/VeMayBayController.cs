@@ -131,6 +131,7 @@ namespace QLDatVeMayBay.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, string trangThaiVe)
         {
             var ve = await _context.VeMayBay
@@ -146,24 +147,32 @@ namespace QLDatVeMayBay.Controllers
                 ModelState.AddModelError("trangThaiVe", "Vui lòng chọn trạng thái.");
             }
 
+            // Trạng thái hợp lệ để Admin chỉnh sửa
+            var validStatuses = new List<string> { "Đã thanh toán", "Chưa thanh toán", "Đã huỷ" };
+            if (!validStatuses.Contains(trangThaiVe))
+            {
+                ModelState.AddModelError("trangThaiVe", "Trạng thái không hợp lệ.");
+            }
+
             if (!ModelState.IsValid)
             {
-                // Bổ sung lại ViewBag.TrangThaiList để render lại view
-                ViewBag.TrangThaiList = new List<SelectListItem>
-        {
-            new SelectListItem { Text = "✅ Đã thanh toán", Value = "Đã thanh toán" },
-            new SelectListItem { Text = "⌛ Chưa thanh toán", Value = "Chưa thanh toán" },
-            new SelectListItem { Text = "❌ Đã huỷ", Value = "Đã huỷ" }
-        };
+                ViewBag.TrangThaiList = validStatuses.Select(s => new SelectListItem
+                {
+                    Text = s,
+                    Value = s,
+                    Selected = s == ve.TrangThaiVe
+                }).ToList();
 
                 return View(ve);
             }
 
             ve.TrangThaiVe = trangThaiVe;
             await _context.SaveChangesAsync();
-            TempData["Message"] = "Cập nhật trạng thái vé thành công.";
+
+            TempData["Message"] = "✅ Cập nhật trạng thái vé thành công.";
             return RedirectToAction("Index");
         }
+
 
         [HttpPost]
         public async Task<IActionResult> GuiEmail(int id)

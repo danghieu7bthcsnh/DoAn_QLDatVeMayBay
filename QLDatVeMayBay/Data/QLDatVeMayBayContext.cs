@@ -1,17 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+
+// ✅ DbContext đã chỉnh Fluent API rõ ràng, tránh FK ảo, quản lý dễ bảo trì
+using Microsoft.EntityFrameworkCore;
 using QLDatVeMayBay.Models;
 
 namespace QLDatVeMayBay.Data
 {
     public class QLDatVeMayBayContext : DbContext
     {
-        public QLDatVeMayBayContext()
-        {
-        }
-
-        public QLDatVeMayBayContext(DbContextOptions<QLDatVeMayBayContext> options) : base(options)
-        {
-        }
+        public QLDatVeMayBayContext(DbContextOptions<QLDatVeMayBayContext> options) : base(options) { }
 
         public DbSet<TaiKhoan> TaiKhoan { get; set; }
         public DbSet<NguoiDung> NguoiDung { get; set; }
@@ -26,7 +23,6 @@ namespace QLDatVeMayBay.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Cấu hình khóa chính
             modelBuilder.Entity<TaiKhoan>()
                 .HasKey(t => t.TenDangNhap);
 
@@ -77,7 +73,7 @@ namespace QLDatVeMayBay.Data
 
             modelBuilder.Entity<VeMayBay>()
                 .HasOne(v => v.NguoiDung)
-                .WithMany()
+                .WithMany(nd => nd.VeMayBays)
                 .HasForeignKey(v => v.IDNguoiDung)
                 .OnDelete(DeleteBehavior.Cascade);
 
@@ -85,6 +81,12 @@ namespace QLDatVeMayBay.Data
                 .HasOne(v => v.ChuyenBay)
                 .WithMany()
                 .HasForeignKey(v => v.IDChuyenBay)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<VeMayBay>()
+                .HasOne(v => v.Ghe)
+                .WithMany()
+                .HasForeignKey(v => v.IDGhe)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<ThanhToan>()
@@ -96,7 +98,6 @@ namespace QLDatVeMayBay.Data
             modelBuilder.Entity<MaXacNhan>()
                 .HasKey(m => m.Id);
 
-            // Cấu hình kiểu decimal cho tránh bị cảnh báo
             modelBuilder.Entity<ChuyenBay>()
                 .Property(cb => cb.GiaVe)
                 .HasColumnType("decimal(18,2)");

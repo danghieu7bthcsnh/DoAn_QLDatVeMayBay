@@ -15,19 +15,27 @@
                 <input type="hidden" name="id" value="@Model.IDVe" />
 
                 <dl class="row">
-                    <dt class="col-sm-3">Người đặt</dt>
-                    <dd class="col-sm-9">@Model.NguoiDung?.HoTen</dd>
+                    <dt class="col-sm-3">👤 Người đặt</dt>
+                    <dd class="col-sm-9">@Model.NguoiDung?.HoTen ?? "Không có"</dd>
 
-                    <dt class="col-sm-3">Chuyến bay</dt>
-                    <dd class="col-sm-9">@Model.ChuyenBay?.IDChuyenBay - @Model.ChuyenBay?.MayBay?.TenHangHK</dd>
+                    <dt class="col-sm-3">📧 Email</dt>
+                    <dd class="col-sm-9">@Model.NguoiDung?.Email ?? "Không có"</dd>
 
-                    <dt class="col-sm-3">Hạng ghế</dt>
-                    <dd class="col-sm-9">@Model.Ghe?.HangGhe</dd>
+                    <dt class="col-sm-3">📞 Điện thoại</dt>
+                    <dd class="col-sm-9">@Model.NguoiDung?.SoDienThoai ?? "Không có"</dd>
 
-                    <dt class="col-sm-3">Thời gian đặt</dt>
+                    <dt class="col-sm-3">✈️ Chuyến bay</dt>
+                    <dd class="col-sm-9">
+                        @Model.ChuyenBay?.IDChuyenBay - @Model.ChuyenBay?.MayBay?.TenHangHK
+                    </dd>
+
+                    <dt class="col-sm-3">💺 Hạng ghế</dt>
+                    <dd class="col-sm-9">@Model.Ghe?.HangGhe ?? "Không có"</dd>
+
+                    <dt class="col-sm-3">🕒 Thời gian đặt</dt>
                     <dd class="col-sm-9">@Model.ThoiGianDat.ToString("dd/MM/yyyy HH:mm")</dd>
 
-                    <dt class="col-sm-3">Trạng thái hiện tại</dt>
+                    <dt class="col-sm-3">📌 Trạng thái hiện tại</dt>
                     <dd class="col-sm-9">
                         <span class="badge
                             @(Model.TrangThaiVe == "Đã thanh toán" ? "bg-success" :
@@ -39,15 +47,14 @@
                 </dl>
 
                 <div class="mb-3">
-                    <label for="trangThaiVe" class="form-label">Chọn trạng thái mới</label>
-                    <select name="trangThaiVe" class="form-select" required>
-                        <option value="">-- Chọn trạng thái mới --</option>
-                        @foreach (var item in ViewBag.TrangThaiList as List<SelectListItem>)
-                        {
-                            @Html.DropDownList("trangThaiVe", (List<SelectListItem>)ViewBag.TrangThaiList, "-- Chọn trạng thái mới --", new { @class = "form-select", required = "required" })
-
-                        }
-                    </select>
+                    <label for="trangThaiVe" class="form-label">📝 Chọn trạng thái mới</label>
+                    @Html.DropDownList(
+                                        "trangThaiVe",
+                                        (List<SelectListItem>)ViewBag.TrangThaiList,
+                                        "-- Chọn trạng thái mới --",
+                                        new { @class = "form-select", required = "required" }
+                                        )
+                    @Html.ValidationMessage("trangThaiVe", null, new { @class = "text-danger" })
                 </div>
 
                 <div class="d-flex justify-content-between">
