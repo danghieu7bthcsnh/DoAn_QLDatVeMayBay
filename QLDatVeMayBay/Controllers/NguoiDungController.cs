@@ -10,6 +10,7 @@ using QLDatVeMayBay.Models;
 using System.Drawing;
 using System.IO;
 using System.Text;
+
 namespace QLDatVeMayBay.Controllers
 {
     [Authorize(Roles = "Admin")]
@@ -23,10 +24,15 @@ namespace QLDatVeMayBay.Controllers
             _context = context;
         }
 
-        // GET: /NguoiDung/Index
         public async Task<IActionResult> Index(string tuKhoa, string trangThai, string vaiTro, int page = 1)
         {
-            var query = _context.NguoiDung.Include(n => n.TaiKhoan).AsQueryable();
+            var query = _context.NguoiDung
+                .Include(n => n.TaiKhoan)
+                .Include(n => n.VeMayBays)
+                    .ThenInclude(v => v.ChuyenBay)
+                .Include(n => n.VeMayBays)
+                    .ThenInclude(v => v.Ghe)
+                .AsQueryable();
 
             if (!string.IsNullOrEmpty(tuKhoa))
             {
@@ -54,33 +60,27 @@ namespace QLDatVeMayBay.Controllers
                 .Take(pageSize)
                 .ToListAsync();
 
-            // Gán giá trị đang lọc
             ViewBag.TuKhoa = tuKhoa;
             ViewBag.TrangThai = trangThai;
             ViewBag.VaiTro = vaiTro;
             ViewBag.Page = page;
             ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
 
-            // ✅ Danh sách trạng thái (dùng asp-items)
             ViewBag.TrangThaiList = new List<SelectListItem>
-    {
-        new SelectListItem { Text = "🟢 Hoạt động", Value = "HoatDong", Selected = trangThai == "HoatDong" },
-        new SelectListItem { Text = "🔴 Bị khóa", Value = "BiKhoa", Selected = trangThai == "BiKhoa" }
-    };
+            {
+                new SelectListItem { Text = "🟢 Hoạt động", Value = "HoatDong", Selected = trangThai == "HoatDong" },
+                new SelectListItem { Text = "🔴 Bị khóa", Value = "BiKhoa", Selected = trangThai == "BiKhoa" }
+            };
 
-            // ✅ Danh sách vai trò
             ViewBag.VaiTroList = new List<SelectListItem>
-    {
-        new SelectListItem { Text = "🛡️ Admin", Value = "Admin", Selected = vaiTro == "Admin" },
-        new SelectListItem { Text = "👤 Khách hàng", Value = "KhachHang", Selected = vaiTro == "KhachHang" }
-    };
+            {
+                new SelectListItem { Text = "🛡️ Admin", Value = "Admin", Selected = vaiTro == "Admin" },
+                new SelectListItem { Text = "👤 Khách hàng", Value = "KhachHang", Selected = vaiTro == "KhachHang" }
+            };
 
             return View(nguoiDungs);
         }
 
-
-
-        // POST: /NguoiDung/DoiTrangThai
         [HttpPost]
         public async Task<IActionResult> DoiTrangThai(string tenDangNhap)
         {
@@ -103,8 +103,19 @@ namespace QLDatVeMayBay.Controllers
 
             var taiKhoan = await _context.TaiKhoan.FindAsync(tenDangNhap);
             ViewBag.TrangThaiTK = taiKhoan?.TrangThaiTK ?? "";
+
+            var lichSuVe = await _context.VeMayBay
+                .Include(v => v.ChuyenBay).ThenInclude(cb => cb.MayBay)
+                .Include(v => v.Ghe)
+                .Where(v => v.IDNguoiDung == nguoiDung.IDNguoiDung)
+                .OrderByDescending(v => v.ThoiGianDat)
+                .ToListAsync();
+
+            ViewBag.LichSuVe = lichSuVe;
+
             return View(nguoiDung);
         }
+
         [HttpGet]
         public async Task<IActionResult> XacNhanXoa(string tenDangNhap)
         {
@@ -119,7 +130,6 @@ namespace QLDatVeMayBay.Controllers
             return View(nguoiDung);
         }
 
-        // POST: /NguoiDung/Xoa
         [HttpPost]
         public async Task<IActionResult> Xoa(string tenDangNhap)
         {
@@ -135,6 +145,7 @@ namespace QLDatVeMayBay.Controllers
 
             return RedirectToAction("Index");
         }
+
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -175,8 +186,6 @@ namespace QLDatVeMayBay.Controllers
             return View(model);
         }
 
-        // GET: /NguoiDung/XuatExcel
-        [HttpGet]
         [HttpGet]
         public async Task<IActionResult> XuatExcel(string tuKhoa, string trangThai, string vaiTro)
         {
@@ -207,7 +216,6 @@ namespace QLDatVeMayBay.Controllers
             using var package = new ExcelPackage();
             var worksheet = package.Workbook.Worksheets.Add("NguoiDung");
 
-            // Header
             worksheet.Cells["A1"].Value = "Tên đăng nhập";
             worksheet.Cells["B1"].Value = "Họ tên";
             worksheet.Cells["C1"].Value = "Email";
@@ -224,7 +232,6 @@ namespace QLDatVeMayBay.Controllers
                 range.Style.Border.BorderAround(ExcelBorderStyle.Thin);
             }
 
-            // Dữ liệu
             int row = 2;
             foreach (var n in nguoiDungs)
             {
@@ -249,7 +256,5 @@ namespace QLDatVeMayBay.Controllers
 
             return File(stream, contentType, fileName);
         }
-
-
     }
 }

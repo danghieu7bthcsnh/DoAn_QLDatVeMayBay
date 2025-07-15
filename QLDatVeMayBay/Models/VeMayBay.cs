@@ -18,6 +18,9 @@ namespace QLDatVeMayBay.Models
         [ForeignKey("IDChuyenBay")]
         public ChuyenBay? ChuyenBay { get; set; }
 
+        [ForeignKey("IDGhe")]
+        public GheNgoi? Ghe { get; set; } // ⬅️ thêm dòng này
+
         public DateTime ThoiGianDat { get; set; }
 
         [StringLength(50)]
