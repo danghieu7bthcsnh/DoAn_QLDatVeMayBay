@@ -12,7 +12,7 @@ using QLDatVeMayBay.Data;
 namespace QLDatVeMayBay.Migrations
 {
     [DbContext(typeof(QLDatVeMayBayContext))]
-    [Migration("20250716070449_correctMigration")]
+    [Migration("20250716071307_correctMigration")]
     partial class correctMigration
     {
         /// <inheritdoc />
