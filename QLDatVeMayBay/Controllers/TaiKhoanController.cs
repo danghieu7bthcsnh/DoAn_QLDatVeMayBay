@@ -194,7 +194,7 @@ namespace QLDatVeMayBay.Controllers
             HttpContext.Session.SetString("VaiTro", taiKhoan.VaiTro);
 
 
-            return RedirectToAction("CaNhan", "TaiKhoan");
+            return RedirectToAction("TimKiem", "ChuyenBay", "TrangChu");
         }
 
         // Đăng xuất

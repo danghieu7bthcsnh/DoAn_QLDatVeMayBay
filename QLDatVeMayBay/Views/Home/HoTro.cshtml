@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Hỗ Trợ";
+}
+
+<div class="bg-primary text-white text-center py-4 rounded mb-5">
+    <h2 class="fw-bold">Trung tâm hỗ trợ</h2>
+    <p class="mb-0">Theo dõi lịch sử trợ giúp, liên hệ và các câu hỏi phổ biến</p>
+</div>
+
+<div class="text-center">
+    <img src="https://ik.imagekit.io/tvlk/image/imageResource/2023/02/16/1676528762833-187245d4ff76a3b0eb724e7090bce404.svg?tr=dpr-2,h-200,q-75,w-329" class="img-fluid mb-4" style="max-height: 250px;" />
+
+    <h5 class="fw-bold mb-3">Bạn cần trợ giúp về đặt chỗ?</h5>
+
+    <div class="d-flex justify-content-center gap-3">
+        <a href="@Url.Action("TroGiup", "Home")" class="btn btn-outline-primary px-4">Xem các câu hỏi thường gặp</a>
+        <a href="@Url.Action("LienHe", "Home")" class="btn btn-primary px-4">Hỏi chúng tôi</a>
+    </div>
+</div>

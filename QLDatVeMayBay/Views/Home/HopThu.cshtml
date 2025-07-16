@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Hộp thư của tôi";
+}
+
+<style>
+    .inbox-header {
+        background: linear-gradient(to right, #007bff, #1e90ff);
+        color: white;
+        padding: 30px 0;
+        text-align: center;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .inbox-content {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .inbox-image {
+        max-width: 200px;
+        margin: 20px auto;
+    }
+                
+    .inbox-buttons .btn {
+        min-width: 200px;
+        margin: 10px;
+        font-weight: 600;
+    }
+</style>
+
+<div class="inbox-header">
+    <h2 class="fw-bold mb-1">Hộp thư của tôi</h2>
+    <p class="mb-0">Theo dõi lịch sử trò chuyện với bộ phận Hỗ trợ khách hàng QLĐặtVé</p>
+</div>
+
+<div class="inbox-content">
+    <img src="~/NewFolder/support-girl.png" alt="Hỗ trợ khách hàng" class="inbox-image" />
+
+    <h5 class="fw-bold mt-4">Bạn cần trợ giúp về đặt chỗ?</h5>
+
+    <div class="inbox-buttons d-flex justify-content-center flex-wrap mt-3">
+        <a href="#" class="btn btn-outline-primary rounded-pill">Xem Những câu hỏi thường gặp</a>
+        <a href="#" class="btn btn-primary rounded-pill">Hỏi chúng tôi</a>
+    </div>
+</div>
