@@ -30,6 +30,6 @@ namespace QLDatVeMayBay.Controllers
 
             return View();
         }
-        
+
     }
 }

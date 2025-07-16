@@ -1,0 +1,265 @@
+﻿@model dynamic
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+    ViewData["Title"] = "Thống kê & Báo cáo";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    canvas {
+        max-height: 300px;
+    }
+
+    .card h5 {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .card h3 {
+        font-size: 1.8rem;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+</style>
+
+<div class="container-fluid">
+    <h2 class="mb-4">📊 Thống kê tổng quan</h2>
+
+    <form method="get" class="row g-3 mb-4">
+        <div class="col-md-2">
+            <label class="form-label">Từ ngày</label>
+            <input type="date" name="tuNgay" class="form-control" value="@ViewData["TuNgay"]" />
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">Đến ngày</label>
+            <input type="date" name="denNgay" class="form-control" value="@ViewData["DenNgay"]" />
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">Vai trò</label>
+            <select name="vaiTro" class="form-select">
+                <option value="">Tất cả</option>
+                @foreach (var item in (List<SelectListItem>)ViewData["VaiTroList"])
+                {
+                    <option value="@item.Value" selected="@(ViewData["VaiTro"]?.ToString() == item.Value ? "selected" : null)">@item.Text</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">Trạng thái</label>
+            <select name="trangThai" class="form-select">
+                <option value="">Tất cả</option>
+                @foreach (var item in (List<SelectListItem>)ViewData["TrangThaiList"])
+                {
+                    <option value="@item.Value" selected="@(ViewData["TrangThai"]?.ToString() == item.Value ? "selected" : null)">@item.Text</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">Hãng hàng không</label>
+            <select name="hangHK" class="form-select">
+                <option value="">Tất cả</option>
+                @foreach (var item in (List<SelectListItem>)ViewData["HangHangKhong"])
+                {
+                    <option value="@item.Value" selected="@(ViewData["HangHK"]?.ToString() == item.Value ? "selected" : null)">@item.Text</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+            <button type="submit" class="btn btn-success w-100">🔍 Lọc</button>
+        </div>
+    </form>
+
+    <div class="d-flex justify-content-end mb-3 gap-2">
+        <a href="@Url.Action("XuatExcel", new { tuNgay = ViewData["TuNgay"], denNgay = ViewData["DenNgay"] })" class="btn btn-primary">📥 Xuất Excel</a>
+        <a href="@Url.Action("XuatPDF", new { tuNgay = ViewData["TuNgay"], denNgay = ViewData["DenNgay"] })" class="btn btn-danger">📄 Xuất PDF</a>
+        <a href="@Url.Action("GuiBaoCaoQuaEmail", new { tuNgay = ViewData["TuNgay"], denNgay = ViewData["DenNgay"], email = "admin@example.com" })" class="btn btn-outline-secondary">📧 Gửi Email</a>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="card shadow text-white bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title">👤 Người dùng hoạt động</h5>
+                    <h3 class="card-text">@ViewData["TongNguoiDung"]</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow text-white bg-success">
+                <div class="card-body">
+                    <h5 class="card-title">✈️ Tổng chuyến bay</h5>
+                    <h3 class="card-text">@ViewData["TongChuyenBay"]</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow text-white bg-warning">
+                <div class="card-body">
+                    <h5 class="card-title">🎫 Tổng vé đã đặt</h5>
+                    <h3 class="card-text">@ViewData["TongVe"]</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow text-white bg-danger">
+                <div class="card-body">
+                    <h5 class="card-title">💰 Doanh thu</h5>
+                    <h3 class="card-text">@String.Format("{0:N0} ₫", ViewData["TongDoanhThu"])</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 g-4">
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h5 class="mb-3">📈 Doanh thu theo tháng</h5>
+                <canvas id="chartDoanhThu"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h5 class="mb-3">🛫 Đặt vé theo sân bay đi</h5>
+                <canvas id="chartSanBay"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 g-4">
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h5 class="mb-3">📉 Tỷ lệ vé huỷ theo tháng</h5>
+                <canvas id="chartVeHuy"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h5 class="mb-3">💳 Doanh thu theo phương thức thanh toán</h5>
+                <canvas id="chartTheoPTTT"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <h4>📋 Bảng thống kê chi tiết</h4>
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+                    <th>Tháng</th>
+                    <th>Doanh thu</th>
+                    <th>Số vé</th>
+                    <th>Người dùng mới</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (IEnumerable<dynamic>)ViewData["BangChiTiet"])
+                {
+                    <tr>
+                        <td>@item.Thang</td>
+                        <td>@String.Format("{0:N0} ₫", item.DoanhThu)</td>
+                        <td>@item.SoVe</td>
+                        <td>@item.NguoiDungMoi</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        Chart.defaults.font.family = 'Segoe UI';
+        Chart.defaults.font.size = 13;
+        Chart.defaults.plugins.legend.position = 'bottom';
+
+        const dataDoanhThu = @Html.Raw(ViewData["DataDoanhThuTheoThang"]);
+        new Chart(document.getElementById("chartDoanhThu"), {
+            type: 'line',
+            data: {
+                labels: dataDoanhThu.map(x => x.Thang),
+                datasets: [{
+                    label: 'Doanh thu',
+                    data: dataDoanhThu.map(x => x.Tong),
+                    borderColor: '#28a745',
+                    backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                    tension: 0.3,
+                    fill: true
+                }]
+            }, options: { responsive: true }
+        });
+
+        const dataSanBay = @Html.Raw(ViewData["DataDatTheoSanBay"]);
+                new Chart(document.getElementById("chartSanBay"), {
+            type: 'bar',
+            data: {
+                labels: dataSanBay.map(x => x.SanBay),
+                datasets: [{
+                    label: 'Số lượng vé',
+                    data: dataSanBay.map(x => x.SoLuong),
+                    backgroundColor: '#17a2b8',
+                    borderRadius: 5,
+                    barThickness: 20
+                }]
+            },
+            options: {
+                indexAxis: 'y', // chuyển thành biểu đồ cột ngang
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: ctx => ` ${ctx.raw} vé`
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Số vé' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Sân bay đi' }
+                    }
+                }
+            }
+        });
+
+
+        const dataVeHuy = @Html.Raw(ViewData["DataVeHuyTheoThang"]);
+        new Chart(document.getElementById("chartVeHuy"), {
+            type: 'line',
+            data: {
+                labels: dataVeHuy.map(x => x.Thang),
+                datasets: [{
+                    label: 'Tỷ lệ huỷ (%)',
+                    data: dataVeHuy.map(x => x.TyLe),
+                    borderColor: '#dc3545',
+                    backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                    tension: 0.3,
+                    fill: true
+                }]
+            }, options: { responsive: true }
+        });
+
+        const dataTheoPTTT = @Html.Raw(ViewData["DataDoanhThuTheoPTTT"]);
+        new Chart(document.getElementById("chartTheoPTTT"), {
+            type: 'line',
+            data: {
+                labels: dataTheoPTTT.map(x => x.Thang),
+                datasets: dataTheoPTTT[0].ChiTiet.map((pt, index) => ({
+                    label: pt.Ten,
+                    data: dataTheoPTTT.map(m => m.ChiTiet[index].Tong),
+                    borderColor: ['#007bff', '#ffc107', '#28a745', '#6f42c1'][index],
+                    backgroundColor: ['rgba(0,123,255,0.1)', 'rgba(255,193,7,0.1)', 'rgba(40,167,69,0.1)', 'rgba(111,66,193,0.1)'][index],
+                    tension: 0.3,
+                    fill: true
+                }))
+            }, options: { responsive: true }
+        });
+    </script>
+}

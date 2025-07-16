@@ -1,130 +1,690 @@
-﻿@* @model List<QLDatVeMayBay.Models.ChuyenBay> *@
-@* @{ *@
-@*     ViewData["Title"] = "Quản lý chuyến bay"; *@
-@*     var page = (int)ViewBag.Page; *@
-@*     var totalPages = (int)ViewBag.TotalPages; *@
-@* } *@
+﻿@model List<QLDatVeMayBay.Models.ChuyenBay>
+@{
+    ViewData["Title"] = "Quản lý chuyến bay";
+    var currentPage = (int)ViewBag.Page;
+    var totalPages = (int)ViewBag.TotalPages;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
 
-@* @{ *@
-@*     Layout = "~/Views/Shared/_AdminLayout.cshtml"; // Sử dụng layout Admin nếu có *@
-@* } *@
+<style>
+    .flight-management {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 2rem 0;
+    }
 
-@* <h2 class="mt-3">✈️ Quản lý chuyến bay</h2> *@
+    .main-container {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        margin: 0 auto;
+        max-width: 1400px;
+    }
 
-@* <a asp-action="Create" class="btn btn-success mb-3">➕ Thêm chuyến bay</a> *@
+    .header-section {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
 
-@* <form method="get" class="row g-3 mb-3"> *@
-@*     <div class="col-md-2"> *@
-@*         <select name="tinhTrang" class="form-select"> *@
-@*             <option value="">-- Tình trạng --</option> *@
-@*             <option value="Đang bay" @(ViewBag.TinhTrang == "Đang bay" ? "selected" : "")>🟢 Đang bay</option> *@
-@*             <option value="Hoãn" @(ViewBag.TinhTrang == "Hoãn" ? "selected" : "")>🟡 Hoãn</option> *@
-@*             <option value="Hủy" @(ViewBag.TinhTrang == "Hủy" ? "selected" : "")>🔴 Hủy</option> *@
-@*         </select> *@
-@*     </div> *@
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
 
-@*     <div class="col-md-2"> *@
-@*         <select name="sanBayDi" class="form-select"> *@
-@*             <option value="">-- Sân bay đi --</option> *@
-@*             @foreach (var sb in ViewBag.DanhSachSanBay) *@
-@*             { *@
-@*                 <option value="@sb.IDSanBay" @(ViewBag.SanBayDi?.ToString() == sb.IDSanBay.ToString() ? "selected" : "")> *@
-@*                     @sb.TenSanBay *@
-@*                 </option> *@
-@*             } *@
-@*         </select> *@
-@*     </div> *@
 
-@*     <div class="col-md-2"> *@
-@*         <select name="sanBayDen" class="form-select"> *@
-@*             <option value="">-- Sân bay đến --</option> *@
-@*             @foreach (var sb in ViewBag.DanhSachSanBay) *@
-@*             { *@
-@*                 <option value="@sb.IDSanBay" @(ViewBag.SanBayDen?.ToString() == sb.IDSanBay.ToString() ? "selected" : "")> *@
-@*                     @sb.TenSanBay *@
-@*                 </option> *@
-@*             } *@
-@*         </select> *@
-@*     </div> *@
 
-@*     <div class="col-md-2"> *@
-@*         <select name="idMayBay" class="form-select"> *@
-@*             <option value="">-- Hãng máy bay --</option> *@
-@*             @foreach (var mb in ViewBag.DanhSachMayBay) *@
-@*             { *@
-@*                 <option value="@mb.IDMayBay" @(ViewBag.IDMayBay?.ToString() == mb.IDMayBay.ToString() ? "selected" : "")> *@
-@*                     @mb.TenHangHK *@
-@*                 </option> *@
-@*             } *@
-@*         </select> *@
-@*     </div> *@
+    .header-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
 
-@*     <div class="col-md-auto"> *@
-@*         <button type="submit" class="btn btn-primary">🔍 Lọc</button> *@
-@*         <a href="/QuanLyChuyenBay/Index" class="btn btn-secondary">🔄 Làm mới</a> *@
-@*     </div> *@
-@* </form> *@
+    .header-subtitle {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        margin-bottom: 0;
+    }
 
-@* <table class="table table-bordered table-hover"> *@
-@*     <thead class="table-light"> *@
-@*         <tr> *@
-@*             <th>ID</th> *@
-@*             <th>Máy bay</th> *@
-@*             <th>Đi</th> *@
-@*             <th>Đến</th> *@
-@*             <th>Cất cánh</th> *@
-@*             <th>Hạ cánh</th> *@
-@*             <th>Tình trạng</th> *@
-@*             <th class="text-center">Hành động</th> *@
-@*         </tr> *@
-@*     </thead> *@
-@*     <tbody> *@
-@*         @if (!Model.Any()) *@
-@*         { *@
-@*             <tr><td colspan="8" class="text-center">Không có chuyến bay nào.</td></tr> *@
-@*         } *@
-@*         else *@
-@*         { *@
-@*             foreach (var cb in Model) *@
-@*             { *@
-@*                 <tr> *@
-@*                     <td>@cb.IDChuyenBay</td> *@
-@*                     <td>@cb.MayBay?.TenHangHK</td> *@
-@*                     <td>@cb.SanBayDiInfo?.TenSanBay</td> *@
-@*                     <td>@cb.SanBayDenInfo?.TenSanBay</td> *@
-@*                     <td>@cb.GioCatCanh.ToString("dd/MM/yyyy HH:mm")</td> *@
-@*                     <td>@cb.GioHaCanh.ToString("dd/MM/yyyy HH:mm")</td> *@
-@*                     <td> *@
-@*                         <span class="badge  *@
-@*                             @(cb.TinhTrang == "Đang bay" ? "bg-success" : cb.TinhTrang == "Hoãn" ? "bg-warning text-dark" : "bg-danger")"> *@
-@*                             @cb.TinhTrang *@
-@*                         </span> *@
-@*                     </td> *@
-@*                     <td class="text-center"> *@
-@*                         <a asp-action="ChiTiet" asp-route-id="@cb.IDChuyenBay" class="btn btn-sm btn-info">🔍</a> *@
-@*                         <a asp-action="Edit" asp-route-id="@cb.IDChuyenBay" class="btn btn-sm btn-warning">✏️</a> *@
-@*                         <a asp-action="Delete" asp-route-id="@cb.IDChuyenBay" class="btn btn-sm btn-danger">🗑</a> *@
-@*                     </td> *@
-@*                 </tr> *@
-@*             } *@
-@*         } *@
-@*     </tbody> *@
-@* </table> *@
+    .stats-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
 
-@* @if (totalPages > 1) *@
-@* { *@
-@*     <nav> *@
-@*         <ul class="pagination"> *@
-@*             @for (int i = 1; i <= totalPages; i++) *@
-@*             { *@
-@*                 <li class="page-item @(i == page ? "active" : "")"> *@
-@*                     <a class="page-link" href="?page=@i *@
-@*                         &tinhTrang=@ViewBag.TinhTrang *@
-@*                         &sanBayDi=@ViewBag.SanBayDi *@
-@*                         &sanBayDen=@ViewBag.SanBayDen *@
-@*                         &idMayBay=@ViewBag.IDMayBay">@i</a> *@
-@*                 </li> *@
-@*             } *@
-@*         </ul> *@
-@*     </nav> *@
-@* } *@
+    .stat-card {
+        background: white;
+        border-radius: 15px;
+        padding: 1.5rem;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+    .stat-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #2c3e50;
+    }
+
+    .stat-label {
+        color: #7f8c8d;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .filter-section {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: #2c3e50;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .form-floating {
+        margin-bottom: 1rem;
+    }
+
+        .form-floating .form-control,
+        .form-floating .form-select {
+            height: 60px;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+            .form-floating .form-control:focus,
+            .form-floating .form-select:focus {
+                border-color: #4facfe;
+                box-shadow: 0 0 0 0.2rem rgba(79, 172, 254, 0.25);
+            }
+
+    .btn-modern {
+        padding: 0.75rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        border: none;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-modern:hover::before {
+            left: 100%;
+        }
+
+    .btn-primary-modern {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    .btn-success-modern {
+        background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+        color: white;
+    }
+
+    .btn-secondary-modern {
+        background: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%);
+        color: white;
+    }
+
+    .table-section {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+    }
+
+    .table-modern {
+        margin-bottom: 0;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+        .table-modern thead th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 1rem;
+            border: none;
+            position: relative;
+        }
+
+            .table-modern thead th:first-child {
+                border-top-left-radius: 10px;
+            }
+
+            .table-modern thead th:last-child {
+                border-top-right-radius: 10px;
+            }
+
+        .table-modern tbody td {
+            padding: 1rem;
+            border: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            vertical-align: middle;
+        }
+
+        .table-modern tbody tr {
+            transition: all 0.3s ease;
+        }
+
+            .table-modern tbody tr:hover {
+                background: rgba(79, 172, 254, 0.05);
+                transform: scale(1.01);
+            }
+
+    .flight-card {
+        background: white;
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid #4facfe;
+        transition: all 0.3s ease;
+    }
+
+        .flight-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+    .status-badge {
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .status-active {
+        background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+        color: white;
+    }
+
+    .status-delayed {
+        background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
+        color: white;
+    }
+
+    .status-cancelled {
+        background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+        color: white;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .btn-action {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .btn-action::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .btn-action:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+
+    .btn-info-action {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+    }
+
+    .btn-warning-action {
+        background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
+        color: white;
+    }
+
+    .btn-danger-action {
+        background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+        color: white;
+    }
+
+    .pagination-modern {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 2rem;
+    }
+
+        .pagination-modern .page-link {
+            border: none;
+            background: white;
+            color: #667eea;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .pagination-modern .page-item.active .page-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .pagination-modern .page-link:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+    .alert-modern {
+        border-radius: 15px;
+        padding: 1rem 1.5rem;
+        border: none;
+        margin-bottom: 1.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .alert-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: currentColor;
+        }
+
+    .flight-route {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .airport-code {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #2c3e50;
+    }
+
+    .flight-arrow {
+        color: #4facfe;
+        font-size: 1.5rem;
+    }
+
+    .price-display {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #e74c3c;
+    }
+
+    .time-display {
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    .time-label {
+        font-size: 0.8rem;
+        color: #7f8c8d;
+        display: block;
+    }
+
+
+
+    .header-title {
+        font-size: 2rem;
+    }
+
+    .stats-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .table-responsive {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    }
+</style>
+
+<div class="flight-management">
+    <div class="main-container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <h1 class="header-title">
+                <i class="fas fa-plane-departure"></i> Quản lý chuyến bay
+            </h1>
+            <p class="header-subtitle">
+                Hệ thống quản lý chuyến bay hiện đại và chuyên nghiệp
+            </p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-cards">
+            <div class="stat-card">
+                <i class="fas fa-plane stat-icon" style="color: #4facfe;"></i>
+                <div class="stat-number">@Model.Count</div>
+                <div class="stat-label">Chuyến bay hiện tại</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-check-circle stat-icon" style="color: #56ab2f;"></i>
+                <div class="stat-number">@Model.Count(x => x.TinhTrang == "Đang bay")</div>
+                <div class="stat-label">Đang bay</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-clock stat-icon" style="color: #f7971e;"></i>
+                <div class="stat-number">@Model.Count(x => x.TinhTrang == "Hoãn")</div>
+                <div class="stat-label">Hoãn bay</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-times-circle stat-icon" style="color: #e74c3c;"></i>
+                <div class="stat-number">@Model.Count(x => x.TinhTrang == "Hủy")</div>
+                <div class="stat-label">Đã hủy</div>
+            </div>
+        </div>
+
+        <!-- Alert Messages -->
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success alert-modern alert-dismissible fade show" role="alert">
+                <i class="fas fa-check-circle me-2"></i>
+                @TempData["Success"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger alert-modern alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                @TempData["Error"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        <!-- Action Buttons -->
+        <div class="mb-4">
+            <a asp-action="Create" class="btn btn-modern btn-success-modern">
+                <i class="fas fa-plus me-2"></i>Thêm chuyến bay mới
+            </a>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <h3 class="filter-title">
+                <i class="fas fa-filter"></i>
+                Bộ lọc tìm kiếm
+            </h3>
+
+            <form method="get" class="row g-3">
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <select name="tinhTrang" class="form-select" id="tinhTrang" asp-items="ViewBag.TinhTrangList">
+                            <option value="">Tất cả trạng thái</option>
+                        </select>
+                        <label for="tinhTrang">Tình trạng</label>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <select name="sanBayDi" class="form-select" id="sanBayDi" asp-items="ViewBag.SanBayDiList">
+                            <option value="">Tất cả sân bay</option>
+                        </select>
+                        <label for="sanBayDi">Sân bay đi</label>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <select name="sanBayDen" class="form-select" id="sanBayDen" asp-items="ViewBag.SanBayDenList">
+                            <option value="">Tất cả sân bay</option>
+                        </select>
+                        <label for="sanBayDen">Sân bay đến</label>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <select name="idMayBay" class="form-select" id="idMayBay" asp-items="ViewBag.MayBayList">
+                            <option value="">Tất cả hãng bay</option>
+                        </select>
+                        <label for="idMayBay">Hãng máy bay</label>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-modern btn-primary-modern me-2">
+                        <i class="fas fa-search me-2"></i>Tìm kiếm
+                    </button>
+                    <a href="@Url.Action("Index")" class="btn btn-modern btn-secondary-modern">
+                        <i class="fas fa-redo me-2"></i>Làm mới
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Table Section -->
+        <div class="table-section">
+            <div class="table-responsive">
+                <table class="table table-modern">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Hãng bay</th>
+                            <th>Tuyến đường</th>
+                            <th>Thời gian bay</th>
+                            <th>Giá vé</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="7" class="text-center py-5">
+                                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                                    <p class="text-muted h5">Không tìm thấy chuyến bay nào</p>
+                                    <p class="text-muted">Vui lòng thử lại với điều kiện khác</p>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var flight in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <strong class="text-primary">#@flight.IDChuyenBay</strong>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-plane me-2 text-primary"></i>
+                                            <strong>@flight.MayBay?.TenHangHK</strong>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="flight-route">
+                                            <div class="airport-code">@flight.SanBayDiInfo?.TenSanBay</div>
+                                            <i class="fas fa-arrow-right flight-arrow"></i>
+                                            <div class="airport-code">@flight.SanBayDenInfo?.TenSanBay</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="time-display">
+                                                <i class="fas fa-plane-departure me-1"></i>
+                                                @flight.GioCatCanh.ToString("HH:mm")
+                                            </div>
+                                            <span class="time-label">@flight.GioCatCanh.ToString("dd/MM/yyyy")</span>
+                                        </div>
+                                        <div class="mt-1">
+                                            <div class="time-display">
+                                                <i class="fas fa-plane-arrival me-1"></i>
+                                                @flight.GioHaCanh.ToString("HH:mm")
+                                            </div>
+                                            <span class="time-label">@flight.GioHaCanh.ToString("dd/MM/yyyy")</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="price-display">
+                                            @flight.GiaVe.ToString("N0") VND
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @{
+                                            var statusClass = flight.TinhTrang switch
+                                            {
+                                                "Đang bay" => "status-active",
+                                                "Hoãn" => "status-delayed",
+                                                "Hủy" => "status-cancelled",
+                                                _ => "status-active"
+                                            };
+                                        }
+                                        <span class="status-badge @statusClass">
+                                            @flight.TinhTrang
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <a asp-action="ChiTiet" asp-route-id="@flight.IDChuyenBay"
+                                               class="btn-action btn-info-action" title="Xem chi tiết">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a asp-action="Edit" asp-route-id="@flight.IDChuyenBay"
+                                               class="btn-action btn-warning-action" title="Chỉnh sửa">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a asp-action="Delete" asp-route-id="@flight.IDChuyenBay"
+                                               class="btn-action btn-danger-action" title="Xóa">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        @if (totalPages > 1)
+        {
+            <nav aria-label="Page navigation">
+                <ul class="pagination-modern">
+                    @if (currentPage > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="?page=@(currentPage - 1)&tinhTrang=@ViewBag.TinhTrang&sanBayDi=@ViewBag.SanBayDi&sanBayDen=@ViewBag.SanBayDen&idMayBay=@ViewBag.IDMayBay">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </li>
+                    }
+
+                    @{
+                        int startPage = Math.Max(1, currentPage - 2);
+                        int endPage = Math.Min(totalPages, currentPage + 2);
+                    }
+
+                    @for (int i = startPage; i <= endPage; i++)
+                    {
+                        <li class="page-item @(i == currentPage ? "active" : "")">
+                            <a class="page-link" href="?page=@i&tinhTrang=@ViewBag.TinhTrang&sanBayDi=@ViewBag.SanBayDi&sanBayDen=@ViewBag.SanBayDen&idMayBay=@ViewBag.IDMayBay">@i</a>
+                        </li>
+                    }
+
+                    @if (currentPage < totalPages)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="?page=@(currentPage + 1)&tinhTrang=@ViewBag.TinhTrang&sanBayDi=@ViewBag.SanBayDi&sanBayDen=@ViewBag.SanBayDen&idMayBay=@ViewBag.IDMayBay">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+
+            <div class="text-center mt-3">
+                <small class="text-muted">
+                    Trang @currentPage / @totalPages | Tổng cộng @Model.Count chuyến bay
+                </small>
+            </div>
+        }
+    </div>
+</div>

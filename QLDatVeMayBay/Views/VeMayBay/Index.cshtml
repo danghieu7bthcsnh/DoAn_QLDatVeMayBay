@@ -1,0 +1,205 @@
+﻿@model List<QLDatVeMayBay.Models.VeMayBay>
+
+@{
+    ViewData["Title"] = "Quản lý vé máy bay";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var tuKhoa = ViewBag.TuKhoa as string ?? "";
+    var trangThai = ViewBag.TrangThai as string ?? "";
+    var idChuyenBay = ViewBag.IDChuyenBay?.ToString() ?? "";
+    var hangGhe = ViewBag.HangGhe as string ?? "";
+    var ngayDat = ViewBag.NgayDat as string ?? "";
+    var page = (int)ViewBag.Page;
+    var totalPages = (int)ViewBag.TotalPages;
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+<div class="container mt-4">
+    <h2 class="text-primary mb-4"><i class="bi bi-ticket-detailed"></i> Quản lý vé máy bay</h2>
+
+    <!-- Bộ lọc -->
+    <form method="get" class="row g-3 mb-4 shadow-sm p-3 bg-light rounded">
+        <div class="col-md-3">
+            <input type="text" name="tuKhoa" class="form-control" placeholder="Tên, email, chuyến bay..."
+                   value="@tuKhoa" />
+        </div>
+
+        <div class="col-md-2">
+            <select name="trangThai" class="form-select" asp-items="@(ViewBag.TrangThaiList as List<SelectListItem>)">
+                <option value="">-- Trạng thái --</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <select name="idChuyenBay" class="form-select" asp-items="@(ViewBag.ChuyenBayList as SelectList)">
+                <option value="">-- Chuyến bay --</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <select name="hangGhe" class="form-select" asp-items="@(ViewBag.HangGheList as List<SelectListItem>)">
+                <option value="">-- Hạng ghế --</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <input type="date" name="ngayDat" class="form-control" value="@ngayDat" />
+        </div>
+
+        <div class="col-md-auto">
+            <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Lọc</button>
+            <a href="/VeMayBay/Index" class="btn btn-secondary"><i class="bi bi-arrow-repeat"></i> Làm mới</a>
+            <a class="btn btn-success" href="/VeMayBay/XuatExcel?tuKhoa=@tuKhoa&trangThai=@trangThai&idChuyenBay=@idChuyenBay&hangGhe=@hangGhe&ngayDat=@ngayDat">
+                <i class="bi bi-file-earmark-excel"></i> Xuất Excel
+            </a>
+        </div>
+    </form>
+
+    <!-- Danh sách vé -->
+    <table class="table table-bordered table-hover shadow-sm">
+        <thead class="table-primary">
+            <tr>
+                <th>ID</th>
+                <th>Người đặt</th>
+                <th>Chuyến bay</th>
+                <th>Ghế</th>
+                <th>Ngày đặt</th>
+                <th>Trạng thái</th>
+                <th class="text-center">Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="7" class="text-center text-muted">Không có vé nào phù hợp.</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var ve in Model)
+                {
+                    <tr>
+                        <td>@ve.IDVe</td>
+                        <td>@ve.NguoiDung?.HoTen</td>
+                        <td>@ve.ChuyenBay?.IDChuyenBay - @ve.ChuyenBay?.MayBay?.TenHangHK</td>
+                        <td>@ve.Ghe?.HangGhe</td>
+                        <td>@ve.ThoiGianDat.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>
+                            <span class="badge
+                                        @(ve.TrangThaiVe == "Đã thanh toán" ? "bg-success" :
+                                                                    ve.TrangThaiVe == "Chưa thanh toán" ? "bg-warning text-dark" : "bg-danger")">
+                                @ve.TrangThaiVe
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="ChiTiet" asp-route-id="@ve.IDVe" class="btn btn-sm btn-info" title="Xem chi tiết"><i class="bi bi-eye"></i></a>
+                            <a asp-action="Edit" asp-route-id="@ve.IDVe" class="btn btn-sm btn-warning" title="Chỉnh sửa"><i class="bi bi-pencil-square"></i></a>
+                            <button type="button" class="btn btn-sm btn-danger btn-xoa" title="Xoá vé"
+                                    data-id="@ve.IDVe"
+                                    data-ten="@ve.NguoiDung?.HoTen"
+                                    data-chuyenbay="@ve.ChuyenBay?.IDChuyenBay">
+                                <i class="bi bi-trash"></i>
+                            </button>
+
+                            <a asp-action="XuatPDF" asp-route-id="@ve.IDVe" class="btn btn-sm btn-secondary" title="Xuất PDF">
+                                <i class="bi bi-file-earmark-pdf"></i>
+                            </a>
+
+                            <form asp-action="GuiEmail" asp-route-id="@ve.IDVe" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-sm btn-success" title="Gửi email">
+                                    <i class="bi bi-envelope-paper"></i>
+                                </button>
+                            </form>
+                        </td>
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <!-- Phân trang -->
+    @if (totalPages > 1)
+    {
+        <nav aria-label="Pagination">
+            <ul class="pagination justify-content-center">
+                <li class="page-item @(page == 1 ? "disabled" : "")">
+                    <a class="page-link"
+                       href="?page=@(page - 1)&tuKhoa=@tuKhoa&trangThai=@trangThai&idChuyenBay=@idChuyenBay&hangGhe=@hangGhe&ngayDat=@ngayDat">
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
+                </li>
+
+                @for (int i = 1; i <= totalPages; i++)
+                {
+                    <li class="page-item @(i == page ? "active" : "")">
+                        <a class="page-link"
+                           href="?page=@i&tuKhoa=@tuKhoa&trangThai=@trangThai&idChuyenBay=@idChuyenBay&hangGhe=@hangGhe&ngayDat=@ngayDat">
+                            @i
+                        </a>
+                    </li>
+                }
+
+                <li class="page-item @(page == totalPages ? "disabled" : "")">
+                    <a class="page-link"
+                       href="?page=@(page + 1)&tuKhoa=@tuKhoa&trangThai=@trangThai&idChuyenBay=@idChuyenBay&hangGhe=@hangGhe&ngayDat=@ngayDat">
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    }
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    @if (TempData["Message"] != null)
+    {
+        <text>toastr.success("@TempData["Message"]");</text>
+    }
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    // Xử lý xác nhận xoá
+    document.querySelectorAll(".btn-xoa").forEach(button => {
+        button.addEventListener("click", function () {
+            const id = this.dataset.id;
+            const ten = this.dataset.ten || "Người dùng";
+            const chuyenbay = this.dataset.chuyenbay || "N/A";
+
+            Swal.fire({
+                title: 'Bạn có chắc muốn xoá?',
+                html: `Vé của <strong>${ten}</strong> trên chuyến bay <strong>#${chuyenbay}</strong> sẽ bị xoá vĩnh viễn.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: '🗑️ Xoá ngay',
+                cancelButtonText: 'Huỷ bỏ'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/VeMayBay/XacNhanXoa?id=' + id;
+                }
+            });
+        });
+    });
+
+    // Hiển thị thông báo sau khi xoá
+    @if (TempData["Message"] != null)
+    {
+        <text>
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: '@TempData["Message"]',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+        </text>
+    }
+</script>

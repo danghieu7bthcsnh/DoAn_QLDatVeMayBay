@@ -58,7 +58,19 @@
                             </select>
                             <span asp-validation-for="GioiTinh" class="text-danger"></span>
                         </div>
+                        <!-- THÊM CCCD -->
+                        <div class="mb-3">
+                            <label asp-for="CCCD" class="form-label">CCCD</label>
+                            <input asp-for="CCCD" class="form-control" placeholder="vd: 012345678901" />
+                            <span asp-validation-for="CCCD" class="text-danger"></span>
+                        </div>
 
+                        <!-- THÊM QUỐC TỊCH -->
+                        <div class="mb-3">
+                            <label asp-for="QuocTich" class="form-label">Quốc tịch</label>
+                            <input asp-for="QuocTich" class="form-control" placeholder="vd: Việt Nam" />
+                            <span asp-validation-for="QuocTich" class="text-danger"></span>
+                        </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-success btn-lg">
                                 Đăng ký ✈

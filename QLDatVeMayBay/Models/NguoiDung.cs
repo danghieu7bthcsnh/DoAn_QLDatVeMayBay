@@ -28,14 +28,16 @@ namespace QLDatVeMayBay.Models
         [StringLength(10)]
         public string? GioiTinh { get; set; }
 
-        // ✅ Thêm trường Quốc tịch
         [StringLength(50)]
         public string? QuocTich { get; set; }
 
-        // ✅ Thêm trường CCCD
         [StringLength(20)]
         public string? CCCD { get; set; }
 
-        public TaiKhoan? TaiKhoan { get; set; } // Navigation
+        // ✅ Navigation đến tài khoản
+        public TaiKhoan? TaiKhoan { get; set; }
+
+        // ✅ Navigation đến vé máy bay đã đặt
+        public List<VeMayBay> VeMayBays { get; set; } = new List<VeMayBay>();
     }
 }

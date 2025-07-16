@@ -11,6 +11,7 @@ namespace QLDatVeMayBay.Controllers
     public class QuanLyChuyenBayController : Controller
     {
         private readonly QLDatVeMayBayContext _context;
+        private const int PageSize = 10;
 
         public QuanLyChuyenBayController(QLDatVeMayBayContext context)
         {
@@ -18,8 +19,6 @@ namespace QLDatVeMayBay.Controllers
         }
 
         // GET: /QuanLyChuyenBay/Index
-        private const int PageSize = 10;
-
         public async Task<IActionResult> Index(string tinhTrang, int? sanBayDi, int? sanBayDen, int? idMayBay, int page = 1)
         {
             var query = _context.ChuyenBay
@@ -28,53 +27,59 @@ namespace QLDatVeMayBay.Controllers
                 .Include(c => c.SanBayDenInfo)
                 .AsQueryable();
 
+            // 🔎 Lọc
             if (!string.IsNullOrEmpty(tinhTrang))
-            {
                 query = query.Where(cb => cb.TinhTrang == tinhTrang);
-            }
 
             if (sanBayDi.HasValue)
-            {
                 query = query.Where(cb => cb.SanBayDi == sanBayDi.Value);
-            }
 
             if (sanBayDen.HasValue)
-            {
                 query = query.Where(cb => cb.SanBayDen == sanBayDen.Value);
-            }
 
             if (idMayBay.HasValue)
-            {
                 query = query.Where(cb => cb.IDMayBay == idMayBay.Value);
-            }
 
+            // 📄 Phân trang
             int totalItems = await query.CountAsync();
             var chuyenBayList = await query
                 .OrderByDescending(cb => cb.GioCatCanh)
-                .Skip((page - 1) * 10)
-                .Take(10)
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize)
                 .ToListAsync();
 
-            // Dữ liệu dropdown
+            // 🔽 Danh sách Dropdowns
+            var danhSachSanBay = await _context.SanBay.ToListAsync();
+            var danhSachMayBay = await _context.MayBay.ToListAsync();
+
+            ViewBag.SanBayDiList = new SelectList(danhSachSanBay, "IDSanBay", "TenSanBay", sanBayDi);
+            ViewBag.SanBayDenList = new SelectList(danhSachSanBay, "IDSanBay", "TenSanBay", sanBayDen);
+            ViewBag.MayBayList = new SelectList(danhSachMayBay, "IDMayBay", "TenHangHK", idMayBay);
+
+            // ✅ Dropdown tình trạng
+            ViewBag.TinhTrangList = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "🟢 Đang bay", Value = "Đang bay", Selected = tinhTrang == "Đang bay" },
+                new SelectListItem { Text = "🟡 Hoãn", Value = "Hoãn", Selected = tinhTrang == "Hoãn" },
+                new SelectListItem { Text = "🔴 Hủy", Value = "Hủy", Selected = tinhTrang == "Hủy" }
+            };
+
+            // 📦 Thông tin phân trang và giữ lại giá trị filter
+            ViewBag.Page = page;
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / PageSize);
             ViewBag.TinhTrang = tinhTrang;
             ViewBag.SanBayDi = sanBayDi;
             ViewBag.SanBayDen = sanBayDen;
             ViewBag.IDMayBay = idMayBay;
-            ViewBag.Page = page;
-            ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / 10);
-
-            ViewBag.DanhSachSanBay = await _context.SanBay.ToListAsync();
-            ViewBag.DanhSachMayBay = await _context.MayBay.ToListAsync();
 
             return View(chuyenBayList);
         }
-
 
         // GET: /QuanLyChuyenBay/Create
         public IActionResult Create()
         {
             LoadDropdowns();
-            return View();
+            return View(new ChuyenBay());
         }
 
         // POST: /QuanLyChuyenBay/Create
@@ -82,10 +87,21 @@ namespace QLDatVeMayBay.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ChuyenBay chuyenBay)
         {
+            // Validation logic
+            if (chuyenBay.SanBayDi == chuyenBay.SanBayDen)
+            {
+                ModelState.AddModelError("", "Sân bay đi và đến không được trùng nhau.");
+            }
+            if (chuyenBay.GioHaCanh <= chuyenBay.GioCatCanh)
+            {
+                ModelState.AddModelError("", "Giờ hạ cánh phải sau giờ cất cánh.");
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(chuyenBay);
                 await _context.SaveChangesAsync();
+                TempData["Success"] = "Thêm chuyến bay thành công!";
                 return RedirectToAction(nameof(Index));
             }
             LoadDropdowns();
@@ -107,12 +123,7 @@ namespace QLDatVeMayBay.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ChuyenBay chuyenBay)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Update(chuyenBay);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+            // Validation logic
             if (chuyenBay.SanBayDi == chuyenBay.SanBayDen)
             {
                 ModelState.AddModelError("", "Sân bay đi và đến không được trùng nhau.");
@@ -120,6 +131,23 @@ namespace QLDatVeMayBay.Controllers
             if (chuyenBay.GioHaCanh <= chuyenBay.GioCatCanh)
             {
                 ModelState.AddModelError("", "Giờ hạ cánh phải sau giờ cất cánh.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(chuyenBay);
+                    await _context.SaveChangesAsync();
+                    TempData["Success"] = "Cập nhật chuyến bay thành công!";
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ChuyenBayExists(chuyenBay.IDChuyenBay))
+                        return NotFound();
+                    throw;
+                }
             }
             LoadDropdowns();
             return View(chuyenBay);
@@ -130,7 +158,7 @@ namespace QLDatVeMayBay.Controllers
         {
             var chuyenBay = await _context.ChuyenBay
                 .Include(cb => cb.MayBay)
-               .Include(cb => cb.SanBayDiInfo)
+                .Include(cb => cb.SanBayDiInfo)
                 .Include(cb => cb.SanBayDenInfo)
                 .FirstOrDefaultAsync(cb => cb.IDChuyenBay == id);
 
@@ -141,15 +169,26 @@ namespace QLDatVeMayBay.Controllers
 
         // POST: /QuanLyChuyenBay/DeleteConfirmed/5
         [HttpPost, ActionName("DeleteConfirmed")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var chuyenBay = await _context.ChuyenBay.FindAsync(id);
             if (chuyenBay == null) return NotFound();
 
-            _context.ChuyenBay.Remove(chuyenBay);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.ChuyenBay.Remove(chuyenBay);
+                await _context.SaveChangesAsync();
+                TempData["Success"] = "Xóa chuyến bay thành công!";
+            }
+            catch (Exception)
+            {
+                TempData["Error"] = "Không thể xóa chuyến bay này vì có dữ liệu liên quan.";
+            }
+
             return RedirectToAction(nameof(Index));
         }
+
         public async Task<IActionResult> ChiTiet(int id)
         {
             var chuyenBay = await _context.ChuyenBay
@@ -169,5 +208,9 @@ namespace QLDatVeMayBay.Controllers
             ViewBag.SanBayList = new SelectList(_context.SanBay, "IDSanBay", "TenSanBay");
         }
 
+        private bool ChuyenBayExists(int id)
+        {
+            return _context.ChuyenBay.Any(e => e.IDChuyenBay == id);
+        }
     }
 }

@@ -19,6 +19,8 @@ namespace QLDatVeMayBay.Models
         [StringLength(20)]
         public string TrangThaiTK { get; set; } = "ChuaKichHoat";
 
+        // ✅ Ngày tạo tài khoản
+        public DateTime? NgayTao { get; set; } = DateTime.Now;
         public NguoiDung? NguoiDung { get; set; } // Navigation
     }
 }
