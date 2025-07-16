@@ -183,7 +183,7 @@ namespace QLDatVeMayBay.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
-
+            
             var taiKhoan = await _context.TaiKhoan
                 .Include(t => t.NguoiDung)
                 .FirstOrDefaultAsync(t => t.TenDangNhap == model.TenDangNhapOrEmail ||
@@ -221,6 +221,11 @@ namespace QLDatVeMayBay.Controllers
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity),
                 authProperties);
+            HttpContext.Session.SetInt32("IDNguoiDung", taiKhoan.NguoiDung.IDNguoiDung);
+
+            var idNguoiDung = HttpContext.Session.GetInt32("IDNguoiDung");
+            if (idNguoiDung == null)
+                return RedirectToAction("DangNhap", "TaiKhoan");
 
             HttpContext.Session.SetString("TenDangNhap", taiKhoan.TenDangNhap);
             HttpContext.Session.SetString("VaiTro", taiKhoan.VaiTro);

@@ -147,6 +147,9 @@ namespace QLDatVeMayBay.Migrations
                     b.Property<int>("LoaiMayBayId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("LoaiMayBayId1")
+                        .HasColumnType("int");
+
                     b.Property<string>("TenHangHK")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -155,6 +158,8 @@ namespace QLDatVeMayBay.Migrations
                     b.HasKey("IDMayBay");
 
                     b.HasIndex("LoaiMayBayId");
+
+                    b.HasIndex("LoaiMayBayId1");
 
                     b.ToTable("MayBay");
                 });
@@ -382,6 +387,10 @@ namespace QLDatVeMayBay.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("QLDatVeMayBay.Models.LoaiMayBay", null)
+                        .WithMany("MayBays")
+                        .HasForeignKey("LoaiMayBayId1");
+
                     b.Navigation("LoaiMayBay");
                 });
 
@@ -436,6 +445,11 @@ namespace QLDatVeMayBay.Migrations
                     b.Navigation("Ghe");
 
                     b.Navigation("NguoiDung");
+                });
+
+            modelBuilder.Entity("QLDatVeMayBay.Models.LoaiMayBay", b =>
+                {
+                    b.Navigation("MayBays");
                 });
 
             modelBuilder.Entity("QLDatVeMayBay.Models.NguoiDung", b =>

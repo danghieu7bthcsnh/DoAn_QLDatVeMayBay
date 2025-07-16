@@ -27,6 +27,7 @@ namespace QLDatVeMayBay.Controllers
         {
             var danhSach = _context.ChuyenBay
                 .Include(cb => cb.MayBay)
+                .ThenInclude(cb => cb.LoaiMayBay)
                 .Include(cb => cb.SanBayDiInfo)
                 .Include(cb => cb.SanBayDenInfo)
                 .Where(cb =>

@@ -15,5 +15,6 @@ namespace QLDatVeMayBay.Models
 
         [StringLength(255)]
         public string? MoTa { get; set; }
+        public ICollection<MayBay> MayBays { get; set; }
     }
 }

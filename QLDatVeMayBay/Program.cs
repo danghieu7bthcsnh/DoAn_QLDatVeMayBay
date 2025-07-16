@@ -41,8 +41,18 @@ builder.Services.AddScoped<EmailService>();
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddScoped<EmailService>(); // ← Dịch vụ gửi email
 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
+
+app.UseSession(); // Đặt trước app.MapControllers() hoặc app.UseEndpoints()
+
+
 
 // ✅ Middleware lỗi
 if (!app.Environment.IsDevelopment())

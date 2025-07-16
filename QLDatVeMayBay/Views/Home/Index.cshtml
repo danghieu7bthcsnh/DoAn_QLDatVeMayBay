@@ -11,7 +11,7 @@
     <div class="bg-light p-5 rounded shadow-sm">
         <h3 class="fw-bold text-primary mb-4">Tìm kiếm chuyến bay</h3>
 
-        <form asp-action="KetQuaTimKiem" method="post">
+        <form asp-controller = "ChuyenBay" asp-action="KetQuaTimKiem" method="post">
             <div class="row mb-3">
                 <div class="col-md-3">
                     <label>Loại vé</label><br />
@@ -26,14 +26,7 @@
                         <option>Hạng nhất</option>
                     </select>
                 </div>
-                <div class="col-md-6">
-                    <label>Hành khách</label>
-                    <div class="d-flex gap-2">
-                        <input type="number" name="NguoiLon" min="0" placeholder="Người lớn" class="form-control" />
-                        <input type="number" name="TreEm" min="0" placeholder="Trẻ em" class="form-control" />
-                        <input type="number" name="EmBe" min="0" placeholder="Em bé" class="form-control" />
-                    </div>
-                </div>
+               
             </div>
 
             <div class="row mb-3">
@@ -45,7 +38,7 @@
                     <label>Đến (Sân bay đến)</label>
                     @Html.DropDownListFor(m => m.SanBayDen, (SelectList)ViewBag.SanBayDen, "Chọn sân bay đến", new { @class = "form-select" })
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <label>Ngày đi</label>
                     @Html.TextBoxFor(m => m.NgayDi, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
                 </div>
@@ -78,7 +71,7 @@
                         {
                             <tr>
                                 <td>@cb.IDChuyenBay</td>
-                                <td>@cb.MayBay?.TenHangHK</td>
+                                <td>@cb.MayBay?.Mota</td>
                                 <td>@cb.SanBayDiInfo?.TenSanBay</td>
                                 <td>@cb.SanBayDenInfo?.TenSanBay</td>
                                 <td>@cb.GioCatCanh.ToString("dd/MM/yyyy HH:mm")</td>

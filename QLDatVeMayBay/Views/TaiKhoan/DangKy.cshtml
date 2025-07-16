@@ -68,9 +68,32 @@
                         <!-- THÊM QUỐC TỊCH -->
                         <div class="mb-3">
                             <label asp-for="QuocTich" class="form-label">Quốc tịch</label>
-                            <input asp-for="QuocTich" class="form-control" placeholder="vd: Việt Nam" />
+                            <select asp-for="QuocTich" class="form-select">
+                                <option value="">-- Chọn quốc tịch --</option>
+                                <option value="Việt Nam">🇻🇳 Việt Nam</option>
+                                <option value="Nhật Bản">🇯🇵 Nhật Bản</option>
+                                <option value="Hàn Quốc">🇰🇷 Hàn Quốc</option>
+                                <option value="Trung Quốc">🇨🇳 Trung Quốc</option>
+                                <option value="Thái Lan">🇹🇭 Thái Lan</option>
+                                <option value="Mỹ">🇺🇸 Mỹ</option>
+                                <option value="Anh">🇬🇧 Anh</option>
+                                <option value="Pháp">🇫🇷 Pháp</option>
+                                <option value="Đức">🇩🇪 Đức</option>
+                                <option value="Nga">🇷🇺 Nga</option>
+                                <option value="Canada">🇨🇦 Canada</option>
+                                <option value="Úc">🇦🇺 Úc</option>
+                                <option value="Singapore">🇸🇬 Singapore</option>
+                                <option value="Malaysia">🇲🇾 Malaysia</option>
+                                <option value="Indonesia">🇮🇩 Indonesia</option>
+                                <option value="Ấn Độ">🇮🇳 Ấn Độ</option>
+                                <option value="Ý">🇮🇹 Ý</option>
+                                <option value="Hà Lan">🇳🇱 Hà Lan</option>
+                                <option value="Tây Ban Nha">🇪🇸 Tây Ban Nha</option>
+                                <option value="Brazil">🇧🇷 Brazil</option>
+                            </select>
                             <span asp-validation-for="QuocTich" class="text-danger"></span>
                         </div>
+
                         <div class="d-grid">
                             <button type="submit" class="btn btn-success btn-lg">
                                 Đăng ký ✈

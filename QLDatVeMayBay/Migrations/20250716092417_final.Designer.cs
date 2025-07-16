@@ -12,8 +12,8 @@ using QLDatVeMayBay.Data;
 namespace QLDatVeMayBay.Migrations
 {
     [DbContext(typeof(QLDatVeMayBayContext))]
-    [Migration("20250715032435_AddYeuCauHoanTien_Relation")]
-    partial class AddYeuCauHoanTien_Relation
+    [Migration("20250716092417_final")]
+    partial class final
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -150,6 +150,9 @@ namespace QLDatVeMayBay.Migrations
                     b.Property<int>("LoaiMayBayId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("LoaiMayBayId1")
+                        .HasColumnType("int");
+
                     b.Property<string>("TenHangHK")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -158,6 +161,8 @@ namespace QLDatVeMayBay.Migrations
                     b.HasKey("IDMayBay");
 
                     b.HasIndex("LoaiMayBayId");
+
+                    b.HasIndex("LoaiMayBayId1");
 
                     b.ToTable("MayBay");
                 });
@@ -243,6 +248,9 @@ namespace QLDatVeMayBay.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<DateTime?>("NgayTao")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("TrangThaiTK")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -298,6 +306,9 @@ namespace QLDatVeMayBay.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDVe"));
 
+                    b.Property<string>("HangGhe")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("IDChuyenBay")
                         .HasColumnType("int");
 
@@ -305,6 +316,12 @@ namespace QLDatVeMayBay.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("IDNguoiDung")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LoaiVe")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("NguoiDungIDNguoiDung")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ThoiGianDat")
@@ -318,7 +335,11 @@ namespace QLDatVeMayBay.Migrations
 
                     b.HasIndex("IDChuyenBay");
 
+                    b.HasIndex("IDGhe");
+
                     b.HasIndex("IDNguoiDung");
+
+                    b.HasIndex("NguoiDungIDNguoiDung");
 
                     b.ToTable("VeMayBay");
                 });
@@ -369,6 +390,10 @@ namespace QLDatVeMayBay.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("QLDatVeMayBay.Models.LoaiMayBay", null)
+                        .WithMany("MayBays")
+                        .HasForeignKey("LoaiMayBayId1");
+
                     b.Navigation("LoaiMayBay");
                 });
 
@@ -402,15 +427,37 @@ namespace QLDatVeMayBay.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("QLDatVeMayBay.Models.GheNgoi", "Ghe")
+                        .WithMany()
+                        .HasForeignKey("IDGhe")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("QLDatVeMayBay.Models.NguoiDung", "NguoiDung")
                         .WithMany()
                         .HasForeignKey("IDNguoiDung")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("QLDatVeMayBay.Models.NguoiDung", null)
+                        .WithMany("VeMayBays")
+                        .HasForeignKey("NguoiDungIDNguoiDung");
+
                     b.Navigation("ChuyenBay");
 
+                    b.Navigation("Ghe");
+
                     b.Navigation("NguoiDung");
+                });
+
+            modelBuilder.Entity("QLDatVeMayBay.Models.LoaiMayBay", b =>
+                {
+                    b.Navigation("MayBays");
+                });
+
+            modelBuilder.Entity("QLDatVeMayBay.Models.NguoiDung", b =>
+                {
+                    b.Navigation("VeMayBays");
                 });
 
             modelBuilder.Entity("QLDatVeMayBay.Models.TaiKhoan", b =>

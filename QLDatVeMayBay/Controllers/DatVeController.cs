@@ -177,7 +177,7 @@ namespace QLDatVeMayBay.Controllers
 📍 {chuyenBay?.SanBayDiInfo?.TenSanBay} → {chuyenBay?.SanBayDenInfo?.TenSanBay}
 🛫 Cất cánh: {chuyenBay?.GioCatCanh:dd/MM/yyyy HH:mm}
 🛬 Hạ cánh: {chuyenBay?.GioHaCanh:dd/MM/yyyy HH:mm}
-🛩 Loại máy bay: {chuyenBay?.MayBay?.TenHangHK}
+🛩 Loại máy bay: {chuyenBay?.MayBay?.LoaiMayBay}
 💺 Ghế: G{ve.IDGhe} | Hạng: {ve.HangGhe ?? "Không rõ"}
 🎫 Loại vé: {ve.LoaiVe ?? "Thường"}
 🆔 Mã vé: {ve.IDVe}

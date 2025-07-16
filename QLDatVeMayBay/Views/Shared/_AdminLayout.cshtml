@@ -32,6 +32,9 @@
         <!-- Menu điều hướng -->
         <ul class="nav nav-tabs mb-4">
             <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "GuiThongBao" ? "active" : "")" href="/Admin/Dashboard">📧 Dashboard</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "NguoiDung" ? "active" : "")" href="/NguoiDung/Index">👤 Người dùng</a>
             </li>
             <li class="nav-item">
@@ -43,9 +46,7 @@
             <li class="nav-item">
                 <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "ThongKe" ? "active" : "")" href="/ThongKe/Index">📊 Thống kê</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "GuiThongBao" ? "active" : "")" href="/Admin/GuiThongBao">📧 Gửi thông báo</a>
-            </li>
+           
         </ul>
 
         @RenderBody()
