@@ -21,6 +21,8 @@ builder.Services.AddDbContext<QLDatVeMayBayContext>(options =>
 // ✅ Cấu hình gửi email từ appsettings.json
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddScoped<IEmailSender, EmailSender>();
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddScoped<EmailService>(); // dùng trực tiếp
 
 // ✅ Cho phép dùng session
 builder.Services.AddSession(options =>
@@ -35,6 +37,10 @@ builder.Services.AddHttpContextAccessor();
 
 // ✅ Thêm MVC + Razor View
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<EmailService>();
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddScoped<EmailService>(); // ← Dịch vụ gửi email
+
 
 var app = builder.Build();
 

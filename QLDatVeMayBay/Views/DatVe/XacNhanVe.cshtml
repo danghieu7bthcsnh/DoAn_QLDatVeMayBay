@@ -1,0 +1,62 @@
+﻿@model QLDatVeMayBay.Models.ThongTinVe
+@{
+    ViewData["Title"] = "Xác nhận vé máy bay";
+}
+
+<style>
+    .ticket {
+        max-width: 700px;
+        margin: auto;
+        border: 2px dashed #ccc;
+        padding: 30px;
+        background: #f8f9fa;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .ticket-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .qr-code {
+        width: 120px;
+        height: auto;
+    }
+
+    .ticket-body {
+        margin-top: 20px;
+    }
+
+    .ticket-label {
+        font-weight: bold;
+        color: #333;
+    }
+</style>
+
+<div class="ticket">
+    <div class="ticket-header">
+        <h2>VÉ MÁY BAY - @Model.TenHangHK</h2>
+        <img src="data:image/png;base64,@Model.QRBase64" class="qr-code" alt="QR Code" />
+    </div>
+    <hr />
+    <div class="ticket-body">
+        <p><span class="ticket-label">Họ tên:</span> @Model.HoTen</p>
+        <p><span class="ticket-label">ID Người dùng:</span> @Model.IDNguoiDung</p>
+        <p><span class="ticket-label">Giới tính:</span> @Model.GioiTinh</p>
+
+        <p><span class="ticket-label">Mã Chuyến bay:</span> @Model.IDChuyenBay</p>
+        <p><span class="ticket-label">Điểm đi:</span> @Model.SanBayDi (@Model.TenSanBayDi)</p>
+        <p><span class="ticket-label">Điểm đến:</span> @Model.SanBayDen (@Model.TenSanBayDen)</p>
+        <p><span class="ticket-label">Giờ cất cánh:</span> @Model.GioCatCanh.ToString("dd/MM/yyyy HH:mm")</p>
+        <p><span class="ticket-label">Giờ hạ cánh:</span> @Model.GioHaCanh.ToString("dd/MM/yyyy HH:mm")</p>
+        <p><span class="ticket-label">Số ghế:</span> G @Model.IDGhe</p>
+        <p><span class="ticket-label">Giá vé:</span> @Model.GiaVe.ToString("N0") đ</p>
+    </div>
+    <form asp-controller="DatVe" asp-action="ThanhToan" method="get">
+        <input type="hidden" name="idChuyenBay" value="@Model.IDChuyenBay" />
+        <input type="hidden" name="idGhe" value="@Model.IDGhe" />
+
+        <button type="submit" class="btn btn-success mt-3">Xác nhận thanh toán</button>
+    </form>
+</div>

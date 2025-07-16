@@ -296,6 +296,9 @@ namespace QLDatVeMayBay.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDVe"));
 
+                    b.Property<string>("HangGhe")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("IDChuyenBay")
                         .HasColumnType("int");
 
@@ -304,6 +307,9 @@ namespace QLDatVeMayBay.Migrations
 
                     b.Property<int>("IDNguoiDung")
                         .HasColumnType("int");
+
+                    b.Property<string>("LoaiVe")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ThoiGianDat")
                         .HasColumnType("datetime2");

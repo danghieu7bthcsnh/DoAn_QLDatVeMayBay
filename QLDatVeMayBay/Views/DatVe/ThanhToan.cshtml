@@ -1,0 +1,69 @@
+﻿@model QLDatVeMayBay.Models.ThongTinThanhToan
+@{
+    ViewData["Title"] = "Thanh toán";
+}
+
+<div class="container mt-4">
+    <h2 class="text-info">Thông tin thanh toán</h2>
+
+    @* Hiển thị lỗi tổng quát *@
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <form method="post" asp-action="ThanhToan">
+        @* Phương thức thanh toán *@
+        <div class="mb-3">
+            <label asp-for="PhuongThuc" class="form-label">Phương thức thanh toán</label>
+            <select asp-for="PhuongThuc" class="form-select" required>
+                <option value="">-- Chọn phương thức --</option>
+                <option>Ngân hàng</option>
+                <option>Ví điện tử</option>
+            </select>
+            <span asp-validation-for="PhuongThuc" class="text-danger"></span>
+        </div>
+
+        @* Tên ngân hàng *@
+        <div class="mb-3">
+            <label asp-for="TenNganHang" class="form-label">Ngân hàng</label>
+            <select asp-for="TenNganHang" class="form-control" required>
+                <option value="">-- Chọn ngân hàng --</option>
+                <option>Vietcombank</option>
+                <option>VietinBank</option>
+                <option>Techcombank</option>
+                <option>MB Bank</option>
+                <option>ACB</option>
+                <option>Sacombank</option>
+            </select>
+            <span asp-validation-for="TenNganHang" class="text-danger"></span>
+        </div>
+
+        @* Số tài khoản *@
+        <div class="mb-3">
+            <label asp-for="SoTaiKhoan" class="form-label">Số tài khoản / Số ví</label>
+            <input asp-for="SoTaiKhoan" class="form-control" required />
+            <span asp-validation-for="SoTaiKhoan" class="text-danger"></span>
+        </div>
+
+        @* Chủ tài khoản *@
+        <div class="mb-3">
+            <label asp-for="ChuTaiKhoan" class="form-label">Chủ tài khoản</label>
+            <input asp-for="ChuTaiKhoan" class="form-control" required />
+            <span asp-validation-for="ChuTaiKhoan" class="text-danger"></span>
+        </div>
+
+        @* Số tiền thanh toán *@
+        <div class="mb-3">
+            <label class="form-label">Số tiền cần thanh toán</label>
+            <input class="form-control" value="@Model.SoTien.ToString("N0") đ" readonly />
+            <input type="hidden" asp-for="SoTien" />
+        </div>
+
+        @* Giữ dữ liệu vé trong hidden fields *@
+        <input type="hidden" asp-for="Ve.IDNguoiDung" />
+        <input type="hidden" asp-for="Ve.IDChuyenBay" />
+        <input type="hidden" asp-for="Ve.IDGhe" />
+        <input type="hidden" asp-for="Ve.ThoiGianDat" />
+        <input type="hidden" asp-for="Ve.TrangThaiVe" />
+
+        <button type="submit" class="btn btn-success">Xác thực thanh toán</button>
+    </form>
+</div>

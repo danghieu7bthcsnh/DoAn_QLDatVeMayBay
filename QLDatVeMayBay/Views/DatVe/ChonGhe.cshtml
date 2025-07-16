@@ -1,0 +1,30 @@
+﻿@model QLDatVeMayBay.Models.DatGhe
+
+@{
+    ViewData["Title"] = "Chọn ghế";
+    int tongSoGhe = Model.TongSoGhe;
+    var gheDaDat = Model.GheDaDat;
+}
+
+<h2 class="text-primary">Chọn ghế</h2>
+<form asp-action="XacNhanVe" method="post">
+    <input type="hidden" name="idChuyenBay" value="@Model.IDChuyenBay" />
+
+    <div class="d-flex flex-wrap gap-2 mt-3">
+        @for (int i = 1; i <= tongSoGhe; i++)
+        {
+            var gheStatus = gheDaDat.Contains(i) ? "Đã đặt" : "Còn trống";
+            var colorClass = gheDaDat.Contains(i) ? "btn-danger" : "btn-outline-success";
+            var disabled = gheDaDat.Contains(i) ? "disabled" : "";
+
+            <div class="text-center">
+                <input type="radio" name="idGhe" value="@i" id="ghe_@i" class="btn-check" autocomplete="off" @disabled />
+                <label class="btn @colorClass" for="ghe_@i">@("G" + i)</label>
+            </div>
+        }
+    </div>
+
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary">Đặt vé</button>
+    </div>
+</form>

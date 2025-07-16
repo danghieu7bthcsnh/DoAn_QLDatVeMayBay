@@ -12,8 +12,8 @@ using QLDatVeMayBay.Data;
 namespace QLDatVeMayBay.Migrations
 {
     [DbContext(typeof(QLDatVeMayBayContext))]
-    [Migration("20250715180621_hieu")]
-    partial class hieu
+    [Migration("20250716070449_correctMigration")]
+    partial class correctMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -299,6 +299,9 @@ namespace QLDatVeMayBay.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDVe"));
 
+                    b.Property<string>("HangGhe")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("IDChuyenBay")
                         .HasColumnType("int");
 
@@ -307,6 +310,9 @@ namespace QLDatVeMayBay.Migrations
 
                     b.Property<int>("IDNguoiDung")
                         .HasColumnType("int");
+
+                    b.Property<string>("LoaiVe")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ThoiGianDat")
                         .HasColumnType("datetime2");

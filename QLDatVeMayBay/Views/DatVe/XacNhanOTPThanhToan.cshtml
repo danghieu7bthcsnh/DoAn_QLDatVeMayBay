@@ -1,0 +1,22 @@
+﻿@model QLDatVeMayBay.Models.ThongTinThanhToan
+<h2>Xác nhận mã OTP</h2>
+@if (ViewBag.Loi != null)
+{
+    <div class="alert alert-danger">@ViewBag.Loi</div>
+}
+<form asp-action="XacNhanOTPThanhToan" method="post">
+    <input type="hidden" asp-for="Ve.IDNguoiDung" />
+    <input type="hidden" asp-for="Ve.IDChuyenBay" />
+    <input type="hidden" asp-for="Ve.IDGhe" />
+    <input type="hidden" asp-for="SoTien" />
+    <input type="hidden" asp-for="PhuongThuc" />
+    <input type="hidden" asp-for="SoTaiKhoan" />
+    <input type="hidden" asp-for="ChuTaiKhoan" />
+
+    <div class="form-group">
+        <label>Mã OTP đã gửi qua email</label>
+        <input asp-for="MaOTP" class="form-control" required />
+        <span asp-validation-for="MaOTP" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Xác nhận thanh toán</button>
+</form>

@@ -379,3 +379,4 @@ C:\Users\user\OneDrive\Tài liệu\GitHub\DoAn_QLDatVeMayBay\QLDatVeMayBay\obj
 C:\Users\user\OneDrive\Tài liệu\GitHub\DoAn_QLDatVeMayBay\QLDatVeMayBay\obj\Debug\net9.0\QLDatVeMayBay.pdb
 C:\Users\user\OneDrive\Tài liệu\GitHub\DoAn_QLDatVeMayBay\QLDatVeMayBay\obj\Debug\net9.0\QLDatVeMayBay.genruntimeconfig.cache
 C:\Users\user\OneDrive\Tài liệu\GitHub\DoAn_QLDatVeMayBay\QLDatVeMayBay\obj\Debug\net9.0\ref\QLDatVeMayBay.dll
+C:\Users\user\OneDrive\Tài liệu\GitHub\DoAn_QLDatVeMayBay\QLDatVeMayBay\bin\Debug\net9.0\QRCoder.dll
