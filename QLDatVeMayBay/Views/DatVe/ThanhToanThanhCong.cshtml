@@ -1,0 +1,75 @@
+﻿@model QLDatVeMayBay.Models.ThongTinThanhToan
+
+@{
+    ViewBag.Title = "Thanh toán thành công";
+    var ve = Model.Ve;
+    var qrBase64 = ViewBag.QRBase64 as string;
+    var chuyenBay = ViewBag.ChuyenBay as QLDatVeMayBay.Models.ChuyenBay;
+    var nguoiDung = ViewBag.NguoiDung as QLDatVeMayBay.Models.NguoiDung;
+    var loaiMayBay = ViewBag.LoaiMayBay as QLDatVeMayBay.Models.LoaiMayBay;
+}
+
+<div class="container mt-4">
+    <h2 class="text-success">✅ Thanh toán thành công!</h2>
+    <hr />
+
+    <div class="row">
+        <!-- Thông tin vé -->
+        <div class="col-md-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-info text-white">
+                    ✈️ Thông tin vé
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm">
+                        <tr><th>Họ tên</th><td>@nguoiDung?.HoTen</td></tr>
+                        <tr><th>Chuyến bay</th><td>@ve.IDChuyenBay - @chuyenBay?.MayBay?.TenHangHK</td></tr>
+                        <tr><th>Loại máy bay</th><td>@loaiMayBay?.MoTa</td></tr>
+                        <tr><th>Ghế</th><td>G @ve.IDGhe | Hạng: @ve.HangGhe</td></tr>
+                        <tr><th>Loại vé</th><td>@ve.LoaiVe</td></tr>
+                        <tr><th>Từ</th><td>@chuyenBay?.SanBayDiInfo?.TenSanBay</td></tr>
+                        <tr><th>Đến</th><td>@chuyenBay?.SanBayDenInfo?.TenSanBay</td></tr>
+                        <tr><th>Cất cánh</th><td>@chuyenBay?.GioCatCanh.ToString("dd/MM/yyyy HH:mm")</td></tr>
+                        <tr><th>Hạ cánh</th><td>@chuyenBay?.GioHaCanh.ToString("dd/MM/yyyy HH:mm")</td></tr>
+                        <tr><th>Trạng thái</th><td><span class="badge bg-success">@ve.TrangThaiVe</span></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thông tin thanh toán -->
+        <div class="col-md-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-secondary text-white">
+                    💳 Thông tin thanh toán
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Phương thức:</strong> @Model.PhuongThuc</li>
+                        <li class="list-group-item"><strong>Ngân hàng:</strong> @Model.TenNganHang</li>
+                        <li class="list-group-item"><strong>Số tài khoản:</strong> @Model.SoTaiKhoan</li>
+                        <li class="list-group-item"><strong>Chủ tài khoản:</strong> @Model.ChuTaiKhoan</li>
+                        <li class="list-group-item"><strong>Số tiền:</strong> @Model.SoTien.ToString("N0") VNĐ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR code -->
+    <div class="text-center mt-4">
+        <h4>🎫 Mã QR của vé</h4>
+        @if (!string.IsNullOrEmpty(qrBase64))
+        {
+            <img src="data:image/png;base64,@qrBase64" width="240" class="shadow border border-success" />
+        }
+        else
+        {
+            <p class="text-danger">Không thể hiển thị mã QR.</p>
+        }
+
+        <div class="alert alert-success mt-3">
+            ✅ Vui lòng lưu mã QR hoặc in vé để sử dụng khi làm thủ tục tại sân bay.
+        </div>
+    </div>
+</div>

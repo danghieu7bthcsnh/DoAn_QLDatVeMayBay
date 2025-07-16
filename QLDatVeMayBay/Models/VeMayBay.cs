@@ -21,6 +21,9 @@ namespace QLDatVeMayBay.Models
         public DateTime ThoiGianDat { get; set; }
 
         [StringLength(50)]
-        public string? TrangThaiVe { get; set; }
+        public string? TrangThaiVe { get; set; } = "Chưa thanh toán";
+        public string? HangGhe { get; set; }
+        public string? LoaiVe { get; set; }
+
     }
 }

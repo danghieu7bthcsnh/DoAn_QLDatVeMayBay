@@ -93,9 +93,12 @@ namespace QLDatVeMayBay.Migrations
 
             modelBuilder.Entity("QLDatVeMayBay.Models.LoaiMayBay", b =>
                 {
-                    b.Property<string>("LoaiMayBayId")
+                    b.Property<int>("LoaiMayBayId")
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LoaiMayBayId"));
 
                     b.Property<string>("MoTa")
                         .HasMaxLength(255)
@@ -141,9 +144,8 @@ namespace QLDatVeMayBay.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDMayBay"));
 
-                    b.Property<string>("LoaiMayBayId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int>("LoaiMayBayId")
+                        .HasColumnType("int");
 
                     b.Property<string>("TenHangHK")
                         .IsRequired()
@@ -165,6 +167,10 @@ namespace QLDatVeMayBay.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDNguoiDung"));
 
+                    b.Property<string>("CCCD")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -178,6 +184,10 @@ namespace QLDatVeMayBay.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("QuocTich")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("SoDienThoai")
                         .HasMaxLength(20)
@@ -285,6 +295,9 @@ namespace QLDatVeMayBay.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDVe"));
 
+                    b.Property<string>("HangGhe")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("IDChuyenBay")
                         .HasColumnType("int");
 
@@ -293,6 +306,9 @@ namespace QLDatVeMayBay.Migrations
 
                     b.Property<int>("IDNguoiDung")
                         .HasColumnType("int");
+
+                    b.Property<string>("LoaiVe")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ThoiGianDat")
                         .HasColumnType("datetime2");

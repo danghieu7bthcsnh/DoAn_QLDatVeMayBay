@@ -14,7 +14,7 @@ namespace QLDatVeMayBay.Models
 
         [Required]
         [ForeignKey("LoaiMayBay")]
-        public string LoaiMayBayId { get; set; } = string.Empty;
+        public int  LoaiMayBayId { get; set; }
 
         public LoaiMayBay? LoaiMayBay { get; set; }
     }

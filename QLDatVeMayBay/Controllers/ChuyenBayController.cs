@@ -38,6 +38,29 @@ namespace QLDatVeMayBay.Controllers
             ViewBag.ThongTin = model;
             return View(danhSach);
         }
+        [HttpPost]
+        public IActionResult TimKiem(TimKiemChuyenBay model)
+        {
+            ViewBag.SanBayDi = new SelectList(_context.SanBay, "IDSanBay", "TenSanBay", model.SanBayDi);
+            ViewBag.SanBayDen = new SelectList(_context.SanBay, "IDSanBay", "TenSanBay", model.SanBayDen);
+
+            var danhSach = _context.ChuyenBay
+                .Include(cb => cb.MayBay)
+                .Include(cb => cb.SanBayDiInfo)
+                .Include(cb => cb.SanBayDenInfo)
+                .Where(cb =>
+                    cb.SanBayDi == model.SanBayDi &&
+                    cb.SanBayDen == model.SanBayDen &&
+                    cb.GioCatCanh.Date == model.NgayDi.Date 
+                    
+                )
+                .ToList();
+            ViewBag.LoaiVe = model.LoaiVe;
+            ViewBag.HangGhe = model.HangGhe;
+            ViewBag.KetQua = danhSach;
+            return View(model);
+        }
+
     }
 
 }

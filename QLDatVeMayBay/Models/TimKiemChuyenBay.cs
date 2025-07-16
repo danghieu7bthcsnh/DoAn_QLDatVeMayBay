@@ -13,6 +13,8 @@ namespace QLDatVeMayBay.Models
         [Display(Name = "Ngày cất cánh")]
         [DataType(DataType.Date)]
         public DateTime NgayDi { get; set; }
+        public string LoaiVe { get; set; } // "MotChieu" hoặc "KhuHoi"
+        public string HangGhe { get; set; } // "PhoThong", "ThuongGia", "HangNhat"
 
         [Display(Name = "Số người lớn")]
         public int NguoiLon { get; set; }

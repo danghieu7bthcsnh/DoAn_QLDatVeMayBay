@@ -1,0 +1,49 @@
+﻿@* @model QLDatVeMayBay.Models.ThongTinThanhToan *@
+
+@* <h2>Xác nhận OTP</h2> *@
+
+@* <form asp-action="KiemTraOTP" method="post"> *@
+@*     <input type="hidden" asp-for="Ve.IDNguoiDung" /> *@
+@*     <input type="hidden" asp-for="Ve.IDChuyenBay" /> *@
+@*     <input type="hidden" asp-for="Ve.IDGhe" /> *@
+@*     <input type="hidden" asp-for="SoTien" /> *@
+@*     <input type="hidden" asp-for="PhuongThuc" /> *@
+
+@*     <form asp-action="KiemTraOTP" method="post"> *@
+@*         <input type="text" name="otp" class="form-control" placeholder="Nhập mã OTP" required /> *@
+@*         <button type="submit" class="btn btn-primary mt-2">Xác nhận</button> *@
+@*     </form> *@
+   
+@*     <button type="submit" class="btn btn-primary">Xác nhận</button> *@
+
+@*     @if (ViewBag.Error != null) *@
+@*     { *@
+@*         <div class="alert alert-danger">@ViewBag.Error</div> *@
+@*     } *@
+
+
+@* </form> *@
+@model QLDatVeMayBay.Models.ThongTinThanhToan
+
+<h2>Xác nhận OTP</h2>
+
+<form asp-action="KiemTraOTP" method="post">
+    <input type="hidden" asp-for="Ve.IDNguoiDung" />
+    <input type="hidden" asp-for="Ve.IDChuyenBay" />
+    <input type="hidden" asp-for="Ve.IDGhe" />
+    <input type="hidden" asp-for="SoTien" />
+    <input type="hidden" asp-for="PhuongThuc" />
+
+    <div class="mb-3">
+        <label asp-for="MaOTP" class="form-label">Mã OTP:</label>
+        <input asp-for="MaOTP" class="form-control" />
+        <span asp-validation-for="MaOTP" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Xác nhận</button>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger mt-2">@ViewBag.Error</div>
+    }
+</form>

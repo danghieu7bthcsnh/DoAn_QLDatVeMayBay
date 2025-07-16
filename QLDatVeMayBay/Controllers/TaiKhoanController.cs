@@ -169,7 +169,11 @@ namespace QLDatVeMayBay.Controllers
                 ModelState.AddModelError("MatKhau", "Mật khẩu không đúng.");
                 return View(model);
             }
-
+            var nguoiDung = await _context.NguoiDung.FirstOrDefaultAsync(n => n.TenDangNhap == taiKhoan.TenDangNhap);
+            if (nguoiDung != null)
+            {
+                HttpContext.Session.SetInt32("IDNguoiDung", nguoiDung.IDNguoiDung); // ✅ THÊM DÒNG NÀY
+            }
             // Đăng nhập thành công - tạo cookie xác thực với hoặc không nhớ đăng nhập
             var claims = new List<Claim>
             {
@@ -194,7 +198,7 @@ namespace QLDatVeMayBay.Controllers
             HttpContext.Session.SetString("VaiTro", taiKhoan.VaiTro);
 
 
-            return RedirectToAction("CaNhan", "TaiKhoan");
+            return RedirectToAction("TimKiem", "ChuyenBay");
         }
 
         // Đăng xuất

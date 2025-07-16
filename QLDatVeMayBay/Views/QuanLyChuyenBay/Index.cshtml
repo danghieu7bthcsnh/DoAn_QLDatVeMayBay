@@ -1,130 +1,130 @@
-﻿@model List<QLDatVeMayBay.Models.ChuyenBay>
-@{
-    ViewData["Title"] = "Quản lý chuyến bay";
-    var page = (int)ViewBag.Page;
-    var totalPages = (int)ViewBag.TotalPages;
-}
+﻿@* @model List<QLDatVeMayBay.Models.ChuyenBay> *@
+@* @{ *@
+@*     ViewData["Title"] = "Quản lý chuyến bay"; *@
+@*     var page = (int)ViewBag.Page; *@
+@*     var totalPages = (int)ViewBag.TotalPages; *@
+@* } *@
 
-@{
-    Layout = "~/Views/Shared/_AdminLayout.cshtml"; // Sử dụng layout Admin nếu có
-}
+@* @{ *@
+@*     Layout = "~/Views/Shared/_AdminLayout.cshtml"; // Sử dụng layout Admin nếu có *@
+@* } *@
 
-<h2 class="mt-3">✈️ Quản lý chuyến bay</h2>
+@* <h2 class="mt-3">✈️ Quản lý chuyến bay</h2> *@
 
-<a asp-action="Create" class="btn btn-success mb-3">➕ Thêm chuyến bay</a>
+@* <a asp-action="Create" class="btn btn-success mb-3">➕ Thêm chuyến bay</a> *@
 
-<form method="get" class="row g-3 mb-3">
-    <div class="col-md-2">
-        <select name="tinhTrang" class="form-select">
-            <option value="">-- Tình trạng --</option>
-            <option value="Đang bay" @(ViewBag.TinhTrang == "Đang bay" ? "selected" : "")>🟢 Đang bay</option>
-            <option value="Hoãn" @(ViewBag.TinhTrang == "Hoãn" ? "selected" : "")>🟡 Hoãn</option>
-            <option value="Hủy" @(ViewBag.TinhTrang == "Hủy" ? "selected" : "")>🔴 Hủy</option>
-        </select>
-    </div>
+@* <form method="get" class="row g-3 mb-3"> *@
+@*     <div class="col-md-2"> *@
+@*         <select name="tinhTrang" class="form-select"> *@
+@*             <option value="">-- Tình trạng --</option> *@
+@*             <option value="Đang bay" @(ViewBag.TinhTrang == "Đang bay" ? "selected" : "")>🟢 Đang bay</option> *@
+@*             <option value="Hoãn" @(ViewBag.TinhTrang == "Hoãn" ? "selected" : "")>🟡 Hoãn</option> *@
+@*             <option value="Hủy" @(ViewBag.TinhTrang == "Hủy" ? "selected" : "")>🔴 Hủy</option> *@
+@*         </select> *@
+@*     </div> *@
 
-    <div class="col-md-2">
-        <select name="sanBayDi" class="form-select">
-            <option value="">-- Sân bay đi --</option>
-            @foreach (var sb in ViewBag.DanhSachSanBay)
-            {
-                <option value="@sb.IDSanBay" @(ViewBag.SanBayDi?.ToString() == sb.IDSanBay.ToString() ? "selected" : "")>
-                    @sb.TenSanBay
-                </option>
-            }
-        </select>
-    </div>
+@*     <div class="col-md-2"> *@
+@*         <select name="sanBayDi" class="form-select"> *@
+@*             <option value="">-- Sân bay đi --</option> *@
+@*             @foreach (var sb in ViewBag.DanhSachSanBay) *@
+@*             { *@
+@*                 <option value="@sb.IDSanBay" @(ViewBag.SanBayDi?.ToString() == sb.IDSanBay.ToString() ? "selected" : "")> *@
+@*                     @sb.TenSanBay *@
+@*                 </option> *@
+@*             } *@
+@*         </select> *@
+@*     </div> *@
 
-    <div class="col-md-2">
-        <select name="sanBayDen" class="form-select">
-            <option value="">-- Sân bay đến --</option>
-            @foreach (var sb in ViewBag.DanhSachSanBay)
-            {
-                <option value="@sb.IDSanBay" @(ViewBag.SanBayDen?.ToString() == sb.IDSanBay.ToString() ? "selected" : "")>
-                    @sb.TenSanBay
-                </option>
-            }
-        </select>
-    </div>
+@*     <div class="col-md-2"> *@
+@*         <select name="sanBayDen" class="form-select"> *@
+@*             <option value="">-- Sân bay đến --</option> *@
+@*             @foreach (var sb in ViewBag.DanhSachSanBay) *@
+@*             { *@
+@*                 <option value="@sb.IDSanBay" @(ViewBag.SanBayDen?.ToString() == sb.IDSanBay.ToString() ? "selected" : "")> *@
+@*                     @sb.TenSanBay *@
+@*                 </option> *@
+@*             } *@
+@*         </select> *@
+@*     </div> *@
 
-    <div class="col-md-2">
-        <select name="idMayBay" class="form-select">
-            <option value="">-- Hãng máy bay --</option>
-            @foreach (var mb in ViewBag.DanhSachMayBay)
-            {
-                <option value="@mb.IDMayBay" @(ViewBag.IDMayBay?.ToString() == mb.IDMayBay.ToString() ? "selected" : "")>
-                    @mb.TenHangHK
-                </option>
-            }
-        </select>
-    </div>
+@*     <div class="col-md-2"> *@
+@*         <select name="idMayBay" class="form-select"> *@
+@*             <option value="">-- Hãng máy bay --</option> *@
+@*             @foreach (var mb in ViewBag.DanhSachMayBay) *@
+@*             { *@
+@*                 <option value="@mb.IDMayBay" @(ViewBag.IDMayBay?.ToString() == mb.IDMayBay.ToString() ? "selected" : "")> *@
+@*                     @mb.TenHangHK *@
+@*                 </option> *@
+@*             } *@
+@*         </select> *@
+@*     </div> *@
 
-    <div class="col-md-auto">
-        <button type="submit" class="btn btn-primary">🔍 Lọc</button>
-        <a href="/QuanLyChuyenBay/Index" class="btn btn-secondary">🔄 Làm mới</a>
-    </div>
-</form>
+@*     <div class="col-md-auto"> *@
+@*         <button type="submit" class="btn btn-primary">🔍 Lọc</button> *@
+@*         <a href="/QuanLyChuyenBay/Index" class="btn btn-secondary">🔄 Làm mới</a> *@
+@*     </div> *@
+@* </form> *@
 
-<table class="table table-bordered table-hover">
-    <thead class="table-light">
-        <tr>
-            <th>ID</th>
-            <th>Máy bay</th>
-            <th>Đi</th>
-            <th>Đến</th>
-            <th>Cất cánh</th>
-            <th>Hạ cánh</th>
-            <th>Tình trạng</th>
-            <th class="text-center">Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (!Model.Any())
-        {
-            <tr><td colspan="8" class="text-center">Không có chuyến bay nào.</td></tr>
-        }
-        else
-        {
-            foreach (var cb in Model)
-            {
-                <tr>
-                    <td>@cb.IDChuyenBay</td>
-                    <td>@cb.MayBay?.TenHangHK</td>
-                    <td>@cb.SanBayDiInfo?.TenSanBay</td>
-                    <td>@cb.SanBayDenInfo?.TenSanBay</td>
-                    <td>@cb.GioCatCanh.ToString("dd/MM/yyyy HH:mm")</td>
-                    <td>@cb.GioHaCanh.ToString("dd/MM/yyyy HH:mm")</td>
-                    <td>
-                        <span class="badge 
-                            @(cb.TinhTrang == "Đang bay" ? "bg-success" : cb.TinhTrang == "Hoãn" ? "bg-warning text-dark" : "bg-danger")">
-                            @cb.TinhTrang
-                        </span>
-                    </td>
-                    <td class="text-center">
-                        <a asp-action="ChiTiet" asp-route-id="@cb.IDChuyenBay" class="btn btn-sm btn-info">🔍</a>
-                        <a asp-action="Edit" asp-route-id="@cb.IDChuyenBay" class="btn btn-sm btn-warning">✏️</a>
-                        <a asp-action="Delete" asp-route-id="@cb.IDChuyenBay" class="btn btn-sm btn-danger">🗑</a>
-                    </td>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
+@* <table class="table table-bordered table-hover"> *@
+@*     <thead class="table-light"> *@
+@*         <tr> *@
+@*             <th>ID</th> *@
+@*             <th>Máy bay</th> *@
+@*             <th>Đi</th> *@
+@*             <th>Đến</th> *@
+@*             <th>Cất cánh</th> *@
+@*             <th>Hạ cánh</th> *@
+@*             <th>Tình trạng</th> *@
+@*             <th class="text-center">Hành động</th> *@
+@*         </tr> *@
+@*     </thead> *@
+@*     <tbody> *@
+@*         @if (!Model.Any()) *@
+@*         { *@
+@*             <tr><td colspan="8" class="text-center">Không có chuyến bay nào.</td></tr> *@
+@*         } *@
+@*         else *@
+@*         { *@
+@*             foreach (var cb in Model) *@
+@*             { *@
+@*                 <tr> *@
+@*                     <td>@cb.IDChuyenBay</td> *@
+@*                     <td>@cb.MayBay?.TenHangHK</td> *@
+@*                     <td>@cb.SanBayDiInfo?.TenSanBay</td> *@
+@*                     <td>@cb.SanBayDenInfo?.TenSanBay</td> *@
+@*                     <td>@cb.GioCatCanh.ToString("dd/MM/yyyy HH:mm")</td> *@
+@*                     <td>@cb.GioHaCanh.ToString("dd/MM/yyyy HH:mm")</td> *@
+@*                     <td> *@
+@*                         <span class="badge  *@
+@*                             @(cb.TinhTrang == "Đang bay" ? "bg-success" : cb.TinhTrang == "Hoãn" ? "bg-warning text-dark" : "bg-danger")"> *@
+@*                             @cb.TinhTrang *@
+@*                         </span> *@
+@*                     </td> *@
+@*                     <td class="text-center"> *@
+@*                         <a asp-action="ChiTiet" asp-route-id="@cb.IDChuyenBay" class="btn btn-sm btn-info">🔍</a> *@
+@*                         <a asp-action="Edit" asp-route-id="@cb.IDChuyenBay" class="btn btn-sm btn-warning">✏️</a> *@
+@*                         <a asp-action="Delete" asp-route-id="@cb.IDChuyenBay" class="btn btn-sm btn-danger">🗑</a> *@
+@*                     </td> *@
+@*                 </tr> *@
+@*             } *@
+@*         } *@
+@*     </tbody> *@
+@* </table> *@
 
-@if (totalPages > 1)
-{
-    <nav>
-        <ul class="pagination">
-            @for (int i = 1; i <= totalPages; i++)
-            {
-                <li class="page-item @(i == page ? "active" : "")">
-                    <a class="page-link" href="?page=@i
-                        &tinhTrang=@ViewBag.TinhTrang
-                        &sanBayDi=@ViewBag.SanBayDi
-                        &sanBayDen=@ViewBag.SanBayDen
-                        &idMayBay=@ViewBag.IDMayBay">@i</a>
-                </li>
-            }
-        </ul>
-    </nav>
-}
+@* @if (totalPages > 1) *@
+@* { *@
+@*     <nav> *@
+@*         <ul class="pagination"> *@
+@*             @for (int i = 1; i <= totalPages; i++) *@
+@*             { *@
+@*                 <li class="page-item @(i == page ? "active" : "")"> *@
+@*                     <a class="page-link" href="?page=@i *@
+@*                         &tinhTrang=@ViewBag.TinhTrang *@
+@*                         &sanBayDi=@ViewBag.SanBayDi *@
+@*                         &sanBayDen=@ViewBag.SanBayDen *@
+@*                         &idMayBay=@ViewBag.IDMayBay">@i</a> *@
+@*                 </li> *@
+@*             } *@
+@*         </ul> *@
+@*     </nav> *@
+@* } *@

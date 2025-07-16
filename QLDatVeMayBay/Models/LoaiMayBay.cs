@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QLDatVeMayBay.Models
 {
@@ -6,7 +7,8 @@ namespace QLDatVeMayBay.Models
     {
         [Key]
         [StringLength(50)]
-        public string LoaiMayBayId { get; set; } = string.Empty;
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int LoaiMayBayId { get; set; }
 
         [Required]
         public int TongSoGhe { get; set; }
