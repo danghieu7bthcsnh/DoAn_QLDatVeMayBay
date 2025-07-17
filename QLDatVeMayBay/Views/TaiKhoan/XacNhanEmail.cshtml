@@ -38,6 +38,9 @@
                         <form asp-action="GuiLaiMaXacNhan" method="post">
                             <input type="hidden" name="tenDangNhap" value="@Model.TenDangNhap" />
                             <button type="submit" class="btn btn-link">Gửi lại mã xác nhận</button>
+                            <!-- Nút quay lại -->
+                            <a class="btn btn-outline-secondary btn-back" href="javascript:history.back()">← Quay lại</a>
+
                         </form>
                     </div>
                 </div>
