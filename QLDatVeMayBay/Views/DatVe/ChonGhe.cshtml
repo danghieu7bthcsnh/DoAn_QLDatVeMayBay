@@ -5,19 +5,26 @@
     int tongSoGhe = Model.TongSoGhe;
     var gheDaDat = Model.GheDaDat;
 }
-<!-- Nút quay lại -->
+
 <a class="btn btn-outline-secondary btn-back" href="javascript:history.back()">← Quay lại</a>
 
 <h2 class="text-primary">Chọn ghế</h2>
-<form asp-action="XacNhanVe" method="post">
+
+@if (TempData["LoiChonGhe"] != null)
+{
+    <div class="alert alert-danger mt-2">
+        @TempData["LoiChonGhe"]
+    </div>
+}
+
+<form asp-action="XacNhanVe" method="post" onsubmit="return kiemTraChonGhe();">
     <input type="hidden" name="idChuyenBay" value="@Model.IDChuyenBay" />
 
     <div class="d-flex flex-wrap gap-2 mt-3">
         @for (int i = 1; i <= tongSoGhe; i++)
         {
-            var gheStatus = gheDaDat.Contains(i) ? "Đã đặt" : "Còn trống";
-            var colorClass = gheDaDat.Contains(i) ? "btn-danger" : "btn-outline-success";
             var disabled = gheDaDat.Contains(i) ? "disabled" : "";
+            var colorClass = gheDaDat.Contains(i) ? "btn-danger" : "btn-outline-success";
 
             <div class="text-center">
                 <input type="radio" name="idGhe" value="@i" id="ghe_@i" class="btn-check" autocomplete="off" @disabled />
@@ -30,3 +37,28 @@
         <button type="submit" class="btn btn-primary">Đặt vé</button>
     </div>
 </form>
+@section Scripts {
+    <script>
+        let lastChecked = null;
+
+        document.querySelectorAll('input[type=radio][name=idGhe]').forEach(function (radio) {
+            radio.addEventListener('click', function (e) {
+                if (this === lastChecked) {
+                    this.checked = false;
+                    lastChecked = null;
+                } else {
+                    lastChecked = this;
+                }
+            });
+        });
+
+        function kiemTraChonGhe() {
+            const gheChon = document.querySelector('input[name="idGhe"]:checked');
+            if (!gheChon) {
+                alert("Vui lòng chọn một ghế trước khi đặt vé.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+}

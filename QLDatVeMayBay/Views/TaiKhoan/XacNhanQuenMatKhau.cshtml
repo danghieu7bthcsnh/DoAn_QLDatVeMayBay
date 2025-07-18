@@ -14,7 +14,9 @@
         <span asp-validation-for="MaXacNhan" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-success">Xác nhận</button>
-    <!-- Nút quay lại -->
-    <a class="btn btn-outline-secondary btn-back" href="javascript:history.back()">← Quay lại</a>
+    <!-- Nút gửi lại mã -->
+    <button formaction="/TaiKhoan/GuiLaiMa" formmethod="post" class="btn btn-secondary mt-2 ms-2">Gửi lại mã</button>
 
+    <!-- Nút quay lại -->
+    <button type="button" onclick="history.back()" class="btn btn-outline-secondary mt-2 ms-2">← Quay lại</button>
 </form>

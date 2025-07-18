@@ -176,14 +176,13 @@ namespace QLDatVeMayBay.Controllers
             return View();
         }
 
-        // POST: DangNhap
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DangNhap(DangNhapViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
-            
+
             var taiKhoan = await _context.TaiKhoan
                 .Include(t => t.NguoiDung)
                 .FirstOrDefaultAsync(t => t.TenDangNhap == model.TenDangNhapOrEmail ||
@@ -195,25 +194,50 @@ namespace QLDatVeMayBay.Controllers
                 return View(model);
             }
 
-            var matKhauHash = HashPassword(model.MatKhau);
-            if (taiKhoan.MatKhau != matKhauHash)
+            if (taiKhoan.ThoiGianBiKhoa.HasValue && taiKhoan.ThoiGianBiKhoa > DateTime.Now)
             {
-                ModelState.AddModelError("MatKhau", "Mật khẩu không đúng.");
+                var conLai = taiKhoan.ThoiGianBiKhoa.Value.Subtract(DateTime.Now).Minutes;
+                ModelState.AddModelError("", $"Tài khoản bị khóa tạm thời. Vui lòng thử lại sau {conLai} phút.");
                 return View(model);
             }
 
-            // Đăng nhập thành công - tạo cookie xác thực với hoặc không nhớ đăng nhập
-            var claims = new List<Claim>
+            // 👉 Hash lại mật khẩu người dùng nhập
+            var matKhauHash = HashPassword(model.MatKhau);
+
+            if (taiKhoan.MatKhau != matKhauHash)
             {
-                new Claim(ClaimTypes.Name, taiKhoan.TenDangNhap),
-                new Claim(ClaimTypes.Role, taiKhoan.VaiTro)
-            };
+                taiKhoan.SoLanDangNhapSai++;
+
+                if (taiKhoan.SoLanDangNhapSai >= 5)
+                {
+                    taiKhoan.ThoiGianBiKhoa = DateTime.Now.AddMinutes(10);
+                    ModelState.AddModelError("", "Tài khoản bị khóa tạm thời do nhập sai quá nhiều lần.");
+                }
+                else
+                {
+                    ModelState.AddModelError("MatKhau", $"Sai mật khẩu. Còn {5 - taiKhoan.SoLanDangNhapSai} lần thử.");
+                }
+
+                await _context.SaveChangesAsync();
+                return View(model);
+            }
+
+            // Đăng nhập thành công
+            taiKhoan.SoLanDangNhapSai = 0;
+            taiKhoan.ThoiGianBiKhoa = null;
+            await _context.SaveChangesAsync();
+
+            var claims = new List<Claim>
+    {
+        new Claim(ClaimTypes.Name, taiKhoan.TenDangNhap),
+        new Claim(ClaimTypes.Role, taiKhoan.VaiTro)
+    };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
             var authProperties = new AuthenticationProperties
             {
-                IsPersistent = model.GhiNhoDangNhap, // nếu true thì cookie tồn tại lâu
+                IsPersistent = model.GhiNhoDangNhap,
                 ExpiresUtc = model.GhiNhoDangNhap ? DateTimeOffset.UtcNow.AddDays(30) : (DateTimeOffset?)null
             };
 
@@ -221,12 +245,8 @@ namespace QLDatVeMayBay.Controllers
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity),
                 authProperties);
+
             HttpContext.Session.SetInt32("IDNguoiDung", taiKhoan.NguoiDung.IDNguoiDung);
-
-            var idNguoiDung = HttpContext.Session.GetInt32("IDNguoiDung");
-            if (idNguoiDung == null)
-                return RedirectToAction("DangNhap", "TaiKhoan");
-
             HttpContext.Session.SetString("TenDangNhap", taiKhoan.TenDangNhap);
             HttpContext.Session.SetString("VaiTro", taiKhoan.VaiTro);
 
@@ -234,8 +254,8 @@ namespace QLDatVeMayBay.Controllers
                 return RedirectToAction("Dashboard", "Admin");
             else
                 return RedirectToAction("TimKiem", "ChuyenBay");
-
         }
+
 
         // Đăng xuất
         [HttpPost]
@@ -386,6 +406,43 @@ namespace QLDatVeMayBay.Controllers
         }
 
 
+        [HttpPost]
+        public async Task<IActionResult> GuiLaiMa(string Email)
+        {
+            if (string.IsNullOrEmpty(Email))
+                return RedirectToAction("QuenMatKhau");
+
+            var nguoiDung = await _context.NguoiDung.FirstOrDefaultAsync(n => n.Email == Email);
+            if (nguoiDung == null)
+            {
+                TempData["ThongBao"] = "Email không tồn tại.";
+                return RedirectToAction("QuenMatKhau");
+            }
+
+            var ma = new Random().Next(100000, 999999).ToString();
+            var maMoi = new MaXacNhan
+            {
+                TenDangNhap = nguoiDung.TenDangNhap,
+                Ma = ma,
+                ThoiGianHetHan = DateTime.Now.AddMinutes(2) // mã có hiệu lực 2 phút
+            };
+
+            // Xóa mã cũ trước khi thêm mã mới
+            var maCu = await _context.MaXacNhan
+                .Where(m => m.TenDangNhap == nguoiDung.TenDangNhap)
+                .ToListAsync();
+
+            _context.MaXacNhan.RemoveRange(maCu);
+            _context.MaXacNhan.Add(maMoi);
+            await _context.SaveChangesAsync();
+
+            await SendEmailAsync(Email, "Mã xác nhận quên mật khẩu", $"Mã xác nhận của bạn là: {ma}");
+
+            TempData["Email"] = Email;
+            TempData["ThongBao"] = "Đã gửi lại mã xác nhận.";
+            TempData.Keep("Email");
+            return RedirectToAction("XacNhanQuenMatKhau" , new {email = Email});
+        }
         private string HashPassword(string password)
         {
             using var sha256 = SHA256.Create();

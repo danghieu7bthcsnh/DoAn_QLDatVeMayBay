@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QLDatVeMayBay.Data;
 
@@ -11,9 +12,11 @@ using QLDatVeMayBay.Data;
 namespace QLDatVeMayBay.Migrations
 {
     [DbContext(typeof(QLDatVeMayBayContext))]
-    partial class QLDatVeMayBayContextModelSnapshot : ModelSnapshot
+    [Migration("20250718152236_kiemthu")]
+    partial class kiemthu
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -246,12 +249,6 @@ namespace QLDatVeMayBay.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("NgayTao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("SoLanDangNhapSai")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ThoiGianBiKhoa")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("TrangThaiTK")

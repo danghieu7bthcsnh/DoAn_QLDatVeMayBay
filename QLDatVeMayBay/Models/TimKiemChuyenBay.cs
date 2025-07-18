@@ -3,14 +3,18 @@
 namespace QLDatVeMayBay.Models
 {
     public class TimKiemChuyenBay
+        
+
     {
-        [Display(Name = "Sân bay đi")]
+     [Required(ErrorMessage = "Vui lòng chọn sân bay đi")]
+    [Display(Name = "Sân bay đi")]
         public int SanBayDi { get; set; }
+    [Required(ErrorMessage = "Vui lòng chọn sân bay đến")]
 
-        [Display(Name = "Sân bay đến")]
+    [Display(Name = "Sân bay đến")]
         public int SanBayDen { get; set; }
-
-        [Display(Name = "Ngày cất cánh")]
+    [Required(ErrorMessage = "Vui lòng chọn ngày đi")]
+    [Display(Name = "Ngày cất cánh")]
         [DataType(DataType.Date)]
         public DateTime NgayDi { get; set; }
         public string LoaiVe { get; set; } // "MotChieu" hoặc "KhuHoi"

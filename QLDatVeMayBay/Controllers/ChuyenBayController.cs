@@ -42,9 +42,34 @@ namespace QLDatVeMayBay.Controllers
         [HttpPost]
         public IActionResult TimKiem(TimKiemChuyenBay model)
         {
+            // Load dropdown lại để tránh mất dữ liệu
             ViewBag.SanBayDi = new SelectList(_context.SanBay, "IDSanBay", "TenSanBay", model.SanBayDi);
             ViewBag.SanBayDen = new SelectList(_context.SanBay, "IDSanBay", "TenSanBay", model.SanBayDen);
+            ViewBag.LoaiVe = model.LoaiVe;
+            ViewBag.HangGhe = model.HangGhe;
 
+            // ======= 1. Kiểm tra để trống toàn bộ =======
+            if (model.SanBayDi == null && model.SanBayDen == null && model.NgayDi == null && model.LoaiVe == null)
+            {
+                ViewBag.Loi = "Vui lòng nhập đầy đủ thông tin";
+                return View(model);
+            }
+
+            // ======= 2. Kiểm tra sân bay đi và đến trùng nhau =======
+            if (model.SanBayDi == model.SanBayDen && model.SanBayDi != null)
+            {
+                ViewBag.Loi = "Không tìm thấy chuyến bay phù hợp";
+                return View(model);
+            }
+
+            // ======= 3. Kiểm tra ngày đi trong quá khứ =======
+            if (model.NgayDi < DateTime.Today)
+            {
+                ViewBag.Loi = "Ngày đi không hợp lệ";
+                return View(model);
+            }
+
+            // ======= 5. Tìm chuyến bay phù hợp =======
             var danhSach = _context.ChuyenBay
                 .Include(cb => cb.MayBay)
                 .Include(cb => cb.SanBayDiInfo)
@@ -52,15 +77,20 @@ namespace QLDatVeMayBay.Controllers
                 .Where(cb =>
                     cb.SanBayDi == model.SanBayDi &&
                     cb.SanBayDen == model.SanBayDen &&
-                    cb.GioCatCanh.Date == model.NgayDi.Date 
-                    
+                    cb.GioCatCanh.Date == model.NgayDi.Date
                 )
                 .ToList();
-            ViewBag.LoaiVe = model.LoaiVe;
-            ViewBag.HangGhe = model.HangGhe;
+
+            if (!danhSach.Any())
+            {
+                ViewBag.Loi = "Không tìm thấy chuyến bay phù hợp";
+                return View(model);
+            }
+
             ViewBag.KetQua = danhSach;
             return View(model);
         }
+
 
     }
 

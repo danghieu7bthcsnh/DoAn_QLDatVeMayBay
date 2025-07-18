@@ -78,7 +78,22 @@ namespace QLDatVeMayBay.Controllers
         {
             var idNguoiDung = HttpContext.Session.GetInt32("IDNguoiDung");
             if (idNguoiDung == null) return RedirectToAction("DangNhap", "TaiKhoan");
+            if (idGhe == null)
+            {
+                TempData["LoiChonGhe"] = "Bạn chưa chọn ghế nào!";
+                return RedirectToAction("ChonGhe", new { id = idChuyenBay });
+            }
+            // Lấy danh sách ghế đã đặt của chuyến bay
+            var gheDaDat = _context.VeMayBay
+                .Where(v => v.IDChuyenBay == idChuyenBay)
+                .Select(v => v.IDGhe)
+                .ToList();
 
+            if (gheDaDat.Contains(idGhe))
+            {
+                TempData["LoiChonGhe"] = $"Ghế G{idGhe} đã được người khác đặt. Vui lòng chọn ghế khác.";
+                return RedirectToAction("ChonGhe", new { id = idChuyenBay });
+            }
             var chuyenBay = _context.ChuyenBay.Find(idChuyenBay);
             var giaVe = chuyenBay?.GiaVe ?? 0;
 
@@ -97,7 +112,6 @@ namespace QLDatVeMayBay.Controllers
 
             return View(model);
         }
-
         [HttpPost]
         public async Task<IActionResult> ThanhToan(ThongTinThanhToan model)
         {
@@ -109,10 +123,36 @@ namespace QLDatVeMayBay.Controllers
             HttpContext.Session.SetString("OTP_Expires", DateTime.Now.AddMinutes(2).ToString());
             HttpContext.Session.Set("VeTemp", JsonSerializer.SerializeToUtf8Bytes(model));
 
-            await _emailService.SendEmailAsync(nguoiDung.Email, "Xác nhận OTP", $"Mã OTP: {otp}");
+            // Tạo nội dung HTML email xác nhận OTP
+            string htmlEmail = $@"
+<div style='font-family:Segoe UI, sans-serif; background-color:#ffffff; padding:30px; border:1px solid #e0e0e0; border-radius:10px; max-width:600px; margin:auto;'>
+    <div style='text-align:center; margin-bottom:20px;'>
+        <h2 style='color:#0d6efd; margin-bottom:5px;'>Xác nhận thanh toán vé máy bay</h2>
+        <p style='font-size:14px; color:#6c757d;'>QLĐặtVé Máy Bay</p>
+    </div>
+
+    <p>Xin chào <strong>{model.ChuTaiKhoan}</strong>,</p>
+
+    <p style='font-size:15px; color:#333;'>Bạn đang thực hiện thanh toán vé trên hệ thống <strong>QLĐặtVé Máy Bay</strong>.</p>
+
+    <p style='margin-top:20px; font-weight:500;'>Mã xác nhận thanh toán (OTP) của bạn:</p>
+    <div style='font-size:32px; font-weight:bold; letter-spacing:6px; color:#198754; margin:20px 0; text-align:center;'>{otp}</div>
+
+    <p style='color:#555;'>⚠️ <strong>Lưu ý:</strong> Không chia sẻ mã xác nhận với bất kỳ ai. Mã sẽ hết hạn sau <strong>2 phút</strong> kể từ khi được gửi.</p>
+
+    <p style='margin-top:30px; font-size:14px; color:#888;'>Nếu bạn không thực hiện thanh toán, vui lòng bỏ qua email này.</p>
+
+    <hr style='margin:30px 0;' />
+
+    <p style='text-align:center; font-size:12px; color:#999;'>© {DateTime.Now.Year} QLĐặtVé Máy Bay. Mọi quyền được bảo lưu.</p>
+</div>";
+
+            // Gửi email HTML
+            await _emailService.SendEmailAsync(nguoiDung.Email, "Xác nhận thanh toán vé máy bay", htmlEmail);
 
             return View("NhapOTP", model);
         }
+
         [HttpPost]
         public async Task<IActionResult> KiemTraOTP(ThongTinThanhToan model)
         {

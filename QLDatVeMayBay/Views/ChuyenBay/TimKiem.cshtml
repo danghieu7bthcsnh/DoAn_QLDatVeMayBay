@@ -52,11 +52,12 @@
 
         @if (ViewBag.KetQua != null && ViewBag.KetQua.Count > 0)
         {
-            <div class="mt-5">
-                <h5 class="text-success">Kết quả chuyến bay:</h5>
-                <p>Loại vé: @ViewBag.LoaiVe - Hạng ghế: @ViewBag.HangGhe</p>
-                <table class="table table-bordered table-hover">
-                    <thead class="table-dark">
+
+            <div class="container my-4">
+                <h2 class="text-center mb-4">✈️ Kết quả chuyến bay </h2>
+
+                <table class="table table-bordered table-hover shadow rounded">
+                    <thead class="table-primary text-center">
                         <tr>
                             <th>Hãng Hàng Không</th>
                             <th>Loại máy bay</th>
@@ -72,8 +73,7 @@
                     <tbody>
                         @foreach (var cb in ViewBag.KetQua)
                         {
-
-                            <tr>
+                            <tr class="align-middle text-center">
                                 <td>@cb.MayBay?.TenHangHK</td>
                                 <td>@cb.MayBay?.LoaiMayBay?.MoTa</td>
                                 <td>@cb.SanBayDiInfo?.TenSanBay</td>
@@ -90,7 +90,7 @@
                                     {
                                         <span class="badge bg-secondary">@cb.TinhTrang</span>
                                     }
-                               
+                                </td>
                                 <td>
                                     <a asp-controller="DatVe" asp-action="ChonGhe" asp-route-idChuyenBay="@cb.IDChuyenBay" class="btn btn-success">Chọn</a>
                                 </td>
@@ -99,10 +99,17 @@
                     </tbody>
                 </table>
             </div>
+
+           
         }
         else if (ViewBag.KetQua != null)
         {
             <div class="mt-4 alert alert-warning">Không tìm thấy chuyến bay phù hợp.</div>
         }
     </div>
+
 </div>
+@if (!string.IsNullOrEmpty(ViewBag.Loi))
+{
+    <div class="alert alert-danger">@ViewBag.Loi</div>
+}
