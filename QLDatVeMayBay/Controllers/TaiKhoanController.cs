@@ -227,6 +227,12 @@ namespace QLDatVeMayBay.Controllers
             taiKhoan.ThoiGianBiKhoa = null;
             await _context.SaveChangesAsync();
 
+            // Kiểm tra vai trò người dùng nhập có trùng với vai trò trong CSDL không
+            if (taiKhoan.VaiTro != model.VaiTro)
+            {
+                ModelState.AddModelError("VaiTro", "Vai trò không đúng với tài khoản.");
+                return View(model);
+            }
             var claims = new List<Claim>
     {
         new Claim(ClaimTypes.Name, taiKhoan.TenDangNhap),
@@ -261,9 +267,12 @@ namespace QLDatVeMayBay.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DangXuat()
+
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("DangNhap");
+            HttpContext.Session.Clear();
+
+           
+            return RedirectToAction("Index","Home");
         }
 
         private async Task SendEmailAsync(string emailNguoiNhan, string subject, string htmlContent)
