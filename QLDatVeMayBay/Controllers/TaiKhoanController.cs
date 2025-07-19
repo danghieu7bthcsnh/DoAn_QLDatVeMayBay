@@ -202,18 +202,25 @@ namespace QLDatVeMayBay.Controllers
                 return View(model);
             }
 
-            // Đăng nhập thành công - tạo cookie xác thực với hoặc không nhớ đăng nhập
-            var claims = new List<Claim>
+            // Kiểm tra vai trò người dùng nhập có trùng với vai trò trong CSDL không
+            if (taiKhoan.VaiTro != model.VaiTro)
             {
-                new Claim(ClaimTypes.Name, taiKhoan.TenDangNhap),
-                new Claim(ClaimTypes.Role, taiKhoan.VaiTro)
-            };
+                ModelState.AddModelError("VaiTro", "Vai trò không đúng với tài khoản.");
+                return View(model);
+            }
+
+            // Đăng nhập thành công - tạo cookie xác thực
+            var claims = new List<Claim>
+    {
+        new Claim(ClaimTypes.Name, taiKhoan.TenDangNhap),
+        new Claim(ClaimTypes.Role, taiKhoan.VaiTro)
+    };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
             var authProperties = new AuthenticationProperties
             {
-                IsPersistent = model.GhiNhoDangNhap, // nếu true thì cookie tồn tại lâu
+                IsPersistent = model.GhiNhoDangNhap,
                 ExpiresUtc = model.GhiNhoDangNhap ? DateTimeOffset.UtcNow.AddDays(30) : (DateTimeOffset?)null
             };
 
@@ -222,6 +229,10 @@ namespace QLDatVeMayBay.Controllers
                 new ClaimsPrincipal(claimsIdentity),
                 authProperties);
 
+<<<<<<< Updated upstream
+=======
+            HttpContext.Session.SetInt32("IDNguoiDung", taiKhoan.NguoiDung.IDNguoiDung);
+>>>>>>> Stashed changes
             HttpContext.Session.SetString("TenDangNhap", taiKhoan.TenDangNhap);
             HttpContext.Session.SetString("VaiTro", taiKhoan.VaiTro);
 
@@ -229,7 +240,6 @@ namespace QLDatVeMayBay.Controllers
                 return RedirectToAction("Dashboard", "Admin");
             else
                 return RedirectToAction("TimKiem", "ChuyenBay");
-
         }
 
         // Đăng xuất
@@ -237,6 +247,8 @@ namespace QLDatVeMayBay.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DangXuat()
         {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("DangNhap");
         }

@@ -93,9 +93,17 @@ namespace QLDatVeMayBay.Migrations
 
             modelBuilder.Entity("QLDatVeMayBay.Models.LoaiMayBay", b =>
                 {
+<<<<<<< Updated upstream
                     b.Property<string>("LoaiMayBayId")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+=======
+                    b.Property<int>("LoaiMayBayId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LoaiMayBayId"));
+>>>>>>> Stashed changes
 
                     b.Property<string>("MoTa")
                         .HasMaxLength(255)

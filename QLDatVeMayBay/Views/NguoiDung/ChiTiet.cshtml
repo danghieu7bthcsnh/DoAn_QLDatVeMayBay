@@ -7,6 +7,82 @@
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<style>
+    h2 {
+        font-weight: 700;
+        font-size: 1.8rem;
+        color: #34495e;
+        margin-bottom: 1rem;
+    }
+
+    .card {
+        background: #ffffff;
+        border-radius: 16px;
+        border: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    dl.row {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+    dt {
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    dd {
+        color: #555;
+    }
+
+    .badge {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 50px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .bg-success {
+        background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+        color: white;
+    }
+
+    .bg-danger {
+        background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+        color: white;
+    }
+
+    .btn-secondary {
+        background: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%);
+        color: #fff;
+        padding: 0.6rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border: none;
+        transition: all 0.3s ease;
+    }
+
+        .btn-secondary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+</style>
+
 <h2 class="mt-4">🔍 Thông tin chi tiết người dùng</h2>
 
 <div class="card shadow-sm mt-3">
@@ -28,12 +104,16 @@
             <dd class="col-sm-9">@Model.GioiTinh</dd>
 
             <dt class="col-sm-3">🔑 Vai trò:</dt>
+<<<<<<< Updated upstream
             <dd class="col-sm-9">@taiKhoan?.VaiTro </dd>
+=======
+            <dd class="col-sm-9">@taiKhoan?.VaiTro</dd>
+>>>>>>> Stashed changes
 
             <dt class="col-sm-3">📌 Trạng thái tài khoản:</dt>
             <dd class="col-sm-9">
                 <span class="badge @(taiKhoan?.TrangThaiTK == "HoatDong" ? "bg-success" : "bg-danger")">
-                    @taiKhoan?.TrangThaiTK ?? "Không xác định"
+                    @taiKhoan?.TrangThaiTK
                 </span>
             </dd>
         </dl>

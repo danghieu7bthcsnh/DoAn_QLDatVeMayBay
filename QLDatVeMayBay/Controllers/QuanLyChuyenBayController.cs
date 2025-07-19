@@ -87,26 +87,52 @@ namespace QLDatVeMayBay.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ChuyenBay chuyenBay)
         {
-            // Validation logic
+            // Kiểm tra các điều kiện hợp lệ
             if (chuyenBay.SanBayDi == chuyenBay.SanBayDen)
             {
-                ModelState.AddModelError("", "Sân bay đi và đến không được trùng nhau.");
+                ModelState.AddModelError(nameof(chuyenBay.SanBayDi), "Sân bay đi và sân bay đến không được trùng nhau.");
+                ModelState.AddModelError(nameof(chuyenBay.SanBayDen), "Sân bay đi và sân bay đến không được trùng nhau.");
             }
+
             if (chuyenBay.GioHaCanh <= chuyenBay.GioCatCanh)
             {
-                ModelState.AddModelError("", "Giờ hạ cánh phải sau giờ cất cánh.");
+                ModelState.AddModelError(nameof(chuyenBay.GioHaCanh), "Giờ hạ cánh phải sau giờ cất cánh.");
+            }
+
+            if (chuyenBay.GiaVe <= 0)
+            {
+                ModelState.AddModelError(nameof(chuyenBay.GiaVe), "Giá vé phải lớn hơn 0.");
+            }
+
+            // Kiểm tra ID máy bay có tồn tại không
+            bool mayBayExists = await _context.MayBay.AnyAsync(m => m.IDMayBay == chuyenBay.IDMayBay);
+            if (!mayBayExists)
+            {
+                ModelState.AddModelError(nameof(chuyenBay.IDMayBay), "Hãng máy bay không hợp lệ.");
             }
 
             if (ModelState.IsValid)
             {
-                _context.Add(chuyenBay);
-                await _context.SaveChangesAsync();
-                TempData["Success"] = "Thêm chuyến bay thành công!";
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _context.Add(chuyenBay);
+                    await _context.SaveChangesAsync();
+                    TempData["Success"] = "Thêm chuyến bay thành công!";
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    // Log lỗi hoặc xử lý theo yêu cầu
+                    ModelState.AddModelError("", "Có lỗi xảy ra khi lưu dữ liệu: " + ex.Message);
+                }
             }
+
+            // Nếu có lỗi, load lại dropdown để trả về view
             LoadDropdowns();
             return View(chuyenBay);
         }
+
+
 
         // GET: /QuanLyChuyenBay/Edit/5
         public async Task<IActionResult> Edit(int id)
@@ -115,6 +141,14 @@ namespace QLDatVeMayBay.Controllers
             if (chuyenBay == null) return NotFound();
 
             LoadDropdowns();
+            ViewBag.TinhTrangList = new SelectList(new[]
+            {
+        new { Value = "", Text = "-- Chọn tình trạng --" },
+        new { Value = "Đang bay", Text = "Đang bay" },
+        new { Value = "Hoãn", Text = "Hoãn" },
+        new { Value = "Hủy", Text = "Hủy" }
+    }, "Value", "Text", chuyenBay.TinhTrang);
+
             return View(chuyenBay);
         }
 
@@ -123,38 +157,88 @@ namespace QLDatVeMayBay.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ChuyenBay chuyenBay)
         {
-            // Validation logic
-            if (chuyenBay.SanBayDi == chuyenBay.SanBayDen)
+            // Kiểm tra dữ liệu bắt buộc
+            if (chuyenBay.IDMayBay <= 0)
+                ModelState.AddModelError(nameof(chuyenBay.IDMayBay), "Vui lòng chọn máy bay.");
+
+            if (chuyenBay.SanBayDi <= 0)
+                ModelState.AddModelError(nameof(chuyenBay.SanBayDi), "Vui lòng chọn sân bay đi.");
+
+            if (chuyenBay.SanBayDen <= 0)
+                ModelState.AddModelError(nameof(chuyenBay.SanBayDen), "Vui lòng chọn sân bay đến.");
+
+            if (string.IsNullOrWhiteSpace(chuyenBay.TinhTrang))
+                ModelState.AddModelError(nameof(chuyenBay.TinhTrang), "Vui lòng chọn tình trạng.");
+
+            if (chuyenBay.GiaVe <= 0)
+                ModelState.AddModelError(nameof(chuyenBay.GiaVe), "Giá vé phải lớn hơn 0.");
+
+            // Ràng buộc logic
+            if (chuyenBay.SanBayDi == chuyenBay.SanBayDen && chuyenBay.SanBayDi > 0)
             {
-                ModelState.AddModelError("", "Sân bay đi và đến không được trùng nhau.");
-            }
-            if (chuyenBay.GioHaCanh <= chuyenBay.GioCatCanh)
-            {
-                ModelState.AddModelError("", "Giờ hạ cánh phải sau giờ cất cánh.");
+                ModelState.AddModelError(nameof(chuyenBay.SanBayDi), "Sân bay đi và đến không được trùng nhau.");
+                ModelState.AddModelError(nameof(chuyenBay.SanBayDen), "Sân bay đi và đến không được trùng nhau.");
             }
 
-            if (ModelState.IsValid)
+            if (chuyenBay.GioHaCanh <= chuyenBay.GioCatCanh)
+                ModelState.AddModelError(nameof(chuyenBay.GioHaCanh), "Giờ hạ cánh phải sau giờ cất cánh.");
+
+            // Nếu có lỗi nhập liệu, load lại dropdown và trả về View
+            if (!ModelState.IsValid)
             {
-                try
+                LoadDropdowns();
+                ViewBag.TinhTrangList = new SelectList(new[]
                 {
-                    _context.Update(chuyenBay);
-                    await _context.SaveChangesAsync();
-                    TempData["Success"] = "Cập nhật chuyến bay thành công!";
-                    return RedirectToAction(nameof(Index));
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ChuyenBayExists(chuyenBay.IDChuyenBay))
-                        return NotFound();
-                    throw;
-                }
+            new { Value = "", Text = "-- Chọn tình trạng --" },
+            new { Value = "Đang bay", Text = "Đang bay" },
+            new { Value = "Hoãn", Text = "Hoãn" },
+            new { Value = "Hủy", Text = "Hủy" }
+        }, "Value", "Text", chuyenBay.TinhTrang);
+
+                return View(chuyenBay);
             }
+
+            // Nếu hợp lệ, cập nhật vào DB
+            try
+            {
+                bool exists = await _context.ChuyenBay.AnyAsync(c => c.IDChuyenBay == chuyenBay.IDChuyenBay);
+                if (!exists) return NotFound();
+
+                _context.Update(chuyenBay);
+                await _context.SaveChangesAsync();
+
+                TempData["Success"] = "✅ Cập nhật chuyến bay thành công!";
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ChuyenBayExists(chuyenBay.IDChuyenBay))
+                    return NotFound();
+
+                ModelState.AddModelError("", "Lỗi đồng bộ dữ liệu. Vui lòng thử lại.");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Đã xảy ra lỗi: " + ex.Message);
+            }
+
             LoadDropdowns();
+            ViewBag.TinhTrangList = new SelectList(new[]
+            {
+        new { Value = "", Text = "-- Chọn tình trạng --" },
+        new { Value = "Đang bay", Text = "Đang bay" },
+        new { Value = "Hoãn", Text = "Hoãn" },
+        new { Value = "Hủy", Text = "Hủy" }
+    }, "Value", "Text", chuyenBay.TinhTrang);
+
             return View(chuyenBay);
         }
 
+
         // GET: /QuanLyChuyenBay/Delete/5
-        public async Task<IActionResult> Delete(int id)
+        [HttpGet]
+
+        public async Task<IActionResult> DeleteXacNhan(int id)
         {
             var chuyenBay = await _context.ChuyenBay
                 .Include(cb => cb.MayBay)
@@ -167,10 +251,10 @@ namespace QLDatVeMayBay.Controllers
             return View(chuyenBay);
         }
 
-        // POST: /QuanLyChuyenBay/DeleteConfirmed/5
-        [HttpPost, ActionName("DeleteConfirmed")]
+        // POST: /QuanLyChuyenBay/Delete/5
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var chuyenBay = await _context.ChuyenBay.FindAsync(id);
             if (chuyenBay == null) return NotFound();
@@ -181,13 +265,18 @@ namespace QLDatVeMayBay.Controllers
                 await _context.SaveChangesAsync();
                 TempData["Success"] = "Xóa chuyến bay thành công!";
             }
+            catch (DbUpdateException)
+            {
+                TempData["Error"] = "Không thể xóa chuyến bay vì có dữ liệu liên quan.";
+            }
             catch (Exception)
             {
-                TempData["Error"] = "Không thể xóa chuyến bay này vì có dữ liệu liên quan.";
+                TempData["Error"] = "Đã có lỗi xảy ra trong quá trình xóa.";
             }
 
             return RedirectToAction(nameof(Index));
         }
+
 
         public async Task<IActionResult> ChiTiet(int id)
         {

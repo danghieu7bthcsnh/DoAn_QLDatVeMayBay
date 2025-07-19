@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QLDatVeMayBay.Data;
 using QLDatVeMayBay.Helper;
@@ -10,6 +11,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace QLDatVeMayBay.Controllers
 {
+    [Authorize(Roles = "KhachHang")]
     public class DatVeController : Controller
     {
         private readonly QLDatVeMayBayContext _context;

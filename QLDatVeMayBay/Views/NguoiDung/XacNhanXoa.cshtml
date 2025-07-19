@@ -3,27 +3,41 @@
 @{
     ViewData["Title"] = "Xác nhận xoá người dùng";
     var taiKhoan = Model.TaiKhoan;
-}
-@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h2 class="text-danger mt-4">⚠ Xác nhận xoá người dùng</h2>
 
-<div class="alert alert-warning mt-3">
-    <p>Bạn sắp <strong>xóa vĩnh viễn</strong> người dùng:</p>
-    <ul>
-        <li><strong>Tên đăng nhập:</strong> @Model.TenDangNhap</li>
-        <li><strong>Họ tên:</strong> @Model.HoTen</li>
-        <li><strong>Email:</strong> @Model.Email</li>
-        <li><strong>Số điện thoại:</strong> @Model.SoDienThoai</li>
-        <li><strong>Giới tính:</strong> @Model.GioiTinh</li>
-        <li><strong>Trạng thái tài khoản:</strong> @taiKhoan?.TrangThaiTK ?? "Không xác định"</li>
-    </ul>
+<div class="container py-5">
+    <div class="card border-danger shadow-lg">
+        <div class="card-header bg-danger text-white d-flex align-items-center">
+            <i class="bi bi-exclamation-triangle-fill me-2 fs-4"></i>
+            <h4 class="mb-0">Xác nhận xoá người dùng</h4>
+        </div>
+        <div class="card-body">
+            <p class="text-danger fw-bold">Bạn sắp <u>xóa vĩnh viễn</u> người dùng dưới đây. Hành động này <strong>không thể hoàn tác</strong>:</p>
+
+            <ul class="list-group list-group-flush mb-4">
+                <li class="list-group-item"><strong>👤 Tên đăng nhập:</strong> @Model.TenDangNhap</li>
+                <li class="list-group-item"><strong>📛 Họ tên:</strong> @Model.HoTen</li>
+                <li class="list-group-item"><strong>📧 Email:</strong> @Model.Email</li>
+                <li class="list-group-item"><strong>📞 Số điện thoại:</strong> @Model.SoDienThoai</li>
+                <li class="list-group-item"><strong>⚧ Giới tính:</strong> @Model.GioiTinh</li>
+                <li class="list-group-item"><strong>🔐 Trạng thái tài khoản:</strong> @taiKhoan?.TrangThaiTK ?? "Không xác định"</li>
+            </ul>
+
+            <form asp-action="Xoa" method="post" class="d-flex justify-content-end gap-2">
+                <input type="hidden" name="tenDangNhap" value="@Model.TenDangNhap" />
+
+                <a asp-action="Index" class="btn btn-secondary px-4">
+                    <i class="bi bi-arrow-left-circle"></i> Huỷ bỏ
+                </a>
+
+                <button type="submit" class="btn btn-danger px-4">
+                    <i class="bi bi-trash3-fill"></i> Xoá ngay
+                </button>
+            </form>
+        </div>
+    </div>
 </div>
 
-<form asp-action="Xoa" method="post">
-    <input type="hidden" name="tenDangNhap" value="@Model.TenDangNhap" />
-
-    <button type="submit" class="btn btn-danger">🗑 Đồng ý xoá</button>
-    <a asp-action="Index" class="btn btn-secondary">⬅ Huỷ</a>
-</form>
+<!-- Thêm icon nếu chưa có -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />

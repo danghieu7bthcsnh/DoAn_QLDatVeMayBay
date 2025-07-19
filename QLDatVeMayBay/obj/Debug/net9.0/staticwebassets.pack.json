@@ -5,6 +5,69 @@
       "PackagePath": "staticwebassets\\QLDatVeMayBay.dnzpb2mci0.bundle.scp.css"
     },
     {
+<<<<<<< Updated upstream
+=======
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\NewFolder\\acb.png",
+      "PackagePath": "staticwebassets\\NewFolder\\acb.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\NewFolder\\agribank.jpg",
+      "PackagePath": "staticwebassets\\NewFolder\\agribank.jpg"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\NewFolder\\bidv.png",
+      "PackagePath": "staticwebassets\\NewFolder\\bidv.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\NewFolder\\hsbc.png",
+      "PackagePath": "staticwebassets\\NewFolder\\hsbc.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\NewFolder\\logo-boolari.png",
+      "PackagePath": "staticwebassets\\NewFolder\\logo-boolari.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\NewFolder\\mb.png",
+      "PackagePath": "staticwebassets\\NewFolder\\mb.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\NewFolder\\momo.png",
+      "PackagePath": "staticwebassets\\NewFolder\\momo.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\NewFolder\\scbank.png",
+      "PackagePath": "staticwebassets\\NewFolder\\scbank.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\NewFolder\\support-girl.png",
+      "PackagePath": "staticwebassets\\NewFolder\\support-girl.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\NewFolder\\teckcombank.jpg",
+      "PackagePath": "staticwebassets\\NewFolder\\teckcombank.jpg"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\NewFolder\\tpbank.png",
+      "PackagePath": "staticwebassets\\NewFolder\\tpbank.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\NewFolder\\vcb.png",
+      "PackagePath": "staticwebassets\\NewFolder\\vcb.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\NewFolder\\vietqr.png",
+      "PackagePath": "staticwebassets\\NewFolder\\vietqr.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\NewFolder\\viettin.jpg",
+      "PackagePath": "staticwebassets\\NewFolder\\viettin.jpg"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\NewFolder\\vnpay.png",
+      "PackagePath": "staticwebassets\\NewFolder\\vnpay.png"
+    },
+    {
+>>>>>>> Stashed changes
       "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -13,6 +76,25 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+<<<<<<< Updated upstream
+=======
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\images\\NenTimKiem.jpg",
+      "PackagePath": "staticwebassets\\images\\NenTimKiem.jpg"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\images\\NenTimKiem1.jpg",
+      "PackagePath": "staticwebassets\\images\\NenTimKiem1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\images\\NenTimKiem2.jpg",
+      "PackagePath": "staticwebassets\\images\\NenTimKiem2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\images\\admin-avatar.png",
+      "PackagePath": "staticwebassets\\images\\admin-avatar.png"
+    },
+    {
+>>>>>>> Stashed changes
       "Id": "C:\\Users\\user\\OneDrive\\Tài liệu\\GitHub\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

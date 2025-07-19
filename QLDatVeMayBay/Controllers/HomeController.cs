@@ -50,5 +50,32 @@ namespace QLDatVeMayBay.Controllers
 
             return View("Index", model);
         }
+        public IActionResult TrangChu()
+        {
+            return View();
+        }
+
+        public IActionResult HoTro()
+        {
+            return View();
+        }
+        public IActionResult TroGiup()
+        {
+            return View();
+        }
+
+        public IActionResult LienHe()
+        {
+            return View();
+        }
+
+        public IActionResult HopThu()
+        {
+            return View();
+        }
+        public IActionResult HuongDanDatCho()
+        {
+            return View();
+        }
     }
 }

@@ -5,56 +5,112 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2 class="mt-3">✏️ Chỉnh sửa chuyến bay</h2>
+<h2 class="mt-3 mb-4 text-primary fw-bold">✏️ Cập nhật thông tin chuyến bay</h2>
+
 @if (!ViewData.ModelState.IsValid)
 {
-    <div class="alert alert-danger">
+    <div class="alert alert-danger rounded-3 shadow-sm">
         @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
         {
             <div>⚠️ @error.ErrorMessage</div>
         }
     </div>
 }
+
 <form asp-action="Edit" method="post" class="row g-3">
-    <input type="hidden" asp-for="IDChuyenBay" />
+    @Html.HiddenFor(model => model.IDChuyenBay)
 
     <div class="col-md-4">
-        <label class="form-label">Máy bay</label>
-        <select asp-for="IDMayBay" class="form-select" asp-items="ViewBag.MayBayList"></select>
+        <label class="form-label">✈️ Máy bay</label>
+        @Html.DropDownListFor(model => model.IDMayBay, (SelectList)ViewBag.MayBayList, "-- Chọn máy bay --", new { @class = "form-select" })
+        <span asp-validation-for="IDMayBay" class="text-danger"></span>
     </div>
 
     <div class="col-md-4">
-        <label class="form-label">Sân bay đi</label>
-        <select asp-for="SanBayDi" class="form-select" asp-items="ViewBag.SanBayList"></select>
+        <label class="form-label">🛫 Sân bay đi</label>
+        @Html.DropDownListFor(model => model.SanBayDi, (SelectList)ViewBag.SanBayList, "-- Chọn sân bay đi --", new { @class = "form-select" })
+        <span asp-validation-for="SanBayDi" class="text-danger"></span>
     </div>
 
     <div class="col-md-4">
-        <label class="form-label">Sân bay đến</label>
-        <select asp-for="SanBayDen" class="form-select" asp-items="ViewBag.SanBayList"></select>
+        <label class="form-label">🛬 Sân bay đến</label>
+        @Html.DropDownListFor(model => model.SanBayDen, (SelectList)ViewBag.SanBayList, "-- Chọn sân bay đến --", new { @class = "form-select" })
+        <span asp-validation-for="SanBayDen" class="text-danger"></span>
     </div>
 
     <div class="col-md-6">
-        <label class="form-label">Giờ cất cánh</label>
+        <label class="form-label">🕒 Giờ cất cánh</label>
         <input asp-for="GioCatCanh" type="datetime-local" class="form-control" />
+        <span asp-validation-for="GioCatCanh" class="text-danger"></span>
     </div>
 
     <div class="col-md-6">
-        <label class="form-label">Giờ hạ cánh</label>
+        <label class="form-label">🕕 Giờ hạ cánh</label>
         <input asp-for="GioHaCanh" type="datetime-local" class="form-control" />
+        <span asp-validation-for="GioHaCanh" class="text-danger"></span>
     </div>
 
     <div class="col-md-6">
-        <label class="form-label">Giá vé</label>
-        <input asp-for="GiaVe" class="form-control" />
+        <label class="form-label">💵 Giá vé</label>
+        <input asp-for="GiaVe" class="form-control" type="number" min="0" />
+        <span asp-validation-for="GiaVe" class="text-danger"></span>
     </div>
-    <select asp-for="TinhTrang" class="form-select">
-        <option value="Đang bay">🟢 Đang bay</option>
-        <option value="Hoãn">🟡 Hoãn</option>
-        <option value="Hủy">🔴 Hủy</option>
-    </select>
 
-    <div class="col-12 mt-3">
-        <button type="submit" class="btn btn-primary">💾 Lưu thay đổi</button>
-        <a asp-action="Index" class="btn btn-secondary">⬅️ Quay lại</a>
+    <div class="col-md-6">
+        <label class="form-label">📌 Tình trạng</label>
+        @Html.DropDownListFor(model => model.TinhTrang, (SelectList)ViewBag.TinhTrangList, new { @class = "form-select" })
+        <span asp-validation-for="TinhTrang" class="text-danger"></span>
+    </div>
+<<<<<<< Updated upstream
+</form>
+=======
+
+    <div class="col-12 mt-4">
+        <button type="submit" class="btn btn-primary me-2">
+            💾 Lưu thay đổi
+        </button>
+        <a asp-action="Index" class="btn btn-secondary">
+            ⬅️ Quay lại
+        </a>
     </div>
 </form>
+
+    <style>
+        h2 {
+            font-weight: 600;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-control, .form-select {
+            border-radius: 8px;
+            transition: box-shadow 0.3s ease;
+        }
+
+            .form-control:focus, .form-select:focus {
+                box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+                border-color: #007bff;
+            }
+
+        .btn-primary {
+            background: linear-gradient(to right, #007bff, #00c6ff);
+            border: none;
+            border-radius: 8px;
+        }
+
+        .btn-secondary {
+            border-radius: 8px;
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            border-left: 5px solid #dc3545;
+        }
+    </style>
+
+>>>>>>> Stashed changes

@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
     <style>
         body {
             background-color: #f8f9fa;
@@ -91,6 +92,74 @@
                 footer a:hover {
                     text-decoration: underline;
                 }
+
+        .partner-box {
+            width: 100px;
+            height: 70px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+            .partner-box:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+        /* Nút Đăng nhập, Đăng ký hiện đại, bo góc, bóng nhẹ */
+        .navbar-nav .btn {
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 8px 22px;
+            border-radius: 30px; /* bo tròn như pill */
+            transition: all 0.3s ease;
+            
+            border-width: 2px;
+        }
+
+        /* Nút Đăng nhập - viền xanh, khi hover nền xanh đậm, chữ trắng */
+        .btn-outline-primary {
+            color: #1a73e8;
+            border-color: #1a73e8;
+        }
+
+            .btn-outline-primary:hover,
+            .btn-outline-primary:focus {
+                background-color: #165dc1;
+                border-color: #165dc1;
+                color: #fff;
+                box-shadow: 0 6px 14px rgb(22 93 193 / 0.6);
+            }
+
+        /* Nút Đăng ký - viền xám, hover nền xám tối */
+        .btn-outline-secondary {
+            color: #6c757d;
+            border-color: #6c757d;
+        }
+
+            .btn-outline-secondary:hover,
+            .btn-outline-secondary:focus {
+                background-color: #5a6268;
+                border-color: #5a6268;
+                color: #fff;
+                box-shadow: 0 6px 14px rgb(90 98 104 / 0.6);
+            }
+
+        /* Căn chỉnh nhóm nút cho đẹp, khoảng cách hợp lý */
+        .navbar-nav.ms-auto .nav-item {
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+        }
+
+        /* Đảm bảo các nút luôn căn giữa theo chiều dọc */
+        .navbar-nav.ms-auto .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Thêm hiệu ứng nhẹ khi nhấn */
+        .navbar-nav .btn:active {
+            transform: scale(0.95);
+        }
+
     </style>
 
 </head>
@@ -98,6 +167,9 @@
     <header>
         <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container">
+                <div class="d-flex align-items-center">
+                    <img src="~/NewFolder/logo-boolari.png" alt="BookAir Logo" style="height: 60px;" class="me-3" />
+                </div>
                 <a class="navbar-brand" asp-controller="Home" asp-action="Index">QLĐặtVé</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                     <span class="navbar-toggler-icon"></span>
@@ -105,6 +177,30 @@
 
                 <div class="collapse navbar-collapse" id="mainNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item me-3">
+                            <a class="nav-link" asp-controller="Home" asp-action="TrangChu">Trang Chủ</a>
+
+                        </li>
+
+                        <li class="nav-item dropdown me-3">
+                            <a class="nav-link dropdown-toggle" href="#" id="hoTroDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Hỗ Trợ
+                            </a>
+                            <ul class="dropdown-menu shadow border-0 rounded-4 p-3" aria-labelledby="hoTroDropdown" style="width: 280px;">
+                                <li class="d-flex align-items-center mb-3">
+                                    <i class="bi bi-question-circle fs-3 text-secondary me-3"></i>
+                                    <a class="text-dark text-decoration-none fw-semibold fs-5" asp-controller="Home" asp-action="TroGiup">Trợ giúp</a>
+                                </li>
+                                <li class="d-flex align-items-center mb-3">
+                                    <i class="bi bi-chat-dots fs-3 text-secondary me-3"></i>
+                                    <a class="text-dark text-decoration-none fw-semibold fs-5" asp-controller="Home" asp-action="LienHe">Liên hệ chúng tôi</a>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <i class="bi bi-mailbox fs-3 text-secondary me-3"></i>
+                                    <a class="text-dark text-decoration-none fw-semibold fs-5" asp-controller="Home" asp-action="HopThu">Hộp thư của tôi</a>
+                                </li>
+                            </ul>
+                        </li>
                         @if (!string.IsNullOrEmpty(tenDangNhap))
                         {
                             <li class="nav-item">
@@ -157,6 +253,101 @@
     </div>
 
     <footer class="footer border-top text-center text-muted">
+        <div class="bg-white text-dark pt-2 pb-4">
+            <div class="container mt-n2">
+
+                <!-- Logo -->
+                <div class="text-center mb-4">
+                    <img src="~/NewFolder/logo-boolari.png" alt="BookAir Logo" style="height: 200px;">
+                </div>
+
+                <!-- Nội dung chính -->
+                <div class="row text-start mb-5" style="font-size: 1.05rem;">
+                    <!-- Về QLĐặtVé -->
+                    <div class="col-md-3 mb-3">
+                        <h6 class="fw-bold">Về QLĐặtVé</h6>
+                        <ul class="list-unstyled">
+                            <li><a class="text-dark text-decoration-none" asp-controller="Home" asp-action="HuongDanDatCho">Cách đặt chỗ</a></li>
+                            <li><a class="text-dark text-decoration-none" asp-controller="Home" asp-action="LienHe">Liên hệ chúng tôi</a></li>
+                            <li><a class="text-dark text-decoration-none" asp-controller="ThongTin" asp-action="VeChungToi">Về chúng tôi</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Sản phẩm -->
+                    <div class="col-md-3 mb-3">
+                        <h6 class="fw-bold">Sản phẩm</h6>
+                        <ul class="list-unstyled">
+                            <li><a class="text-dark text-decoration-none" asp-controller="SanPham" asp-action="VeMayBay">Vé máy bay</a></li>
+                            <li><a class="text-dark text-decoration-none" asp-controller="SanPham" asp-action="KhachSan">Khách sạn</a></li>
+                            <li><a class="text-dark text-decoration-none" asp-controller="SanPham" asp-action="ChoThueXe">Cho thuê xe</a></li>
+                            <li><a class="text-dark text-decoration-none" asp-controller="SanPham" asp-action="VuiChoi">Hoạt động & Vui chơi</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Khác -->
+                    <div class="col-md-3 mb-3">
+                        <h6 class="fw-bold">Khác</h6>
+                        <ul class="list-unstyled">
+                            <li><a class="text-dark text-decoration-none" asp-controller="ThongTin" asp-action="ChinhSach">Chính sách quyền riêng tư</a></li>
+                            <li><a class="text-dark text-decoration-none" asp-controller="ThongTin" asp-action="DieuKhoan">Điều khoản & điều kiện</a></li>
+                            <li><a class="text-dark text-decoration-none" asp-controller="ThongTin" asp-action="DoiTac">Đăng ký đối tác</a></li>
+                            <li><a class="text-dark text-decoration-none" asp-controller="ThongTin" asp-action="BaoChi">Khu vực báo chí</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Theo dõi -->
+                    <div class="col-md-3 mb-3">
+                        <h6 class="fw-bold mb-3">Theo dõi chúng tôi</h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="bi bi-facebook me-2 text-primary fs-5"></i>
+                                <a href="https://facebook.com" target="_blank" class="text-decoration-none text-dark">Facebook</a>
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-instagram me-2 text-danger fs-5"></i>
+                                <a href="https://instagram.com" target="_blank" class="text-decoration-none text-dark">Instagram</a>
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-youtube me-2 text-danger fs-5"></i>
+                                <a href="https://youtube.com" target="_blank" class="text-decoration-none text-dark">YouTube</a>
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-tiktok me-2 text-dark fs-5"></i>
+                                <a href="https://tiktok.com" target="_blank" class="text-decoration-none text-dark">TikTok</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Đối tác thanh toán -->
+                <div class="text-center mb-4">
+                    <h6 class="fw-bold mb-3" style="font-size: 1.2rem;">ĐỐI TÁC THANH TOÁN</h6>
+                    <div class="d-flex flex-wrap justify-content-center gap-4">
+                        @{
+                            string[] logos = {
+                                                "acb.png", "agribank.jpg", "bidv.png", "hsbc.png", "mb.png",
+                                                "momo.png", "scbank.png", "teckcombank.jpg", "tpbank.png",
+                                                "vcb.png", "vietqr.png", "viettin.jpg", "vnpay.png"
+                                                };
+                        }
+
+                        @foreach (var logo in logos)
+                        {
+                            <div class="partner-box bg-white rounded shadow-sm p-2 d-flex align-items-center justify-content-center">
+                                <img src="~/NewFolder/@logo" alt="@logo" class="img-fluid" style="max-height: 60px;" />
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Footer cuối -->
+                <hr class="border-dark" />
+                <div class="text-center text-muted">
+                    <p>© 2025 - QLĐặtVé – Nền tảng đặt vé máy bay hàng đầu Việt Nam</p>
+                </div>
+
+            </div>
+        </div>
         <div class="container">
             &copy; @DateTime.Now.Year - Hệ thống QLĐặtVé Máy Bay ✈ |
             <a asp-controller="Home" asp-action="Privacy">Chính sách & Điều khoản</a>

@@ -133,7 +133,8 @@ namespace QLDatVeMayBay.Controllers
         [HttpPost]
         public async Task<IActionResult> Xoa(string tenDangNhap)
         {
-            var nguoiDung = await _context.NguoiDung.FindAsync(tenDangNhap);
+            var nguoiDung = await _context.NguoiDung
+                .FirstOrDefaultAsync(nd => nd.TenDangNhap == tenDangNhap);
             var taiKhoan = await _context.TaiKhoan.FindAsync(tenDangNhap);
 
             if (nguoiDung == null || taiKhoan == null)
@@ -143,8 +144,10 @@ namespace QLDatVeMayBay.Controllers
             _context.TaiKhoan.Remove(taiKhoan);
             await _context.SaveChangesAsync();
 
+            TempData["Message"] = "Xoá người dùng thành công!";
             return RedirectToAction("Index");
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)

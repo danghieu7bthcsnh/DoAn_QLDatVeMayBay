@@ -1,0 +1,132 @@
+﻿@model QLDatVeMayBay.AdminViewModels.ThongTinCaNhanViewModel
+@{
+    ViewData["Title"] = "Thông tin cá nhân";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    /* Tối ưu cho form */
+    .profile-container {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .profile-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #2c7a7b;
+    }
+
+    label {
+        font-weight: 600;
+        color: #4a5568;
+    }
+
+    input, select {
+        border-radius: 8px;
+        border: 1px solid #cbd5e0;
+        transition: border-color 0.3s ease;
+    }
+
+        input:focus, select:focus {
+            border-color: #2c7a7b;
+            box-shadow: 0 0 5px rgba(44, 122, 123, 0.5);
+            outline: none;
+        }
+
+    .btn-primary {
+        background-color: #2c7a7b;
+        border-color: #2c7a7b;
+        font-weight: 600;
+        padding: 0.6rem 2rem;
+        border-radius: 50px;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #285e5e;
+            border-color: #285e5e;
+        }
+
+    .validation-message {
+        color: #e53e3e;
+        font-size: 0.9rem;
+    }
+
+    .alert-success {
+        border-radius: 12px;
+        font-weight: 600;
+        background-color: #c6f6d5;
+        color: #22543d;
+        border: 1px solid #9ae6b4;
+        margin-bottom: 1.5rem;
+        padding: 1rem 1.5rem;
+        text-align: center;
+    }
+</style>
+
+<div class="profile-container shadow-sm">
+    <h2 class="profile-header">Thông tin cá nhân</h2>
+
+    @if (ViewBag.ThongBao != null)
+    {
+        <div class="alert alert-success">@ViewBag.ThongBao</div>
+    }
+
+    <form method="post" asp-action="CaNhan" novalidate>
+        <div class="mb-4">
+            <label for="TenDangNhap" class="form-label">Tên đăng nhập</label>
+            <input type="text" id="TenDangNhap" class="form-control" asp-for="TenDangNhap" readonly />
+        </div>
+
+        <div class="mb-4">
+            <label for="HoTen" class="form-label">Họ tên <span class="text-danger">*</span></label>
+            <input type="text" id="HoTen" class="form-control" asp-for="HoTen" placeholder="Nhập họ tên đầy đủ" />
+            <span asp-validation-for="HoTen" class="validation-message"></span>
+        </div>
+
+        <div class="mb-4">
+            <label for="Email" class="form-label">Email <span class="text-danger">*</span></label>
+            <input type="email" id="Email" class="form-control" asp-for="Email" placeholder="example@domain.com" />
+            <span asp-validation-for="Email" class="validation-message"></span>
+        </div>
+
+        <div class="mb-4">
+            <label for="SoDienThoai" class="form-label">Số điện thoại</label>
+            <input type="tel" id="SoDienThoai" class="form-control" asp-for="SoDienThoai" placeholder="Nhập số điện thoại" />
+        </div>
+
+        <div class="mb-4">
+            <label for="GioiTinh" class="form-label">Giới tính</label>
+            <select id="GioiTinh" class="form-select" asp-for="GioiTinh">
+                <option value="">Chọn giới tính</option>
+                <option value="Nam" selected="@Model.GioiTinh == " Nam"">Nam</option>
+                <option value="Nữ" selected="@Model.GioiTinh == " Nữ"">Nữ</option>
+                <option value="Khác" selected="@Model.GioiTinh == " Khác"">Khác</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="QuocTich" class="form-label">Quốc tịch</label>
+            <input type="text" id="QuocTich" class="form-control" asp-for="QuocTich" placeholder="Nhập quốc tịch" />
+        </div>
+
+        <div class="mb-4">
+            <label for="CCCD" class="form-label">Số CCCD/CMND</label>
+            <input type="text" id="CCCD" class="form-control" asp-for="CCCD" placeholder="Nhập số CCCD hoặc CMND" />
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary px-5">Cập nhật thông tin</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

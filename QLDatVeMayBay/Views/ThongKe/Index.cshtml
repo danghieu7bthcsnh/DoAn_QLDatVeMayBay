@@ -8,14 +8,25 @@
 <style>
     canvas {
         max-height: 300px;
+        transition: all 0.4s ease-in-out;
     }
 
-    .card h5 {
+    .card {
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+    .card-title {
         font-size: 1.1rem;
         font-weight: 600;
     }
 
-    .card h3 {
+    .card-text {
         font-size: 1.8rem;
     }
 
@@ -24,32 +35,27 @@
         text-align: center;
     }
 
+    .table-top-khachhang th, .table-top-khachhang td {
+        vertical-align: middle;
+        text-align: center;
+    }
 </style>
 
 <div class="container-fluid">
     <h2 class="mb-4">📊 Thống kê tổng quan</h2>
 
+    <!-- Form lọc -->
     <form method="get" class="row g-3 mb-4">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <label class="form-label">Từ ngày</label>
             <input type="date" name="tuNgay" class="form-control" value="@ViewData["TuNgay"]" />
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <label class="form-label">Đến ngày</label>
             <input type="date" name="denNgay" class="form-control" value="@ViewData["DenNgay"]" />
         </div>
-        <div class="col-md-2">
-            <label class="form-label">Vai trò</label>
-            <select name="vaiTro" class="form-select">
-                <option value="">Tất cả</option>
-                @foreach (var item in (List<SelectListItem>)ViewData["VaiTroList"])
-                {
-                    <option value="@item.Value" selected="@(ViewData["VaiTro"]?.ToString() == item.Value ? "selected" : null)">@item.Text</option>
-                }
-            </select>
-        </div>
-        <div class="col-md-2">
-            <label class="form-label">Trạng thái</label>
+        <div class="col-md-3">
+            <label class="form-label">Trạng thái tài khoản</label>
             <select name="trangThai" class="form-select">
                 <option value="">Tất cả</option>
                 @foreach (var item in (List<SelectListItem>)ViewData["TrangThaiList"])
@@ -58,7 +64,7 @@
                 }
             </select>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <label class="form-label">Hãng hàng không</label>
             <select name="hangHK" class="form-select">
                 <option value="">Tất cả</option>
@@ -68,30 +74,34 @@
                 }
             </select>
         </div>
-        <div class="col-md-2 d-flex align-items-end">
-            <button type="submit" class="btn btn-success w-100">🔍 Lọc</button>
+
+        <div class="col-12 d-flex justify-content-end mt-2">
+            <button type="submit" class="btn btn-primary px-4">🔍 Lọc</button>
         </div>
     </form>
 
+    <!-- Action Buttons -->
     <div class="d-flex justify-content-end mb-3 gap-2">
-        <a href="@Url.Action("XuatExcel", new { tuNgay = ViewData["TuNgay"], denNgay = ViewData["DenNgay"] })" class="btn btn-primary">📥 Xuất Excel</a>
-        <a href="@Url.Action("XuatPDF", new { tuNgay = ViewData["TuNgay"], denNgay = ViewData["DenNgay"] })" class="btn btn-danger">📄 Xuất PDF</a>
-        <a href="@Url.Action("GuiBaoCaoQuaEmail", new { tuNgay = ViewData["TuNgay"], denNgay = ViewData["DenNgay"], email = "admin@example.com" })" class="btn btn-outline-secondary">📧 Gửi Email</a>
+        <a href="@Url.Action("XuatExcel", new { tuNgay = ViewData["TuNgay"], denNgay = ViewData["DenNgay"], trangThai = ViewData["TrangThai"], hangHK = ViewData["HangHK"] })" class="btn btn-primary">📥 Xuất Excel</a>
+        <a href="@Url.Action("XuatPDF", new { tuNgay = ViewData["TuNgay"], denNgay = ViewData["DenNgay"], trangThai = ViewData["TrangThai"], hangHK = ViewData["HangHK"] })" class="btn btn-danger">📄 Xuất PDF</a>
+        <a href="@Url.Action("GuiBaoCaoQuaEmail", new { tuNgay = ViewData["TuNgay"], denNgay = ViewData["DenNgay"], trangThai = ViewData["TrangThai"], hangHK = ViewData["HangHK"], email = "admin@example.com" })" class="btn btn-outline-secondary">📧 Gửi Email</a>
     </div>
 
+    <!-- Thống kê tổng quan -->
     <div class="row g-4">
         <div class="col-md-3">
             <div class="card shadow text-white bg-primary">
                 <div class="card-body">
-                    <h5 class="card-title">👤 Người dùng hoạt động</h5>
+                    <h5 class="card-title">👤 Tổng số khách hàng</h5>
                     <h3 class="card-text">@ViewData["TongNguoiDung"]</h3>
+                    <small>khách hàng mới tháng này: <strong>@ViewData["SoNguoiDungMoi"]</strong></small>
                 </div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card shadow text-white bg-success">
                 <div class="card-body">
-                    <h5 class="card-title">✈️ Tổng chuyến bay</h5>
+                    <h5 class="card-title">✈️ Chuyến bay</h5>
                     <h3 class="card-text">@ViewData["TongChuyenBay"]</h3>
                 </div>
             </div>
@@ -99,7 +109,7 @@
         <div class="col-md-3">
             <div class="card shadow text-white bg-warning">
                 <div class="card-body">
-                    <h5 class="card-title">🎫 Tổng vé đã đặt</h5>
+                    <h5 class="card-title">🎫 Vé đã đặt</h5>
                     <h3 class="card-text">@ViewData["TongVe"]</h3>
                 </div>
             </div>
@@ -114,6 +124,7 @@
         </div>
     </div>
 
+    <!-- Biểu đồ -->
     <div class="row mt-5 g-4">
         <div class="col-md-6">
             <div class="card p-3">
@@ -123,17 +134,18 @@
         </div>
         <div class="col-md-6">
             <div class="card p-3">
-                <h5 class="mb-3">🛫 Đặt vé theo sân bay đi</h5>
+                <h5 class="mb-3">🛫 Đặt vé theo top 5 sân bay đi</h5>
                 <canvas id="chartSanBay"></canvas>
             </div>
         </div>
     </div>
 
-    <div class="row mt-5 g-4">
+    <div class="row mt-4 g-4">
         <div class="col-md-6">
             <div class="card p-3">
-                <h5 class="mb-3">📉 Tỷ lệ vé huỷ theo tháng</h5>
-                <canvas id="chartVeHuy"></canvas>
+                <h5 class="mb-3">🎫 Số vé theo trạng thái vé theo tháng (@ViewData["TuNgay"] - @ViewData["DenNgay"])</h5>
+                
+                <canvas id="chartVeTheoTrangThai"></canvas>
             </div>
         </div>
         <div class="col-md-6">
@@ -144,15 +156,18 @@
         </div>
     </div>
 
+    <!-- Bảng chi tiết -->
     <div class="mt-5">
         <h4>📋 Bảng thống kê chi tiết</h4>
-        <table class="table table-bordered table-responsive">
-            <thead>
+        <table class="table table-bordered table-striped table-hover table-responsive">
+            <thead class="table-dark">
                 <tr>
                     <th>Tháng</th>
                     <th>Doanh thu</th>
                     <th>Số vé</th>
                     <th>Người dùng mới</th>
+                    <th>Tỷ lệ huỷ (%)</th>
+                    <th>Phương thức thanh toán</th>
                 </tr>
             </thead>
             <tbody>
@@ -163,11 +178,52 @@
                         <td>@String.Format("{0:N0} ₫", item.DoanhThu)</td>
                         <td>@item.SoVe</td>
                         <td>@item.NguoiDungMoi</td>
+                        <td>@item.TyLeHuy</td>
+                        <td>
+                            @foreach (var pt in item.PhuongThucThanhToan)
+                            {
+                                <div>@pt.Ten: @String.Format("{0:N0} ₫", pt.Tong)</div>
+                            }
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
+
+    <!-- Bảng Top 5 khách hàng mua vé nhiều nhất -->
+    <div class="mt-5">
+        <h4>🏅 Top 5 khách hàng mua vé nhiều nhất (@ViewData["TuNgay"] - @ViewData["DenNgay"])</h4>
+        <table class="table table-bordered table-striped table-top-khachhang">
+            <thead class="table-dark">
+                <tr>
+                    <th>STT</th>
+                    <th>Tên đăng nhập</th>
+                    <th>Họ tên</th>
+                    <th>Số vé đã đặt</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var topKhachHang = (IEnumerable<dynamic>)ViewData["TopKhachHang"];
+                    int stt = 1;
+                    foreach (var kh in topKhachHang)
+                    {
+                        <tr>
+                            <td>@stt</td>
+                            <td>@kh.TenDangNhap</td>
+                            <td>@kh.HoTen</td>
+                            <td>@kh.SoVeDaDat</td>
+                        </tr>
+                        ;
+                        stt++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+ 
 </div>
 
 @section Scripts {
@@ -177,6 +233,7 @@
         Chart.defaults.font.size = 13;
         Chart.defaults.plugins.legend.position = 'bottom';
 
+        // Biểu đồ Doanh thu theo tháng
         const dataDoanhThu = @Html.Raw(ViewData["DataDoanhThuTheoThang"]);
         new Chart(document.getElementById("chartDoanhThu"), {
             type: 'line',
@@ -190,46 +247,35 @@
                     tension: 0.3,
                     fill: true
                 }]
-            }, options: { responsive: true }
+            },
+            options: {
+                responsive: true,
+                animation: { duration: 1000, easing: 'easeOutQuart' }
+            }
         });
 
+        // Biểu đồ Đặt vé theo sân bay đi
         const dataSanBay = @Html.Raw(ViewData["DataDatTheoSanBay"]);
-                new Chart(document.getElementById("chartSanBay"), {
+        new Chart(document.getElementById("chartSanBay"), {
             type: 'bar',
             data: {
                 labels: dataSanBay.map(x => x.SanBay),
                 datasets: [{
-                    label: 'Số lượng vé',
+                    label: 'Số vé',
                     data: dataSanBay.map(x => x.SoLuong),
                     backgroundColor: '#17a2b8',
-                    borderRadius: 5,
-                    barThickness: 20
+                    borderRadius: 6,
+                    barThickness: 32
                 }]
             },
             options: {
-                indexAxis: 'y', // chuyển thành biểu đồ cột ngang
                 responsive: true,
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        callbacks: {
-                            label: ctx => ` ${ctx.raw} vé`
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        title: { display: true, text: 'Số vé' }
-                    },
-                    y: {
-                        title: { display: true, text: 'Sân bay đi' }
-                    }
-                }
+                animation: { duration: 1000, easing: 'easeOutQuart' },
+                plugins: { legend: { display: false } }
             }
         });
 
-
+        // Biểu đồ Tỷ lệ vé huỷ theo tháng
         const dataVeHuy = @Html.Raw(ViewData["DataVeHuyTheoThang"]);
         new Chart(document.getElementById("chartVeHuy"), {
             type: 'line',
@@ -243,23 +289,61 @@
                     tension: 0.3,
                     fill: true
                 }]
-            }, options: { responsive: true }
+            },
+            options: {
+                responsive: true,
+                animation: { duration: 1000, easing: 'easeOutQuart' }
+            }
         });
 
+        // Biểu đồ Doanh thu theo phương thức thanh toán
         const dataTheoPTTT = @Html.Raw(ViewData["DataDoanhThuTheoPTTT"]);
         new Chart(document.getElementById("chartTheoPTTT"), {
             type: 'line',
             data: {
                 labels: dataTheoPTTT.map(x => x.Thang),
-                datasets: dataTheoPTTT[0].ChiTiet.map((pt, index) => ({
+                datasets: dataTheoPTTT[0]?.ChiTiet.map((pt, index) => ({
                     label: pt.Ten,
-                    data: dataTheoPTTT.map(m => m.ChiTiet[index].Tong),
-                    borderColor: ['#007bff', '#ffc107', '#28a745', '#6f42c1'][index],
-                    backgroundColor: ['rgba(0,123,255,0.1)', 'rgba(255,193,7,0.1)', 'rgba(40,167,69,0.1)', 'rgba(111,66,193,0.1)'][index],
+                    data: dataTheoPTTT.map(m => m.ChiTiet[index]?.Tong ?? 0),
+                    borderColor: ['#007bff', '#ffc107', '#28a745', '#6f42c1'][index % 4],
+                    backgroundColor: ['rgba(0,123,255,0.1)', 'rgba(255,193,7,0.1)', 'rgba(40,167,69,0.1)', 'rgba(111,66,193,0.1)'][index % 4],
                     tension: 0.3,
                     fill: true
-                }))
-            }, options: { responsive: true }
+                })) || []
+            },
+            options: {
+                responsive: true,
+                animation: { duration: 1000, easing: 'easeOutQuart' }
+            }
+        });
+
+        // Biểu đồ Số vé theo trạng thái vé theo tháng (Stacked Bar Chart)
+        const dataVeTheoTrangThai = @Html.Raw(ViewData["VeTheoTrangThaiTheoThang"]);
+        const labelsVe = dataVeTheoTrangThai.map(x => x.Thang);
+        const allStates = Array.from(new Set(dataVeTheoTrangThai.flatMap(x => Object.keys(x.SoLuongTheoTrangThai))));
+        const datasetsVeTrangThai = allStates.map((state, index) => ({
+            label: state,
+            data: dataVeTheoTrangThai.map(m => m.SoLuongTheoTrangThai[state] || 0),
+            backgroundColor: ['#007bff', '#28a745', '#dc3545', '#ffc107'][index % 4]
+        }));
+
+        new Chart(document.getElementById("chartVeTheoTrangThai"), {
+            type: 'bar',
+            data: {
+                labels: labelsVe,
+                datasets: datasetsVeTrangThai
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    x: { stacked: true },
+                    y: { stacked: true, beginAtZero: true }
+                },
+                animation: { duration: 1000, easing: 'easeOutQuart' }
+            }
         });
     </script>
 }

@@ -31,40 +31,50 @@ namespace QLDatVeMayBay.Controllers
         {
             var query = _context.VeMayBay
                 .Include(v => v.NguoiDung)
-                .Include(v => v.ChuyenBay).ThenInclude(cb => cb.MayBay)
+                .Include(v => v.ChuyenBay)
+                    .ThenInclude(cb => cb.MayBay)
                 .Include(v => v.Ghe)
                 .AsQueryable();
 
+            // 🔍 Lọc theo từ khoá (Họ tên, Email, ID chuyến bay)
             if (!string.IsNullOrEmpty(tuKhoa))
             {
                 tuKhoa = tuKhoa.ToLower();
-                query = query.Where(v => v.NguoiDung.HoTen.ToLower().Contains(tuKhoa) ||
-                                         v.NguoiDung.Email.ToLower().Contains(tuKhoa) ||
-                                         v.ChuyenBay.IDChuyenBay.ToString().Contains(tuKhoa));
+                query = query.Where(v =>
+                    (v.NguoiDung.HoTen != null && v.NguoiDung.HoTen.ToLower().Contains(tuKhoa)) ||
+                    (v.NguoiDung.Email != null && v.NguoiDung.Email.ToLower().Contains(tuKhoa)) ||
+                    v.ChuyenBay.IDChuyenBay.ToString().Contains(tuKhoa)
+                );
             }
 
+            // 🧾 Lọc theo trạng thái vé
             if (!string.IsNullOrEmpty(trangThai))
             {
                 query = query.Where(v => v.TrangThaiVe == trangThai);
             }
 
+            // ✈️ Lọc theo chuyến bay
             if (idChuyenBay.HasValue)
             {
-                query = query.Where(v => v.IDChuyenBay == idChuyenBay);
+                query = query.Where(v => v.IDChuyenBay == idChuyenBay.Value);
             }
 
+            // 💺 Lọc theo hạng ghế
             if (!string.IsNullOrEmpty(hangGhe))
             {
                 query = query.Where(v => v.Ghe.HangGhe == hangGhe);
             }
 
+            // 📅 Lọc theo ngày đặt
             if (ngayDat.HasValue)
             {
-                var dateOnly = ngayDat.Value.Date;
+                DateTime dateOnly = ngayDat.Value.Date;
                 query = query.Where(v => v.ThoiGianDat.Date == dateOnly);
             }
 
+            // 📄 Tổng số bản ghi
             int totalItems = await query.CountAsync();
+            int PageSize = 10;
 
             var danhSachVe = await query
                 .OrderByDescending(v => v.ThoiGianDat)
@@ -72,6 +82,7 @@ namespace QLDatVeMayBay.Controllers
                 .Take(PageSize)
                 .ToListAsync();
 
+            // ViewBag dùng cho bộ lọc & phân trang
             ViewBag.TuKhoa = tuKhoa;
             ViewBag.TrangThai = trangThai;
             ViewBag.IDChuyenBay = idChuyenBay;
@@ -80,30 +91,57 @@ namespace QLDatVeMayBay.Controllers
             ViewBag.Page = page;
             ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / PageSize);
 
+            // Trạng thái vé
             ViewBag.TrangThaiList = new List<SelectListItem>
-            {
-                new SelectListItem { Text = "✅ Đã thanh toán", Value = "Đã thanh toán" },
-                new SelectListItem { Text = "⌛ Chưa thanh toán", Value = "Chưa thanh toán" },
-                new SelectListItem { Text = "❌ Đã huỷ", Value = "Đã huỷ" }
-            };
+    {
+        new SelectListItem { Text = "✅ Đã thanh toán", Value = "Đã thanh toán" },
+        new SelectListItem { Text = "⌛ Chưa thanh toán", Value = "Chưa thanh toán" },
+        new SelectListItem { Text = "❌ Đã huỷ", Value = "Đã huỷ" }
+    };
 
-            ViewBag.ChuyenBayList = _context.ChuyenBay
-                .Include(cb => cb.MayBay)
-                .Select(cb => new SelectListItem
-                {
-                    Value = cb.IDChuyenBay.ToString(),
-                    Text = cb.IDChuyenBay + " - " + cb.MayBay.TenHangHK
-                }).ToList();
+            // Danh sách chuyến bay
+            ViewBag.ChuyenBayList = new SelectList(
+                await _context.ChuyenBay
+                    .Include(cb => cb.MayBay)
+                    .Select(cb => new
+                    {
+                        cb.IDChuyenBay,
+                        Ten = cb.IDChuyenBay + " - " + cb.MayBay.TenHangHK
+                    }).ToListAsync(),
+                "IDChuyenBay",
+                "Ten"
+            );
 
-            ViewBag.HangGheList = await _context.GheNgoi
+            // Hạng ghế
+            ViewBag.HangGheList = (await _context.GheNgoi
                 .Select(g => g.HangGhe)
                 .Distinct()
-                .ToListAsync();
+                .ToListAsync())
+                .Select(h => new SelectListItem { Value = h, Text = h })
+                .ToList();
 
             return View(danhSachVe);
         }
 
+
         public async Task<IActionResult> ChiTiet(int id)
+        {
+            var ve = await _context.VeMayBay
+       .Include(v => v.NguoiDung)
+       .Include(v => v.ChuyenBay)
+           .ThenInclude(cb => cb.MayBay)
+       .Include(v => v.ChuyenBay)
+           .ThenInclude(cb => cb.SanBayDiInfo)   // Thêm dòng này
+       .Include(v => v.ChuyenBay)
+           .ThenInclude(cb => cb.SanBayDenInfo)  // Thêm dòng này
+       .Include(v => v.Ghe)
+       .FirstOrDefaultAsync(v => v.IDVe == id);
+
+            if (ve == null) return NotFound();
+            return View(ve);
+        }
+
+        public async Task<IActionResult> Edit(int id)
         {
             var ve = await _context.VeMayBay
                 .Include(v => v.NguoiDung)
@@ -112,20 +150,9 @@ namespace QLDatVeMayBay.Controllers
                 .FirstOrDefaultAsync(v => v.IDVe == id);
 
             if (ve == null) return NotFound();
-            return View(ve);
-        }
 
-        public async Task<IActionResult> Edit(int id)
-        {
-            var ve = await _context.VeMayBay.FindAsync(id);
-            if (ve == null) return NotFound();
-
-            ViewBag.TrangThaiList = new List<SelectListItem>
-            {
-                new SelectListItem { Text = "✅ Đã thanh toán", Value = "Đã thanh toán" },
-                new SelectListItem { Text = "⌛ Chưa thanh toán", Value = "Chưa thanh toán" },
-                new SelectListItem { Text = "❌ Đã huỷ", Value = "Đã huỷ" }
-            };
+            // Gửi danh sách trạng thái
+            ViewBag.TrangThaiList = GetTrangThaiList(ve.TrangThaiVe);
 
             return View(ve);
         }
@@ -142,27 +169,20 @@ namespace QLDatVeMayBay.Controllers
 
             if (ve == null) return NotFound();
 
+            var validStatuses = new List<string> { "Đã thanh toán", "Chưa thanh toán", "Đã huỷ" };
+
             if (string.IsNullOrEmpty(trangThaiVe))
             {
                 ModelState.AddModelError("trangThaiVe", "Vui lòng chọn trạng thái.");
             }
-
-            // Trạng thái hợp lệ để Admin chỉnh sửa
-            var validStatuses = new List<string> { "Đã thanh toán", "Chưa thanh toán", "Đã huỷ" };
-            if (!validStatuses.Contains(trangThaiVe))
+            else if (!validStatuses.Contains(trangThaiVe))
             {
                 ModelState.AddModelError("trangThaiVe", "Trạng thái không hợp lệ.");
             }
 
             if (!ModelState.IsValid)
             {
-                ViewBag.TrangThaiList = validStatuses.Select(s => new SelectListItem
-                {
-                    Text = s,
-                    Value = s,
-                    Selected = s == ve.TrangThaiVe
-                }).ToList();
-
+                ViewBag.TrangThaiList = GetTrangThaiList(trangThaiVe);
                 return View(ve);
             }
 
@@ -171,6 +191,25 @@ namespace QLDatVeMayBay.Controllers
 
             TempData["Message"] = "✅ Cập nhật trạng thái vé thành công.";
             return RedirectToAction("Index");
+        }
+
+        // ✅ Phương thức tái sử dụng danh sách trạng thái
+        private List<SelectListItem> GetTrangThaiList(string? selectedValue = null)
+        {
+            var list = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "✅ Đã thanh toán", Value = "Đã thanh toán" },
+        new SelectListItem { Text = "⌛ Chưa thanh toán", Value = "Chưa thanh toán" },
+        new SelectListItem { Text = "❌ Đã huỷ", Value = "Đã huỷ" }
+    };
+
+            foreach (var item in list)
+            {
+                if (item.Value == selectedValue)
+                    item.Selected = true;
+            }
+
+            return list;
         }
 
 
@@ -233,20 +272,8 @@ namespace QLDatVeMayBay.Controllers
             return File(stream, "application/pdf", $"Ve_{ve.IDVe}.pdf");
         }
 
+        [HttpGet]
         public async Task<IActionResult> XacNhanXoa(int id)
-        {
-            var ve = await _context.VeMayBay
-                .Include(v => v.NguoiDung)
-                .Include(v => v.ChuyenBay).ThenInclude(cb => cb.MayBay)
-                .Include(v => v.Ghe)
-                .FirstOrDefaultAsync(v => v.IDVe == id);
-
-            if (ve == null) return NotFound();
-            return View(ve);
-        }
-
-        [HttpPost, ActionName("XacNhanXoa")]
-        public async Task<IActionResult> XoaConfirmed(int id)
         {
             var ve = await _context.VeMayBay.FindAsync(id);
             if (ve == null) return NotFound();
@@ -256,7 +283,6 @@ namespace QLDatVeMayBay.Controllers
             TempData["Message"] = "Xoá vé thành công.";
             return RedirectToAction("Index");
         }
-
         public async Task<IActionResult> XuatExcel(string tuKhoa, string trangThai, int? idChuyenBay, string hangGhe, DateTime? ngayDat)
         {
             var query = _context.VeMayBay

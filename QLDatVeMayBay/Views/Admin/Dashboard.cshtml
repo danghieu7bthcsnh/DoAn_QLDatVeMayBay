@@ -1,35 +1,75 @@
 ﻿@{
     ViewData["Title"] = "Trang quản trị";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml"; // Hoặc _AdminLayout nếu có layout riêng cho admin
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<style>
+    .card {
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+        .card:hover {
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            transform: translateY(-5px);
+        }
+
+    .dashboard-section {
+        margin-top: 2rem;
+    }
+
+    canvas {
+        max-height: 250px;
+        width: 100% !important;
+    }
+
+    .table thead {
+        background-color: #007bff;
+        color: white;
+    }
+</style>
+
 <div class="container mt-4">
+
     <h2 class="text-primary mb-4">📊 Bảng điều khiển quản trị viên</h2>
 
     <div class="row g-4">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card border-0 shadow-sm bg-info text-white">
                 <div class="card-body text-center">
                     <h5 class="card-title">👥 Tổng người dùng</h5>
                     <h3 class="display-6 fw-bold">@ViewBag.TongNguoiDung</h3>
+                    <small>Số người dùng đã đăng ký hệ thống</small>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card border-0 shadow-sm bg-success text-white">
                 <div class="card-body text-center">
                     <h5 class="card-title">✈️ Tổng chuyến bay</h5>
                     <h3 class="display-6 fw-bold">@ViewBag.TongChuyenBay</h3>
+                    <small>Chuyến bay đang hoạt động</small>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card border-0 shadow-sm bg-warning text-dark">
                 <div class="card-body text-center">
                     <h5 class="card-title">🎫 Tổng vé máy bay</h5>
                     <h3 class="display-6 fw-bold">@ViewBag.TongVe</h3>
+                    <small>Vé đã được đặt thành công</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-danger text-white">
+                <div class="card-body text-center">
+                    <h5 class="card-title">💰 Doanh thu tháng</h5>
+                    <h3 class="display-6 fw-bold">@ViewBag.DoanhThuThang.ToString("C0")</h3>
+                    <small>Doanh thu từ vé bán trong tháng</small>
                 </div>
             </div>
         </div>
@@ -37,7 +77,7 @@
 
     <hr class="my-4" />
 
-    <div class="d-flex flex-wrap gap-3">
+    <div class="d-flex flex-wrap gap-3 mb-4">
         <a href="/NguoiDung/Index" class="btn btn-outline-primary btn-lg">
             👤 Quản lý người dùng
         </a>
@@ -50,8 +90,142 @@
         <a href="/Admin/GuiThongBao" class="btn btn-outline-danger btn-lg">
             📧 Gửi thông báo
         </a>
-        <a href="/Admin/ThongKe" class="btn btn-outline-secondary btn-lg">
+        <a href="/ThongKe/Index" class="btn btn-outline-secondary btn-lg">
             📈 Thống kê hệ thống
         </a>
     </div>
+<<<<<<< Updated upstream
 </div>
+=======
+
+    <!-- Biểu đồ doanh thu và vé theo tháng -->
+    <div class="dashboard-section row g-4">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm p-3">
+                <h5 class="card-title mb-3">📅 Doanh thu theo tháng</h5>
+                <canvas id="doanhThuChart"></canvas>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm p-3">
+                <h5 class="card-title mb-3">🎟️ Vé bán theo trạng thái</h5>
+                <canvas id="veStatusChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bảng thông tin người dùng mới nhất -->
+    <div class="dashboard-section">
+        <h5 class="mb-3">🆕 Người dùng đăng ký mới</h5>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered align-middle">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tên đăng nhập</th>
+                        <th>Họ tên</th>
+                        <th>Email</th>
+                        <th>Ngày đăng ký</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.NguoiDungMoi != null)
+                    {
+                        int stt = 1;
+                        foreach (var user in ViewBag.NguoiDungMoi)
+                        {
+                            <tr>
+                                <td>@stt</td>
+                                <td>@user.TenDangNhap</td>
+                                <td>@user.HoTen</td>
+                                <td>@user.Email</td>
+                                <td>@user.NgayTao?.ToString("dd/MM/yyyy")</td>
+                            </tr>
+                            stt++;
+                        }
+                    }
+                    else
+                    {
+                        <tr><td colspan="5" class="text-center">Chưa có dữ liệu</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Thông báo nhanh -->
+    <div class="dashboard-section mt-5">
+        <h5>🔔 Thông báo nhanh</h5>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Vé đã đặt hôm nay
+                <span class="badge bg-primary rounded-pill">@ViewBag.VeDatHomNay</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Vé bị hủy trong tháng
+                <span class="badge bg-danger rounded-pill">@ViewBag.VeHuyThang</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Người dùng mới hôm nay
+                <span class="badge bg-success rounded-pill">@ViewBag.NguoiDungMoiHomNay</span>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctxDoanhThu = document.getElementById('doanhThuChart').getContext('2d');
+        const doanhThuChart = new Chart(ctxDoanhThu, {
+            type: 'line',
+            data: {
+                labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.ThangLabels ?? new List<string>())),
+                datasets: [{
+                    label: 'Doanh thu',
+                    data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.DoanhThuData ?? new List<decimal>())),
+                    backgroundColor: 'rgba(54, 162, 235, 0.3)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        const ctxVeStatus = document.getElementById('veStatusChart').getContext('2d');
+        const veStatusChart = new Chart(ctxVeStatus, {
+            type: 'doughnut',
+            data: {
+                labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.VeStatusLabels ?? new List<string>())),
+                datasets: [{
+                    label: 'Trạng thái vé',
+                    data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.VeStatusData ?? new List<int>())),
+                    backgroundColor: [
+                        '#198754', // Thành công - xanh lá
+                        '#ffc107', // Chưa thanh toán - vàng
+                        '#dc3545'  // Hủy - đỏ
+                    ],
+                    hoverOffset: 30
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    </script>
+}
+>>>>>>> Stashed changes

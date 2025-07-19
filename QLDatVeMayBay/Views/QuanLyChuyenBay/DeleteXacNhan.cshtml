@@ -1,0 +1,57 @@
+﻿@model QLDatVeMayBay.Models.ChuyenBay
+@{
+    ViewData["Title"] = "Xác nhận xóa";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mt-3 text-danger">🗑 Xác nhận xóa chuyến bay</h2>
+<hr />
+
+<div class="card shadow-sm p-4 mb-4" style="max-width: 600px;">
+    <p>
+        Bạn có chắc chắn muốn xóa chuyến bay từ
+        <strong>@Model.SanBayDiInfo?.TenSanBay</strong> đến
+        <strong>@Model.SanBayDenInfo?.TenSanBay</strong> không?
+    </p>
+
+    <dl class="row">
+        <dt class="col-sm-4 font-weight-bold">Giờ cất cánh:</dt>
+        <dd class="col-sm-8">@Model.GioCatCanh.ToString("HH:mm dd/MM/yyyy")</dd>
+
+        <dt class="col-sm-4 font-weight-bold">Giờ hạ cánh:</dt>
+        <dd class="col-sm-8">@Model.GioHaCanh.ToString("HH:mm dd/MM/yyyy")</dd>
+
+        <dt class="col-sm-4 font-weight-bold">Giá vé:</dt>
+        <dd class="col-sm-8 text-success font-weight-bold">@Model.GiaVe.ToString("N0") VNĐ</dd>
+
+        <dt class="col-sm-4 font-weight-bold">Máy bay:</dt>
+        <dd class="col-sm-8">@Model.MayBay?.TenHangHK</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" name="id" value="@Model.IDChuyenBay" />
+        <button type="submit" class="btn btn-danger mr-2">
+            🗑 Xác nhận xóa
+        </button>
+        <a asp-action="Index" class="btn btn-secondary">
+            ↩️ Quay lại
+        </a>
+    </form>
+</div>
+
+<style>
+    /* Tùy chỉnh nhỏ cho dl */
+    dt {
+        font-size: 1.05rem;
+        color: #555;
+    }
+
+    dd {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    .btn-danger {
+        min-width: 140px;
+    }
+</style>

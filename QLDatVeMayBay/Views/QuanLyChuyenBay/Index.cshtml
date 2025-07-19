@@ -5,34 +5,27 @@
     var totalPages = (int)ViewBag.TotalPages;
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
 <style>
     .flight-management {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 20px 15px;
+        background: #f8fafc;
+        color: #2c3e50;
         min-height: 100vh;
-        padding: 2rem 0;
     }
 
     .main-container {
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 20px;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        padding: 2rem;
+        max-width: 1200px;
         margin: 0 auto;
-        max-width: 1400px;
     }
 
+    /* Header Section */
     .header-section {
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        border-radius: 15px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        color: white;
-        position: relative;
-        overflow: hidden;
+        text-align: center;
+        margin-bottom: 30px;
     }
 
+<<<<<<< Updated upstream
     .header-section::before {
         content: '';
         position: absolute;
@@ -46,79 +39,85 @@
 
     
 
+=======
+>>>>>>> Stashed changes
     .header-title {
-        font-size: 2.5rem;
+        font-size: 2.6rem;
         font-weight: 700;
-        margin-bottom: 0.5rem;
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        color: #0d6efd;
+        margin-bottom: 8px;
     }
+
+        .header-title i {
+            margin-right: 10px;
+        }
 
     .header-subtitle {
-        font-size: 1.1rem;
-        opacity: 0.9;
-        margin-bottom: 0;
+        font-size: 1.15rem;
+        color: #6c757d;
     }
 
+    /* Stats Cards */
     .stats-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-        margin-bottom: 2rem;
+        display: flex;
+        gap: 25px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
     }
 
     .stat-card {
         background: white;
-        border-radius: 15px;
-        padding: 1.5rem;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+        border-radius: 16px;
+        padding: 25px 30px;
+        width: 180px;
         text-align: center;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+        cursor: default;
     }
 
+<<<<<<< Updated upstream
     .stat-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     }
+=======
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+        }
+>>>>>>> Stashed changes
 
     .stat-icon {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        display: block;
+        font-size: 2.8rem;
+        margin-bottom: 15px;
     }
 
     .stat-number {
-        font-size: 2rem;
+        font-size: 2.4rem;
         font-weight: 700;
-        margin-bottom: 0.5rem;
-        color: #2c3e50;
+        color: #34495e;
     }
 
     .stat-label {
+        font-size: 1rem;
         color: #7f8c8d;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
+        margin-top: 5px;
     }
 
-    .filter-section {
-        background: white;
-        border-radius: 15px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    .filter-title {
-        font-size: 1.3rem;
+    /* Alert Messages */
+    .alert-modern {
+        border-radius: 12px;
         font-weight: 600;
-        margin-bottom: 1.5rem;
-        color: #2c3e50;
+        font-size: 1rem;
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 12px;
+        padding: 14px 20px;
     }
 
+<<<<<<< Updated upstream
     .form-floating {
         margin-bottom: 1rem;
     }
@@ -138,13 +137,20 @@
         box-shadow: 0 0 0 0.2rem rgba(79, 172, 254, 0.25);
     }
 
+=======
+        .alert-modern i {
+            font-size: 1.4rem;
+        }
+
+    /* Buttons */
+>>>>>>> Stashed changes
     .btn-modern {
-        padding: 0.75rem 2rem;
-        border-radius: 50px;
+        border-radius: 30px;
+        padding: 10px 25px;
         font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
+        font-size: 1rem;
         transition: all 0.3s ease;
+<<<<<<< Updated upstream
         border: none;
         position: relative;
         overflow: hidden;
@@ -168,32 +174,84 @@
     .btn-primary-modern {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
+=======
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+>>>>>>> Stashed changes
     }
 
     .btn-success-modern {
-        background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+        background: #28a745;
         color: white;
+        border: none;
     }
+
+        .btn-success-modern:hover {
+            background: #218838;
+            box-shadow: 0 6px 15px rgba(40,167,69,0.5);
+        }
+
+    .btn-primary-modern {
+        background: #0d6efd;
+        color: white;
+        border: none;
+    }
+
+        .btn-primary-modern:hover {
+            background: #0b5ed7;
+            box-shadow: 0 6px 15px rgba(13,110,253,0.5);
+        }
 
     .btn-secondary-modern {
-        background: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%);
+        background: #6c757d;
         color: white;
+        border: none;
     }
 
+        .btn-secondary-modern:hover {
+            background: #5a6268;
+            box-shadow: 0 6px 15px rgba(108,117,125,0.5);
+        }
+
+    /* Filter Section */
+    .filter-section {
+        background: white;
+        padding: 25px 30px;
+        border-radius: 20px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+        margin-bottom: 35px;
+    }
+
+    .filter-title {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #0d6efd;
+    }
+
+    .form-floating > select.form-select {
+        border-radius: 12px;
+        height: 45px;
+        font-size: 1rem;
+        padding: 8px 12px;
+    }
+
+    /* Table Section */
     .table-section {
         background: white;
-        border-radius: 15px;
-        padding: 2rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        margin-bottom: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        padding: 20px;
     }
 
     .table-modern {
-        margin-bottom: 0;
+        width: 100%;
         border-collapse: separate;
-        border-spacing: 0;
+        border-spacing: 0 10px;
     }
 
+<<<<<<< Updated upstream
     .table-modern thead th {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
@@ -368,41 +426,69 @@
         height: 100%;
         background: currentColor;
     }
+=======
+        .table-modern thead tr th {
+            background: #0d6efd;
+            color: white;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 14px 18px;
+            border-radius: 12px 12px 0 0;
+            text-align: center;
+        }
+
+        .table-modern tbody tr {
+            background: #f1f5fb;
+            border-radius: 12px;
+            transition: background-color 0.25s ease;
+        }
+
+            .table-modern tbody tr:hover {
+                background-color: #dbe9ff;
+            }
+
+            .table-modern tbody tr td {
+                padding: 14px 18px;
+                vertical-align: middle;
+                text-align: center;
+                font-weight: 600;
+                color: #34495e;
+            }
+>>>>>>> Stashed changes
 
     .flight-route {
         display: flex;
         align-items: center;
-        gap: 1rem;
-    }
-
-    .airport-code {
-        font-weight: 700;
-        font-size: 1.1rem;
-        color: #2c3e50;
-    }
-
-    .flight-arrow {
-        color: #4facfe;
-        font-size: 1.5rem;
-    }
-
-    .price-display {
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: #e74c3c;
-    }
-
-    .time-display {
+        justify-content: center;
+        gap: 12px;
         font-weight: 600;
         color: #2c3e50;
     }
 
-    .time-label {
-        font-size: 0.8rem;
-        color: #7f8c8d;
-        display: block;
+    .airport-code {
+        font-size: 1.1rem;
+        font-weight: 700;
     }
 
+    .flight-arrow {
+        font-size: 1.2rem;
+        color: #0d6efd;
+    }
+
+    .time-display {
+        font-weight: 600;
+        color: #34495e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .time-label {
+        font-size: 0.85rem;
+        color: #7f8c8d;
+    }
+
+<<<<<<< Updated upstream
     
 
         .header-title {
@@ -417,8 +503,250 @@
             border-radius: 15px;
             overflow: hidden;
         }
+=======
+    .price-display {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #198754;
     }
+
+    /* Status Badges */
+    .status-badge {
+        padding: 6px 14px;
+        border-radius: 25px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        color: white;
+        display: inline-block;
+    }
+
+    .status-active {
+        background-color: #0d6efd;
+    }
+
+    .status-delayed {
+        background-color: #f0ad4e;
+>>>>>>> Stashed changes
+    }
+
+    .status-cancelled {
+        background-color: #dc3545;
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .btn-action {
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 1.3rem;
+        padding: 6px 10px;
+        border-radius: 12px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-info-action {
+        color: #0d6efd;
+    }
+
+        .btn-info-action:hover {
+            background-color: rgba(13,110,253,0.1);
+        }
+
+    .btn-warning-action {
+        color: #ffc107;
+    }
+
+        .btn-warning-action:hover {
+            background-color: rgba(255,193,7,0.2);
+        }
+
+    .btn-danger-action {
+        color: #dc3545;
+    }
+
+        .btn-danger-action:hover {
+            background-color: rgba(220,53,69,0.1);
+        }
+
+    /* Pagination */
+    .pagination-modern {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        padding-left: 0;
+        margin-top: 30px;
+    }
+
+        .pagination-modern .page-item {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .pagination-modern .page-link {
+            display: block;
+            padding: 8px 14px;
+            color: #0d6efd;
+            font-weight: 600;
+            border: 1.8px solid #0d6efd;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+            .pagination-modern .page-link:hover {
+                background-color: #0d6efd;
+                color: white;
+            }
+
+        .pagination-modern .active .page-link {
+            background-color: #0d6efd;
+            color: white;
+            pointer-events: none;
+        }
+
+    /* Chỉnh lại action buttons để có cả icon + chữ, dễ bấm */
+    .action-buttons a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        text-decoration: none;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .btn-info-action {
+        color: #0d6efd;
+        background-color: #e7f1ff;
+        border: 1.5px solid #0d6efd;
+    }
+
+        .btn-info-action:hover {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+    .btn-warning-action {
+        color: #856404;
+        background-color: #fff3cd;
+        border: 1.5px solid #ffc107;
+    }
+
+        .btn-warning-action:hover {
+            background-color: #ffc107;
+            color: #212529;
+        }
+
+    .btn-danger-action {
+        color: #dc3545;
+        background-color: #f8d7da;
+        border: 1.5px solid #dc3545;
+    }
+
+        .btn-danger-action:hover {
+            background-color: #dc3545;
+            color: white;
+        }
+
+    /* Table style: bo góc tròn chỉ ở header & footer nếu có */
+    .table-modern thead tr th {
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+    }
+
+    .table-modern tbody tr:first-child td:first-child {
+        border-top-left-radius: 12px;
+    }
+
+    .table-modern tbody tr:first-child td:last-child {
+        border-top-right-radius: 12px;
+    }
+
+    .table-modern tbody tr:last-child td:first-child {
+        border-bottom-left-radius: 12px;
+    }
+
+    .table-modern tbody tr:last-child td:last-child {
+        border-bottom-right-radius: 12px;
+    }
+
+    /* Bóng đổ bảng thêm phần nhẹ nhàng */
+    .table-section {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Hover nền bảng nhẹ nhàng hơn */
+    .table-modern tbody tr:hover {
+        background-color: #d6e4ff;
+    }
+
+    /* Pagination hiện đại hơn */
+    .pagination-modern .page-link {
+        padding: 10px 16px;
+        font-weight: 700;
+        border-width: 2px;
+        transition: all 0.25s ease;
+    }
+
+        .pagination-modern .page-link:hover {
+            background-color: #0d6efd;
+            color: white;
+            border-color: #0d6efd;
+            box-shadow: 0 4px 8px rgba(13, 110, 253, 0.3);
+        }
+
+    /* Pagination active */
+    .pagination-modern .active .page-link {
+        background-color: #0d6efd;
+        color: white;
+        pointer-events: none;
+        box-shadow: 0 6px 12px rgba(13, 110, 253, 0.5);
+    }
+
+    /* Font icon trong pagination đẹp hơn */
+    .pagination-modern .page-link i {
+        vertical-align: middle;
+    }
+
+    /* Ẩn các option value mặc định trong select cho sạch */
+    select.form-select option[value=""] {
+        color: #6c757d;
+    }
+
+    /* Tooltip hiển thị khi hover nút (title attribute) */
+    .action-buttons a[title]:hover::after {
+        content: attr(title);
+        position: absolute;
+        background: #0d6efd;
+        color: #fff;
+        padding: 4px 10px;
+        font-size: 0.8rem;
+        border-radius: 6px;
+        white-space: nowrap;
+        top: 120%;
+        left: 50%;
+        transform: translateX(-50%);
+        pointer-events: none;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+        z-index: 10;
+    }
+
+    
 </style>
+
 
 <div class="flight-management">
     <div class="main-container">
@@ -622,17 +950,18 @@
                                         <div class="action-buttons">
                                             <a asp-action="ChiTiet" asp-route-id="@flight.IDChuyenBay"
                                                class="btn-action btn-info-action" title="Xem chi tiết">
-                                                <i class="fas fa-eye"></i>
+                                                <i class="fas fa-eye"></i> <span class="btn-text">Xem chi tiết</span>
                                             </a>
                                             <a asp-action="Edit" asp-route-id="@flight.IDChuyenBay"
                                                class="btn-action btn-warning-action" title="Chỉnh sửa">
-                                                <i class="fas fa-edit"></i>
+                                                <i class="fas fa-edit"></i> <span class="btn-text">Chỉnh sửa</span>
                                             </a>
-                                            <a asp-action="Delete" asp-route-id="@flight.IDChuyenBay"
+                                            <a asp-action="DeleteXacNhan" asp-route-id="@flight.IDChuyenBay"
                                                class="btn-action btn-danger-action" title="Xóa">
-                                                <i class="fas fa-trash"></i>
+                                                <i class="fas fa-trash"></i> <span class="btn-text">Xóa</span>
                                             </a>
                                         </div>
+
                                     </td>
                                 </tr>
                             }

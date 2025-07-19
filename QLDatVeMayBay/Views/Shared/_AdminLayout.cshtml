@@ -1,5 +1,4 @@
 ﻿@{
-    Layout = null; // Tránh lồng layout
     var tenDangNhap = Context.Session.GetString("TenDangNhap");
     var vaiTro = Context.Session.GetString("VaiTro");
 }
@@ -14,20 +13,130 @@
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .partner-box {
+            width: 100px;
+            height: 70px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+            .partner-box:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+    </style>
+
 </head>
 <body>
     <div class="container py-3">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="text-success">🎛️ Quản trị hệ thống</h2>
+        <div class="d-flex justify-content-between align-items-center mb-4 px-3">
+            <!-- Logo bên trái -->
+            <div class="d-flex align-items-center">
+                <img src="~/NewFolder/logo-boolari.png" alt="BookAir Logo" style="height: 60px;" class="me-3" />
+                <h4 class="text-success m-0">Quản trị hệ thống</h4>
+            </div>
+
+            <!-- Thông tin người dùng bên phải -->
             @if (!string.IsNullOrEmpty(tenDangNhap))
             {
-                <div>
-                    👋 Xin chào: <strong>@tenDangNhap</strong> (@vaiTro) |
-                    <a href="/TaiKhoan/CaNhan" class="text-decoration-none">🔐 Tài khoản</a> |
-                    <a href="/TaiKhoan/DangXuat" class="text-danger text-decoration-none">🚪 Đăng xuất</a>
+                <style>
+                    .user-dropdown > a.btn {
+                        background: #fff;
+                        border: 1px solid #ddd;
+                        border-radius: 50px;
+                        padding: 0.375rem 1rem;
+                        box-shadow: 0 2px 8px rgb(0 0 0 / 0.05);
+                        transition: box-shadow 0.3s ease;
+                        color: #333;
+                        font-weight: 600;
+                        min-width: 140px;
+                    }
+
+                        .user-dropdown > a.btn:hover,
+                        .user-dropdown > a.btn:focus {
+                            box-shadow: 0 4px 12px rgb(0 0 0 / 0.15);
+                            color: #1a73e8;
+                            text-decoration: none;
+                        }
+
+                    .user-dropdown .avatar {
+                        width: 42px;
+                        height: 42px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                        box-shadow: 0 2px 6px rgb(0 0 0 / 0.15);
+                        border: 2px solid #eee;
+                        transition: border-color 0.3s ease;
+                    }
+
+                    .user-dropdown .dropdown-menu {
+                        min-width: 220px;
+                        border-radius: 12px;
+                        padding: 0.5rem 0;
+                        box-shadow: 0 8px 24px rgb(0 0 0 / 0.1);
+                    }
+
+                    .user-dropdown .dropdown-item {
+                        padding: 0.5rem 1.5rem;
+                        font-weight: 500;
+                        color: #444;
+                        transition: background-color 0.15s ease, color 0.15s ease;
+                    }
+
+                        .user-dropdown .dropdown-item i {
+                            width: 18px;
+                            text-align: center;
+                            margin-right: 0.8rem;
+                            font-size: 1.1rem;
+                        }
+
+                        .user-dropdown .dropdown-item:hover,
+                        .user-dropdown .dropdown-item:focus {
+                            background-color: #e7f1ff;
+                            color: #1a73e8;
+                            text-decoration: none;
+                        }
+
+                    .user-dropdown .dropdown-header {
+                        padding: 0.6rem 1.5rem;
+                        font-size: 0.85rem;
+                        font-weight: 700;
+                        letter-spacing: 1px;
+                        color: #888;
+                        border-bottom: 1px solid #eee;
+                        text-transform: uppercase;
+                    }
+
+                    .user-dropdown .dropdown-divider {
+                        margin: 0.3rem 0;
+                        border-color: #eee;
+                    }
+                </style>
+
+                <div class="dropdown user-dropdown">
+                    <a class="btn dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/images/admin-avatar.png" alt="avatar" class="avatar me-2" />
+                        <span>@tenDangNhap</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                        <li><h6 class="dropdown-header">👑 Quản trị viên</h6></li>
+                        <li><a class="dropdown-item" href="/Admin/Dashboard"><i class="fa-solid fa-chart-pie text-primary"></i> Quản lý hệ thống</a></li>
+                        <li><a class="dropdown-item" href="/NguoiDung/Index"><i class="fa-solid fa-users text-secondary"></i> Quản lý người dùng</a></li>
+                        <li><a class="dropdown-item" href="/VeMayBay/Index"><i class="fa-solid fa-ticket text-secondary"></i> Quản lý vé</a></li>
+                        <li><a class="dropdown-item" href="/QuanLyChuyenBay/Index"><i class="fa-solid fa-plane-departure text-secondary"></i> Quản lý chuyến bay</a></li>
+                        <li><a class="dropdown-item" href="/Admin/GuiThongBao"><i class="fa-solid fa-bullhorn text-info"></i> Gửi thông báo</a></li>
+                        <li><a class="dropdown-item" href="/ThongKe/Index"><i class="fa-solid fa-chart-line text-success"></i> Thống kê</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="/Admin/CaNhan"><i class="fa-solid fa-user text-dark"></i> Tài khoản cá nhân</a></li>
+                        <li><a class="dropdown-item" href="/Admin/DoiMatKhau"><i class="fa-solid fa-key text-dark"></i> Đổi mật khẩu</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item text-danger" href="/Admin/DangXuat"><i class="fa-solid fa-sign-out-alt"></i> Đăng xuất</a></li>
+                    </ul>
                 </div>
             }
+
         </div>
+
 
         <!-- Menu điều hướng -->
         <ul class="nav nav-tabs mb-4">
@@ -51,6 +160,99 @@
         @RenderBody()
 
         <footer class="text-center mt-5 border-top pt-3 text-muted small">
+            <div class="bg-white text-dark pt-2 pb-4">
+                <div class="container mt-n2">
+
+                    <!-- Logo -->
+                    <div class="text-center mb-4">
+                        <img src="~/NewFolder/logo-boolari.png" alt="BookAir Logo" style="height: 200px;">
+                    </div>
+
+                    <!-- Nội dung chính -->
+                    <div class="row text-start mb-5" style="font-size: 1.05rem;">
+                        <!-- Về QLĐặtVé -->
+                        <div class="col-md-3 mb-3">
+                            <h6 class="fw-bold">Về QLĐặtVé</h6>
+                            <ul class="list-unstyled">
+                                <li><a class="text-dark text-decoration-none" asp-controller="Home" asp-action="HuongDanDatCho">Cách đặt chỗ</a></li>
+                                <li><a class="text-dark text-decoration-none" asp-controller="Home" asp-action="LienHe">Liên hệ chúng tôi</a></li>
+                                <li><a class="text-dark text-decoration-none" asp-controller="ThongTin" asp-action="VeChungToi">Về chúng tôi</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Sản phẩm -->
+                        <div class="col-md-3 mb-3">
+                            <h6 class="fw-bold">Sản phẩm</h6>
+                            <ul class="list-unstyled">
+                                <li><a class="text-dark text-decoration-none" asp-controller="SanPham" asp-action="VeMayBay">Vé máy bay</a></li>
+                                <li><a class="text-dark text-decoration-none" asp-controller="SanPham" asp-action="KhachSan">Khách sạn</a></li>
+                                <li><a class="text-dark text-decoration-none" asp-controller="SanPham" asp-action="ChoThueXe">Cho thuê xe</a></li>
+                                <li><a class="text-dark text-decoration-none" asp-controller="SanPham" asp-action="VuiChoi">Hoạt động & Vui chơi</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Khác -->
+                        <div class="col-md-3 mb-3">
+                            <h6 class="fw-bold">Khác</h6>
+                            <ul class="list-unstyled">
+                                <li><a class="text-dark text-decoration-none" asp-controller="ThongTin" asp-action="ChinhSach">Chính sách quyền riêng tư</a></li>
+                                <li><a class="text-dark text-decoration-none" asp-controller="ThongTin" asp-action="DieuKhoan">Điều khoản & điều kiện</a></li>
+                                <li><a class="text-dark text-decoration-none" asp-controller="ThongTin" asp-action="DoiTac">Đăng ký đối tác</a></li>
+                                <li><a class="text-dark text-decoration-none" asp-controller="ThongTin" asp-action="BaoChi">Khu vực báo chí</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Theo dõi -->
+                        <div class="col-md-3 mb-3">
+                            <h6 class="fw-bold mb-3">Theo dõi chúng tôi</h6>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <i class="bi bi-facebook me-2 text-primary fs-5"></i>
+                                    <a href="https://facebook.com" target="_blank" class="text-decoration-none text-dark">Facebook</a>
+                                </li>
+                                <li class="mb-2">
+                                    <i class="bi bi-instagram me-2 text-danger fs-5"></i>
+                                    <a href="https://instagram.com" target="_blank" class="text-decoration-none text-dark">Instagram</a>
+                                </li>
+                                <li class="mb-2">
+                                    <i class="bi bi-youtube me-2 text-danger fs-5"></i>
+                                    <a href="https://youtube.com" target="_blank" class="text-decoration-none text-dark">YouTube</a>
+                                </li>
+                                <li class="mb-2">
+                                    <i class="bi bi-tiktok me-2 text-dark fs-5"></i>
+                                    <a href="https://tiktok.com" target="_blank" class="text-decoration-none text-dark">TikTok</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Đối tác thanh toán -->
+                    <div class="text-center mb-4">
+                        <h6 class="fw-bold mb-3" style="font-size: 1.2rem;">ĐỐI TÁC THANH TOÁN</h6>
+                        <div class="d-flex flex-wrap justify-content-center gap-4">
+                            @{
+                                string[] logos = {
+                                                        "acb.png", "agribank.jpg", "bidv.png", "hsbc.png", "mb.png",
+                                                        "momo.png", "scbank.png", "teckcombank.jpg", "tpbank.png",
+                                                        "vcb.png", "vietqr.png", "viettin.jpg", "vnpay.png"
+                                                        };
+                            }
+
+                            @foreach (var logo in logos)
+                            {
+                                <div class="partner-box bg-white rounded shadow-sm p-2 d-flex align-items-center justify-content-center">
+                                    <img src="~/NewFolder/@logo" alt="@logo" class="img-fluid" style="max-height: 60px;" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Footer cuối -->
+                    <hr class="border-dark" />
+                    
+
+                </div>
+            </div>
             &copy; @DateTime.Now.Year - Quản trị hệ thống đặt vé máy bay
         </footer>
     </div>

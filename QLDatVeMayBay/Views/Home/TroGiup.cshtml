@@ -1,0 +1,152 @@
+﻿@{
+    ViewData["Title"] = "Trung tâm Hỗ trợ";
+}
+
+<style>
+    .support-header {
+        background: linear-gradient(135deg, #1E90FF, #4facfe);
+        padding: 60px 20px;
+        border-radius: 20px;
+        text-align: center;
+        color: white;
+    }
+
+        .support-header h2 {
+            font-weight: 700;
+            font-size: 2.2rem;
+        }
+
+    .search-box input {
+        border-radius: 30px 0 0 30px;
+        border-right: none;
+    }
+
+    .search-box button {
+        border-radius: 0 30px 30px 0;
+        border-left: none;
+    }
+
+    .accordion-button::after {
+        transform: scale(1.2);
+    }
+
+    .accordion-button.collapsed {
+        background-color: #f8f9fa;
+        font-weight: 500;
+    }
+
+    .accordion-button:not(.collapsed) {
+        background-color: #e3f2fd;
+        font-weight: 600;
+    }
+
+    .accordion-body {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .section-title {
+        font-weight: 700;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 0.5rem;
+    }
+
+    .icon-title {
+        font-size: 1.2rem;
+        margin-right: 0.5rem;
+    }
+</style>
+
+<div class="container mt-4 mb-5">
+    <!-- Header -->
+    <div class="support-header shadow-sm mb-5">
+        <h2>Trung tâm Hỗ trợ QLĐặtVé</h2>
+        <p class="mb-3">Giải đáp tất cả thắc mắc của bạn, mọi lúc mọi nơi</p>
+        <div class="input-group w-75 mx-auto search-box shadow-sm">
+            <input type="text" class="form-control" placeholder="Tìm kiếm (VD: hoàn tiền, đổi vé...)">
+            <button class="btn btn-light px-4" type="button">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Chủ đề phổ biến -->
+        <div class="col-md-6">
+            <h5 class="text-danger section-title"><i class="bi bi-fire me-2 icon-title"></i>Chủ đề phổ biến</h5>
+            <div class="accordion" id="accordionChuDePhoBien">
+                @for (int i = 1; i <= 5; i++)
+                {
+                    string id = $"chuDe{i}";
+                    string title = i switch
+                    {
+                        1 => "✔️ Cách đổi lịch vé máy bay của tôi",
+                        2 => "✔️ Cách huỷ vé và hoàn tiền",
+                        3 => "✔️ Cách sửa hoặc đổi tên hành khách",
+                        4 => "✔️ Cách làm thủ tục trực tuyến",
+                        5 => "✔️ Lời hứa hoàn tiền",
+                        _ => ""
+                    };
+
+                    string body = i switch
+                    {
+                        1 => "Bạn có thể đổi lịch vé bằng cách vào \"Đặt chỗ của tôi\" và chọn vé cần đổi. Hệ thống sẽ hiển thị tùy chọn và phí đổi vé (nếu có).",
+                        2 => "Bạn có thể huỷ vé bằng cách chọn \"Hoàn tiền vé\" trong đơn đặt của mình. Quy trình hoàn tiền sẽ phụ thuộc vào chính sách của hãng bay và ngân hàng.",
+                        3 => "Liên hệ ngay bộ phận hỗ trợ để kiểm tra điều kiện sửa tên. Một số hãng thu phí đổi tên hoặc không cho phép nếu quá thời hạn.",
+                        4 => "Đăng nhập và truy cập mục “Check-in Online” trước 24 giờ bay để hoàn tất thủ tục. Nhận thẻ lên máy bay điện tử qua email.",
+                        5 => "Chúng tôi cam kết hoàn tiền đúng hạn và minh bạch. Bạn có thể kiểm tra tiến độ tại mục “Hoàn tiền của tôi”.",
+                        _ => ""
+                    };
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#@id">
+                                @title
+                            </button>
+                        </h2>
+                        <div id="@id" class="accordion-collapse collapse" data-bs-parent="#accordionChuDePhoBien">
+                            <div class="accordion-body">
+                                @body
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Phân loại sản phẩm -->
+        <div class="col-md-6">
+            <h5 class="text-primary section-title"><i class="bi bi-grid-3x3-gap-fill me-2 icon-title"></i>Phân loại theo sản phẩm</h5>
+            <div class="accordion" id="accordionSanPham">
+                @{
+                    var sanPham = new[]
+                    {
+                                new { Id = "sp1", Icon = "bi-info-circle-fill text-primary", Title = "Thông tin chung", Desc = "Thông tin về cách sử dụng nền tảng, chính sách chung, ứng dụng di động và tài khoản của bạn." },
+                                new { Id = "sp2", Icon = "bi-person-lock text-secondary", Title = "Tài khoản & bảo mật", Desc = "Bao gồm thay đổi mật khẩu, cập nhật thông tin cá nhân, bảo mật hai lớp, và khôi phục tài khoản." },
+                                new { Id = "sp3", Icon = "bi-airplane-fill text-primary", Title = "Vé máy bay", Desc = "Hướng dẫn đặt, đổi, hoàn vé, lựa chọn hãng bay, hành lý ký gửi và các vấn đề thường gặp." },
+                                new { Id = "sp4", Icon = "bi-building-fill text-success", Title = "Khách sạn", Desc = "Các chính sách hủy đặt phòng, thời gian nhận trả phòng, hoàn tiền và yêu cầu đặc biệt." },
+                                new { Id = "sp5", Icon = "bi-truck-front-fill text-info", Title = "Đưa đón sân bay", Desc = "Cách đặt xe đưa đón, thời gian đón trả khách, thông tin tài xế và theo dõi hành trình." },
+                                new { Id = "sp6", Icon = "bi-credit-card-fill text-danger", Title = "Thanh toán", Desc = "Hỗ trợ thanh toán qua thẻ ngân hàng, ví điện tử, chuyển khoản và các lỗi giao dịch thường gặp." },
+                                };
+                }
+
+                @foreach (var item in sanPham)
+                {
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#@item.Id">
+                                <i class="bi @item.Icon me-2"></i>@item.Title
+                            </button>
+                        </h2>
+                        <div id="@item.Id" class="accordion-collapse collapse" data-bs-parent="#accordionSanPham">
+                            <div class="accordion-body">
+                                @item.Desc
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

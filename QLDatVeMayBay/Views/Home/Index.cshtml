@@ -3,29 +3,196 @@
 
 @{
     ViewData["Title"] = "Tìm kiếm chuyến bay";
+    var ngayHienTai = DateTime.Now.ToString("yyyy-MM-dd");
 }
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-<div class="container mt-5">
-    <div class="bg-light p-5 rounded shadow-sm">
-        <h3 class="fw-bold text-primary mb-4">Tìm kiếm chuyến bay</h3>
+<style>
+    /* Body & font */
+    body {
+        background-image: url('/images/NenTimKiem1.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #2e3a59;
+        margin: 0;
+    }
 
+<<<<<<< Updated upstream
         <form asp-action="KetQuaTimKiem" method="post">
             <div class="row mb-3">
+=======
+    /* Main glass container */
+    .bg-light {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 1.02rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        padding: 3rem;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        position: relative;
+        overflow: hidden;
+    }
+
+        .bg-light::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        }
+
+        .bg-light:hover {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(25px) saturate(200%);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        }
+
+    /* Tiêu đề */
+    h3.fw-bold.text-primary {
+        color: #3b82f6;
+        font-weight: 700;
+        font-size: 2.25rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        letter-spacing: 0.04em;
+    }
+
+    /* Nhãn */
+    label {
+        font-weight: 600;
+        font-size: 1rem;
+        color: #334155;
+        margin-bottom: 0.4rem;
+    }
+
+    /* Radio */
+    input[type="radio"] {
+        accent-color: #3b82f6;
+        margin-right: 0.5rem;
+        cursor: pointer;
+    }
+
+    /* Glass input containers */
+    .form-control, .form-select {
+        border-radius: 1.25rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0.85rem 1.4rem;
+        font-size: 1rem;
+        color: #334155;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        position: relative;
+    }
+
+        .form-control:focus, .form-select:focus {
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15), 0 0 0 3px rgba(59, 130, 246, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            outline: none;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            transform: translateY(-1px);
+        }
+
+    /* Button */
+    .btn-primary {
+        background-color: #3b82f6;
+        border: none;
+        font-weight: 600;
+        border-radius: 1.5rem;
+        padding: 0.75rem 2rem;
+        font-size: 1.1rem;
+        box-shadow: 0 6px 16px rgba(59,130,246,0.35);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #2563eb;
+            box-shadow: 0 8px 20px rgba(37,99,235,0.5);
+        }
+
+    /* Table */
+    table.table-bordered {
+        border-color: #e2e8f0;
+        font-size: 0.95rem;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    }
+
+    thead.table-dark {
+        background-color: #3b82f6 !important;
+        color: white !important;
+    }
+
+    tbody tr:hover {
+        background-color: #f0f9ff;
+    }
+
+    /* Layout spacing */
+    .row.mb-3.align-items-center {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .text-end {
+        margin-top: 1.5rem;
+    }
+
+    /* Results section */
+    .mt-5 {
+        margin-top: 3rem !important;
+    }
+
+    h5.text-success {
+        color: #16a34a !important;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Radio button styling */
+    .col-md-3 label:not(:first-child) {
+        display: inline;
+        margin: 0 0.5rem 0 0.2rem;
+        font-weight: 500;
+        color: #64748b;
+    }
+
+    /* Submit button container */
+    .text-end {
+        margin-top: 1.5rem;
+    }
+
+</style>
+
+<div class="container mt-5">
+    <div class="bg-light ">
+        <h3 class="fw-bold text-primary">Tìm kiếm chuyến bay</h3>
+
+        <form asp-controller="ChuyenBay" asp-action="KetQuaTimKiem" method="post">
+            <div class="row mb-3 align-items-center">
+>>>>>>> Stashed changes
                 <div class="col-md-3">
                     <label>Loại vé</label><br />
-                    <input type="radio" name="LoaiVe" checked /> Một chiều
-                    <input type="radio" name="LoaiVe" class="ms-3" /> Khứ hồi
+                    <input type="radio" name="LoaiVe" value="MotChieu" checked /> Một chiều
+                    <input type="radio" name="LoaiVe" value="KhuHoi" class="ms-3" /> Khứ hồi
                 </div>
                 <div class="col-md-3">
                     <label>Hạng ghế</label>
-                    <select class="form-select">
+                    <select class="form-select" name="HangGhe">
                         <option>Phổ thông</option>
                         <option>Thương gia</option>
                         <option>Hạng nhất</option>
                     </select>
                 </div>
+<<<<<<< Updated upstream
                 <div class="col-md-6">
                     <label>Hành khách</label>
                     <div class="d-flex gap-2">
@@ -34,9 +201,11 @@
                         <input type="number" name="EmBe" min="0" placeholder="Em bé" class="form-control" />
                     </div>
                 </div>
+=======
+>>>>>>> Stashed changes
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-3 align-items-center">
                 <div class="col-md-4">
                     <label>Từ (Sân bay đi)</label>
                     @Html.DropDownListFor(m => m.SanBayDi, (SelectList)ViewBag.SanBayDi, "Chọn sân bay đi", new { @class = "form-select" })
@@ -47,12 +216,15 @@
                 </div>
                 <div class="col-md-2">
                     <label>Ngày đi</label>
-                    @Html.TextBoxFor(m => m.NgayDi, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    <input asp-for="NgayDi" class="form-control" type="date" value="@ngayHienTai" min="@ngayHienTai" />
                 </div>
+<<<<<<< Updated upstream
                 <div class="col-md-2">
                     <label>Ngày về</label>
                     <input type="date" class="form-control" disabled />
                 </div>
+=======
+>>>>>>> Stashed changes
             </div>
 
             <div class="text-end">

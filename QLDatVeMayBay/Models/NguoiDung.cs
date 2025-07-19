@@ -9,7 +9,6 @@ namespace QLDatVeMayBay.Models
         public int IDNguoiDung { get; set; }
 
         [Required]
-        [ForeignKey("TaiKhoan")]
         [StringLength(50)]
         public string TenDangNhap { get; set; } = string.Empty;
 
@@ -35,6 +34,7 @@ namespace QLDatVeMayBay.Models
         public string? CCCD { get; set; }
 
         // ✅ Navigation đến tài khoản
+        [ForeignKey("TenDangNhap")]
         public TaiKhoan? TaiKhoan { get; set; }
 
         // ✅ Navigation đến vé máy bay đã đặt
