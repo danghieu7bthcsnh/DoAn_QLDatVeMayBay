@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QLDatVeMayBay.Models;
+using QLDatVeMayBay.Models.Entities;
 
 namespace QLDatVeMayBay.Data
 {
@@ -23,6 +24,8 @@ namespace QLDatVeMayBay.Data
         public DbSet<VeMayBay> VeMayBay { get; set; }
         public DbSet<ThanhToan> ThanhToan { get; set; }
         public DbSet<MaXacNhan> MaXacNhan { get; set; }
+        public DbSet<TheThanhToan> TheThanhToan { get; set; }
+        public DbSet<HoanTien> HoanTien { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -95,6 +98,13 @@ namespace QLDatVeMayBay.Data
 
             modelBuilder.Entity<MaXacNhan>()
                 .HasKey(m => m.Id);
+
+            // 👉 Cấu hình quan hệ cho bảng TheThanhToan
+            modelBuilder.Entity<TheThanhToan>()
+                .HasOne(t => t.NguoiDung)
+                .WithMany()
+                .HasForeignKey(t => t.NguoiDungId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // Cấu hình kiểu decimal cho tránh bị cảnh báo
             modelBuilder.Entity<ChuyenBay>()

@@ -6,7 +6,6 @@ namespace QLDatVeMayBay.Models
     public class LoaiMayBay
     {
         [Key]
-        [StringLength(50)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int LoaiMayBayId { get; set; }
 
@@ -15,6 +14,7 @@ namespace QLDatVeMayBay.Models
 
         [StringLength(255)]
         public string? MoTa { get; set; }
-        public ICollection<MayBay> MayBays { get; set; }
+
+        public ICollection<MayBay> MayBays { get; set; } = new List<MayBay>();
     }
 }

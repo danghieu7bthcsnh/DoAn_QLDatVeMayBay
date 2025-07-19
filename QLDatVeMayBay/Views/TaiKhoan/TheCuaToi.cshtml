@@ -1,0 +1,127 @@
+﻿@model IEnumerable<QLDatVeMayBay.Models.Entities.TheThanhToan>
+@{
+    ViewData["Title"] = "Thẻ của tôi";
+}
+
+<div class="mb-3 d-flex gap-2">
+    <button class="btn btn-outline-primary" onclick="hienFormThe()" type="button">
+        <i class="bi bi-credit-card me-1"></i> Thêm thẻ ngân hàng
+    </button>
+    <button class="btn btn-outline-success" onclick="hienFormVi()" type="button">
+        <i class="bi bi-wallet2 me-1"></i> Thêm ví điện tử
+    </button>
+</div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">Bạn chưa thêm thẻ hoặc ví nào.</div>
+    }
+    else
+    {
+        <table class="table table-bordered table-hover shadow-sm">
+            <thead class="table-light">
+                <tr>
+                    <th>Họ tên</th>
+                    <th>Loại</th>
+                    <th>Số thẻ / Ví</th>
+                    <th>Ngày liên kết</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.NguoiDung?.HoTen</td>
+                        <td>@(item.Loai == LoaiTheLoaiVi.TheNganHang ? "Thẻ ngân hàng" : "Ví điện tử")</td>
+                        <td>@(item.Loai == LoaiTheLoaiVi.TheNganHang ? item.SoThe : item.TenVi)</td>
+                        <td>@item.NgayLienKet?.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Sửa</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Xoá</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+<div id="formThe" style="display: none;">
+    <form asp-action="CreateTheNganHang" asp-controller="TaiKhoan" method="post" asp-antiforgery="true">
+        <div class="bg-primary text-white p-2 fw-bold">
+            Thêm thẻ ngân hàng
+            <span onclick="anForm()" style="float:right; cursor:pointer;">×</span>
+        </div>
+        <div class="row g-3 p-3">
+            <div class="col-md-6">
+                <label>Số thẻ</label>
+                <input name="SoThe" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+                <label>Tên in trên thẻ</label>
+                <input name="TenTrenThe" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+                <label>Ngày hết hạn</label>
+                <input type="date" name="HieuLuc" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+                <label>CVV</label>
+                <input name="CVV" class="form-control" required />
+            </div>
+        </div>
+        <div class="px-3 pb-3">
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </div>
+    </form>
+</div>
+<div id="formVi" style="display: none;">
+    <form asp-action="CreateViDienTu" asp-controller="TaiKhoan" method="post" asp-antiforgery="true">
+        <div class="bg-success text-white p-2 fw-bold">
+            Thêm ví điện tử
+            <span onclick="anForm()" style="float:right; cursor:pointer;">×</span>
+        </div>
+        <div class="row g-3 p-3">
+            <div class="col-md-6">
+                <label>Tên ví</label>
+                <input name="TenVi" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+                <label>Email</label>
+                <input name="Email" type="email" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+                <label>Tên hiển thị</label>
+                <input name="TenHienThi" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+                <label>Số điện thoại</label>
+                <input name="SoDienThoai" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+                <label>Ngày liên kết</label>
+                <input type="date" name="NgayLienKet" class="form-control" required />
+            </div>
+        </div>
+        <div class="px-3 pb-3">
+            <button type="submit" class="btn btn-success">Lưu</button>
+        </div>
+    </form>
+</div>
+<script>
+    function hienFormThe() {
+        document.getElementById("formThe").style.display = "block";
+        document.getElementById("formVi").style.display = "none";
+    }
+
+    function hienFormVi() {
+        document.getElementById("formVi").style.display = "block";
+        document.getElementById("formThe").style.display = "none";
+    }
+
+    function anForm() {
+        document.getElementById("formThe").style.display = "none";
+        document.getElementById("formVi").style.display = "none";
+    }
+</script>
+

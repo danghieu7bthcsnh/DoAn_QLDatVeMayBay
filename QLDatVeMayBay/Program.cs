@@ -5,42 +5,26 @@ using QLDatVeMayBay.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ Cấu hình xác thực Cookie
+// ✅ Xác thực Cookie
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
         options.LoginPath = "/TaiKhoan/DangNhap";
         options.LogoutPath = "/TaiKhoan/DangXuat";
         options.AccessDeniedPath = "/TaiKhoan/AccessDenied";
+
     });
 
-// ✅ Cấu hình EF DbContext
+// ✅ DbContext
 builder.Services.AddDbContext<QLDatVeMayBayContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("QLDatVeMayBayContext")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AppDbContext")));
 
-// ✅ Cấu hình gửi email từ appsettings.json
+// ✅ Cấu hình gửi email
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddScoped<IEmailSender, EmailSender>();
-builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
-builder.Services.AddScoped<EmailService>(); // dùng trực tiếp
-
-// ✅ Cho phép dùng session
-builder.Services.AddSession(options =>
-{
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Hết hạn sau 30 phút không hoạt động
-    options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
-});
-
-// ✅ Cho phép inject HttpContextAccessor
-builder.Services.AddHttpContextAccessor();
-
-// ✅ Thêm MVC + Razor View
-builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<EmailService>();
-builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
-builder.Services.AddScoped<EmailService>(); // ← Dịch vụ gửi email
 
+// ✅ Session
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -48,13 +32,15 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+// ✅ HttpContextAccessor
+builder.Services.AddHttpContextAccessor();
+
+// ✅ Add MVC + Razor
+builder.Services.AddControllersWithViews();
+
 var app = builder.Build();
 
-app.UseSession(); // Đặt trước app.MapControllers() hoặc app.UseEndpoints()
-
-
-
-// ✅ Middleware lỗi
+// ✅ Middleware
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -63,22 +49,18 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 
-// ✅ Middleware xác thực và phân quyền
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseAuthentication();  // ← xác thực
+app.UseAuthorization();   // ← phân quyền
+app.UseSession();         // ← session
 
-// ✅ Bắt buộc: Middleware Session (sau UseRouting, trước MapRoutes)
-app.UseSession();
-
-// ✅ Định tuyến mặc định
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=TaiKhoan}/{action=DangNhap}/{id?}");
 
-// ✅ Tự động migrate CSDL (nếu cần)
+
+// ✅ Auto migrate nếu cần
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;

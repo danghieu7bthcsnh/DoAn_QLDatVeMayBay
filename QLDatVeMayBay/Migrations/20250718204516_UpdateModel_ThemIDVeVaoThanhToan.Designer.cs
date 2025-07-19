@@ -12,8 +12,8 @@ using QLDatVeMayBay.Data;
 namespace QLDatVeMayBay.Migrations
 {
     [DbContext(typeof(QLDatVeMayBayContext))]
-    [Migration("20250716092417_final")]
-    partial class final
+    [Migration("20250718204516_UpdateModel_ThemIDVeVaoThanhToan")]
+    partial class UpdateModel_ThemIDVeVaoThanhToan
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,6 +66,56 @@ namespace QLDatVeMayBay.Migrations
                     b.ToTable("ChuyenBay");
                 });
 
+            modelBuilder.Entity("QLDatVeMayBay.Models.Entities.TheThanhToan", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CVV")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmailLienKet")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HieuLuc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Loai")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("NgayLienKet")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("NguoiDungId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SoDienThoai")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SoThe")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenHienThi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenTrenThe")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenVi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TheThanhToanId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NguoiDungId");
+
+                    b.HasIndex("TheThanhToanId");
+
+                    b.ToTable("TheThanhToan");
+                });
+
             modelBuilder.Entity("QLDatVeMayBay.Models.GheNgoi", b =>
                 {
                     b.Property<int>("IDGhe")
@@ -94,11 +144,38 @@ namespace QLDatVeMayBay.Migrations
                     b.ToTable("GheNgoi");
                 });
 
+            modelBuilder.Entity("QLDatVeMayBay.Models.HoanTien", b =>
+                {
+                    b.Property<int>("IDHoanTien")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDHoanTien"));
+
+                    b.Property<int>("IDThanhToan")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LyDo")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime>("NgayHoanTien")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("SoTienHoan")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("IDHoanTien");
+
+                    b.HasIndex("IDThanhToan");
+
+                    b.ToTable("HoanTien");
+                });
+
             modelBuilder.Entity("QLDatVeMayBay.Models.LoaiMayBay", b =>
                 {
                     b.Property<int>("LoaiMayBayId")
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LoaiMayBayId"));
@@ -324,6 +401,9 @@ namespace QLDatVeMayBay.Migrations
                     b.Property<int?>("NguoiDungIDNguoiDung")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ThanhToanIDThanhToan")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("ThoiGianDat")
                         .HasColumnType("datetime2");
 
@@ -340,6 +420,8 @@ namespace QLDatVeMayBay.Migrations
                     b.HasIndex("IDNguoiDung");
 
                     b.HasIndex("NguoiDungIDNguoiDung");
+
+                    b.HasIndex("ThanhToanIDThanhToan");
 
                     b.ToTable("VeMayBay");
                 });
@@ -371,6 +453,21 @@ namespace QLDatVeMayBay.Migrations
                     b.Navigation("SanBayDiInfo");
                 });
 
+            modelBuilder.Entity("QLDatVeMayBay.Models.Entities.TheThanhToan", b =>
+                {
+                    b.HasOne("QLDatVeMayBay.Models.NguoiDung", "NguoiDung")
+                        .WithMany()
+                        .HasForeignKey("NguoiDungId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QLDatVeMayBay.Models.Entities.TheThanhToan", null)
+                        .WithMany("DanhSach")
+                        .HasForeignKey("TheThanhToanId");
+
+                    b.Navigation("NguoiDung");
+                });
+
             modelBuilder.Entity("QLDatVeMayBay.Models.GheNgoi", b =>
                 {
                     b.HasOne("QLDatVeMayBay.Models.ChuyenBay", "ChuyenBay")
@@ -380,6 +477,17 @@ namespace QLDatVeMayBay.Migrations
                         .IsRequired();
 
                     b.Navigation("ChuyenBay");
+                });
+
+            modelBuilder.Entity("QLDatVeMayBay.Models.HoanTien", b =>
+                {
+                    b.HasOne("QLDatVeMayBay.Models.ThanhToan", "ThanhToan")
+                        .WithMany()
+                        .HasForeignKey("IDThanhToan")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ThanhToan");
                 });
 
             modelBuilder.Entity("QLDatVeMayBay.Models.MayBay", b =>
@@ -443,11 +551,22 @@ namespace QLDatVeMayBay.Migrations
                         .WithMany("VeMayBays")
                         .HasForeignKey("NguoiDungIDNguoiDung");
 
+                    b.HasOne("QLDatVeMayBay.Models.ThanhToan", "ThanhToan")
+                        .WithMany()
+                        .HasForeignKey("ThanhToanIDThanhToan");
+
                     b.Navigation("ChuyenBay");
 
                     b.Navigation("Ghe");
 
                     b.Navigation("NguoiDung");
+
+                    b.Navigation("ThanhToan");
+                });
+
+            modelBuilder.Entity("QLDatVeMayBay.Models.Entities.TheThanhToan", b =>
+                {
+                    b.Navigation("DanhSach");
                 });
 
             modelBuilder.Entity("QLDatVeMayBay.Models.LoaiMayBay", b =>

@@ -12,10 +12,10 @@ namespace QLDatVeMayBay.Models
         [StringLength(100)]
         public string TenHangHK { get; set; } = string.Empty;
 
-        [Required]
-        [ForeignKey("LoaiMayBay")]
-        public int  LoaiMayBayId { get; set; }
+        // Foreign key - EF hiểu tự động
+        public int LoaiMayBayId { get; set; }
 
+        // Navigation property - nên để không nullable
         public LoaiMayBay? LoaiMayBay { get; set; }
     }
 }

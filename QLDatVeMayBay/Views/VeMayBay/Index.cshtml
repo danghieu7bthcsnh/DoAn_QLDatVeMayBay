@@ -90,13 +90,30 @@
                         <td>
                             <span class="badge
                                         @(ve.TrangThaiVe == "Đã thanh toán" ? "bg-success" :
-                                                                    ve.TrangThaiVe == "Chưa thanh toán" ? "bg-warning text-dark" : "bg-danger")">
-                                @ve.TrangThaiVe
-                            </span>
-                        </td>
-                        <td class="text-center">
-                            <a asp-action="ChiTiet" asp-route-id="@ve.IDVe" class="btn btn-sm btn-info" title="Xem chi tiết"><i class="bi bi-eye"></i></a>
-                            <a asp-action="Edit" asp-route-id="@ve.IDVe" class="btn btn-sm btn-warning" title="Chỉnh sửa"><i class="bi bi-pencil-square"></i></a>
+                                                                   ve.TrangThaiVe == "Chưa thanh toán" ? "bg-warning text-dark" : "bg-danger")">
+                        @ve.TrangThaiVe
+                    </span>
+                </td>
+                <td class="text-center">
+                    <a asp-action="ChiTiet" asp-route-id="@ve.IDVe" class="btn btn-sm btn-info" title="Xem chi tiết"><i class="bi bi-eye"></i></a>
+                    <a asp-action="Edit" asp-route-id="@ve.IDVe" class="btn btn-sm btn-warning" title="Chỉnh sửa"><i class="bi bi-pencil-square"></i></a>
+
+                            @* Nút huỷ *@
+                    @if (ve.TrangThaiVe != "Đã huỷ")
+                            {
+                                <form asp-action="HuyVe" asp-route-id="@ve.IDVe" method="post" class="d-inline huyve-form">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger btn-huyve" title="Hủy vé"
+                                            data-ten="@ve.NguoiDung?.HoTen"
+                                            data-chuyenbay="@ve.ChuyenBay?.IDChuyenBay">
+                                        <i class="bi bi-x-circle"></i> Hủy
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Đã huỷ</span>
+                            }
+
                             <button type="button" class="btn btn-sm btn-danger btn-xoa" title="Xoá vé"
                                     data-id="@ve.IDVe"
                                     data-ten="@ve.NguoiDung?.HoTen"
@@ -114,7 +131,6 @@
                                 </button>
                             </form>
                         </td>
-
                     </tr>
                 }
             }
@@ -155,12 +171,7 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script>
-    @if (TempData["Message"] != null)
-    {
-        <text>toastr.success("@TempData["Message"]");</text>
-    }
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     // Xử lý xác nhận xoá
@@ -187,19 +198,75 @@
         });
     });
 
-    // Hiển thị thông báo sau khi xoá
+    // Xác nhận huỷ vé
+    document.querySelectorAll(".btn-huyve").forEach(button => {
+        button.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const form = this.closest("form");
+            const ten = this.dataset.ten || "Người dùng";
+            const chuyenbay = this.dataset.chuyenbay || "N/A";
+
+            Swal.fire({
+                title: 'Xác nhận hủy vé?',
+                html: `Hủy vé của <strong>${ten}</strong> trên chuyến bay <strong>#${chuyenbay}</strong>.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: '💸 Hủy và hoàn tiền',
+                cancelButtonText: 'Huỷ bỏ'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
+
+    // Hiển thị thông báo
     @if (TempData["Message"] != null)
     {
-        <text>
-                    Swal.fire({
-                        toast: true,
-                        position: 'top-end',
-                        icon: 'success',
-                        title: '@TempData["Message"]',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true
-                    });
-        </text>
+            <text>
+            toastr.success("@TempData["Message"]");
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                title: '@TempData["Message"]',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            });
+            </text>
     }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    // Xác nhận hủy vé bằng SweetAlert
+    document.querySelectorAll(".btn-huyve").forEach(button => {
+        button.addEventListener("click", function (e) {
+            e.preventDefault(); // Ngăn không gửi form ngay
+
+            const form = this.closest("form");
+            const ten = this.dataset.ten || "Người dùng";
+            const chuyenbay = this.dataset.chuyenbay || "N/A";
+
+            Swal.fire({
+                title: 'Xác nhận hủy vé?',
+                html: `Hủy vé của <strong>${ten}</strong> trên chuyến bay <strong>#${chuyenbay}</strong>.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: '💸 Hủy và hoàn tiền',
+                cancelButtonText: 'Huỷ bỏ'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // Gửi form nếu xác nhận
+                }
+            });
+        });
+    });
 </script>

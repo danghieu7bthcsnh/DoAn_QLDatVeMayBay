@@ -5,7 +5,7 @@
 namespace QLDatVeMayBay.Migrations
 {
     /// <inheritdoc />
-    public partial class huyen : Migration
+    public partial class KhoiTao : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

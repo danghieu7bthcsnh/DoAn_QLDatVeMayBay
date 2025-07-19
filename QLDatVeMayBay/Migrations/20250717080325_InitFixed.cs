@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace QLDatVeMayBay.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class InitFixed : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,8 @@ namespace QLDatVeMayBay.Migrations
                 name: "LoaiMayBay",
                 columns: table => new
                 {
-                    LoaiMayBayId = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LoaiMayBayId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TongSoGhe = table.Column<int>(type: "int", nullable: false),
                     MoTa = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true)
                 },
@@ -60,7 +61,8 @@ namespace QLDatVeMayBay.Migrations
                     TenDangNhap = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     MatKhau = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     VaiTro = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    TrangThaiTK = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
+                    TrangThaiTK = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    NgayTao = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -74,7 +76,8 @@ namespace QLDatVeMayBay.Migrations
                     IDMayBay = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TenHangHK = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    LoaiMayBayId = table.Column<string>(type: "nvarchar(50)", nullable: false)
+                    LoaiMayBayId = table.Column<int>(type: "int", nullable: false),
+                    LoaiMayBayId1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -85,6 +88,11 @@ namespace QLDatVeMayBay.Migrations
                         principalTable: "LoaiMayBay",
                         principalColumn: "LoaiMayBayId",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_MayBay_LoaiMayBay_LoaiMayBayId1",
+                        column: x => x.LoaiMayBayId1,
+                        principalTable: "LoaiMayBay",
+                        principalColumn: "LoaiMayBayId");
                 });
 
             migrationBuilder.CreateTable(
@@ -97,7 +105,9 @@ namespace QLDatVeMayBay.Migrations
                     HoTen = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     SoDienThoai = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    GioiTinh = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true)
+                    GioiTinh = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    QuocTich = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    CCCD = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -178,7 +188,10 @@ namespace QLDatVeMayBay.Migrations
                     IDChuyenBay = table.Column<int>(type: "int", nullable: false),
                     IDGhe = table.Column<int>(type: "int", nullable: false),
                     ThoiGianDat = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TrangThaiVe = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                    TrangThaiVe = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    HangGhe = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LoaiVe = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NguoiDungIDNguoiDung = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -190,11 +203,22 @@ namespace QLDatVeMayBay.Migrations
                         principalColumn: "IDChuyenBay",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
+                        name: "FK_VeMayBay_GheNgoi_IDGhe",
+                        column: x => x.IDGhe,
+                        principalTable: "GheNgoi",
+                        principalColumn: "IDGhe",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_VeMayBay_NguoiDung_IDNguoiDung",
                         column: x => x.IDNguoiDung,
                         principalTable: "NguoiDung",
                         principalColumn: "IDNguoiDung",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_VeMayBay_NguoiDung_NguoiDungIDNguoiDung",
+                        column: x => x.NguoiDungIDNguoiDung,
+                        principalTable: "NguoiDung",
+                        principalColumn: "IDNguoiDung");
                 });
 
             migrationBuilder.CreateTable(
@@ -246,6 +270,11 @@ namespace QLDatVeMayBay.Migrations
                 column: "LoaiMayBayId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MayBay_LoaiMayBayId1",
+                table: "MayBay",
+                column: "LoaiMayBayId1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_NguoiDung_TenDangNhap",
                 table: "NguoiDung",
                 column: "TenDangNhap",
@@ -262,17 +291,24 @@ namespace QLDatVeMayBay.Migrations
                 column: "IDChuyenBay");
 
             migrationBuilder.CreateIndex(
+                name: "IX_VeMayBay_IDGhe",
+                table: "VeMayBay",
+                column: "IDGhe");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_VeMayBay_IDNguoiDung",
                 table: "VeMayBay",
                 column: "IDNguoiDung");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VeMayBay_NguoiDungIDNguoiDung",
+                table: "VeMayBay",
+                column: "NguoiDungIDNguoiDung");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "GheNgoi");
-
             migrationBuilder.DropTable(
                 name: "MaXacNhan");
 
@@ -283,19 +319,22 @@ namespace QLDatVeMayBay.Migrations
                 name: "VeMayBay");
 
             migrationBuilder.DropTable(
-                name: "ChuyenBay");
+                name: "GheNgoi");
 
             migrationBuilder.DropTable(
                 name: "NguoiDung");
+
+            migrationBuilder.DropTable(
+                name: "ChuyenBay");
+
+            migrationBuilder.DropTable(
+                name: "TaiKhoan");
 
             migrationBuilder.DropTable(
                 name: "MayBay");
 
             migrationBuilder.DropTable(
                 name: "SanBay");
-
-            migrationBuilder.DropTable(
-                name: "TaiKhoan");
 
             migrationBuilder.DropTable(
                 name: "LoaiMayBay");

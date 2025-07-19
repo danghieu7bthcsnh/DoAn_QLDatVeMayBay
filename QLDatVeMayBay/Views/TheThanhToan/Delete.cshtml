@@ -1,0 +1,27 @@
+﻿@model QLDatVeMayBay.Models.Entities.TheThanhToan
+
+@{
+    ViewData["Title"] = "Xoá thẻ thanh toán";
+}
+
+<h2>Bạn có chắc muốn xoá thẻ này?</h2>
+
+<div>
+    <h4>Thông tin:</h4>
+    <dl class="row">
+        <dt class="col-sm-3">Người dùng</dt>
+        <dd class="col-sm-9">@Model.NguoiDung?.HoTen</dd>
+
+        <dt class="col-sm-3">Loại</dt>
+        <dd class="col-sm-9">@Model.Loai</dd>
+
+        <dt class="col-sm-3">Số thẻ / Ví</dt>
+        <dd class="col-sm-9">@Model.SoThe ?? Model.TenVi</dd>
+    </dl>
+</div>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Xoá</button>
+    <a asp-action="Index" class="btn btn-secondary">Huỷ</a>
+</form>
