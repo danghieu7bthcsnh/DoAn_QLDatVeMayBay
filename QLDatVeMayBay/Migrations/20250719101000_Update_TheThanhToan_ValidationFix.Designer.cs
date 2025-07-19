@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QLDatVeMayBay.Data;
 
@@ -11,9 +12,11 @@ using QLDatVeMayBay.Data;
 namespace QLDatVeMayBay.Migrations
 {
     [DbContext(typeof(QLDatVeMayBayContext))]
-    partial class QLDatVeMayBayContextModelSnapshot : ModelSnapshot
+    [Migration("20250719101000_Update_TheThanhToan_ValidationFix")]
+    partial class Update_TheThanhToan_ValidationFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,8 +79,8 @@ namespace QLDatVeMayBay.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HieuLuc")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<int>("Loai")
                         .HasColumnType("int");

@@ -59,7 +59,6 @@ namespace QLDatVeMayBay.Controllers
         }
 
 
-
         [HttpPost]
         public async Task<IActionResult> CreateTheNganHang(string SoThe, string TenTrenThe, DateTime HieuLuc, string CVV)
         {
@@ -68,6 +67,25 @@ namespace QLDatVeMayBay.Controllers
 
             if (nguoiDung == null)
                 return RedirectToAction("DangNhap", "TaiKhoan");
+
+            // ✅ Kiểm tra thủ công
+            if (string.IsNullOrWhiteSpace(SoThe))
+                ModelState.AddModelError("SoThe", "Số thẻ không được để trống.");
+
+            if (string.IsNullOrWhiteSpace(TenTrenThe))
+                ModelState.AddModelError("TenTrenThe", "Tên trên thẻ không được để trống.");
+
+            if (string.IsNullOrWhiteSpace(CVV))
+                ModelState.AddModelError("CVV", "CVV không được để trống.");
+
+            if (HieuLuc == default)
+                ModelState.AddModelError("HieuLuc", "Hiệu lực không được để trống.");
+
+            if (!ModelState.IsValid)
+            {
+                TempData["Error"] = "Vui lòng nhập đầy đủ thông tin thẻ ngân hàng.";
+                return RedirectToAction(nameof(Index), new { showForm = "The" });
+            }
 
             var model = new TheThanhToan
             {
@@ -87,7 +105,7 @@ namespace QLDatVeMayBay.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
+
         [HttpPost]
         public async Task<IActionResult> CreateViDienTu(string TenVi, string EmailLienKet, string TenHienThi, string SoDienThoai, DateTime NgayLienKet)
         {
@@ -97,9 +115,27 @@ namespace QLDatVeMayBay.Controllers
             if (nguoiDung == null)
                 return RedirectToAction("DangNhap", "TaiKhoan");
 
-            // ✅ Nếu người dùng không chọn ngày, gán mặc định là hôm nay
-            if (NgayLienKet == default(DateTime))
-                NgayLienKet = DateTime.Today;
+            // ✅ Kiểm tra thủ công
+            if (string.IsNullOrWhiteSpace(TenVi))
+                ModelState.AddModelError("TenVi", "Tên ví không được để trống.");
+
+            if (string.IsNullOrWhiteSpace(EmailLienKet))
+                ModelState.AddModelError("EmailLienKet", "Email liên kết không được để trống.");
+
+            if (string.IsNullOrWhiteSpace(TenHienThi))
+                ModelState.AddModelError("TenHienThi", "Tên hiển thị không được để trống.");
+
+            if (string.IsNullOrWhiteSpace(SoDienThoai))
+                ModelState.AddModelError("SoDienThoai", "Số điện thoại không được để trống.");
+
+            if (NgayLienKet == default)
+                ModelState.AddModelError("NgayLienKet", "Ngày liên kết không được để trống.");
+
+            if (!ModelState.IsValid)
+            {
+                TempData["Error"] = "Vui lòng nhập đầy đủ thông tin ví điện tử.";
+                return RedirectToAction(nameof(Index), new { showForm = "Vi" });
+            }
 
             var model = new TheThanhToan
             {
@@ -118,6 +154,7 @@ namespace QLDatVeMayBay.Controllers
             TempData["Success"] = "Thêm ví điện tử thành công!";
             return RedirectToAction(nameof(Index));
         }
+
 
 
         public async Task<IActionResult> Edit(string id)

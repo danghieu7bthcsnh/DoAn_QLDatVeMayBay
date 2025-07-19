@@ -21,16 +21,17 @@ namespace QLDatVeMayBay.Models
         [StringLength(100)]
         public string Email { get; set; } = string.Empty;
 
+        [Required]
         [StringLength(20)]
         [Phone]
         public string? SoDienThoai { get; set; }
-
+        [Required]
         [StringLength(10)]
         public string? GioiTinh { get; set; }
-
+        [Required]
         [StringLength(50)]
         public string? QuocTich { get; set; }
-
+        [Required]
         [StringLength(20)]
         public string? CCCD { get; set; }
 
@@ -40,4 +41,5 @@ namespace QLDatVeMayBay.Models
         // ✅ Navigation đến vé máy bay đã đặt
         public List<VeMayBay> VeMayBays { get; set; } = new List<VeMayBay>();
     }
+
 }

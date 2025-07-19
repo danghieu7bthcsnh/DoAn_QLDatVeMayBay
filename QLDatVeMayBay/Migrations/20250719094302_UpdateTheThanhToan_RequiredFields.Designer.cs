@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QLDatVeMayBay.Data;
 
@@ -11,9 +12,11 @@ using QLDatVeMayBay.Data;
 namespace QLDatVeMayBay.Migrations
 {
     [DbContext(typeof(QLDatVeMayBayContext))]
-    partial class QLDatVeMayBayContextModelSnapshot : ModelSnapshot
+    [Migration("20250719094302_UpdateTheThanhToan_RequiredFields")]
+    partial class UpdateTheThanhToan_RequiredFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,40 +72,48 @@ namespace QLDatVeMayBay.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CVV")
+                        .IsRequired()
                         .HasMaxLength(4)
                         .HasColumnType("nvarchar(4)");
 
                     b.Property<string>("EmailLienKet")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HieuLuc")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<int>("Loai")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("NgayLienKet")
+                    b.Property<DateTime>("NgayLienKet")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("NguoiDungId")
                         .HasColumnType("int");
 
                     b.Property<string>("SoDienThoai")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SoThe")
+                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("TenHienThi")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenTrenThe")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("TenVi")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
