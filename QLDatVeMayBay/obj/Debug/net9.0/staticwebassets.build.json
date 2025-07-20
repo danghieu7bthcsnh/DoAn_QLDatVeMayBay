@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DRzkNnQr2zPZIM1e6Qi8G5XNXehsFT6Qt3VMExUlxNU=",
+  "Hash": "MHRS4PS9Ul355Cr599dV/5pnpmxpxVtpROc+NYUUtQ0=",
   "Source": "QLDatVeMayBay",
   "BasePath": "_content/QLDatVeMayBay",
   "Mode": "Default",
@@ -1443,27 +1443,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
-    },
-    {
-      "Identity": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\images\\admin-avatar.png",
-      "SourceId": "QLDatVeMayBay",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\",
-      "BasePath": "_content/QLDatVeMayBay",
-      "RelativePath": "images/admin-avatar#[.{fingerprint}]?.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "wh2bmny98j",
-      "Integrity": "nCwbe2S8RcT+KUdI4KL8yyvkLjwSSi9lMMpAHp+X56c=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\admin-avatar.png"
     },
     {
       "Identity": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\images\\NenTimKiem.jpg",
@@ -3719,88 +3698,6 @@
         {
           "Name": "integrity",
           "Value": "sha256-jcY0RXFOlcp4VNTCcYQtWVZZBlr+ZY+AOv6/0S5dnF8="
-        }
-      ]
-    },
-    {
-      "Route": "images/admin-avatar.png",
-      "AssetFile": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\images\\admin-avatar.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "5957437"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"nCwbe2S8RcT+KUdI4KL8yyvkLjwSSi9lMMpAHp+X56c=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 10:42:52 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-nCwbe2S8RcT+KUdI4KL8yyvkLjwSSi9lMMpAHp+X56c="
-        }
-      ]
-    },
-    {
-      "Route": "images/admin-avatar.wh2bmny98j.png",
-      "AssetFile": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\images\\admin-avatar.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "5957437"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"nCwbe2S8RcT+KUdI4KL8yyvkLjwSSi9lMMpAHp+X56c=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 10:42:52 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "wh2bmny98j"
-        },
-        {
-          "Name": "label",
-          "Value": "images/admin-avatar.png"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-nCwbe2S8RcT+KUdI4KL8yyvkLjwSSi9lMMpAHp+X56c="
         }
       ]
     },
@@ -23267,7 +23164,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -23320,7 +23217,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -23357,7 +23254,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -23404,7 +23301,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -23465,7 +23362,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -23510,7 +23407,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -23565,7 +23462,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -23626,7 +23523,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -23671,7 +23568,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -23726,7 +23623,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -23779,7 +23676,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -23816,7 +23713,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         },
         {
           "Name": "Cache-Control",

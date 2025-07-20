@@ -1273,7 +1273,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         },
         {
           "Name": "Vary",
@@ -1322,7 +1322,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         }
       ],
       "EndpointProperties": [
@@ -1371,7 +1371,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         },
         {
           "Name": "Vary",
@@ -1434,7 +1434,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         },
         {
           "Name": "Vary",
@@ -1475,7 +1475,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         }
       ],
       "EndpointProperties": [
@@ -1516,7 +1516,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 11:48:52 GMT"
+          "Value": "Sun, 20 Jul 2025 15:12:43 GMT"
         },
         {
           "Name": "Vary",
@@ -2369,88 +2369,6 @@
         {
           "Name": "label",
           "Value": "images/NenTimKiem2.jpg"
-        }
-      ]
-    },
-    {
-      "Route": "images/admin-avatar.png",
-      "AssetFile": "images/admin-avatar.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "5957437"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"nCwbe2S8RcT+KUdI4KL8yyvkLjwSSi9lMMpAHp+X56c=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 10:42:52 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-nCwbe2S8RcT+KUdI4KL8yyvkLjwSSi9lMMpAHp+X56c="
-        }
-      ]
-    },
-    {
-      "Route": "images/admin-avatar.wh2bmny98j.png",
-      "AssetFile": "images/admin-avatar.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "5957437"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"nCwbe2S8RcT+KUdI4KL8yyvkLjwSSi9lMMpAHp+X56c=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 20 Jul 2025 10:42:52 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "wh2bmny98j"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-nCwbe2S8RcT+KUdI4KL8yyvkLjwSSi9lMMpAHp+X56c="
-        },
-        {
-          "Name": "label",
-          "Value": "images/admin-avatar.png"
         }
       ]
     },

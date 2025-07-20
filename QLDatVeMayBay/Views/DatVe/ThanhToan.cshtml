@@ -6,67 +6,71 @@
 <div class="container mt-4">
     <h2 class="text-info">Thông tin thanh toán</h2>
 
-    @* Hiển thị lỗi tổng quát *@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     <form method="post" asp-action="ThanhToan">
-        @* Phương thức thanh toán *@
+
+        <!-- Dropdown chọn thẻ hoặc ví -->
         <div class="mb-3">
-            <label asp-for="PhuongThuc" class="form-label">Phương thức thanh toán</label>
-            <select asp-for="PhuongThuc" class="form-select" required>
-                <option value="">-- Chọn phương thức --</option>
-                <option>Ngân hàng</option>
-                <option>Ví điện tử</option>
+            <label class="form-label">Chọn thẻ/ví đã lưu</label>
+            <select name="SelectedTheId" class="form-select" id="chonThe" required>
+                <option disabled selected value="">-- Chọn thẻ hoặc ví --</option>
+                @foreach (var the in Model.DanhSachThe ?? new List<QLDatVeMayBay.Models.Entities.TheThanhToan>())
+                {
+                    <option value="@the.Id">
+                        @(the.Loai == QLDatVeMayBay.Models.Entities.LoaiTheLoaiVi.TheNganHang
+                            ? $"Thẻ: {the.SoThe} - {the.TenTrenThe}"
+                            : $"Ví: {the.TenVi} - {the.EmailLienKet}")
+                    </option>
+                }
             </select>
-            <span asp-validation-for="PhuongThuc" class="text-danger"></span>
         </div>
 
-        @* Tên ngân hàng *@
+        <!-- Tự động điền thông tin -->
         <div class="mb-3">
-            <label asp-for="TenNganHang" class="form-label">Ngân hàng</label>
-            <select asp-for="TenNganHang" class="form-control" required>
-                <option value="">-- Chọn ngân hàng --</option>
-                <option>Vietcombank</option>
-                <option>VietinBank</option>
-                <option>Techcombank</option>
-                <option>MB Bank</option>
-                <option>ACB</option>
-                <option>Sacombank</option>
-            </select>
-            <span asp-validation-for="TenNganHang" class="text-danger"></span>
+            <label class="form-label">Số tài khoản / Số ví</label>
+            <input type="text" id="soTaiKhoan" class="form-control" readonly />
         </div>
 
-        @* Số tài khoản *@
         <div class="mb-3">
-            <label asp-for="SoTaiKhoan" class="form-label">Số tài khoản / Số ví</label>
-            <input asp-for="SoTaiKhoan" class="form-control" required />
-            <span asp-validation-for="SoTaiKhoan" class="text-danger"></span>
+            <label class="form-label">Chủ tài khoản</label>
+            <input type="text" id="chuTaiKhoan" class="form-control" readonly />
         </div>
 
-        @* Chủ tài khoản *@
-        <div class="mb-3">
-            <label asp-for="ChuTaiKhoan" class="form-label">Chủ tài khoản</label>
-            <input asp-for="ChuTaiKhoan" class="form-control" required />
-            <span asp-validation-for="ChuTaiKhoan" class="text-danger"></span>
-        </div>
-
-        @* Số tiền thanh toán *@
+        <!-- Số tiền -->
         <div class="mb-3">
             <label class="form-label">Số tiền cần thanh toán</label>
             <input class="form-control" value="@Model.SoTien.ToString("N0") đ" readonly />
             <input type="hidden" asp-for="SoTien" />
         </div>
 
-        @* Giữ dữ liệu vé trong hidden fields *@
+        <!-- Hidden dữ liệu vé -->
         <input type="hidden" asp-for="Ve.IDNguoiDung" />
         <input type="hidden" asp-for="Ve.IDChuyenBay" />
         <input type="hidden" asp-for="Ve.IDGhe" />
         <input type="hidden" asp-for="Ve.ThoiGianDat" />
         <input type="hidden" asp-for="Ve.TrangThaiVe" />
+        <input type="hidden" asp-for="ChuTaiKhoan" id="hiddenChuTK" />
+        <input type="hidden" asp-for="SoTaiKhoan" id="hiddenSoTK" />
+        <input type="hidden" asp-for="SelectedTheId" />
 
         <button type="submit" class="btn btn-success">Xác thực thanh toán</button>
-        <!-- Nút quay lại -->
         <a class="btn btn-outline-secondary btn-back" href="javascript:history.back()">← Quay lại</a>
-
     </form>
 </div>
+
+<script>
+    document.getElementById("chonThe").addEventListener("change", function () {
+        const selectedId = this.value;
+
+        fetch(`/TheThanhToan/GetChiTietThe?id=${selectedId}`)
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("soTaiKhoan").value = data.soTaiKhoan || "";
+                document.getElementById("chuTaiKhoan").value = data.chuTaiKhoan || "";
+                document.getElementById("hiddenSoTK").value = data.soTaiKhoan || "";
+                document.getElementById("hiddenChuTK").value = data.chuTaiKhoan || "";
+                document.querySelector("input[name='SelectedTheId']").value = selectedId;
+            });
+    });
+</script>

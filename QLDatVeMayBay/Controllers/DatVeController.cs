@@ -6,6 +6,7 @@ using QLDatVeMayBay.Helper;
 using QLDatVeMayBay.Services;
 using System.Text.Json;
 using static System.Net.Mime.MediaTypeNames;
+using QLDatVeMayBay.Models.Entities;
 
 namespace QLDatVeMayBay.Controllers
 {
@@ -53,6 +54,11 @@ namespace QLDatVeMayBay.Controllers
             var sanBayDi = _context.SanBay.FirstOrDefault(x => x.IDSanBay == chuyenBay.SanBayDi);
             var sanBayDen = _context.SanBay.FirstOrDefault(x => x.IDSanBay == chuyenBay.SanBayDen);
 
+            // ✅ Lấy danh sách thẻ/ví đã lưu của người dùng
+            var danhSachThe = _context.TheThanhToan
+                .Where(t => t.NguoiDungId == idNguoiDung.Value)
+                .ToList();
+
             var thongTinVe = new ThongTinVe
             {
                 IDNguoiDung = nguoiDung.IDNguoiDung,
@@ -67,11 +73,15 @@ namespace QLDatVeMayBay.Controllers
                 TenSanBayDi = sanBayDi.TenSanBay,
                 TenSanBayDen = sanBayDen.TenSanBay,
                 IDGhe = idGhe.ToString(),
-                GiaVe = chuyenBay.GiaVe
+                GiaVe = chuyenBay.GiaVe,
+
+                // ✅ Gán danh sách thẻ vào ViewModel
+                DanhSachThe = danhSachThe
             };
 
             return View("XacNhanVe", thongTinVe);
         }
+
 
         [HttpGet]
         public IActionResult ThanhToan(int idChuyenBay, int idGhe)
@@ -96,7 +106,9 @@ namespace QLDatVeMayBay.Controllers
             }
             var chuyenBay = _context.ChuyenBay.Find(idChuyenBay);
             var giaVe = chuyenBay?.GiaVe ?? 0;
-
+            var danhSachThe = _context.TheThanhToan
+      .Where(t => t.NguoiDungId == idNguoiDung)
+      .ToList();
             var model = new ThongTinThanhToan
             {
                 Ve = new VeMayBay
@@ -107,7 +119,8 @@ namespace QLDatVeMayBay.Controllers
                     ThoiGianDat = DateTime.Now,
                     TrangThaiVe = "Chưa thanh toán"
                 },
-                SoTien = giaVe
+                SoTien = giaVe,
+                 DanhSachThe = danhSachThe
             };
 
             return View(model);
@@ -117,6 +130,7 @@ namespace QLDatVeMayBay.Controllers
         {
             var nguoiDung = await _context.NguoiDung.FindAsync(model.Ve.IDNguoiDung);
             if (nguoiDung == null) return NotFound();
+            model.Ve.TheThanhToanId = model.SelectedTheId;
 
             var otp = new Random().Next(100000, 999999).ToString();
             HttpContext.Session.SetString("OTP", otp);
@@ -149,6 +163,9 @@ namespace QLDatVeMayBay.Controllers
 
             // Gửi email HTML
             await _emailService.SendEmailAsync(nguoiDung.Email, "Xác nhận thanh toán vé máy bay", htmlEmail);
+            model.DanhSachThe = _context.TheThanhToan
+    .Where(t => t.NguoiDungId == model.Ve.IDNguoiDung)
+    .ToList();
 
             return View("NhapOTP", model);
         }
@@ -179,10 +196,11 @@ namespace QLDatVeMayBay.Controllers
             var fullModel = JsonSerializer.Deserialize<ThongTinThanhToan>(veData);
             var ve = fullModel.Ve;
             ve.TrangThaiVe = "Đã đặt";
-
+            ve.TheThanhToanId = fullModel.SelectedTheId;
             // Lưu vé vào DB
             _context.VeMayBay.Add(ve);
             await _context.SaveChangesAsync();
+           
 
             // Lưu thông tin thanh toán
             var thanhToan = new ThanhToan
@@ -209,6 +227,9 @@ namespace QLDatVeMayBay.Controllers
             {
                 return RedirectToAction("DangNhap", "NguoiDung");
             }
+            var the = await _context.TheThanhToan.FindAsync(fullModel.SelectedTheId);
+            string hinhThuc = the?.Loai == LoaiTheLoaiVi.TheNganHang ? "Thẻ ngân hàng" : "Ví điện tử";
+            string tenChu = the?.Loai == LoaiTheLoaiVi.TheNganHang ? the.TenNganHang : the.TenVi;
 
             // Tạo mã QR
             var qrText = $"""

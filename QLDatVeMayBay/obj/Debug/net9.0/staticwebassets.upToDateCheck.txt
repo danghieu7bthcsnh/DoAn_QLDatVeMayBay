@@ -62,7 +62,6 @@ C:\workspace\DoAn_QLDatVeMayBay\QLDatVeMayBay\wwwroot\lib\bootstrap\dist\css\boo
 C:\workspace\DoAn_QLDatVeMayBay\QLDatVeMayBay\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
-wwwroot\images\admin-avatar.png
 wwwroot\images\NenTimKiem.jpg
 wwwroot\images\NenTimKiem1.jpg
 wwwroot\images\NenTimKiem2.jpg

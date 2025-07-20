@@ -19,6 +19,7 @@ namespace QLDatVeMayBay.Models.Entities
         public LoaiTheLoaiVi Loai { get; set; }
 
         // 🎴 Thẻ ngân hàng (Loại = 0)
+        public string? TenNganHang { get; set; }
         [StringLength(20)]
         public string? SoThe { get; set; }
 

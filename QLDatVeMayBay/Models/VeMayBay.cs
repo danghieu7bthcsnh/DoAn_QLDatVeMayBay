@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using QLDatVeMayBay.Models.Entities;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QLDatVeMayBay.Models
@@ -17,6 +18,7 @@ namespace QLDatVeMayBay.Models
 
         [ForeignKey("IDChuyenBay")]
         public ChuyenBay? ChuyenBay { get; set; }
+
         [ForeignKey("IDGhe")]
         public GheNgoi? Ghe { get; set; }
 
@@ -24,8 +26,17 @@ namespace QLDatVeMayBay.Models
 
         [StringLength(50)]
         public string? TrangThaiVe { get; set; } = "Chưa thanh toán";
+
         public string? HangGhe { get; set; }
         public string? LoaiVe { get; set; }
+
+        // ✅ FIX: độ dài phải giống với TheThanhToan.Id (450)
+        [MaxLength(450)]
+        public string? TheThanhToanId { get; set; }
+
+        [ForeignKey("TheThanhToanId")]
+        public TheThanhToan? TheThanhToan { get; set; }
+
         public ThanhToan? ThanhToan { get; set; }
     }
 }

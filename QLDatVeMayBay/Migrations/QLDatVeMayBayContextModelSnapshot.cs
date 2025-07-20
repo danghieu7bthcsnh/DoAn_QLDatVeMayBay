@@ -98,6 +98,9 @@ namespace QLDatVeMayBay.Migrations
                     b.Property<string>("TenHienThi")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TenNganHang")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TenTrenThe")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -413,6 +416,10 @@ namespace QLDatVeMayBay.Migrations
                     b.Property<int?>("ThanhToanIDThanhToan")
                         .HasColumnType("int");
 
+                    b.Property<string>("TheThanhToanId")
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("ThoiGianDat")
                         .HasColumnType("datetime2");
 
@@ -431,6 +438,8 @@ namespace QLDatVeMayBay.Migrations
                     b.HasIndex("NguoiDungIDNguoiDung");
 
                     b.HasIndex("ThanhToanIDThanhToan");
+
+                    b.HasIndex("TheThanhToanId");
 
                     b.ToTable("VeMayBay");
                 });
@@ -564,6 +573,10 @@ namespace QLDatVeMayBay.Migrations
                         .WithMany()
                         .HasForeignKey("ThanhToanIDThanhToan");
 
+                    b.HasOne("QLDatVeMayBay.Models.Entities.TheThanhToan", "TheThanhToan")
+                        .WithMany()
+                        .HasForeignKey("TheThanhToanId");
+
                     b.Navigation("ChuyenBay");
 
                     b.Navigation("Ghe");
@@ -571,6 +584,8 @@ namespace QLDatVeMayBay.Migrations
                     b.Navigation("NguoiDung");
 
                     b.Navigation("ThanhToan");
+
+                    b.Navigation("TheThanhToan");
                 });
 
             modelBuilder.Entity("QLDatVeMayBay.Models.Entities.TheThanhToan", b =>

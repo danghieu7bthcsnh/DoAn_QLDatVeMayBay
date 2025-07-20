@@ -14,6 +14,9 @@ using MailKit.Security;
 using System.Net.Mail;
 using System.Net;
 using QLDatVeMayBay.Services;
+using Microsoft.AspNetCore.Authorization;
+using QLDatVeMayBay.Models.Entities;
+using QLDatVeMayBay.ViewModels.TaiKhoan;
 
 namespace QLDatVeMayBay.Controllers
 {
@@ -465,7 +468,105 @@ namespace QLDatVeMayBay.Controllers
             if (nguoiDung == null)
                 return RedirectToAction("DangNhap", "TaiKhoan");
 
-            return View(nguoiDung);
+            var vm = new ChinhSuaHoSoViewModel
+            {
+                IDNguoiDung = nguoiDung.IDNguoiDung,
+                HoTen = nguoiDung.HoTen,
+                Email = nguoiDung.Email,
+                SoDienThoai = nguoiDung.SoDienThoai,
+                GioiTinh = nguoiDung.GioiTinh,
+                QuocTich = nguoiDung.QuocTich,
+                CCCD = nguoiDung.CCCD
+            };
+
+            return View(vm);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CaNhan(ChinhSuaHoSoViewModel vm)
+        {
+            if (!ModelState.IsValid)
+                return View(vm);
+
+            var nguoiDung = await _context.NguoiDung.FirstOrDefaultAsync(n => n.IDNguoiDung == vm.IDNguoiDung);
+            if (nguoiDung == null)
+                return RedirectToAction("DangNhap");
+
+            nguoiDung.HoTen = vm.HoTen;
+            nguoiDung.Email = vm.Email;
+            nguoiDung.SoDienThoai = vm.SoDienThoai;
+            nguoiDung.GioiTinh = vm.GioiTinh;
+            nguoiDung.QuocTich = vm.QuocTich;
+            nguoiDung.CCCD = vm.CCCD;
+
+            _context.Update(nguoiDung);
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Cập nhật hồ sơ thành công!";
+            return RedirectToAction("CaNhan");
+        }
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> TheCuaToi()
+        {
+            var nguoiDungId = HttpContext.Session.GetInt32("IDNguoiDung");
+
+            if (nguoiDungId == null)
+                return RedirectToAction("DangNhap");
+
+            var danhSach = await _context.TheThanhToan
+                .Where(t => t.NguoiDungId == nguoiDungId)
+                .ToListAsync();
+
+            return View(danhSach);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateTheNganHang(TheThanhToan model)
+        {
+            var nguoiDungId = HttpContext.Session.GetInt32("IDNguoiDung");
+            if (nguoiDungId == null)
+                return RedirectToAction("DangNhap");
+
+            if (!ModelState.IsValid)
+                return RedirectToAction("TheCuaToi");
+
+            model.NguoiDungId = nguoiDungId.Value;
+            model.Loai = LoaiTheLoaiVi.TheNganHang;
+            model.NgayLienKet = DateTime.Now;
+
+            _context.TheThanhToan.Add(model);
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Đã thêm thẻ ngân hàng thành công!";
+            return RedirectToAction("TheCuaToi");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateViDienTu(TheThanhToan model)
+        {
+            var nguoiDungId = HttpContext.Session.GetInt32("IDNguoiDung");
+            if (nguoiDungId == null)
+                return RedirectToAction("DangNhap");
+
+            if (!ModelState.IsValid)
+                return RedirectToAction("TheCuaToi");
+
+            model.NguoiDungId = nguoiDungId.Value;
+            model.Loai = LoaiTheLoaiVi.ViDienTu;
+            model.NgayLienKet = model.NgayLienKet ?? DateTime.Now;
+
+            _context.TheThanhToan.Add(model);
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Đã thêm ví điện tử thành công!";
+            return RedirectToAction("TheCuaToi");
+        }
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
     }
 }

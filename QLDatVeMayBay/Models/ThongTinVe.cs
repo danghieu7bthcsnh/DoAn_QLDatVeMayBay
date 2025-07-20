@@ -1,4 +1,7 @@
-﻿namespace QLDatVeMayBay.Models
+﻿using QLDatVeMayBay.Models.Entities;
+using System.ComponentModel.DataAnnotations;
+
+namespace QLDatVeMayBay.Models
 {
     public class ThongTinVe
     {
@@ -20,6 +23,11 @@
         public string IDGhe { get; set; }
         public decimal GiaVe { get; set; }
         public string QRBase64 { get; set; } // chứa mã QR (Base64)
+        public List<TheThanhToan>? DanhSachThe { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng chọn thẻ hoặc ví.")]
+        public string? SelectedTheId { get; set; }
+
     }
 
 }

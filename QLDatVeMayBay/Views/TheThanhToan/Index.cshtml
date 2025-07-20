@@ -27,36 +27,90 @@
         <div class="card-header bg-primary text-white fw-bold">Thêm thẻ ngân hàng</div>
         <div class="card-body">
             <form method="post" asp-action="CreateTheNganHang">
-                <div class="mb-3">
-                    <label class="form-label">Số thẻ</label>
-                    <input asp-for="SoThe" class="form-control" required />
+                <input type="hidden" name="Loai" value="0" />
+                <!-- Dropdown Tên ngân hàng -->
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Tên ngân hàng</label>
+                    </div>
+                    <div class="col-md-8">
+                        <select asp-for="TenNganHang" name="TenNganHang" class="form-select" required>
+                            <option value="">-- Chọn ngân hàng --</option>
+                            <option>Vietcombank</option>
+                            <option>Techcombank</option>
+                            <option>MB Bank</option>
+                            <option>ACB</option>
+                            <option>TPBank</option>
+                            <option>VIB</option>
+                            <option>BIDV</option>
+                            <option>VPBank</option>
+                            <option>Sacombank</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Tên in trên thẻ</label>
-                    <input asp-for="TenTrenThe" class="form-control" required />
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Số thẻ</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input asp-for="SoThe" name="SoThe" class="form-control" required />
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Hiệu lực (MM/yyyy)</label>
-                    <input asp-for="HieuLuc" class="form-control" required />
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Tên in trên thẻ</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input asp-for="TenTrenThe" name="TenTrenThe" class="form-control" required />
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">CVV</label>
-                    <input asp-for="CVV" class="form-control" required />
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Hiệu lực (MM/yyyy)</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input asp-for="HieuLuc" name="HieuLuc" class="form-control" required />
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Lưu</button>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">CVV</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input asp-for="CVV" name="CVV" class="form-control" required />
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="bi bi-save2 me-1"></i> Lưu
+                </button>
             </form>
         </div>
     </div>
+
+
 
     <!-- 🔻 FORM: Thêm ví điện tử -->
     <div id="form-vi" class="card mx-auto mb-4 shadow-sm" style="max-width: 600px; display: none;">
         <div class="card-header bg-success text-white fw-bold">Thêm ví điện tử</div>
         <div class="card-body">
             <form method="post" asp-action="CreateViDienTu">
+                <!-- Dropdown Tên ví điện tử -->
                 <div class="mb-3">
                     <label class="form-label">Tên ví</label>
-                    <input asp-for="TenVi" class="form-control" required />
+                    <select asp-for="TenVi" name="TenVi" class="form-select" required>
+                        <option value="">-- Chọn ví điện tử --</option>
+                        <option>Momo</option>
+                        <option>ZaloPay</option>
+                        <option>VNPay</option>
+                        <option>ShopeePay</option>
+                        <option>Viettel Money</option>
+                    </select>
                 </div>
+
                 <div class="mb-3">
                     <label class="form-label">Email liên kết</label>
                     <input asp-for="EmailLienKet" class="form-control" required />
@@ -68,10 +122,6 @@
                 <div class="mb-3">
                     <label class="form-label">Số điện thoại</label>
                     <input asp-for="SoDienThoai" class="form-control" required />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Ngày liên kết</label>
-                    <input asp-for="NgayLienKet" type="date" class="form-control" required />
                 </div>
                 <button type="submit" class="btn btn-success w-100">Lưu</button>
             </form>
@@ -92,6 +142,8 @@
     else
     {
         <div class="row">
+        @using QLDatVeMayBay.Models.Entities
+
             @foreach (var item in Model.DanhSach)
             {
                 <div class="col-md-4 mb-4">
@@ -102,14 +154,17 @@
                                 <p><strong>Số thẻ:</strong> @item.SoThe</p>
                                 <p><strong>Tên in trên thẻ:</strong> @item.TenTrenThe</p>
                                 <p><strong>Hiệu lực:</strong> @item.HieuLuc</p>
+                                <p><strong>CVV:</strong> @item.CVV</p>
+                                <p><strong>Ngày liên kết:</strong> @item.NgayLienKet?.ToString("dd/MM/yyyy")</p>
                             }
-                            else
+                            else if (item.Loai == LoaiTheLoaiVi.ViDienTu)
                             {
                                 <p><strong>Tên ví:</strong> @item.TenVi</p>
-                                <p><strong>Email:</strong> @item.EmailLienKet</p>
+                                <p><strong>Email liên kết:</strong> @item.EmailLienKet</p>
                                 <p><strong>Số điện thoại:</strong> @item.SoDienThoai</p>
+                                <p><strong>Tên hiển thị:</strong> @item.TenHienThi</p>
+                                <p><strong>Ngày liên kết:</strong> @item.NgayLienKet?.ToString("dd/MM/yyyy")</p>
                             }
-                            <p><strong>Ngày liên kết:</strong> @item.NgayLienKet?.ToString("dd/MM/yyyy")</p>
                         </div>
                         <div class="card-footer d-flex justify-content-between">
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">
@@ -122,6 +177,7 @@
                     </div>
                 </div>
             }
+
         </div>
     }
 </div>

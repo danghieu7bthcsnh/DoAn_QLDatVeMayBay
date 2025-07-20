@@ -17,6 +17,9 @@ namespace QLDatVeMayBay.Models.ViewModels
         public LoaiTheLoaiVi? Loai { get; set; }
 
         // ---------- THẺ NGÂN HÀNG ----------
+        [RequiredIf("Loai", (int)LoaiTheLoaiVi.TheNganHang, ErrorMessage = "Tên ngân hàng là bắt buộc.")]
+        [StringLength(100)]
+        public string? TenNganHang { get; set; }
         [RequiredIf("Loai", (int)LoaiTheLoaiVi.TheNganHang, ErrorMessage = "Số thẻ là bắt buộc.")]
         public string? SoThe { get; set; }
 
@@ -30,6 +33,7 @@ namespace QLDatVeMayBay.Models.ViewModels
         public string? TenTrenThe { get; set; }
 
         // ---------- VÍ ĐIỆN TỬ ----------
+
         [RequiredIf("Loai", (int)LoaiTheLoaiVi.ViDienTu, ErrorMessage = "Tên ví là bắt buộc.")]
         public string? TenVi { get; set; }
 

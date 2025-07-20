@@ -1,0 +1,105 @@
+﻿@model List<QLDatVeMayBay.Models.ViewModels.ChuyenBayCuaToiViewModels>
+@{
+    ViewData["Title"] = "Chuyến bay của tôi";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning">Bạn chưa có chuyến bay nào.</div>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>Mã vé</th>
+                <th>Chuyến bay</th>
+                <th>Thời gian</th>
+                <th>Điểm đi</th>
+                <th>Điểm đến</th>
+                <th>Máy bay</th>
+                <th>Ghế</th>
+                <th>Loại vé</th>
+                <th>Thanh toán</th>
+                <th>Trạng thái</th>
+                <th>Hủy vé</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="text-center">
+                    <td>@item.IDVe</td>
+                    <td>@item.MaChuyenBay</td>
+                    <td>
+                        <div>@item.GioCatCanh.ToString("dd/MM/yyyy HH:mm")</div>
+                        <div class="text-muted">→ @item.GioHaCanh.ToString("HH:mm")</div>
+                    </td>
+                    <td>@item.SanBayDi</td>
+                    <td>@item.SanBayDen</td>
+                    <td>@item.TenMayBay</td>
+                    <td>@item.HangGhe</td>
+                    <td>@item.LoaiVe</td>
+                    <td>
+                        <div>@item.PhuongThucThanhToan</div>
+                        <span class="badge bg-success">@item.TrangThaiThanhToan</span>
+                    </td>
+                    <td>
+                        <span class="badge bg-info">@item.TrangThaiVe</span>
+                        <br />
+                        <small class="text-muted">@item.TinhTrangChuyenBay</small>
+                    </td>
+                    <td>
+                        @if (item.TrangThaiVe != "Đã hủy")
+                        {
+                            <button type="button" class="btn btn-danger btn-sm"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#huyModal"
+                                    data-id="@item.IDVe">
+                                Hủy vé
+                            </button>
+                        }
+                        else
+                        {
+                            <span class="text-muted">Đã hủy</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<!-- modal hien thi -->
+<div class="modal fade" id="huyModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-action="HuyVe">
+                <div class="modal-header">
+                    <h5 class="modal-title">Hủy vé</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="idVe">
+                    <label for="lyDo" class="form-label">Lý do hủy</label>
+                    <textarea name="lyDo" class="form-control" required></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Xác nhận</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- gan id vao modal -->
+<script>
+    const modal = document.getElementById('huyModal');
+    modal.addEventListener('show.bs.modal', function (e) {
+        const button = e.relatedTarget;
+        const idVe = button.getAttribute('data-id');
+        document.getElementById('idVe').value = idVe;
+    });
+</script>
+
+

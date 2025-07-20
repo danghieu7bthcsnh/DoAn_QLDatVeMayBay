@@ -1,97 +1,213 @@
-﻿@model QLDatVeMayBay.Models.TimKiemChuyenBay
-@using Microsoft.AspNetCore.Mvc.Rendering
+﻿@* @model QLDatVeMayBay.Models.TimKiemChuyenBay *@
+@* @using Microsoft.AspNetCore.Mvc.Rendering *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Tìm kiếm chuyến bay"; *@
+@* } *@
+
+@* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" /> *@
+
+@* <div class="container mt-5"> *@
+@*     <div class="bg-light p-5 rounded shadow-sm"> *@
+@*         <h3 class="fw-bold text-primary mb-4">Tìm kiếm chuyến bay</h3> *@
+
+@*         <form asp-action="KetQuaTimKiem" method="post"> *@
+@*             <div class="row mb-3"> *@
+@*                 <div class="col-md-3"> *@
+@*                     <label>Loại vé</label><br /> *@
+@*                     <input type="radio" name="LoaiVe" checked /> Một chiều *@
+@*                     <input type="radio" name="LoaiVe" class="ms-3" /> Khứ hồi *@
+@*                 </div> *@
+@*                 <div class="col-md-3"> *@
+@*                     <label>Hạng ghế</label> *@
+@*                     <select class="form-select"> *@
+@*                         <option>Phổ thông</option> *@
+@*                         <option>Thương gia</option> *@
+@*                         <option>Hạng nhất</option> *@
+@*                     </select> *@
+@*                 </div> *@
+@*                 <div class="col-md-6"> *@
+@*                     <label>Hành khách</label> *@
+@*                     <div class="d-flex gap-2"> *@
+@*                         <input type="number" name="NguoiLon" min="0" placeholder="Người lớn" class="form-control" /> *@
+@*                         <input type="number" name="TreEm" min="0" placeholder="Trẻ em" class="form-control" /> *@
+@*                         <input type="number" name="EmBe" min="0" placeholder="Em bé" class="form-control" /> *@
+@*                     </div> *@
+@*                 </div> *@
+@*             </div> *@
+
+@*             <div class="row mb-3"> *@
+@*                 <div class="col-md-4"> *@
+@*                     <label>Từ (Sân bay đi)</label> *@
+@*                     @Html.DropDownListFor(m => m.SanBayDi, (SelectList)ViewBag.SanBayDi, "Chọn sân bay đi", new { @class = "form-select" }) *@
+@*                 </div> *@
+@*                 <div class="col-md-4"> *@
+@*                     <label>Đến (Sân bay đến)</label> *@
+@*                     @Html.DropDownListFor(m => m.SanBayDen, (SelectList)ViewBag.SanBayDen, "Chọn sân bay đến", new { @class = "form-select" }) *@
+@*                 </div> *@
+@*                 <div class="col-md-2"> *@
+@*                     <label>Ngày đi</label> *@
+@*                     @Html.TextBoxFor(m => m.NgayDi, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" }) *@
+@*                 </div> *@
+@*                 <div class="col-md-2"> *@
+@*                     <label>Ngày về</label> *@
+@*                     <input type="date" class="form-control" disabled /> *@
+@*                 </div> *@
+@*             </div> *@
+
+@*             <div class="text-end"> *@
+@*                 <button type="submit" class="btn btn-primary">Tìm kiếm chuyến bay</button> *@
+@*             </div> *@
+@*         </form> *@
+
+@*         @if (ViewBag.KetQua != null) *@
+@*         { *@
+@*             <div class="mt-5"> *@
+@*                 <h5 class="text-success">Kết quả chuyến bay:</h5> *@
+@*                 <table class="table table-bordered"> *@
+@*                     <thead class="table-dark"> *@
+@*                         <tr> *@
+@*                             <th>Mã chuyến</th> *@
+@*                             <th>Hãng</th> *@
+@*                             <th>Đi</th> *@
+@*                             <th>Đến</th> *@
+@*                             <th>Giờ cất cánh</th> *@
+@*                             <th>Giờ hạ cánh</th> *@
+@*                             <th>Giá vé</th> *@
+@*                         </tr> *@
+@*                     </thead> *@
+@*                     <tbody> *@
+@*                         @foreach (var cb in ViewBag.KetQua) *@
+@*                         { *@
+@*                             <tr> *@
+@*                                 <td>@cb.IDChuyenBay</td> *@
+@*                                 <td>@cb.MayBay?.TenHangHK</td> *@
+@*                                 <td>@cb.SanBayDiInfo?.TenSanBay</td> *@
+@*                                 <td>@cb.SanBayDenInfo?.TenSanBay</td> *@
+@*                                 <td>@cb.GioCatCanh.ToString("dd/MM/yyyy HH:mm")</td> *@
+@*                                 <td>@cb.GioHaCanh.ToString("dd/MM/yyyy HH:mm")</td> *@
+@*                                 <td>@cb.GiaVe.ToString("N0") đ</td> *@
+@*                             </tr> *@
+@*                         } *@
+@*                     </tbody> *@
+@*                 </table> *@
+@*             </div> *@
+@*         } *@
+@*     </div> *@
+@* </div> *@
+@model QLDatVeMayBay.ViewModels.TaiKhoan.ChinhSuaHoSoViewModel
 
 @{
-    ViewData["Title"] = "Tìm kiếm chuyến bay";
+    ViewData["Title"] = "Chỉnh sửa hồ sơ";
 }
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<h3 class="mb-4 text-center text-primary fw-bold">Chỉnh sửa hồ sơ cá nhân</h3>
 
-<div class="container mt-5">
-    <div class="bg-light p-5 rounded shadow-sm">
-        <h3 class="fw-bold text-primary mb-4">Tìm kiếm chuyến bay</h3>
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@Html.Raw(TempData["Success"])</div>
+}
 
-        <form asp-action="KetQuaTimKiem" method="post">
-            <div class="row mb-3">
-                <div class="col-md-3">
-                    <label>Loại vé</label><br />
-                    <input type="radio" name="LoaiVe" checked /> Một chiều
-                    <input type="radio" name="LoaiVe" class="ms-3" /> Khứ hồi
-                </div>
-                <div class="col-md-3">
-                    <label>Hạng ghế</label>
-                    <select class="form-select">
-                        <option>Phổ thông</option>
-                        <option>Thương gia</option>
-                        <option>Hạng nhất</option>
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <label>Hành khách</label>
-                    <div class="d-flex gap-2">
-                        <input type="number" name="NguoiLon" min="0" placeholder="Người lớn" class="form-control" />
-                        <input type="number" name="TreEm" min="0" placeholder="Trẻ em" class="form-control" />
-                        <input type="number" name="EmBe" min="0" placeholder="Em bé" class="form-control" />
-                    </div>
-                </div>
-            </div>
+<form asp-action="CaNhan" method="post">
+    <input type="hidden" asp-for="IDNguoiDung" />
 
-            <div class="row mb-3">
-                <div class="col-md-4">
-                    <label>Từ (Sân bay đi)</label>
-                    @Html.DropDownListFor(m => m.SanBayDi, (SelectList)ViewBag.SanBayDi, "Chọn sân bay đi", new { @class = "form-select" })
-                </div>
-                <div class="col-md-4">
-                    <label>Đến (Sân bay đến)</label>
-                    @Html.DropDownListFor(m => m.SanBayDen, (SelectList)ViewBag.SanBayDen, "Chọn sân bay đến", new { @class = "form-select" })
-                </div>
-                <div class="col-md-2">
-                    <label>Ngày đi</label>
-                    @Html.TextBoxFor(m => m.NgayDi, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
-                </div>
-                <div class="col-md-2">
-                    <label>Ngày về</label>
-                    <input type="date" class="form-control" disabled />
-                </div>
-            </div>
-
-            <div class="text-end">
-                <button type="submit" class="btn btn-primary">Tìm kiếm chuyến bay</button>
-            </div>
-        </form>
-
-        @if (ViewBag.KetQua != null)
-        {
-            <div class="mt-5">
-                <h5 class="text-success">Kết quả chuyến bay:</h5>
-                <table class="table table-bordered">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Mã chuyến</th>
-                            <th>Hãng</th>
-                            <th>Đi</th>
-                            <th>Đến</th>
-                            <th>Giờ cất cánh</th>
-                            <th>Giờ hạ cánh</th>
-                            <th>Giá vé</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var cb in ViewBag.KetQua)
-                        {
-                            <tr>
-                                <td>@cb.IDChuyenBay</td>
-                                <td>@cb.MayBay?.TenHangHK</td>
-                                <td>@cb.SanBayDiInfo?.TenSanBay</td>
-                                <td>@cb.SanBayDenInfo?.TenSanBay</td>
-                                <td>@cb.GioCatCanh.ToString("dd/MM/yyyy HH:mm")</td>
-                                <td>@cb.GioHaCanh.ToString("dd/MM/yyyy HH:mm")</td>
-                                <td>@cb.GiaVe.ToString("N0") đ</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        }
+    <div class="mb-3">
+        <label asp-for="HoTen" class="form-label">Họ Tên</label>
+        <input asp-for="HoTen" class="form-control" />
+        <span asp-validation-for="HoTen" class="text-danger"></span>
     </div>
-</div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SoDienThoai" class="form-label">Số Điện Thoại</label>
+        <input asp-for="SoDienThoai" class="form-control" />
+        <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="GioiTinh" class="form-label">Giới Tính</label>
+        <select asp-for="GioiTinh" class="form-select">
+            <option value="">-- Chọn giới tính --</option>
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+            <option value="Khác">Khác</option>
+        </select>
+        <span asp-validation-for="GioiTinh" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="QuocTich" class="form-label">Quốc Tịch</label>
+        <input asp-for="QuocTich" class="form-control" />
+        <span asp-validation-for="QuocTich" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CCCD" class="form-label"></label>
+        <input asp-for="CCCD" class="form-control" />
+        <span asp-validation-for="CCCD" class="text-danger"></span>
+    </div>
+
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary px-4 py-2">Lưu thay đổi</button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <style>
+        form {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            max-width: 700px;
+            margin: 30px auto;
+        }
+
+        h3 {
+            text-align: center;
+            color: #0d6efd;
+            font-weight: bold;
+        }
+
+        label {
+            font-weight: 500;
+        }
+
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+            .form-control:focus, .form-select:focus {
+                border-color: #0d6efd;
+                box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.2);
+            }
+
+        .btn-primary {
+            padding: 10px 25px;
+            font-weight: 500;
+            border-radius: 8px;
+        }
+
+        .alert-success {
+            background-color: #d1e7dd;
+            border: 1px solid #badbcc;
+            border-radius: 8px;
+            padding: 15px;
+            color: #0f5132;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        span.text-danger {
+            font-size: 14px;
+        }
+    </style>
+}

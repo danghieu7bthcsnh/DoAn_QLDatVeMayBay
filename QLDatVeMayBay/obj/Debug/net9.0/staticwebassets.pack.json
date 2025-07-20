@@ -85,10 +85,6 @@
       "PackagePath": "staticwebassets\\images\\NenTimKiem2.jpg"
     },
     {
-      "Id": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\images\\admin-avatar.png",
-      "PackagePath": "staticwebassets\\images\\admin-avatar.png"
-    },
-    {
       "Id": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

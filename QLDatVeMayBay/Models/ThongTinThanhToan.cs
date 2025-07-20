@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using QLDatVeMayBay.Models.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace QLDatVeMayBay.Models
 {
@@ -21,6 +22,10 @@ namespace QLDatVeMayBay.Models
         public decimal SoTien { get; set; }
         public string MaOTP { get; set; }
         public ThanhToan ThanhToan { get; set; }
+        public List<TheThanhToan>? DanhSachThe { get; set; }
+        [Required(ErrorMessage = "Vui lòng chọn thẻ hoặc ví.")]
+        public string? SelectedTheId { get; set; }
+
 
     }
 }
