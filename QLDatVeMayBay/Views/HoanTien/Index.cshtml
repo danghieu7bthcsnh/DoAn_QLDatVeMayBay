@@ -1,0 +1,33 @@
+﻿@model IEnumerable<QLDatVeMayBay.Models.HoanTien>
+
+@{
+    ViewData["Title"] = "Danh sách hoàn tiền";
+}
+
+<h2 class="fw-bold mb-3">Danh sách hoàn tiền</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Mã thanh toán</th>
+            <th>Mã vé</th>
+            <th>Phương thức</th>
+            <th>Số tiền hoàn</th>
+            <th>Ngày hoàn</th>
+            <th>Lý do</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.IDThanhToan</td>
+                <td>@item.ThanhToan?.IDVe</td>
+                <td>@item.ThanhToan?.PhuongThuc</td>
+                <td>@item.SoTienHoan.ToString("N0") đ</td>
+                <td>@item.NgayHoanTien.ToString("dd/MM/yyyy")</td>
+                <td>@item.LyDo</td>
+            </tr>
+        }
+    </tbody>
+</table>

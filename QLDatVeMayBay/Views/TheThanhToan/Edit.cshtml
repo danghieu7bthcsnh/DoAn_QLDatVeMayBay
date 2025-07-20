@@ -1,0 +1,13 @@
+﻿@model QLDatVeMayBay.Models.ViewModels.TheThanhToanViewModel
+
+@{
+    ViewData["Title"] = "Sửa thẻ thanh toán";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    @Html.Partial("Create")  @* Tái sử dụng cùng form như Create *@
+</form>

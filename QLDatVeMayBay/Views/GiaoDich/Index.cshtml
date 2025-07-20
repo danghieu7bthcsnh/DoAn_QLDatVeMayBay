@@ -1,0 +1,100 @@
+﻿@model List<QLDatVeMayBay.ViewModels.GiaoDichViewModel>
+@{
+    ViewData["Title"] = "Danh sách giao dịch";
+}
+
+<h2 class="fw-title">@ViewData["Title"]</h2>
+
+<div class="card shadow-sm rounded-4">
+    <div class="card-body p-0">
+        <table class="table table-hover table-giaodich mb-0">
+            <thead class="table-dark text-nowrap">
+                <tr>
+                    <th class="text-center">Mã GD</th>
+                    <th>Họ tên</th>
+                    <th>Tên đăng nhập</th>
+                    <th class="text-center">Mã vé</th>
+                    <th>Phương thức</th>
+                    <th class="text-end">Số tiền</th>
+                    <th class="text-center">Thời gian</th>
+                    <th class="text-center">Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count == 0)
+                {
+                    <tr>
+                        <td colspan="8" class="text-center text-muted py-4">Không có giao dịch nào được tìm thấy.</td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var gd in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@gd.IDThanhToan</td>
+                            <td>@gd.HoTenNguoiDung</td>
+                            <td>@gd.TenDangNhap</td>
+                            <td class="text-center">@gd.IDVe</td>
+                            <td>@gd.PhuongThuc</td>
+                            <td class="sotien">@gd.SoTien.ToString("N0") đ</td>
+                            <td class="text-center">@gd.ThoiGianGiaoDich.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td class="text-center">
+                                <span class="badge-trangthai">Đã thanh toán</span>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ✅ CSS trực tiếp trong file -->
+<style>
+    .fw-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #007bff;
+        margin-bottom: 20px;
+    }
+
+    .table-giaodich {
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+        .table-giaodich th {
+            background-color: #1e1e2f;
+            color: #fff;
+            font-weight: 600;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .table-giaodich td {
+            vertical-align: middle;
+            text-align: center;
+            font-size: 14px;
+        }
+
+    .sotien {
+        color: #d50000;
+        font-weight: bold;
+        font-size: 15px;
+        text-align: right;
+        padding-right: 12px;
+    }
+
+    .badge-trangthai {
+        display: inline-block;
+        border-radius: 999px;
+        padding: 6px 14px;
+        font-size: 13px;
+        font-weight: 600;
+        background-color: #43a047;
+        color: white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+</style>

@@ -1,0 +1,171 @@
+﻿@model QLDatVeMayBay.Models.ViewModels.TheThanhToanViewModel
+@using QLDatVeMayBay.Models.Entities;
+@{
+    ViewData["Title"] = "Thẻ của tôi";
+}
+
+<div class="container mt-5 text-center">
+    <h2 class="fw-bold mb-4">@ViewData["Title"]</h2>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    <!-- 🔘 Nút chọn -->
+    <div class="d-flex justify-content-center gap-3 mb-4">
+        <button id="btn-show-the" class="btn btn-outline-primary px-4 py-2">
+            <i class="bi bi-credit-card-2-front me-1"></i> Thêm thẻ ngân hàng
+        </button>
+        <button id="btn-show-vi" class="btn btn-outline-success px-4 py-2">
+            <i class="bi bi-wallet2 me-1"></i> Thêm ví điện tử
+        </button>
+    </div>
+
+    <!-- 🔻 FORM: Thêm thẻ ngân hàng -->
+    <div id="form-the" class="card mx-auto mb-4 shadow-sm" style="max-width: 600px; display: none;">
+        <div class="card-header bg-primary text-white fw-bold">Thêm thẻ ngân hàng</div>
+        <div class="card-body">
+            <form method="post" asp-action="CreateTheNganHang">
+                <div class="mb-3">
+                    <label class="form-label">Số thẻ</label>
+                    <input asp-for="SoThe" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Tên in trên thẻ</label>
+                    <input asp-for="TenTrenThe" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Hiệu lực (MM/yyyy)</label>
+                    <input asp-for="HieuLuc" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">CVV</label>
+                    <input asp-for="CVV" class="form-control" required />
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Lưu</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 🔻 FORM: Thêm ví điện tử -->
+    <div id="form-vi" class="card mx-auto mb-4 shadow-sm" style="max-width: 600px; display: none;">
+        <div class="card-header bg-success text-white fw-bold">Thêm ví điện tử</div>
+        <div class="card-body">
+            <form method="post" asp-action="CreateViDienTu">
+                <div class="mb-3">
+                    <label class="form-label">Tên ví</label>
+                    <input asp-for="TenVi" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email liên kết</label>
+                    <input asp-for="EmailLienKet" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Tên hiển thị</label>
+                    <input asp-for="TenHienThi" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Số điện thoại</label>
+                    <input asp-for="SoDienThoai" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Ngày liên kết</label>
+                    <input asp-for="NgayLienKet" type="date" class="form-control" required />
+                </div>
+                <button type="submit" class="btn btn-success w-100">Lưu</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 📋 DANH SÁCH -->
+<div class="container-fluid px-5 mb-5">
+    <h4 class="fw-bold mb-3">Danh sách thẻ và ví</h4>
+
+    @if (!Model.DanhSach.Any())
+    {
+        <div class="alert alert-info text-center rounded-3 p-4 shadow-sm border">
+            Bạn chưa thêm thẻ hoặc ví nào.
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var item in Model.DanhSach)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            @if (item.Loai == LoaiTheLoaiVi.TheNganHang)
+                            {
+                                <p><strong>Số thẻ:</strong> @item.SoThe</p>
+                                <p><strong>Tên in trên thẻ:</strong> @item.TenTrenThe</p>
+                                <p><strong>Hiệu lực:</strong> @item.HieuLuc</p>
+                            }
+                            else
+                            {
+                                <p><strong>Tên ví:</strong> @item.TenVi</p>
+                                <p><strong>Email:</strong> @item.EmailLienKet</p>
+                                <p><strong>Số điện thoại:</strong> @item.SoDienThoai</p>
+                            }
+                            <p><strong>Ngày liên kết:</strong> @item.NgayLienKet?.ToString("dd/MM/yyyy")</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">
+                                <i class="bi bi-pencil-square"></i> Sửa
+                            </a>
+                            <a href="#" class="btn btn-sm btn-danger btn-xoa" data-url="@Url.Action("Delete", "TheThanhToan", new { id = item.Id })">
+                                <i class="bi bi-trash"></i> Xoá
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Xoá xác nhận
+        document.querySelectorAll('.btn-xoa').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                const url = this.getAttribute('data-url');
+                Swal.fire({
+                    title: 'Bạn có chắc chắn muốn xoá?',
+                    text: "Thao tác này không thể hoàn tác!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Xoá',
+                    cancelButtonText: 'Huỷ'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = url;
+                    }
+                });
+            });
+        });
+
+        // Ẩn/hiện form
+        const btnShowThe = document.getElementById("btn-show-the");
+        const btnShowVi = document.getElementById("btn-show-vi");
+        const formThe = document.getElementById("form-the");
+        const formVi = document.getElementById("form-vi");
+
+        btnShowThe?.addEventListener("click", () => {
+            formThe.style.display = "block";
+            formVi.style.display = "none";
+        });
+
+        btnShowVi?.addEventListener("click", () => {
+            formThe.style.display = "none";
+            formVi.style.display = "block";
+        });
+    </script>
+}

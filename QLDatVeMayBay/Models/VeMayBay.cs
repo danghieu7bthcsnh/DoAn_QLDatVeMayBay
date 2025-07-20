@@ -26,6 +26,6 @@ namespace QLDatVeMayBay.Models
         public string? TrangThaiVe { get; set; } = "Chưa thanh toán";
         public string? HangGhe { get; set; }
         public string? LoaiVe { get; set; }
-
+        public ThanhToan? ThanhToan { get; set; }
     }
 }
