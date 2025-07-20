@@ -13,6 +13,7 @@ using MimeKit;
 using MailKit.Security;
 using System.Net.Mail;
 using System.Net;
+using QLDatVeMayBay.Services;
 
 namespace QLDatVeMayBay.Controllers
 {
@@ -20,11 +21,14 @@ namespace QLDatVeMayBay.Controllers
     {
         private readonly QLDatVeMayBayContext _context;
         private readonly IConfiguration _configuration;
+        private readonly EmailService _emailService;
 
-        public TaiKhoanController(QLDatVeMayBayContext context, IConfiguration configuration)
+
+        public TaiKhoanController(QLDatVeMayBayContext context, IConfiguration configuration, EmailService emailService)
         {
             _context = context;
             _configuration = configuration;
+            _emailService = emailService;
         }
 
         // GET: DangKy
@@ -120,7 +124,7 @@ namespace QLDatVeMayBay.Controllers
     <p style='text-align:center; font-size:12px; color:#999;'>© {DateTime.Now.Year} QLĐặtVé Máy Bay. Mọi quyền được bảo lưu.</p>
 </div>";
 
-            await SendEmailAsync(model.Email, "Xác nhận đăng ký", noiDungEmail);
+            await _emailService.SendEmailAsync(model.Email, "Xác nhận đăng ký", noiDungEmail);
 
             TempData["TenDangNhap"] = model.TenDangNhap;
             TempData["ThongBaoEmail"] = $"Mã xác nhận đã được gửi đến <strong>{model.Email}</strong>. Vui lòng kiểm tra hộp thư.";
@@ -275,46 +279,7 @@ namespace QLDatVeMayBay.Controllers
             return RedirectToAction("Index","Home");
         }
 
-        private async Task SendEmailAsync(string emailNguoiNhan, string subject, string htmlContent)
-        {
-            if (string.IsNullOrWhiteSpace(emailNguoiNhan))
-                throw new ArgumentException("Email người nhận không hợp lệ.");
-
-            // Lấy thông tin cấu hình từ appsettings.json
-            var senderName = _configuration["EmailSettings:SenderName"];
-            var senderEmail = _configuration["EmailSettings:SenderEmail"];
-            var smtpServer = _configuration["EmailSettings:SmtpServer"];
-            var port = int.Parse(_configuration["EmailSettings:Port"]);
-            var username = _configuration["EmailSettings:Username"];
-            var password = _configuration["EmailSettings:Password"];
-
-            var message = new MimeMessage();
-            message.From.Add(new MailboxAddress(senderName, senderEmail));
-            message.To.Add(new MailboxAddress("", emailNguoiNhan));
-            message.Subject = subject;
-
-            // Gửi cả HTML và plain text để tương thích đa nền tảng
-            var bodyBuilder = new BodyBuilder
-            {
-                HtmlBody = htmlContent,
-                TextBody = "Trình duyệt email của bạn không hỗ trợ HTML. Vui lòng sử dụng trình duyệt hiện đại."
-            };
-
-            message.Body = bodyBuilder.ToMessageBody();
-
-            using var client = new MailKit.Net.Smtp.SmtpClient();
-            try
-            {
-                await client.ConnectAsync(smtpServer, port, SecureSocketOptions.StartTls);
-                await client.AuthenticateAsync(username, password);
-                await client.SendAsync(message);
-                await client.DisconnectAsync(true);
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException("Gửi email thất bại: " + ex.Message, ex);
-            }
-        }
+        
 
         [HttpGet]
         public IActionResult QuenMatKhau()
@@ -346,11 +311,39 @@ namespace QLDatVeMayBay.Controllers
             _context.MaXacNhan.Add(maXacNhan);
             await _context.SaveChangesAsync();
 
-            await SendEmailAsync(model.Email, "Xác nhận quên mật khẩu", $"Mã xác nhận của bạn là: {ma}");
+
+            // Gửi Email HTML
+            // Gửi Email HTML
+            string noiDungEmail = $@"
+<div style='font-family:Segoe UI, sans-serif; background-color:#ffffff; padding:30px; border:1px solid #e0e0e0; border-radius:10px; max-width:600px; margin:auto;'>
+    <div style='text-align:center; margin-bottom:20px;'>
+        <h2 style='color:#0d6efd; margin-bottom:5px;'>Xác nhận quên mật khẩu</h2>
+        <p style='font-size:14px; color:#6c757d;'>QLĐặtVé Máy Bay</p>
+    </div>
+
+    <p>Xin chào !</p>
+
+    <p style='font-size:15px; color:#333;'>Bạn hoặc ai đó đã sử dụng email này để đăng ký tài khoản trên hệ thống <strong>QLĐặtVé Máy Bay</strong>.</p>
+
+    <p style='margin-top:20px; font-weight:500;'>Mã xác nhận của bạn:</p>
+    <div style='font-size:32px; font-weight:bold; letter-spacing:6px; color:#198754; margin:20px 0; text-align:center;'>{ma}</div>
+
+    <p style='color:#555;'>⚠️ <strong>Lưu ý:</strong> Không chia sẻ mã xác nhận với bất kỳ ai. Mã sẽ hết hạn sau <strong>15 phút</strong> kể từ khi được gửi.</p>
+
+    <p style='margin-top:30px; font-size:14px; color:#888;'>Nếu bạn không thực hiện đăng ký, vui lòng bỏ qua email này.</p>
+
+    <hr style='margin:30px 0;' />
+
+    <p style='text-align:center; font-size:12px; color:#999;'>© {DateTime.Now.Year} QLĐặtVé Máy Bay. Mọi quyền được bảo lưu.</p>
+</div>";
+
+            await _emailService.SendEmailAsync(model.Email, "Xác nhận quên mật khẩu", noiDungEmail);
+
 
             TempData["Email"] = model.Email;
             return RedirectToAction("XacNhanQuenMatKhau");
         }
+
 
         [HttpGet]
         public IActionResult XacNhanQuenMatKhau()
@@ -445,7 +438,7 @@ namespace QLDatVeMayBay.Controllers
             _context.MaXacNhan.Add(maMoi);
             await _context.SaveChangesAsync();
 
-            await SendEmailAsync(Email, "Mã xác nhận quên mật khẩu", $"Mã xác nhận của bạn là: {ma}");
+            await _emailService.SendEmailAsync(Email, "Gửi lại mã xác nhận quên mật khẩu", $"Mã xác nhận của bạn là: {ma}");
 
             TempData["Email"] = Email;
             TempData["ThongBao"] = "Đã gửi lại mã xác nhận.";
