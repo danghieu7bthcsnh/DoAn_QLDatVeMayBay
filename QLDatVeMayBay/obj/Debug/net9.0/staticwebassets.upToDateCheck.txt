@@ -66,6 +66,8 @@ wwwroot\images\admin-avatar.png
 wwwroot\images\NenTimKiem.jpg
 wwwroot\images\NenTimKiem1.jpg
 wwwroot\images\NenTimKiem2.jpg
+wwwroot\images\Screenshot 2025-07-12 0104131.png
+wwwroot\images\Screenshot 2025-07-12 0107372.png
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
