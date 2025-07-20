@@ -2,7 +2,7 @@
 
 namespace QLDatVeMayBay.Models.ViewModels
 {
-    public class ChuyenBayCuaToi
+    public class ChuyenBayCuaToiViewModels
     {
         public int IDVe { get; set; }
         public string MaChuyenBay { get; set; }

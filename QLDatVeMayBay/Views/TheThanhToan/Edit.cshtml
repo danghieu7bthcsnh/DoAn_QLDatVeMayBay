@@ -9,5 +9,5 @@
 <form asp-action="Edit" method="post">
     <input type="hidden" asp-for="Id" />
 
-    @Html.Partial("Create")  @* Tái sử dụng cùng form như Create *@
+    @Html.Partial("Create", Model)  @* Tái sử dụng cùng form như Create *@
 </form>
