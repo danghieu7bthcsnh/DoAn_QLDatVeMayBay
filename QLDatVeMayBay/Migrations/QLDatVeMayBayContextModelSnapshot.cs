@@ -407,11 +407,17 @@ namespace QLDatVeMayBay.Migrations
                     b.Property<int>("IDNguoiDung")
                         .HasColumnType("int");
 
+                    b.Property<int>("IDTaiKhoan")
+                        .HasColumnType("int");
+
                     b.Property<string>("LoaiVe")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("NguoiDungIDNguoiDung")
                         .HasColumnType("int");
+
+                    b.Property<string>("TaiKhoanTenDangNhap")
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int?>("ThanhToanIDThanhToan")
                         .HasColumnType("int");
@@ -436,6 +442,8 @@ namespace QLDatVeMayBay.Migrations
                     b.HasIndex("IDNguoiDung");
 
                     b.HasIndex("NguoiDungIDNguoiDung");
+
+                    b.HasIndex("TaiKhoanTenDangNhap");
 
                     b.HasIndex("ThanhToanIDThanhToan");
 
@@ -569,6 +577,10 @@ namespace QLDatVeMayBay.Migrations
                         .WithMany("VeMayBays")
                         .HasForeignKey("NguoiDungIDNguoiDung");
 
+                    b.HasOne("QLDatVeMayBay.Models.TaiKhoan", "TaiKhoan")
+                        .WithMany()
+                        .HasForeignKey("TaiKhoanTenDangNhap");
+
                     b.HasOne("QLDatVeMayBay.Models.ThanhToan", "ThanhToan")
                         .WithMany()
                         .HasForeignKey("ThanhToanIDThanhToan");
@@ -582,6 +594,8 @@ namespace QLDatVeMayBay.Migrations
                     b.Navigation("Ghe");
 
                     b.Navigation("NguoiDung");
+
+                    b.Navigation("TaiKhoan");
 
                     b.Navigation("ThanhToan");
 

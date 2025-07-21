@@ -295,79 +295,51 @@ namespace QLDatVeMayBay.Controllers
 
             return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "VeMayBay.xlsx");
         }
-        [HttpPost]
-        public IActionResult HuyVe(int id, string lyDo)
-        {
-            var ve = _context.VeMayBay.FirstOrDefault(v => v.IDVe == id);
-
-
-            if (ve == null)
-            {
-                TempData["Error"] = "Không tìm thấy vé.";
-                return RedirectToAction("ChuyenBayCuaToi");
-            }
-
-            if (ve.TrangThaiVe == "Đã hủy")
-            {
-                TempData["Error"] = "Vé này đã bị hủy trước đó.";
-                return RedirectToAction("ChuyenBayCuaToi");
-            }
-            ve.TrangThaiVe = "Đã hủy";
-            var thanhToan = _context.ThanhToan.FirstOrDefault(t => t.IDVe == id);
-
-            var hoanTien = new HoanTien
-            {
-                IDThanhToan = thanhToan.IDThanhToan,
-                SoTienHoan = thanhToan.SoTien,
-                NgayHoanTien = DateTime.Now,
-                LyDo = lyDo
-            };
-            _context.HoanTien.Add(hoanTien);
-            _context.SaveChanges();
-
-            TempData["Success"] = "Hủy vé thành công. Tiền sẽ được hoàn lại.";
-
-            return RedirectToAction("ChuyenBayCuaToi");
-        }
-
         public IActionResult ChuyenBayCuaToi()
         {
-            var tenDangNhap = User.Identity?.Name;
+            var idTaiKhoan = HttpContext.Session.GetInt32("IDTaiKhoan");
+            if (idTaiKhoan == null)
+            {
+                return RedirectToAction("DangNhap", "TaiKhoan");
+            }
 
-            var userId = _context.TaiKhoan
-            .Include(t => t.NguoiDung)
-            .FirstOrDefault(t => t.TenDangNhap == tenDangNhap).NguoiDung.IDNguoiDung;
+            var veMayBays = (from ve in _context.VeMayBay
+                             join chuyen in _context.ChuyenBay on ve.IDChuyenBay equals chuyen.IDChuyenBay
+                             join mb in _context.MayBay on chuyen.IDMayBay equals mb.IDMayBay
+                             where ve.IDTaiKhoan == idTaiKhoan
+                             select new ChuyenBayCuaToiViewModels
+                             {
+                                 IDVe = ve.IDVe,
+                                 MaChuyenBay = chuyen.IDChuyenBay, // Giả sử cột này có
+                                 GioCatCanh = chuyen.GioCatCanh,
+                                 GioHaCanh = chuyen.GioHaCanh,
+                                 SanBayDi = chuyen.SanBayDi,
+                                 SanBayDen = chuyen.SanBayDen,
+                                
+                                 HangGhe = ve.HangGhe,
+                                 LoaiVe = ve.LoaiVe,
+                                 
+                                 TrangThaiVe = ve.TrangThaiVe,
+                                 TinhTrangChuyenBay = chuyen.TinhTrang
+                             }).ToList();
 
-            var danhSach = _context.VeMayBay
-                .Include(v => v.ChuyenBay)
-                    .ThenInclude(cb => cb.MayBay)
-                .Include(v => v.ChuyenBay.SanBayDiInfo)
-                .Include(v => v.ChuyenBay.SanBayDenInfo)
-                .Include(v => v.Ghe)
-                .Include(v => v.ThanhToan)
-                .Where(v => v.IDNguoiDung == userId)
-                .Select(v => new ChuyenBayCuaToiViewModels
-                {
-                    IDVe = v.IDVe,
-                    MaChuyenBay = "CB" + v.ChuyenBay!.IDChuyenBay,
-                    GioCatCanh = v.ChuyenBay.GioCatCanh,
-                    GioHaCanh = v.ChuyenBay.GioHaCanh,
-                    SanBayDi = v.ChuyenBay.SanBayDiInfo!.TenSanBay,
-                    SanBayDen = v.ChuyenBay.SanBayDenInfo!.TenSanBay,
-                    TenMayBay = v.ChuyenBay.MayBay!.TenHangHK,
-                    HangGhe = v.Ghe!.HangGhe,
-                    LoaiVe = v.LoaiVe ?? "Thường",
-                    PhuongThucThanhToan = v.ThanhToan != null ? v.ThanhToan.PhuongThuc ?? "Chưa rõ" : "Chưa thanh toán",
-                    TrangThaiThanhToan = v.ThanhToan != null ? v.ThanhToan.TrangThaiThanhToan ?? "Chưa thanh toán" : "Chưa thanh toán",
-                    TrangThaiVe = v.TrangThaiVe ?? "Chưa rõ",
-                    TinhTrangChuyenBay = v.ChuyenBay.TinhTrang ?? "Chưa cập nhật"
-                })
-                .OrderByDescending(v => v.GioCatCanh)
-                .ToList();
-
-            return View(danhSach);
+            return View(veMayBays);
         }
 
+
+        // Xử lý hủy vé
+        [HttpPost]
+        public IActionResult HuyVe(int id)
+        {
+            var ve = _context.VeMayBay.FirstOrDefault(v => v.IDVe == id);
+            if (ve != null && ve.TrangThaiVe != "Đã hủy")
+            {
+                ve.TrangThaiVe = "Đã hủy";
+               
+                _context.SaveChanges();
+            }
+            return RedirectToAction("ChuyenBayCuaToi");
+        }
 
     }
 }

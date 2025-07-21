@@ -88,7 +88,7 @@ namespace QLDatVeMayBay.Controllers
         {
             var idNguoiDung = HttpContext.Session.GetInt32("IDNguoiDung");
             if (idNguoiDung == null) return RedirectToAction("DangNhap", "TaiKhoan");
-            if (idGhe == null)
+            if (idGhe <= 0)
             {
                 TempData["LoiChonGhe"] = "Bạn chưa chọn ghế nào!";
                 return RedirectToAction("ChonGhe", new { id = idChuyenBay });
@@ -105,6 +105,12 @@ namespace QLDatVeMayBay.Controllers
                 return RedirectToAction("ChonGhe", new { id = idChuyenBay });
             }
             var chuyenBay = _context.ChuyenBay.Find(idChuyenBay);
+            if (chuyenBay == null)
+            {
+                TempData["LoiChonGhe"] = "Chuyến bay không tồn tại.";
+                return RedirectToAction("ChonGhe", new { id = idChuyenBay });
+            }
+
             var giaVe = chuyenBay?.GiaVe ?? 0;
             var danhSachThe = _context.TheThanhToan
       .Where(t => t.NguoiDungId == idNguoiDung)
@@ -173,6 +179,8 @@ namespace QLDatVeMayBay.Controllers
         [HttpPost]
         public async Task<IActionResult> KiemTraOTP(ThongTinThanhToan model)
         {
+            
+
             // Lấy mã OTP và thời gian hết hạn từ session
             var otp = HttpContext.Session.GetString("OTP");
             var otpExpStr = HttpContext.Session.GetString("OTP_Expires");
@@ -228,6 +236,11 @@ namespace QLDatVeMayBay.Controllers
                 return RedirectToAction("DangNhap", "NguoiDung");
             }
             var the = await _context.TheThanhToan.FindAsync(fullModel.SelectedTheId);
+            if (the == null)
+            {
+                ModelState.AddModelError("", "Thẻ thanh toán không tồn tại.");
+                return View("NhapOTP", fullModel);
+            }
             string hinhThuc = the?.Loai == LoaiTheLoaiVi.TheNganHang ? "Thẻ ngân hàng" : "Ví điện tử";
             string tenChu = the?.Loai == LoaiTheLoaiVi.TheNganHang ? the.TenNganHang : the.TenVi;
 

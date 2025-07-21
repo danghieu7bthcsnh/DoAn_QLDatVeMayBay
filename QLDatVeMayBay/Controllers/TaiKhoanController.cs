@@ -45,6 +45,7 @@ namespace QLDatVeMayBay.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DangKy(RegisterViewModel model)
         {
+            // kiểm tra tính hợp lệ 
             if (!ModelState.IsValid)
                 return View(model);
 
@@ -61,8 +62,6 @@ namespace QLDatVeMayBay.Controllers
             if (!string.IsNullOrEmpty(model.CCCD) && await _context.NguoiDung.AnyAsync(n => n.CCCD == model.CCCD))
                 ModelState.AddModelError("CCCD", "CCCD đã được sử dụng.");
 
-            if (!ModelState.IsValid)
-                return View(model);
 
             // Mã hóa mật khẩu
             var matKhauHash = HashPassword(model.MatKhau);
@@ -75,7 +74,7 @@ namespace QLDatVeMayBay.Controllers
                 VaiTro = "KhachHang",
                 TrangThaiTK = "ChuaKichHoat"
             };
-
+            // Tạo người dùng 
             var nguoiDung = new NguoiDung
             {
                 TenDangNhap = model.TenDangNhap,
@@ -91,7 +90,7 @@ namespace QLDatVeMayBay.Controllers
             _context.NguoiDung.Add(nguoiDung);
             await _context.SaveChangesAsync();
 
-            // Tạo mã xác nhận
+            // Tạo mã xác nhận ngẫu nhiên
             var ma = new Random().Next(100000, 999999).ToString();
             var maXacNhan = new MaXacNhan
             {
@@ -99,6 +98,7 @@ namespace QLDatVeMayBay.Controllers
                 Ma = ma,
                 ThoiGianHetHan = DateTime.Now.AddMinutes(15)
             };
+            // lưu mã xác nhận 
             _context.MaXacNhan.Add(maXacNhan);
             await _context.SaveChangesAsync();
 
@@ -175,7 +175,7 @@ namespace QLDatVeMayBay.Controllers
             TempData["XacNhanThanhCong"] = true;
             return RedirectToAction("DangNhap");
         }
-
+                                                                                                                                             
         // GET: DangNhap
         [HttpGet]
         public IActionResult DangNhap()
@@ -258,7 +258,7 @@ namespace QLDatVeMayBay.Controllers
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity),
                 authProperties);
-
+          
             HttpContext.Session.SetInt32("IDNguoiDung", taiKhoan.NguoiDung.IDNguoiDung);
             HttpContext.Session.SetString("TenDangNhap", taiKhoan.TenDangNhap);
             HttpContext.Session.SetString("VaiTro", taiKhoan.VaiTro);
@@ -313,10 +313,7 @@ namespace QLDatVeMayBay.Controllers
 
             _context.MaXacNhan.Add(maXacNhan);
             await _context.SaveChangesAsync();
-
-
-            // Gửi Email HTML
-            // Gửi Email HTML
+                                                             
             string noiDungEmail = $@"
 <div style='font-family:Segoe UI, sans-serif; background-color:#ffffff; padding:30px; border:1px solid #e0e0e0; border-radius:10px; max-width:600px; margin:auto;'>
     <div style='text-align:center; margin-bottom:20px;'>

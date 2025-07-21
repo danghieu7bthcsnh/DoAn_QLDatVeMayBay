@@ -38,5 +38,7 @@ namespace QLDatVeMayBay.Models
         public TheThanhToan? TheThanhToan { get; set; }
 
         public ThanhToan? ThanhToan { get; set; }
+        public int IDTaiKhoan { get; set; }  // <-- Đây là khóa ngoại liên kết tài khoản
+        public TaiKhoan TaiKhoan { get; set; }
     }
 }
