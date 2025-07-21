@@ -15,21 +15,17 @@ namespace QLDatVeMayBay.ViewModels.TaiKhoan
         [StringLength(100)]
         public string Email { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Số điện thoại không được để trống")]
         [Phone(ErrorMessage = "Số điện thoại không hợp lệ")]
         [StringLength(20)]
-        public string SoDienThoai { get; set; } = string.Empty;
+        public string? SoDienThoai { get; set; }
 
-        [Required(ErrorMessage = "Giới tính không được để trống")]
         [StringLength(10)]
-        public string GioiTinh { get; set; } = string.Empty;
+        public string? GioiTinh { get; set; }
 
-        [Required(ErrorMessage = "Quốc tịch không được để trống")]
         [StringLength(50)]
-        public string QuocTich { get; set; } = string.Empty;
+        public string? QuocTich { get; set; }
 
-        [Required(ErrorMessage = "CCCD không được để trống")]
         [StringLength(20)]
-        public string CCCD { get; set; } = string.Empty;
+        public string? CCCD { get; set; }
     }
 }

@@ -69,15 +69,13 @@ namespace QLDatVeMayBay.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CVV")
-                        .HasMaxLength(4)
-                        .HasColumnType("nvarchar(4)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EmailLienKet")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HieuLuc")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Loai")
                         .HasColumnType("int");
@@ -92,19 +90,16 @@ namespace QLDatVeMayBay.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SoThe")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenHienThi")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenTrenThe")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenVi")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TheThanhToanId")
                         .HasColumnType("nvarchar(450)");
@@ -255,7 +250,6 @@ namespace QLDatVeMayBay.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDNguoiDung"));
 
                     b.Property<string>("CCCD")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
@@ -265,7 +259,6 @@ namespace QLDatVeMayBay.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("GioiTinh")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
@@ -275,12 +268,10 @@ namespace QLDatVeMayBay.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("QuocTich")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("SoDienThoai")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 

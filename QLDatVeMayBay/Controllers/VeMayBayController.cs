@@ -346,7 +346,7 @@ namespace QLDatVeMayBay.Controllers
                 .Include(v => v.Ghe)
                 .Include(v => v.ThanhToan)
                 .Where(v => v.IDNguoiDung == userId)
-                .Select(v => new ChuyenBayCuaToiViewModels
+                .Select(v => new ChuyenBayCuaToi
                 {
                     IDVe = v.IDVe,
                     MaChuyenBay = "CB" + v.ChuyenBay!.IDChuyenBay,
