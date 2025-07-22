@@ -1,20 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using QLDatVeMayBay.Data;
-using QLDatVeMayBay.Models;
-using OfficeOpenXml;
-using System.Text;
-using Microsoft.AspNetCore.Authorization;
-using System.Net.Mail;
-using System.Net;
+﻿using iText.IO.Font.Constants;
+using iText.Kernel.Font;
+using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
-using iText.Kernel.Geom;
-using iText.Kernel.Font;
-using iText.IO.Font.Constants;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using OfficeOpenXml;
+using QLDatVeMayBay.Data;
+using QLDatVeMayBay.Models;
 using QLDatVeMayBay.Models.ViewModels;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
 
 namespace QLDatVeMayBay.Controllers
 {
@@ -336,8 +337,8 @@ namespace QLDatVeMayBay.Controllers
 
             var userId = _context.TaiKhoan
             .Include(t => t.NguoiDung)
-            .FirstOrDefault(t => t.TenDangNhap == tenDangNhap).NguoiDung.IDNguoiDung;
-
+            .FirstOrDefault(t => t.TenDangNhap == tenDangNhap)
+            .NguoiDung.IDNguoiDung;
             var danhSach = _context.VeMayBay
                 .Include(v => v.ChuyenBay)
                     .ThenInclude(cb => cb.MayBay)

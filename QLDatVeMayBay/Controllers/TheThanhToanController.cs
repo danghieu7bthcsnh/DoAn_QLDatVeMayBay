@@ -19,14 +19,13 @@ namespace QLDatVeMayBay.Controllers
         {
             _context = context;
         }
-
+        //Hiển thị danh sách thẻ hoặc ví đã lưu 
         public async Task<IActionResult> Index(string? showForm)
         {
-            try
-            {
+
                 var tenDangNhap = User.Identity?.Name;
                 var nguoiDung = await _context.NguoiDung.FirstOrDefaultAsync(u => u.TenDangNhap == tenDangNhap);
-
+                
                 if (nguoiDung == null)
                     return RedirectToAction("DangNhap", "TaiKhoan");
 
@@ -34,7 +33,6 @@ namespace QLDatVeMayBay.Controllers
                     .Where(t => t.NguoiDungId == nguoiDung.IDNguoiDung)
                     .ToListAsync();
 
-                // ✅ Gán đúng kiểu nếu có showForm, ngược lại giữ null (ẩn form)
                 LoaiTheLoaiVi? loai = null;
                 if (showForm == "The")
                     loai = LoaiTheLoaiVi.TheNganHang;
@@ -48,14 +46,7 @@ namespace QLDatVeMayBay.Controllers
                     DanhSach = danhSach,
                     NgayLienKet = DateTime.Today
                 };
-
-                return View("~/Views/TheThanhToan/Index.cshtml", vm);
-            }
-            catch (Exception ex)
-            {
-                TempData["Debug"] = $"Lỗi Index: {ex.Message}";
-                return RedirectToAction("Index", "Home");
-            }
+            return View("~/Views/TheThanhToan/Index.cshtml", vm);
         }
 
 
@@ -97,7 +88,7 @@ namespace QLDatVeMayBay.Controllers
             if (nguoiDung == null)
                 return RedirectToAction("DangNhap", "TaiKhoan");
 
-            // ✅ Nếu người dùng không chọn ngày, gán mặc định là hôm nay
+            // Nếu người dùng không chọn ngày, gán mặc định là hôm nay
             if (NgayLienKet == default(DateTime))
                 NgayLienKet = DateTime.Today;
 
@@ -188,7 +179,7 @@ namespace QLDatVeMayBay.Controllers
             var model = await _context.TheThanhToan.FindAsync(id);
             if (model == null) return NotFound();
 
-            _context.TheThanhToan.Remove(model);
+            _context.TheThanhToan.Remove(model);// xóa khỏi csdl
             await _context.SaveChangesAsync();
             TempData["Success"] = "Đã xoá thành công";
             return RedirectToAction(nameof(Index));

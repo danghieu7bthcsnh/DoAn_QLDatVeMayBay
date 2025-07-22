@@ -397,7 +397,7 @@ namespace QLDatVeMayBay.Controllers
             var hash = sha256.ComputeHash(bytes);
             return Convert.ToBase64String(hash);
         }
-        [HttpGet]
+        [HttpGet] 
         public async Task<IActionResult> CaNhan()
         {
             var tenDangNhap = HttpContext.Session.GetString("TenDangNhap");

@@ -18,8 +18,8 @@ namespace QLDatVeMayBay.Models
         [Required]
         [Column(TypeName = "decimal(18,2)")]
         public decimal SoTienHoan { get; set; }
-
-        public DateTime NgayHoanTien { get; set; } = DateTime.Now;
+        [Column("NgayHoan")]
+        public DateTime NgayHoanTien { get; set; }
 
         [StringLength(200)]
         public string? LyDo { get; set; }

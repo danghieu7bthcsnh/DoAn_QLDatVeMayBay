@@ -11,9 +11,10 @@ namespace QLDatVeMayBay.Models.Entities
 
         // ✅ Sửa dòng này: int thay vì string
         [Required]
+        [Column("IDNguoiDung")]
         public int NguoiDungId { get; set; }
 
-        [ForeignKey("NguoiDungId")]
+        [ForeignKey("IDNguoiDung")]
         public NguoiDung? NguoiDung { get; set; }
 
         [Required]

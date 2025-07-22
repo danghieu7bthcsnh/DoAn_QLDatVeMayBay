@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QLDatVeMayBay.Data;
 
@@ -11,9 +12,11 @@ using QLDatVeMayBay.Data;
 namespace QLDatVeMayBay.Migrations
 {
     [DbContext(typeof(QLDatVeMayBayContext))]
-    partial class QLDatVeMayBayContextModelSnapshot : ModelSnapshot
+    [Migration("20250721042802_AddNgayHoanMapping")]
+    partial class AddNgayHoanMapping
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,9 +80,6 @@ namespace QLDatVeMayBay.Migrations
                     b.Property<string>("HieuLuc")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("IDNguoiDung")
-                        .HasColumnType("int");
-
                     b.Property<int>("Loai")
                         .HasColumnType("int");
 
@@ -87,8 +87,7 @@ namespace QLDatVeMayBay.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("NguoiDungId")
-                        .HasColumnType("int")
-                        .HasColumnName("IDNguoiDung");
+                        .HasColumnType("int");
 
                     b.Property<string>("SoDienThoai")
                         .HasColumnType("nvarchar(max)");
@@ -114,11 +113,7 @@ namespace QLDatVeMayBay.Migrations
 
                     b.HasIndex("TheThanhToanId");
 
-                    b.ToTable("TheThanhToan", t =>
-                        {
-                            t.Property("IDNguoiDung")
-                                .HasColumnName("IDNguoiDung1");
-                        });
+                    b.ToTable("TheThanhToan");
                 });
 
             modelBuilder.Entity("QLDatVeMayBay.Models.GheNgoi", b =>

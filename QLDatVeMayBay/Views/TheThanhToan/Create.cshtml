@@ -1,88 +1,70 @@
 ﻿@model QLDatVeMayBay.Models.ViewModels.TheThanhToanViewModel
+@using QLDatVeMayBay.Models.Entities
 
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <div class="row g-3">
-                    <!-- Loại -->
-                    <div class="col-md-6">
-                        <label asp-for="Loai" class="form-label fw-bold">Loại</label>
-                        <select asp-for="Loai" class="form-select" id="loaiSelect">
-                            <option value="0">Thẻ ngân hàng</option>
-                            <option value="1">Ví điện tử</option>
-                        </select>
-                    </div>
-
-                    <!-- Các trường của Thẻ -->
-                    <div class="col-md-6 bank-field">
-                        <label asp-for="SoThe" class="form-label fw-bold">Số thẻ</label>
-                        <input asp-for="SoThe" class="form-control" />
-                    </div>
-                    <div class="col-md-6 bank-field">
-                        <label asp-for="HieuLuc" class="form-label fw-bold">Hiệu lực</label>
-                        <input asp-for="HieuLuc" class="form-control" />
-                    </div>
-                    <div class="col-md-6 bank-field">
-                        <label asp-for="CVV" class="form-label fw-bold">CVV</label>
-                        <input asp-for="CVV" class="form-control" />
-                    </div>
-                    <div class="col-md-6 bank-field">
-                        <label asp-for="TenTrenThe" class="form-label fw-bold">Tên trên thẻ</label>
-                        <input asp-for="TenTrenThe" class="form-control" />
-                    </div>
-
-                    <!-- Các trường của Ví -->
-                    <div class="col-md-6 wallet-field">
-                        <label asp-for="TenVi" class="form-label fw-bold">Tên ví</label>
-                        <input asp-for="TenVi" class="form-control" />
-                    </div>
-                    <div class="col-md-6 wallet-field">
-                        <label asp-for="EmailLienKet" class="form-label fw-bold">Email liên kết</label>
-                        <input asp-for="EmailLienKet" class="form-control" />
-                    </div>
-                    <div class="col-md-6 wallet-field">
-                        <label asp-for="TenHienThi" class="form-label fw-bold">Tên hiển thị</label>
-                        <input asp-for="TenHienThi" class="form-control" />
-                    </div>
-                    <div class="col-md-6 wallet-field">
-                        <label asp-for="SoDienThoai" class="form-label fw-bold">Số điện thoại</label>
-                        <input asp-for="SoDienThoai" class="form-control" />
-                    </div>
-                    <div class="col-md-6 wallet-field">
-                        <label asp-for="NgayLienKet" class="form-label fw-bold">Ngày liên kết</label>
-                        <input asp-for="NgayLienKet" type="date" class="form-control"
-                               value="@(Model.NgayLienKet.HasValue? Model.NgayLienKet.Value.ToString("yyyy-MM-dd") : "")" />
-                    </div>
-                </div>
-
-                <div class="mt-4 d-flex justify-content-between">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-save me-1"></i> Lưu
-                    </button>
-                    <a asp-action="Index" class="btn btn-secondary">
-                        <i class="bi bi-x-circle me-1"></i> Hủy
-                    </a>
-                </div>
-            </div>
-        </div>
+<div class="row">
+    <!-- Loại thẻ -->
+    <div class="mb-3 col-md-6">
+        <label class="form-label">Loại</label>
+        <select asp-for="Loai" class="form-select" id="loaiSelect">
+            <option value="0" selected="@(Model.Loai == LoaiTheLoaiVi.TheNganHang ? "selected" : null)">Thẻ ngân hàng</option>
+            <option value="1" selected="@(Model.Loai == LoaiTheLoaiVi.ViDienTu ? "selected" : null)">Ví điện tử</option>
+        </select>
     </div>
 </div>
 
-@section Scripts {
-    <script>
-        function toggleFields() {
-            var loai = document.getElementById("loaiSelect").value;
-            const bankFields = document.querySelectorAll(".bank-field");
-            const walletFields = document.querySelectorAll(".wallet-field");
+<div class="row">
+    @* Thẻ ngân hàng *@
+    @if (Model.Loai == LoaiTheLoaiVi.TheNganHang)
+    {
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Số thẻ</label>
+            <input asp-for="SoThe" class="form-control" />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Hiệu lực</label>
+            <input asp-for="HieuLuc" class="form-control" />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">CVV</label>
+            <input asp-for="CVV" class="form-control" />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Tên in trên thẻ</label>
+            <input asp-for="TenTrenThe" class="form-control" />
+        </div>
+    }
 
-            bankFields.forEach(f => f.style.display = (loai == 0 ? "block" : "none"));
-            walletFields.forEach(f => f.style.display = (loai == 1 ? "block" : "none"));
-        }
+    @* Ví điện tử *@
+    else if (Model.Loai == LoaiTheLoaiVi.ViDienTu)
+    {
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Tên ví</label>
+            <input asp-for="TenVi" class="form-control" />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Email liên kết</label>
+            <input asp-for="EmailLienKet" class="form-control" />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Tên hiển thị</label>
+            <input asp-for="TenHienThi" class="form-control" />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Số điện thoại</label>
+            <input asp-for="SoDienThoai" class="form-control" />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Ngày liên kết</label>
+            <input asp-for="NgayLienKet" type="date" class="form-control" />
+        </div>
+    }
+</div>
 
-        document.getElementById("loaiSelect").addEventListener("change", toggleFields);
-
-        // Gọi ngay khi load trang
-        toggleFields();
-    </script>
-}
+<div class="mt-3">
+    <button type="submit" class="btn btn-primary">
+        <i class="bi bi-save"></i> Lưu
+    </button>
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="bi bi-x-circle"></i> Hủy
+    </a>
+</div>
