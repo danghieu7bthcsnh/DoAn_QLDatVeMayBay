@@ -24,7 +24,11 @@
                 <div>
                     👋 Xin chào: <strong>@tenDangNhap</strong> (@vaiTro) |
                     <a href="/TaiKhoan/CaNhan" class="text-decoration-none">🔐 Tài khoản</a> |
-                    <a href="/TaiKhoan/DangXuat" class="text-danger text-decoration-none">🚪 Đăng xuất</a>
+                    <form asp-controller="TaiKhoan" asp-action="DangXuat" method="post" class="d-inline">
+                        <button type="submit" class="dropdown-item text-danger">
+                            <i class="bi bi-box-arrow-right me-2"></i> Đăng xuất
+                        </button>
+                    </form>
                 </div>
             }
         </div>

@@ -294,16 +294,16 @@ namespace QLDatVeMayBay.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> QuenMatKhau(QuenMatKhauViewModel model)
         {
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid) return View(model); // ktra tính hợp lệ
 
-            var nguoiDung = await _context.NguoiDung.FirstOrDefaultAsync(n => n.Email == model.Email);
+            var nguoiDung = await _context.NguoiDung.FirstOrDefaultAsync(n => n.Email == model.Email);// lấy thông tin người dùng có email giống với lúc nhập
             if (nguoiDung == null)
             {
                 ModelState.AddModelError("Email", "Email này chưa được đăng ký.");
                 return View(model);
             }
 
-            var ma = new Random().Next(100000, 999999).ToString();
+            var ma = new Random().Next(100000, 999999).ToString();// láyas mã 6 ssoo  ngẫu nhiên 
             var maXacNhan = new MaXacNhan
             {
                 TenDangNhap = nguoiDung.TenDangNhap,
@@ -311,7 +311,7 @@ namespace QLDatVeMayBay.Controllers
                 ThoiGianHetHan = DateTime.Now.AddMinutes(10)
             };
 
-            _context.MaXacNhan.Add(maXacNhan);
+            _context.MaXacNhan.Add(maXacNhan); // lưu lại mã 
             await _context.SaveChangesAsync();
                                                              
             string noiDungEmail = $@"
@@ -356,23 +356,24 @@ namespace QLDatVeMayBay.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken] 
         public async Task<IActionResult> XacNhanQuenMatKhau(XacNhanQuenMatKhauViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
 
             var nguoiDung = await _context.NguoiDung.FirstOrDefaultAsync(n => n.Email == model.Email);
+            // mã mã xác nhận  của ngườid dunbg 
             var ma = await _context.MaXacNhan.FirstOrDefaultAsync(m =>
                 m.TenDangNhap == nguoiDung.TenDangNhap &&
                 m.Ma == model.MaXacNhan &&
                 m.ThoiGianHetHan >= DateTime.Now);
-
+            // ktra mã
             if (ma == null)
             {
                 ModelState.AddModelError("MaXacNhan", "Mã không chính xác hoặc đã hết hạn.");
                 return View(model);
             }
-
+            // lưu giữu thông tin
             TempData["Email"] = model.Email;
             return RedirectToAction("DoiMatKhau");
         }

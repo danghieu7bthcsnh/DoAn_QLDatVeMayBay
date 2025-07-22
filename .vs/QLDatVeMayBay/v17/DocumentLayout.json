@@ -3,272 +3,64 @@
   "WorkspaceRootPath": "C:\\workspace\\DoAn_QLDatVeMayBay\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\controllers\\datvecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\controllers\\datvecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\controllers\\giaodichcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\controllers\\giaodichcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\controllers\\taikhoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\controllers\\taikhoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\controllers\\vemaybaycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\controllers\\vemaybaycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\giaodich\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\giaodich\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\vemaybay\\chuyenbaycuatoi.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\vemaybay\\chuyenbaycuatoi.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\datve\\xacnhanotpthanhtoan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\datve\\xacnhanotpthanhtoan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\vemaybay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\vemaybay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\datve\\chonghe.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\datve\\chonghe.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\viewmodels\\chuyenbaycuatoiviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\viewmodels\\chuyenbaycuatoiviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\chuyenbay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\chuyenbay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\chuyenbay\\timkiem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\chuyenbay\\timkiem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\controller\\taikhoancontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\controller\\taikhoancontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\thongtin\\baochi.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\thongtin\\baochi.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\quanlychuyenbay\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\quanlychuyenbay\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\controllers\\vemaybaycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\controllers\\vemaybaycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\quanlychuyenbay\\chitiet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\quanlychuyenbay\\chitiet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\taikhoan\\dangnhap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\taikhoan\\dangnhap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\controller\\chuyenbaycontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\controller\\chuyenbaycontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\controllers\\thethanhtoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\controllers\\thethanhtoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\chuyenbay\\ketquatimkiem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\chuyenbay\\ketquatimkiem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\maybay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\maybay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\admin\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\admin\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\controllers\\chuyenbaycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\controllers\\chuyenbaycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\controller\\datvecontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\controller\\datvecontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\loaimaybay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\loaimaybay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\xacnhanquenmatkhautests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\xacnhanquenmatkhautests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\xacnhanquenmatkhau.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\xacnhanquenmatkhau.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\timkiemchuyenbaytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\timkiemchuyenbaytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\vemaybaytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\vemaybaytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\vemaybay\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\vemaybay\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\thethanhtoan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\thethanhtoan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\timkiemchuyenbay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\timkiemchuyenbay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\thongtinvetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\thongtinvetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\thethanhtoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\thethanhtoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\loaimaybaytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\loaimaybaytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\thongtinve.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\thongtinve.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\thongtinthanhtoantest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\thongtinthanhtoantest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\hoantientest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\hoantientest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\thethanhtoantests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\thethanhtoantests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\thongtinthanhtoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\thongtinthanhtoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\thanhtoantests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\thanhtoantests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\thanhtoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\thanhtoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\taikhoantests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\taikhoantests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\taikhoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\taikhoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\sanbaytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\sanbaytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\sanbay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\sanbay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\requiredifattributetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\requiredifattributetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\requiredifattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\requiredifattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\quenmatkhautests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\quenmatkhautests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\nguoidungtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\nguoidungtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\quenmatkhau.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\quenmatkhau.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\nguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\nguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\maybaytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\maybaytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\maxacnhantests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\maxacnhantests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\maxacnhan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\maxacnhan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\hoantien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\hoantien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\models\\datghe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\models\\datghe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\datghetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\datghetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\models\\chuyenbaytest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\models\\chuyenbaytest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\qldatvemaybay.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\qldatvemaybay.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\testdatvemaybay.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\testdatvemaybay.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\migrations\\20250720152115_final1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\migrations\\20250720152115_final1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\viewmodels\\thethanhtoanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\viewmodels\\thethanhtoanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\thethanhtoan\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\thethanhtoan\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\datve\\thanhtoan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\datve\\thanhtoan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\datve\\nhapotp.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\datve\\nhapotp.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\datve\\thanhtoanthanhcong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\datve\\thanhtoanthanhcong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Migrations\\20250720142224_the.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:QLDatVeMayBay\\Migrations\\20250720142224_the.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Migrations\\20250720141932_thanhtoanthe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:QLDatVeMayBay\\Migrations\\20250720141932_thanhtoanthe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\views\\datve\\xacnhanve.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\views\\datve\\xacnhanve.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\migrations\\20250720151341_final.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\migrations\\20250720151341_final.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\migrations\\20250721042817_chuyenbaycuatoi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\migrations\\20250721042817_chuyenbaycuatoi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|c:\\workspace\\doan_qldatvemaybay\\testdatvemaybay\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE6FD9A-9B37-453F-8E95-881C222B83D4}|TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj|solutionrelative:testdatvemaybay\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|c:\\workspace\\doan_qldatvemaybay\\qldatvemaybay\\controllers\\datvecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8B85157E-8FDE-4200-A814-08DA3B14A7EC}|QLDatVeMayBay\\QLDatVeMayBay.csproj|solutionrelative:qldatvemaybay\\controllers\\datvecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -278,7 +70,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -291,807 +83,197 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "GiaoDichController.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\GiaoDichController.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Controllers\\GiaoDichController.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\GiaoDichController.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Controllers\\GiaoDichController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\GiaoDich\\Index.cshtml",
+              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\GiaoDich\\Index.cshtml",
+              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\GiaoDich\\Index.cshtml",
+              "RelativeToolTip": "QLDatVeMayBay\\Views\\GiaoDich\\Index.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-22T04:32:29.719Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ChonGhe.cshtml",
+              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\DatVe\\ChonGhe.cshtml",
+              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\DatVe\\ChonGhe.cshtml",
+              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\DatVe\\ChonGhe.cshtml",
+              "RelativeToolTip": "QLDatVeMayBay\\Views\\DatVe\\ChonGhe.cshtml",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-22T04:32:19.233Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BaoChi.cshtml",
+              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\ThongTin\\BaoChi.cshtml",
+              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\ThongTin\\BaoChi.cshtml",
+              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\ThongTin\\BaoChi.cshtml",
+              "RelativeToolTip": "QLDatVeMayBay\\Views\\ThongTin\\BaoChi.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-22T04:30:33.042Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "VeMayBayController.cs",
+              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\VeMayBayController.cs",
+              "RelativeDocumentMoniker": "QLDatVeMayBay\\Controllers\\VeMayBayController.cs",
+              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\VeMayBayController.cs",
+              "RelativeToolTip": "QLDatVeMayBay\\Controllers\\VeMayBayController.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAYwCwBAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T14:57:33.529Z",
+              "WhenOpened": "2025-07-22T03:52:51.009Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TimKiem.cshtml",
+              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\ChuyenBay\\TimKiem.cshtml",
+              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\ChuyenBay\\TimKiem.cshtml",
+              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\ChuyenBay\\TimKiem.cshtml",
+              "RelativeToolTip": "QLDatVeMayBay\\Views\\ChuyenBay\\TimKiem.cshtml",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAAABEAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-22T03:13:31.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Dashboard.cshtml",
+              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\Admin\\Dashboard.cshtml",
+              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\Admin\\Dashboard.cshtml",
+              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\Admin\\Dashboard.cshtml",
+              "RelativeToolTip": "QLDatVeMayBay\\Views\\Admin\\Dashboard.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-22T03:12:35.29Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DatVeController.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\DatVeController.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Controllers\\DatVeController.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\DatVeController.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Controllers\\DatVeController.cs",
-              "ViewState": "AgIAAK4AAAAAAAAAAAAowMMAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T13:44:14.711Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "TaiKhoanController.cs",
               "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\TaiKhoanController.cs",
               "RelativeDocumentMoniker": "QLDatVeMayBay\\Controllers\\TaiKhoanController.cs",
               "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\TaiKhoanController.cs",
               "RelativeToolTip": "QLDatVeMayBay\\Controllers\\TaiKhoanController.cs",
-              "ViewState": "AgIAAH0BAAAAAAAAAAAYwDsBAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAACYBAAAAAAAAAAAIwCgBAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-21T03:41:09.518Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
-              "Title": "20250721042817_chuyenbaycuatoi.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Migrations\\20250721042817_chuyenbaycuatoi.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Migrations\\20250721042817_chuyenbaycuatoi.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Migrations\\20250721042817_chuyenbaycuatoi.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Migrations\\20250721042817_chuyenbaycuatoi.cs",
+              "DocumentIndex": 2,
+              "Title": "XacNhanOTPThanhToan.cshtml",
+              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\DatVe\\XacNhanOTPThanhToan.cshtml",
+              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\DatVe\\XacNhanOTPThanhToan.cshtml",
+              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\DatVe\\XacNhanOTPThanhToan.cshtml",
+              "RelativeToolTip": "QLDatVeMayBay\\Views\\DatVe\\XacNhanOTPThanhToan.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T04:28:17.498Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ChuyenBayCuaToi.cshtml",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\VeMayBay\\ChuyenBayCuaToi.cshtml",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\VeMayBay\\ChuyenBayCuaToi.cshtml",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\VeMayBay\\ChuyenBayCuaToi.cshtml",
-              "RelativeToolTip": "QLDatVeMayBay\\Views\\VeMayBay\\ChuyenBayCuaToi.cshtml",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABkAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-20T15:31:57.019Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "VeMayBayController.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\VeMayBayController.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Controllers\\VeMayBayController.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\VeMayBayController.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Controllers\\VeMayBayController.cs",
-              "ViewState": "AgIAADYBAAAAAAAAAAAAwEIBAABGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T13:50:06.133Z"
+              "WhenOpened": "2025-07-22T04:32:23.096Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "VeMayBay.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\VeMayBay.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\VeMayBay.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\VeMayBay.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\VeMayBay.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAswBEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-11T16:42:07.474Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ChuyenBay.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\ChuyenBay.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\ChuyenBay.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\ChuyenBay.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\ChuyenBay.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwCAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T00:39:48.595Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "QLDatVeMayBay\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAAEEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-20T14:45:28.902Z"
+              "WhenOpened": "2025-07-22T03:10:08.497Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ChuyenBayCuaToiViewModels.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\ViewModels\\ChuyenBayCuaToiViewModels.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\ViewModels\\ChuyenBayCuaToiViewModels.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\ViewModels\\ChuyenBayCuaToiViewModels.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\ViewModels\\ChuyenBayCuaToiViewModels.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAA3wA8AAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T04:00:50.89Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "TaiKhoanControllerTest.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Controller\\TaiKhoanControllerTest.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Controller\\TaiKhoanControllerTest.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Controller\\TaiKhoanControllerTest.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Controller\\TaiKhoanControllerTest.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAAAD0AAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T03:43:10.061Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ChiTiet.cshtml",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\QuanLyChuyenBay\\ChiTiet.cshtml",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\QuanLyChuyenBay\\ChiTiet.cshtml",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\QuanLyChuyenBay\\ChiTiet.cshtml",
-              "RelativeToolTip": "QLDatVeMayBay\\Views\\QuanLyChuyenBay\\ChiTiet.cshtml",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-21T04:02:10.213Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\QuanLyChuyenBay\\Index.cshtml",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\QuanLyChuyenBay\\Index.cshtml",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\QuanLyChuyenBay\\Index.cshtml",
-              "RelativeToolTip": "QLDatVeMayBay\\Views\\QuanLyChuyenBay\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-21T04:02:14.341Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 13,
               "Title": "ChuyenBayController.cs",
               "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\ChuyenBayController.cs",
               "RelativeDocumentMoniker": "QLDatVeMayBay\\Controllers\\ChuyenBayController.cs",
               "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\ChuyenBayController.cs",
               "RelativeToolTip": "QLDatVeMayBay\\Controllers\\ChuyenBayController.cs",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAAwGEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T03:37:45.035Z"
+              "WhenOpened": "2025-07-22T02:52:25.419Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "KetQuaTimKiem.cshtml",
+              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\ChuyenBay\\KetQuaTimKiem.cshtml",
+              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\ChuyenBay\\KetQuaTimKiem.cshtml",
+              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\ChuyenBay\\KetQuaTimKiem.cshtml",
+              "RelativeToolTip": "QLDatVeMayBay\\Views\\ChuyenBay\\KetQuaTimKiem.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABoAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-22T03:13:39.885Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DangNhap.cshtml",
+              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\TaiKhoan\\DangNhap.cshtml",
+              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\TaiKhoan\\DangNhap.cshtml",
+              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\TaiKhoan\\DangNhap.cshtml",
+              "RelativeToolTip": "QLDatVeMayBay\\Views\\TaiKhoan\\DangNhap.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-22T03:15:40.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "QLDatVeMayBay\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-22T03:13:52.663Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "ChuyenBayControllerTest.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Controller\\ChuyenBayControllerTest.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Controller\\ChuyenBayControllerTest.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Controller\\ChuyenBayControllerTest.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Controller\\ChuyenBayControllerTest.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAEwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T03:38:50.126Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "DatVeControllerTest.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Controller\\DatVeControllerTest.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Controller\\DatVeControllerTest.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Controller\\DatVeControllerTest.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Controller\\DatVeControllerTest.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAuwCUAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T03:12:17.083Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "TheThanhToanController.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\TheThanhToanController.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Controllers\\TheThanhToanController.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\TheThanhToanController.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Controllers\\TheThanhToanController.cs",
-              "ViewState": "AgIAAL4AAAAAAAAAAAAswM0AAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T14:08:57.114Z"
+              "Title": "_AdminLayout.cshtml",
+              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\Shared\\_AdminLayout.cshtml",
+              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeToolTip": "QLDatVeMayBay\\Views\\Shared\\_AdminLayout.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-22T03:10:26.524Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "MayBay.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\MayBay.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\MayBay.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\MayBay.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\MayBay.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAiwA8AAAAiAAAAAAAAAA==",
+              "Title": "DatVeController.cs",
+              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\DatVeController.cs",
+              "RelativeDocumentMoniker": "QLDatVeMayBay\\Controllers\\DatVeController.cs",
+              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\DatVeController.cs",
+              "RelativeToolTip": "QLDatVeMayBay\\Controllers\\DatVeController.cs",
+              "ViewState": "AgIAAK4AAAAAAAAAAAAowLoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T01:48:12.349Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "LoaiMayBay.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\LoaiMayBay.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\LoaiMayBay.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\LoaiMayBay.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\LoaiMayBay.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAiwBAAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:21:20.046Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Controllers\\AdminController.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T03:08:41.42Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "XacNhanQuenMatKhauTests.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\XacNhanQuenMatKhauTests.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\XacNhanQuenMatKhauTests.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\XacNhanQuenMatKhauTests.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\XacNhanQuenMatKhauTests.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAwD8AAABLAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T03:02:34.553Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "TimKiemChuyenBayTests.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\TimKiemChuyenBayTests.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\TimKiemChuyenBayTests.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\TimKiemChuyenBayTests.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\TimKiemChuyenBayTests.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAQwCoAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:42:26.132Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "VeMayBayTests.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\VeMayBayTests.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\VeMayBayTests.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\VeMayBayTests.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\VeMayBayTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:56:26.864Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\TheThanhToan\\Index.cshtml",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\TheThanhToan\\Index.cshtml",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\TheThanhToan\\Index.cshtml",
-              "RelativeToolTip": "QLDatVeMayBay\\Views\\TheThanhToan\\Index.cshtml",
-              "ViewState": "AgIAAJMAAAAAAAAAAAAAAHUAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-20T14:59:59.758Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "XacNhanQuenMatKhau.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\XacNhanQuenMatKhau.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\XacNhanQuenMatKhau.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\XacNhanQuenMatKhau.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\XacNhanQuenMatKhau.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T14:18:34.051Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "TheThanhToanTests.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\TheThanhToanTests.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\TheThanhToanTests.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\TheThanhToanTests.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\TheThanhToanTests.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAAwCwAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:08:50.09Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\VeMayBay\\Index.cshtml",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\VeMayBay\\Index.cshtml",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\VeMayBay\\Index.cshtml",
-              "RelativeToolTip": "QLDatVeMayBay\\Views\\VeMayBay\\Index.cshtml",
-              "ViewState": "AgIAALcAAAAAAAAAAAAAAMYAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-21T02:50:01.728Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "ThongTinThanhToanTest.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\ThongTinThanhToanTest.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\ThongTinThanhToanTest.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\ThongTinThanhToanTest.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\ThongTinThanhToanTest.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAmwDkAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:09:49.352Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "ThongTinVeTests.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\ThongTinVeTests.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\ThongTinVeTests.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\ThongTinVeTests.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\ThongTinVeTests.cs",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAgwFgAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:23:39.716Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "TimKiemChuyenBay.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\TimKiemChuyenBay.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\TimKiemChuyenBay.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\TimKiemChuyenBay.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\TimKiemChuyenBay.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAcwCAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:40:59.979Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "TheThanhToan.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\TheThanhToan.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\TheThanhToan.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\TheThanhToan.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\TheThanhToan.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAUwBEAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T13:42:12.272Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "LoaiMayBayTests.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\LoaiMayBayTests.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\LoaiMayBayTests.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\LoaiMayBayTests.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\LoaiMayBayTests.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAwBcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T01:33:44.633Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "ThongTinVe.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\ThongTinVe.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\ThongTinVe.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\ThongTinVe.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\ThongTinVe.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAUwCEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T13:56:43.617Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "ThongTinThanhToan.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\ThongTinThanhToan.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\ThongTinThanhToan.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\ThongTinThanhToan.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\ThongTinThanhToan.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAA2wB8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T14:03:06.692Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "HoanTienTest.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\HoanTienTest.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\HoanTienTest.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\HoanTienTest.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\HoanTienTest.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAwCcAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T01:29:09.376Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "ThanhToanTests.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\ThanhToanTests.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\ThanhToanTests.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\ThanhToanTests.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\ThanhToanTests.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAAwEoAAABNAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:07:59.381Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "TaiKhoanTests.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\TaiKhoanTests.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\TaiKhoanTests.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\TaiKhoanTests.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\TaiKhoanTests.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAAwFYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:02:49.94Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "TaiKhoan.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\TaiKhoan.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\TaiKhoan.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\TaiKhoan.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\TaiKhoan.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAA2wBQAAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:01:37.013Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "SanBayTests.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\SanBayTests.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\SanBayTests.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\SanBayTests.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\SanBayTests.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAAwDMAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T02:00:45.644Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "SanBay.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\SanBay.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\SanBay.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\SanBay.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\SanBay.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T01:59:58.087Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "RequiredIfAttributeTests.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\RequiredIfAttributeTests.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\RequiredIfAttributeTests.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\RequiredIfAttributeTests.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\RequiredIfAttributeTests.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAAC8AAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T01:58:32.95Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "RequiredIfAttribute.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\RequiredIfAttribute.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\RequiredIfAttribute.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\RequiredIfAttribute.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\RequiredIfAttribute.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T01:57:24.995Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "ThanhToan.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\ThanhToan.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\ThanhToan.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\ThanhToan.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\ThanhToan.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAA4wBoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T03:48:59.724Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "QuenMatKhauTests.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\QuenMatKhauTests.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\QuenMatKhauTests.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\QuenMatKhauTests.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\QuenMatKhauTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T01:55:15.205Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 43,
-              "Title": "NguoiDungTests.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\NguoiDungTests.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\NguoiDungTests.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\NguoiDungTests.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\NguoiDungTests.cs",
-              "ViewState": "AgIAAGgAAAAAAAAAAAAAAF0AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T01:50:59.191Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 44,
-              "Title": "QuenMatKhau.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\QuenMatKhau.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\QuenMatKhau.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\QuenMatKhau.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\QuenMatKhau.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T01:50:27.168Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 45,
-              "Title": "NguoiDung.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\NguoiDung.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\NguoiDung.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\NguoiDung.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\NguoiDung.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAA0wBwAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T01:50:06.932Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 46,
-              "Title": "MayBayTests.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\MayBayTests.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\MayBayTests.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\MayBayTests.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\MayBayTests.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAAwEgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T01:49:04.183Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 47,
-              "Title": "MaXacNhanTests.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\MaXacNhanTests.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\MaXacNhanTests.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\MaXacNhanTests.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\MaXacNhanTests.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAAwEEAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T01:37:07.981Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 48,
-              "Title": "MaXacNhan.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\MaXacNhan.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\MaXacNhan.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\MaXacNhan.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\MaXacNhan.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAiwBIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T01:35:12.116Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 49,
-              "Title": "HoanTien.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\HoanTien.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\HoanTien.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\HoanTien.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\HoanTien.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAiwBsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T01:29:12.851Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 51,
-              "Title": "DatGheTest.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\DatGheTest.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\DatGheTest.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\DatGheTest.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\DatGheTest.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAxwDQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T01:19:50.525Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 50,
-              "Title": "DatGhe.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\DatGhe.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Models\\DatGhe.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Models\\DatGhe.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Models\\DatGhe.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T01:19:10.685Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 52,
-              "Title": "ChuyenBayTest.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\ChuyenBayTest.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\Models\\ChuyenBayTest.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\Models\\ChuyenBayTest.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\Models\\ChuyenBayTest.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAQwCQAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T00:41:29.664Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 53,
-              "Title": "QLDatVeMayBay.csproj",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\QLDatVeMayBay.csproj",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\QLDatVeMayBay.csproj",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\QLDatVeMayBay.csproj",
-              "RelativeToolTip": "QLDatVeMayBay\\QLDatVeMayBay.csproj",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAgwCIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-07-21T01:00:20.081Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 54,
-              "Title": "TestDatVeMayBay.Tests.csproj",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj",
-              "RelativeToolTip": "TestDatVeMayBay\\TestDatVeMayBay.Tests.csproj",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAgwAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-07-21T00:57:58.653Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 66,
-              "Title": "UnitTest1.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\UnitTest1.cs",
-              "RelativeDocumentMoniker": "TestDatVeMayBay\\UnitTest1.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\TestDatVeMayBay\\UnitTest1.cs",
-              "RelativeToolTip": "TestDatVeMayBay\\UnitTest1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T00:33:48.407Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 55,
-              "Title": "20250720152115_final1.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Migrations\\20250720152115_final1.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Migrations\\20250720152115_final1.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Migrations\\20250720152115_final1.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Migrations\\20250720152115_final1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T15:21:15.943Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 56,
-              "Title": "TheThanhToanViewModel.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\ViewModels\\TheThanhToanViewModel.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\ViewModels\\TheThanhToanViewModel.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\ViewModels\\TheThanhToanViewModel.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\ViewModels\\TheThanhToanViewModel.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAqwCAAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T14:50:39.312Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 64,
-              "Title": "20250720151341_final.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Migrations\\20250720151341_final.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Migrations\\20250720151341_final.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Migrations\\20250720151341_final.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Migrations\\20250720151341_final.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T15:13:42.03Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 59,
-              "Title": "NhapOTP.cshtml",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\DatVe\\NhapOTP.cshtml",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\DatVe\\NhapOTP.cshtml",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\DatVe\\NhapOTP.cshtml",
-              "RelativeToolTip": "QLDatVeMayBay\\Views\\DatVe\\NhapOTP.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-20T14:44:11.601Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 57,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\TheThanhToan\\Create.cshtml",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\TheThanhToan\\Create.cshtml",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\TheThanhToan\\Create.cshtml",
-              "RelativeToolTip": "QLDatVeMayBay\\Views\\TheThanhToan\\Create.cshtml",
-              "ViewState": "AgIAAEMAAAAAAAAAAAAkwGQAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-20T14:47:57.168Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 58,
-              "Title": "ThanhToan.cshtml",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\DatVe\\ThanhToan.cshtml",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\DatVe\\ThanhToan.cshtml",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\DatVe\\ThanhToan.cshtml",
-              "RelativeToolTip": "QLDatVeMayBay\\Views\\DatVe\\ThanhToan.cshtml",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAkwB0AAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-20T14:02:34.836Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 60,
-              "Title": "ThanhToanThanhCong.cshtml",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\DatVe\\ThanhToanThanhCong.cshtml",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\DatVe\\ThanhToanThanhCong.cshtml",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\DatVe\\ThanhToanThanhCong.cshtml",
-              "RelativeToolTip": "QLDatVeMayBay\\Views\\DatVe\\ThanhToanThanhCong.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-20T14:41:23.178Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 61,
-              "Title": "20250720142224_the.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Migrations\\20250720142224_the.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Migrations\\20250720142224_the.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Migrations\\20250720142224_the.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Migrations\\20250720142224_the.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T14:22:24.993Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 62,
-              "Title": "20250720141932_thanhtoanthe.cs",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Migrations\\20250720141932_thanhtoanthe.cs",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Migrations\\20250720141932_thanhtoanthe.cs",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Migrations\\20250720141932_thanhtoanthe.cs",
-              "RelativeToolTip": "QLDatVeMayBay\\Migrations\\20250720141932_thanhtoanthe.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T14:19:33.008Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 63,
-              "Title": "XacNhanVe.cshtml",
-              "DocumentMoniker": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\DatVe\\XacNhanVe.cshtml",
-              "RelativeDocumentMoniker": "QLDatVeMayBay\\Views\\DatVe\\XacNhanVe.cshtml",
-              "ToolTip": "C:\\workspace\\DoAn_QLDatVeMayBay\\QLDatVeMayBay\\Views\\DatVe\\XacNhanVe.cshtml",
-              "RelativeToolTip": "QLDatVeMayBay\\Views\\DatVe\\XacNhanVe.cshtml",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAkwEIAAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-20T14:00:20.235Z"
+              "WhenOpened": "2025-07-20T13:44:14.711Z",
+              "EditorCaption": ""
             }
           ]
         }
